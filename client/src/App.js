@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import GlobalNav from './components/Layout/GlobalNav';
+// import GlobalNav from './components/Layout/GlobalNav';
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <GlobalNav />
+        {/* <GlobalNav /> */}
         <Routes>
           <Route path="/" element={<div>home</div>} />
           <Route path="/signup" element={<div>signup</div>} />
