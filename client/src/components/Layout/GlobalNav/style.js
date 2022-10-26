@@ -18,6 +18,7 @@ export const LogoContainer = styled.span`
 `;
 
 export const Header = styled.div`
+  position: fixed;
   display: flex;
   justify-content: center;
   height: 50px;
@@ -25,6 +26,7 @@ export const Header = styled.div`
   background-color: #f8f9f9;
   width: 100%;
   box-shadow: 0px 1px 2px hsl(210, 8%, 85%);
+  z-index: 1;
 `;
 
 export const Container = styled.div`
