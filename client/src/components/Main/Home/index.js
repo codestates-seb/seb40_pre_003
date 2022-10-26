@@ -18,7 +18,7 @@ const Home = () => {
           <QuestionButton>Ask Question</QuestionButton>
         </HomeHead>
       </div>
-      <Total>{} questions</Total>
+      <Total>22,200,038 questions</Total>
       <QuestionsList></QuestionsList>
       <Question></Question>
     </div>

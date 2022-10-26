@@ -33,6 +33,10 @@ const RigthSection = styled.section`
 
 // 질문리스트 -> 내부 ->  질문제목, 질문 내용
 const TextSection = styled.section``;
+// 질문 제목 -> 링크달아서 클릭시 질문내용 상세페이지로 ~
+// const QuestionTitle = styled.a``;
+// // 질문 내용
+// const QuestionText = styled.p``;
 
 // 질문리스트 -> 하단 -> 태그목록, 질문자의정보(이미지, 닉네임, 작성날짜)
 const TagInfoSection = styled.footer``;
@@ -42,7 +46,7 @@ const Question = () => {
     <div>
       <Horizon></Horizon>
       <QuList>
-        <LeftSection>조회수</LeftSection>
+        <LeftSection>votes</LeftSection>
         <RigthSection>
           <TextSection>제목, 내용</TextSection>
           <TagInfoSection>
