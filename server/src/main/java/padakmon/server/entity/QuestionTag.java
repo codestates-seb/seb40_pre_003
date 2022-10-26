@@ -1,4 +1,4 @@
-package question.entity;
+package padakmon.server.entity;
 
 import lombok.Getter;
 import lombok.Setter;

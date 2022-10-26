@@ -1,4 +1,4 @@
-package question.entity;
+package padakmon.server.entity;
 
 import audit.BaseEntity;
 import lombok.AllArgsConstructor;

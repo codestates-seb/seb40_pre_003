@@ -1,9 +1,10 @@
-package question.entity;
+package padakmon.server.entity;
 
 import audit.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import question.entity.User;
 
 import javax.persistence.*;
 
@@ -11,13 +12,13 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
-public class QuestionVote extends BaseEntity {
+public class AnswerVote extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long voteId;
+    private long answerId;
     @ManyToOne
-    @JoinColumn(name = "QUESTION_ID")
-    private Question question;
+    @JoinColumn(name = "ANSWER_ID")
+    private Answer answer;
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
