@@ -15,6 +15,9 @@ export const LogoContainer = styled.span`
   align-items: center;
   height: 47px;
   padding: 0 8px;
+  :hover {
+    background-color: var(--black-075);
+  }
 `;
 
 export const Header = styled.div`
@@ -49,31 +52,37 @@ export const Button = styled.a`
   border-radius: 1000px;
   font-size: 13px;
   :hover {
-    background-color: #e2e6e8;
+    background-color: var(--black-075);
   }
 `;
 
 export const LoginButton = styled.span`
   display: flex;
   padding: 8px 10.4px;
-  border: 1px solid hsl(205, 47%, 42%);
+  border: 1px solid var(--theme-button-filled-border-color);
   border-radius: 3px;
   font-size: 13px;
   color: hsl(205, 47%, 42%);
   cursor: pointer;
   background-color: hsl(205deg 46% 92%);
+  :hover {
+    background-color: var(--powder-300);
+  }
 `;
 
 export const SignupButton = styled.span`
   display: flex;
   padding: 8px 10.4px;
-  border: 1px solid black;
+  border: 1px solid transparent;
   border-radius: 3px;
   font-size: 13px;
   color: white;
   cursor: pointer;
   margin-left: 4px;
   background-color: hsl(206, 100%, 52%);
+  :hover {
+    background-color: var(--blue-600);
+  }
 `;
 
 export const RegiLink = styled(Link)`
