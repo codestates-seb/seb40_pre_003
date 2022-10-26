@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
+import GlobalStyle from './assets/GlobalStyle';
 import Footer from './components/Layout/Footer';
 import GlobalNav from './components/Layout/GlobalNav';
 import SideNav from './components/Layout/SideNav';
@@ -9,6 +10,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        <GlobalStyle />
         <GlobalNav />
         <Body>
           <SideNav />
