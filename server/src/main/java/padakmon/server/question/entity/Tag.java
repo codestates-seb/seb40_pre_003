@@ -1,4 +1,4 @@
-package padakmon.server.entity;
+package padakmon.server.question.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

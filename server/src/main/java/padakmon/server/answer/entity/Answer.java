@@ -1,11 +1,13 @@
-package padakmon.server.entity;
+package padakmon.server.answer.entity;
 
-import audit.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import padakmon.server.entity.Question;
-import question.entity.User;
+import padakmon.server.audit.Auditable;
+import padakmon.server.question.entity.Question;
+import padakmon.server.user.entity.User;
+import padakmon.server.util.BooleanConverter;
+
 
 import javax.persistence.*;
 
@@ -13,16 +15,15 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Answer extends BaseEntity {
+public class Answer extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long answerId;
     @Lob
     private String body;
-    //컨버터 필요
+    @Convert(converter = BooleanConverter.class) // Y/N <-> true/false
     private boolean answered;
-    //score column 추가
-    private int score = 0;
+    private int voteCount = 0;
     @ManyToOne
     @JoinColumn(name = "QUESTION_ID")
     private Question question;

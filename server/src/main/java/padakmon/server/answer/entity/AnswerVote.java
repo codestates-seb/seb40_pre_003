@@ -1,10 +1,11 @@
-package padakmon.server.entity;
+package padakmon.server.answer.entity;
 
-import audit.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import question.entity.User;
+import padakmon.server.answer.entity.Answer;
+import padakmon.server.audit.Auditable;
+import padakmon.server.user.entity.User;
 
 import javax.persistence.*;
 
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
-public class AnswerVote extends BaseEntity {
+public class AnswerVote extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long answerId;
