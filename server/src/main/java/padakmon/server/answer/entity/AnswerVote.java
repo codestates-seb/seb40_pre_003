@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
-public class AnswerVote extends Auditable {
+public class AnswerVote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long answerId;
