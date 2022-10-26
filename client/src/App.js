@@ -37,6 +37,7 @@ function App() {
 const Body = styled.div`
   display: flex;
   margin: 0 124px;
+  padding-top: 50px;
 `;
 
 export default App;
