@@ -1,17 +1,18 @@
 import styled from 'styled-components';
 
-const HomeHead = styled.div`
+export const HomeHead = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 20px 0 20px;
+  width: 737px;
 `;
 
-const TopQuestions = styled.span`
+export const TopQuestions = styled.span`
   font-size: 27px;
   margin-top: 19.5px;
 `;
 
-const QuestionButton = styled.button`
+export const QuestionButton = styled.button`
   background-color: #0995ff;
   font-family: inherit;
   color: white;
@@ -22,19 +23,5 @@ const QuestionButton = styled.button`
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
   outline: none;
   margin-top: 19.5px;
+  cursor: pointer;
 `;
-
-const Home = () => {
-  return (
-    <div>
-      <div>
-        <HomeHead>
-          <TopQuestions>Top Questions</TopQuestions>
-          <QuestionButton>Ask Question</QuestionButton>
-        </HomeHead>
-      </div>
-    </div>
-  );
-};
-
-export default Home;
