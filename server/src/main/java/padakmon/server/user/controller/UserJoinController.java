@@ -8,30 +8,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import padakmon.server.user.dto.UserDto;
 import padakmon.server.user.mapper.UserMapper;
-import padakmon.server.user.service.UserAuthorityService;
+import padakmon.server.user.service.UserJoinService;
 
 import javax.validation.Valid;
 
 @RestController
-public class UserAuthorityController {
+public class UserJoinController {
 
-    private final UserAuthorityService userAuthorityService;
+    private final UserJoinService userJoinService;
     private final UserMapper userMapper;
 
-    public UserAuthorityController(UserAuthorityService userAuthorityService, UserMapper userMapper) {
-        this.userAuthorityService = userAuthorityService;
+    public UserJoinController(UserJoinService userJoinService, UserMapper userMapper) {
+        this.userJoinService = userJoinService;
         this.userMapper = userMapper;
     }
 
     // TODO: BindingResult 처리
     @PostMapping("/users")
-    public ResponseEntity signUp(@Valid @RequestBody UserDto.SignUp userDto, BindingResult bindingResult) {
+    public ResponseEntity signUp(@Valid @RequestBody UserDto.SignUp signUpDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity(bindingResult.getFieldErrors(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(bindingResult.getFieldError().getDefaultMessage(), HttpStatus.BAD_REQUEST);
         }
 
-        userAuthorityService.createUser(userMapper.userDtoToUser(userDto));
+        userJoinService.createUser(userMapper.userDtoToUser(signUpDto));
         return new ResponseEntity(HttpStatus.CREATED);
     }
-
 }
