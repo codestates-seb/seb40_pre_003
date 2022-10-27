@@ -15,9 +15,11 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import padakmon.server.authority.filter.JwtAuthenticationFilter;
 import padakmon.server.authority.filter.JwtVerificationFilter;
+import padakmon.server.authority.handler.UserAccessDeniedHandler;
+import padakmon.server.authority.handler.UserAuthenticationEntryPoint;
 import padakmon.server.authority.handler.UserAuthenticationFailureHandler;
 import padakmon.server.authority.jwt.JwtTokenizer;
-import padakmon.server.authority.sercurity.UserAuthorityUtils;
+import padakmon.server.authority.utils.UserAuthorityUtils;
 
 import java.util.List;
 
@@ -44,11 +46,16 @@ public class SecurityConfiguration {
                 .and()
                 .formLogin().disable()
                 .httpBasic().disable() // http header로 인증하는 방식은 사용하지 않음
-//                .exceptionHandling().accessDeniedHandler() // 비회원은 로그인 화면으로 이동
+                .exceptionHandling()
+                .authenticationEntryPoint(new UserAuthenticationEntryPoint())
+                .accessDeniedHandler(new UserAccessDeniedHandler())
+                .and()
                 .apply(new CustomFilterConfigurer())
                 .and()
                 .authorizeHttpRequests(authorize ->
-                        authorize.antMatchers(HttpMethod.GET, "/h2").hasRole("USER") // TODO USER 권한 URL 수정
+                        authorize.antMatchers(HttpMethod.POST, "/board/**").hasRole("USER") // TODO USER 권한 URL 수정
+                                .antMatchers(HttpMethod.PATCH, "/board/**").hasRole("USER")
+                                .antMatchers(HttpMethod.DELETE, "/board/**").hasRole("USER")
                                 .anyRequest().permitAll()
                 );
 
