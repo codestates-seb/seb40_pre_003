@@ -4,6 +4,7 @@ import GlobalStyle from './assets/GlobalStyle';
 import Footer from './components/Layout/Footer';
 import GlobalNav from './components/Layout/GlobalNav';
 import SideNav from './components/Layout/SideNav';
+import QuestionContent from './pages/Questions/QuestionContent';
 
 function App() {
   const { pathname } = useLocation();
@@ -25,7 +26,7 @@ function App() {
           <Route path="/login" element={<div>login</div>} />
           <Route path="/questions" element={<div>questions</div>} />
           <Route path="/questions/ask" element={<div>ask</div>} />
-          <Route path={`/questions/:id`} element={<div>questions/:id</div>} />
+          <Route path={`/questions/:id`} element={<QuestionContent />} />
           {/* querystring으로 검색 결과 페이지 이동 (/search?q=springboot) */}
           <Route path="/search" element={<div>search result</div>} />
           <Route path="/tags" element={<div>tags</div>} />

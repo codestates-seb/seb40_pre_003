@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import {
   Container,
   End,
@@ -13,6 +14,8 @@ import {
 } from './style';
 
 function SideNav() {
+  const { pathname } = useLocation();
+  console.log(pathname);
   return (
     <Container>
       <HomeLink to="/">Home</HomeLink>
