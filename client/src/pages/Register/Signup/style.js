@@ -40,7 +40,7 @@ export const SignupBlock = styled.div`
     }
     margin-bottom: 10px;
   }
-
+  /* 반복되는 로그인스타일을 가입으로 가져왔는데...social_login을 social_btn으로 하면 더 좋았을 듯하다 */
   > section.social_login {
     /* flex-basis: 20%; */
 
