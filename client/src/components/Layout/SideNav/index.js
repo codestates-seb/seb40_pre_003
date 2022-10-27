@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import {
   Container,
   End,
@@ -13,22 +14,25 @@ import {
 } from './style';
 
 function SideNav() {
+  const { pathname } = useLocation();
+  console.log(pathname);
+
   return (
     <Container>
       <HomeLink to="/">Home</HomeLink>
       <List>
         <Name>PUBLIC</Name>
         <Ol>
-          <Questions>
+          <Questions selected={pathname === '/questions' ? true : false}>
             <QuestionsLink to="/questions">
               <MyIoEarthSharp size="18px" />
               Questions
             </QuestionsLink>
           </Questions>
-          <PublicList>
+          <PublicList selected={pathname === '/tags' ? true : false}>
             <PublicLink to="/tags">Tags</PublicLink>
           </PublicList>
-          <PublicList>
+          <PublicList selected={pathname === '/users' ? true : false}>
             <PublicLink to="/users">Users</PublicLink>
           </PublicList>
         </Ol>
