@@ -27,14 +27,28 @@ export const MyIoEarthSharp = styled(IoEarthSharp)`
   margin-right: 4px;
 `;
 
-export const Questions = styled.span`
+export const Questions = styled.div`
   padding: 4px 8px 4px 0px;
+  background-color: ${(props) =>
+    props.selected ? 'var(--black-050)' : 'none'};
+  font-weight: ${(props) => (props.selected ? 'bold' : 'none')};
+  color: ${(props) =>
+    props.selected ? 'var(--black-900)' : 'var(--black-600)'};
+  border-right: 3px solid
+    ${(props) => (props.selected ? 'var(--theme-primary-color)' : 'none')};
 `;
 
 export const PublicList = styled.div`
   display: flex;
   align-items: center;
   padding: 4px 8px 4px 0px;
+  background-color: ${(props) =>
+    props.selected ? 'var(--black-050)' : 'none'};
+  font-weight: ${(props) => (props.selected ? 'bold' : 'none')};
+  color: ${(props) =>
+    props.selected ? 'var(--black-900)' : 'var(--black-600)'};
+  border-right: 3px solid
+    ${(props) => (props.selected ? 'var(--theme-primary-color)' : 'none')};
 
   /* padding: 4px 4px 4px 30px; */
 `;
@@ -45,9 +59,10 @@ export const QuestionsLink = styled(Link)`
   align-items: center;
   font-size: 13px;
   text-decoration: none;
-  color: var(--black-600);
+  /* color: var(--black-600); */
+  color: inherit;
 
-  border-right: 3px;
+  /* border-right: 3px; */
   width: 130px;
   height: 26px;
 
@@ -61,7 +76,8 @@ export const PublicLink = styled(Link)`
   align-items: center;
   font-size: 13px;
   text-decoration: none;
-  color: var(--black-600);
+  /* color: var(--black-600); */
+  color: inherit;
   /* padding: 8px 6px 8px 8px; */
   padding: 4px 4px 4px 30px;
 
