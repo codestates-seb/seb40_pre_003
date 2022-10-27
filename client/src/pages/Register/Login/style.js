@@ -66,8 +66,8 @@ export const LoginBlock = styled.div`
 
   > section.email_login {
     margin: 10px;
-    width: 280px;
-    height: 250px;
+    width: 310px;
+    height: 300px;
     padding: 20px;
     border-radius: 10px;
     background-color: white;
@@ -110,7 +110,7 @@ export const LoginBlock = styled.div`
 
     > form > button {
       margin-top: 15px;
-      width: 280px;
+      width: 270px;
       height: 38px;
       background-color: #0a95ff;
       border: none;

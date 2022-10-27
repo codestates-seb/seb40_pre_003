@@ -7,6 +7,7 @@ import GlobalNav from './components/Layout/GlobalNav';
 import SideNav from './components/Layout/SideNav';
 import Home from './components/Main/Home';
 import Login from './pages/Register/Login';
+import Signup from './pages/Register/Signup';
 
 function App() {
   const { pathname } = useLocation();
@@ -24,7 +25,7 @@ function App() {
         {hideSnb || <SideNav />}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<div>signup</div>} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/questions" element={<div>questions</div>} />
           <Route path="/questions/ask" element={<div>ask</div>} />
@@ -46,6 +47,8 @@ const Body = styled.div`
   display: flex;
   margin: 0 124px;
   padding-top: 50px;
+  width: 100%;
+  height: 100%;
 `;
 
 export default App;

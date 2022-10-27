@@ -1,9 +1,10 @@
+import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { GrFacebook } from 'react-icons/gr';
 import { SiGithub } from 'react-icons/si';
+import { Link } from 'react-router-dom';
 import { LoginBlock } from './style';
-
-import { useState } from 'react';
+//import { Link, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -22,29 +23,30 @@ export default function Login() {
       .get(`http://localhost:3001/auth`)
       .then((res) => console.log(res.data.login));
 
-    // axios
-    //     .post(`http://localhost:3001/users`, {
-    //       email: email,
-    //       password: password
-    //     })
-    //     .then((res)=> {
-    //       console.log("로그인 성공")
-    //       let token = res.headers.authorization;
-    //       let userId = res.headers.id;
-    //       localStorage.setItem("authorization", token);
-    //       localStorage.setItem("id", userId)
-    //        //dispatch(loginAction(userId))
-    //       //navigate('/') //홈으로 이동
-    //     })
-    //     .catch((err)=> {
-    //       console.log(err);
-    //       setLoginFailMsg('The email or password is incorrect.')
-    //       setEmail('')
-    //       setPassword('')
-    //     })
+    axios
+      .post(`http://localhost:3001/users`, {
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        console.log('로그인 성공');
+        let token = res.headers.authorization;
+        let userId = res.headers.id;
+        localStorage.setItem('authorization', token);
+        localStorage.setItem('id', userId);
+        //dispatch(loginAction(userId))
+        //navigate('/');
+        //홈으로 이동
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoginFailMsg('The email or password is incorrect.');
+        setEmail('');
+        setPassword('');
+      });
 
-    // setEmailValidMsg('The email is not a valid email address.')
-    // setLoginFailMsg('The email or password is incorrect.')
+    setEmailValidMsg('The email is not a valid email address.');
+    setLoginFailMsg('The email or password is incorrect.');
   };
   return (
     <LoginBlock className="login_block">
@@ -76,19 +78,21 @@ export default function Login() {
       <section className="email_login">
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Email</label>
+            <label htmlFor={'Email'}>Email</label>
             <input
               type="text"
               name="email"
+              htmlFor={'Email'}
               onChange={(e) => setEmail(e.target.value)}
             ></input>
             {emailValidMsg ? <div className="msg">{emailValidMsg}</div> : ''}
           </div>
           <div>
-            <label>Password</label>
+            <label htmlFor={'Password'}>Password</label>
             <input
               type="password"
               onChange={(e) => setPassword(e.target.value)}
+              htmlFor={'Password'}
             ></input>
             {loginFailMsg ? <div className="msg">{loginFailMsg}</div> : ''}
           </div>
@@ -97,12 +101,11 @@ export default function Login() {
       </section>
       <div className="login_guide">
         <div>
-          {/* Link로 바꿀 예정 */}
-          Don't have an account? <a href="">Sign up</a>
+          Don&apos;t have an account? <Link to="/">Sign up</Link>
         </div>
         <br></br>
         <div>
-          Are you an employer? <a href="">Sign up on Talent</a>
+          Are you an employer? <Link to="/">Sign up on Talent</Link>
         </div>
       </div>
     </LoginBlock>

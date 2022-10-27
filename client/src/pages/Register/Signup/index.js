@@ -6,6 +6,7 @@ import { GrFacebook } from 'react-icons/gr';
 import { RiQuestionAnswerFill } from 'react-icons/ri';
 import { SiGithub } from 'react-icons/si';
 import { TbTriangle } from 'react-icons/tb';
+import { Link } from 'react-router-dom';
 import { Container, SignupBlock } from './style';
 
 import axios from 'axios';
@@ -113,9 +114,10 @@ const Signup = () => {
         <section className="email_login">
           <form onSubmit={handleSubmit}>
             <div>
-              <label>Display name</label>
+              <label htmlFor={'displayName'}>Display name</label>
               <input
                 type={'text'}
+                htmlFor={'displayName'}
                 onChange={(e) => {
                   setDisplayName(e.target.value);
                 }}
@@ -123,9 +125,10 @@ const Signup = () => {
               {nameValidMsg ? <div className="msg">{nameValidMsg}</div> : ''}
             </div>
             <div>
-              <label>Email</label>
+              <label htmlFor={'Email'}>Email</label>
               <input
                 type={'text'}
+                htmlFor={'Email'}
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
@@ -133,9 +136,10 @@ const Signup = () => {
               {emailValidMsg ? <div className="msg">{emailValidMsg}</div> : ''}
             </div>
             <div>
-              <label>Password</label>
+              <label htmlFor={'password'}>Password</label>
               <input
                 type={'password'}
+                htmlFor={'password'}
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
@@ -151,16 +155,16 @@ const Signup = () => {
         </section>
         <div className="login_guide">
           <div>
-            {/* a 태그는 react-router-dom에서 link to로 바꿔야 함 <Link to="/login">Log in</Link> */}
             Already have an account?
-            <a href="">Log in</a>
+            <Link to="/login">Log in</Link>
           </div>
           <br></br>
           <div>
             Are you an employer?
-            <a href="https://talent.stackoverflow.com/users/login">
+            {/* 외부링크로 이동할 방법 찾기 */}
+            <Link to="https://talent.stackoverflow.com/users/login">
               Sign up on Talent
-            </a>
+            </Link>
           </div>
         </div>
       </SignupBlock>
