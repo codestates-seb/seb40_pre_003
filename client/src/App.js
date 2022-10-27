@@ -12,7 +12,6 @@ import Signup from './pages/Register/Signup';
 
 function App() {
   const { pathname } = useLocation();
-
   // background-color
   // login, signup: --black-050, ask: --black-025, 나머지: white
   let bgColor;
