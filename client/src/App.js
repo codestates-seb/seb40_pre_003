@@ -1,3 +1,5 @@
+// import GlobalNav from './components/Layout/GlobalNav';
+import Login from './pages/Register/Login';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import GlobalStyle from './assets/GlobalStyle';
