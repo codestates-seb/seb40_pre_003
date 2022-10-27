@@ -1,10 +1,15 @@
 import {
   Container,
+  End,
   HomeLink,
   List,
+  MyIoEarthSharp,
   Name,
+  Ol,
   PublicLink,
   PublicList,
+  Questions,
+  QuestionsLink,
 } from './style';
 
 function SideNav() {
@@ -13,18 +18,24 @@ function SideNav() {
       <HomeLink to="/">Home</HomeLink>
       <List>
         <Name>PUBLIC</Name>
-        <PublicList>
-          <PublicLink to="/questions">Questions</PublicLink>
-        </PublicList>
-        <PublicList>
-          <PublicLink to="/tags">Tags</PublicLink>
-        </PublicList>
-        <PublicList>
-          <PublicLink to="/users">Users</PublicLink>
-        </PublicList>
+        <Ol>
+          <Questions>
+            <QuestionsLink to="/questions">
+              <MyIoEarthSharp size="18px" />
+              Questions
+            </QuestionsLink>
+          </Questions>
+          <PublicList>
+            <PublicLink to="/tags">Tags</PublicLink>
+          </PublicList>
+          <PublicList>
+            <PublicLink to="/users">Users</PublicLink>
+          </PublicList>
+        </Ol>
       </List>
       <List>
         <Name>TEAMS</Name>
+        <End />
       </List>
     </Container>
   );
