@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+import padakmon.server.authority.utils.UserAuthorityUtils;
 import padakmon.server.user.entity.User;
 import padakmon.server.user.repository.UserRepository;
 

@@ -1,4 +1,4 @@
-package padakmon.server.authority.sercurity;
+package padakmon.server.authority.utils;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
