@@ -1,0 +1,10 @@
+/* fontawesome 이미지 css 주기 */
+.fontImg {
+  box-sizing: border-box;
+  width: 10px;
+  height: 10px;
+  background-color: #e6e6e6;
+  border: none;
+  border-radius: 3px;
+  padding: 5px;
+}

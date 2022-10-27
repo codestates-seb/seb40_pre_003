@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import { HomeHead, TopQuestions, QuestionButton } from './style';
 import QuestionsList from '../QuestionsList';
-import Question from '../Question';
-// const Sort = styled.
 
+// 질문글 갯수
 const Total = styled.div`
-  margin: 20px 0 0 23px;
+  margin: 20px 0 27px 23px;
   font-size: 20px;
 `;
 
@@ -18,9 +17,10 @@ const Home = () => {
           <QuestionButton>Ask Question</QuestionButton>
         </HomeHead>
       </div>
-      <Total>22,200,038 questions</Total>
+      <Total>
+        <span>5 questions</span>
+      </Total>
       <QuestionsList></QuestionsList>
-      <Question></Question>
     </div>
   );
 };
