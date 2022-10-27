@@ -1,5 +1,4 @@
 // import GlobalNav from './components/Layout/GlobalNav';
-import Login from './pages/Register/Login';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import GlobalStyle from './assets/GlobalStyle';
@@ -7,6 +6,7 @@ import Footer from './components/Layout/Footer';
 import GlobalNav from './components/Layout/GlobalNav';
 import SideNav from './components/Layout/SideNav';
 import Home from './components/Main/Home';
+import Login from './pages/Register/Login';
 
 function App() {
   const { pathname } = useLocation();
@@ -25,7 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<div>signup</div>} />
-          <Route path="/login" element={<div>login</div>} />
+          <Route path="/login" element={<Login />} />
           <Route path="/questions" element={<div>questions</div>} />
           <Route path="/questions/ask" element={<div>ask</div>} />
           <Route path={`/questions/:id`} element={<div>questions/:id</div>} />
