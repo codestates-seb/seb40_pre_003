@@ -4,6 +4,7 @@ import GlobalStyle from './assets/GlobalStyle';
 import Footer from './components/Layout/Footer';
 import GlobalNav from './components/Layout/GlobalNav';
 import SideNav from './components/Layout/SideNav';
+import Home from './components/Main/Home';
 
 function App() {
   const { pathname } = useLocation();
@@ -20,7 +21,7 @@ function App() {
       <Body>
         {hideSnb || <SideNav />}
         <Routes>
-          <Route path="/" element={<div>home</div>} />
+          <Route path="/" element={<Home />} />
           <Route path="/signup" element={<div>signup</div>} />
           <Route path="/login" element={<div>login</div>} />
           <Route path="/questions" element={<div>questions</div>} />
