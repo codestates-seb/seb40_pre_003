@@ -36,12 +36,15 @@ public class UserDto {
 
     @Getter
     @Setter
-    public static class myPage {
+    public static class myPage { // 마이페이지 수정
 
 //        private byte[] image;
 
+        @Size(min = 4, max = 15, message = "길이는 4 ~ 15까지 허용")
+        @Pattern(regexp = "^(?=.*[a-zA-Z])[0-9a-zA-Z]*$", message = "형식에 맞지 않음")
         private String name;
 
+        // TODO 파일로 저장 or TEXT로 저장
         private String aboutMe;
     }
 }
