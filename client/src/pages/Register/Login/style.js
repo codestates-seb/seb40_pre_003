@@ -6,7 +6,7 @@ export const LoginBlock = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   background-color: #f1f2f3;
 
   > div:first-of-type {
@@ -65,7 +65,7 @@ export const LoginBlock = styled.div`
   }
 
   > section.email_login {
-    margin:10px;
+    margin: 10px;
     width: 280px;
     height: 250px;
     padding: 20px;
@@ -77,7 +77,7 @@ export const LoginBlock = styled.div`
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-content: center; 
+      align-content: center;
       width: 268px;
     }
 
@@ -101,6 +101,10 @@ export const LoginBlock = styled.div`
         flex-basis: 30%;
         font-size: 12px;
         padding: 2px;
+      }
+      > div.msg {
+        color: red;
+        font-size: 15px;
       }
     }
 
