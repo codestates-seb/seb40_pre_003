@@ -47,8 +47,6 @@ const Body = styled.div`
   display: flex;
   margin: 0 124px;
   padding-top: 50px;
-  width: 100%;
-  height: 100%;
 `;
 
 export default App;
