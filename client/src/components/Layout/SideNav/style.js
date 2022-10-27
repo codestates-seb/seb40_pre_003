@@ -84,13 +84,13 @@ export const List = styled.div`
   flex-direction: column;
   font-size: 11px;
   /* margin: 16px 0 4px 8px; */
-  height: 100%;
+  /* height: 100%; */
 `;
 
 export const Name = styled.div`
   margin: 16px 0 4px 8px;
   color: var(--fc-light);
-  height: 100%;
+  /* height: 100%; */
 `;
 
 export const End = styled.div`
