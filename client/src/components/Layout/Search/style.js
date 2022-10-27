@@ -7,7 +7,7 @@ export const Container = styled.div`
   padding: 0px 8px;
   flex: 1 1 auto;
   width: auto;
-  background-color: white;
+  /* background-color: white; */
 `;
 
 export const SearchContainer = styled.div`
@@ -17,6 +17,7 @@ export const SearchContainer = styled.div`
   border: 1px solid #babfc3;
   border-radius: 3px;
   width: 100%;
+  background-color: white;
 `;
 
 export const Input = styled.input`

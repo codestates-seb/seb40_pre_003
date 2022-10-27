@@ -22,6 +22,7 @@
     "react/react-in-jsx-scope": 0,
     "react/jsx-uses-react": 0,
     "typescript-eslint/indent": "off",
+    "react/prop-types": "off",
     "prettier/prettier": ["error", { "singleQuote": true }]
   }
 }
