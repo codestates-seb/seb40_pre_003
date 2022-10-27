@@ -1,18 +1,24 @@
+// ------------ SearchResult -------------
+// 검색창에 검색을 하였을때 연관 질문들이 나올 페이지 화면
+
 import styled from 'styled-components';
-import QuestionsList from '../QuestionsList';
+import QuestionsList from '../../components/Main/QuestionsList';
 // import Question from '../Question';
 
+// 제목, 버튼, 링크 묶음
 const SearchResultsHead = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 0 0 20px;
 `;
 
+// 제목
 const SearchResultsTitle = styled.span`
   font-size: 27px;
   margin-top: 19.5px;
 `;
 
+// 질문작성 버튼
 const AskQuestionButton = styled.button`
   background-color: #0995ff;
   font-family: inherit;
@@ -44,6 +50,7 @@ const AboutResult = styled.p`
   margin-bottom: 10px;
 `;
 
+// 질문 갯수
 const Total = styled.div`
   margin: 20px 0 27px 23px;
   font-size: 20px;
