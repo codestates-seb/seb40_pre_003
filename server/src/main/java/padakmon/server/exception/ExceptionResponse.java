@@ -32,7 +32,8 @@ public class ExceptionResponse {
         ExceptionResponse response = new ExceptionResponse();
         response.setExceptionInfos(List.of(
                 new ExceptionInfo(
-                        Arrays.stream(e.getStackTrace()).findFirst().get().toString(),
+                        // TODO where 부분
+                        null,
                         e.getRejectedValue(),
                         e.getExceptionCode().getDescription()
                 )

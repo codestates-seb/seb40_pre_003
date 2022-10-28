@@ -17,14 +17,8 @@ import java.io.IOException;
 public class UserAuthenticationEntryPoint implements AuthenticationEntryPoint { // 자격 증명에서 시그니처, 토큰 만료 등의 exception 발생 시 작동
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-        Exception exception = (Exception) request.getAttribute("exception");
-        ErrorResponseUtils.sendErrorResponse(response, HttpStatus.UNAUTHORIZED);
-
-        logExceptionMessage(authException, exception);
-    }
-
-    private void logExceptionMessage(AuthenticationException authException, Exception exception) {
-        String message = exception != null ? exception.getMessage() : authException.getMessage();
+        String message = "Login required.";
+        ErrorResponseUtils.sendErrorResponse(response, HttpStatus.UNAUTHORIZED, message);
         log.warn("Unauthorized error happened : {}", message);
     }
 }

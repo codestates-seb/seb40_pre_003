@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter { // 인증된 USER에게 JWT 발행
 
     private final AuthenticationManager authenticationManager;
     private final JwtTokenizer jwtTokenizer;
@@ -49,13 +49,13 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String refreshToken = delegateRefreshToken(user);
 
         response.setHeader("AccessToken", "Bearer " + accessToken);
-        response.setHeader("RefreshToken", refreshToken); // 토큰 헤더에 전달
-        response.getWriter().write("id : " + user.getId()); // TODO 바디로 전달하는 방법
-        response.setHeader("Id", String.valueOf(user.getId())); // TODO 헤더로 전달하는 방법
+        response.setHeader("RefreshToken", refreshToken);
+        response.setHeader("Id", String.valueOf(user.getId()));
     }
 
     private String delegateAccessToken(User user) {
         Map<String, Object> claims = new HashMap<>();
+        claims.put("userId", user.getId());
         claims.put("userEmail", user.getEmail());
         claims.put("roles", user.getRoles());
 
