@@ -8,6 +8,7 @@ import SideNav from './components/Layout/SideNav';
 import Home from './components/Main/Home';
 import QuestionContent from './pages/Questions/QuestionContent';
 import Login from './pages/Register/Login';
+import Logout from './pages/Register/Logout';
 import Signup from './pages/Register/Signup';
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/questions" element={<div>questions</div>} />
           <Route path="/questions/ask" element={<div>ask</div>} />
           <Route path={`/questions/:id`} element={<QuestionContent />} />
