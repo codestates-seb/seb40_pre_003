@@ -34,11 +34,18 @@ export default function Login() {
       return;
     }
 
+    //될 수 있으면, config를 저장해둔 axios instance를 사용하는 것이 좋음.
+    //const instance = axios.create(//config객체)
+    const loginData = {
+      email: email,
+      password: password,
+    };
+    const loginConfig = {
+      withCredentials: true,
+    };
+
     axios
-      .post(`/auth/login`, {
-        email: email,
-        password: password,
-      })
+      .post(`/auth/login`, loginData, loginConfig)
       .then((res) => {
         console.log('로그인 성공');
         console.log('res: ', res);
@@ -61,6 +68,7 @@ export default function Login() {
           setLoginFailMsg('The email or password is incorrect.');
           setEmail(''); //왜 초기화가 안되지??아...리렌더링 시켜야하는데
           setPassword('');
+          window.location.reload(); //리렌더링을 위한 임시방편
         }
       });
   };
@@ -96,8 +104,7 @@ export default function Login() {
           <div>
             <label htmlFor={'Email'}>Email</label>
             <input
-              type="text"
-              name="email"
+              type="email"
               htmlFor={'Email'}
               onChange={(e) => setEmail(e.target.value)}
             ></input>
