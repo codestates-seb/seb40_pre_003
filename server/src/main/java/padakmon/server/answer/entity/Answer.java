@@ -3,6 +3,7 @@ package padakmon.server.answer.entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+
 import padakmon.server.audit.Auditable;
 import padakmon.server.question.entity.Question;
 import padakmon.server.user.entity.User;

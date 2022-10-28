@@ -7,8 +7,8 @@ import padakmon.server.audit.Auditable;
 import padakmon.server.user.entity.User;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -21,15 +21,16 @@ public class Question extends Auditable {
     private String title;
     @Lob
     private String body;
-    private int views = 0;
+    private int score = 0;
     private int answerCount = 0;
-    private int votesCount = 0;
-    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    private int viewCount = 0;
+    //질문저장할 때, 유저의 질문 카운트를 올려줘야함
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "USER_ID")
     private User user;
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    private List<QuestionVote> questionVotes = new ArrayList<>();
+    private Set<QuestionVote> questionVotes = new HashSet<>();
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    private List<QuestionTag> questionTags = new ArrayList<>();
+    private Set<QuestionTag> questionTags = new HashSet<>();
 
 }
