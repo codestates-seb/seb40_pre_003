@@ -3,10 +3,12 @@ import { FcGoogle } from 'react-icons/fc';
 import { GrFacebook } from 'react-icons/gr';
 import { SiGithub } from 'react-icons/si';
 //import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { LoginBlock } from './style';
 
 import axios from 'axios';
+import { loginAction } from '../../../redux';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -16,9 +18,12 @@ export default function Login() {
   const [loginFailMsg, setLoginFailMsg] = useState('');
   //The email or password is incorrect.
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    console.log(dispatch(loginAction('테스트')));
 
     if (email.length === 0) {
       setEmailValidMsg('Email cannot be empty.');
@@ -40,12 +45,14 @@ export default function Login() {
         let accessToken = res.headers.accesstoken;
         let userId = res.headers.id;
         //로컬 스토리지에 키와 값을 텍스트형식으로 담는다
+        //어차피 리덕스로 관리할건데, 로컬스토리지에 꼭 저장해야하는지는 좀더 알아봐야 한다.
         localStorage.setItem('accesstoken', accessToken);
         localStorage.setItem('id', userId);
         console.log(localStorage);
-        //dispatch(loginAction(userId))
+        dispatch(loginAction(userId));
+        console.log('로그인액션전달', dispatch(loginAction(userId)));
         navigate('/');
-        //홈으로 이동
+        //홈으로 이동 + 헤더에 로그인버튼이 사라지고, 이미지로 바뀌는거!!!
       })
       .then((data) => console.log(data))
       .catch((error) => {
@@ -101,7 +108,8 @@ export default function Login() {
             <input
               type="password"
               onChange={(e) => setPassword(e.target.value)}
-              htmlFor={'Password'}
+              htmlFor="Password"
+              autoComplete="on"
             ></input>
             {loginFailMsg ? <div className="msg">{loginFailMsg}</div> : ''}
           </div>

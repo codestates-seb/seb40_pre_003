@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -19,6 +20,7 @@ import padakmon.server.authority.handler.UserAccessDeniedHandler;
 import padakmon.server.authority.handler.UserAuthenticationEntryPoint;
 import padakmon.server.authority.handler.UserAuthenticationFailureHandler;
 import padakmon.server.authority.jwt.JwtTokenizer;
+import padakmon.server.authority.sercurity.DetailService;
 import padakmon.server.authority.utils.UserAuthorityUtils;
 
 import java.util.List;
@@ -29,10 +31,12 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfiguration {
     private final JwtTokenizer jwtTokenizer;
     private final UserAuthorityUtils userAuthorityUtils;
+    private final DetailService detailService;
 
-    public SecurityConfiguration(JwtTokenizer jwtTokenizer, UserAuthorityUtils userAuthorityUtils) {
+    public SecurityConfiguration(JwtTokenizer jwtTokenizer, UserAuthorityUtils userAuthorityUtils, DetailService detailService) {
         this.jwtTokenizer = jwtTokenizer;
         this.userAuthorityUtils = userAuthorityUtils;
+        this.detailService = detailService;
     }
 
     @Bean
@@ -53,9 +57,9 @@ public class SecurityConfiguration {
                 .apply(new CustomFilterConfigurer())
                 .and()
                 .authorizeHttpRequests(authorize ->
-                        authorize.antMatchers(HttpMethod.POST, "/board/**").hasRole("USER") // TODO USER 권한 URL 수정
-                                .antMatchers(HttpMethod.PATCH, "/board/**").hasRole("USER")
-                                .antMatchers(HttpMethod.DELETE, "/board/**").hasRole("USER")
+                        authorize.antMatchers(HttpMethod.POST, "/questions/**").hasRole("USER") // TODO USER 권한 URL 수정
+                                .antMatchers(HttpMethod.PATCH, "/questions/**").hasRole("USER")
+                                .antMatchers(HttpMethod.DELETE, "/questions/**").hasRole("USER")
                                 .anyRequest().permitAll()
                 );
 
@@ -71,7 +75,8 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() { // CORS 정책
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("*"));
-        configuration.setAllowedMethods(List.of("GET", "POST", "PATCH", "DELETE"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PATCH", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("Content-Type", "Authorization", "Content-Length", "X-Requested_With"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
@@ -94,4 +99,11 @@ public class SecurityConfiguration {
         }
     }
 
+    @Bean
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(detailService);
+        authenticationProvider.setHideUserNotFoundExceptions(false);
+        return authenticationProvider;
+    }
 }

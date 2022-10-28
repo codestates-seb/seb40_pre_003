@@ -3,6 +3,8 @@ package padakmon.server.user.service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import padakmon.server.exception.BusinessLogicException;
+import padakmon.server.exception.ExceptionCode;
 import padakmon.server.user.entity.User;
 import padakmon.server.user.repository.UserRepository;
 
@@ -28,12 +30,11 @@ public class UserJoinService {
         userRepository.save(user);
     }
 
-    // TODO Exception
     private void verifyExistUser(String email, String name) {
         Optional<User> findUserByEmail = userRepository.findByEmail(email);
-        if (findUserByEmail.isPresent()) throw new RuntimeException("Email already exists");
+        if (findUserByEmail.isPresent()) throw new BusinessLogicException(ExceptionCode.EMAIL_EXISTS, email);
 
         Optional<User> findUserByName = userRepository.findByName(name);
-        if (findUserByName.isPresent()) throw new RuntimeException("Display name already exists");
+        if (findUserByName.isPresent()) throw new BusinessLogicException(ExceptionCode.DISPLAY_NAME_EXISTS, name);
     }
 }
