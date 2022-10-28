@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import padakmon.server.authority.utils.UserAuthorityUtils;
+import padakmon.server.exception.BusinessLogicException;
+import padakmon.server.exception.ExceptionCode;
 import padakmon.server.user.entity.User;
 import padakmon.server.user.repository.UserRepository;
 
@@ -25,11 +27,10 @@ public class DetailService implements UserDetailsService {
         this.userAuthorityUtils = userAuthorityUtils;
     }
 
-    // TODO Exception
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> optionalUser = userRepository.findByEmail(username);
-        User user = optionalUser.orElseThrow(() -> new RuntimeException("이메일이 존재하지 않습니다."));
+        User user = optionalUser.orElseThrow(() -> new UsernameNotFoundException(""));
 
         return new DetailsForUser(user);
     }

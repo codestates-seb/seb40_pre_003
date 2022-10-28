@@ -7,8 +7,10 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ExceptionCode {
     QUESTION_NOT_FOUND(404, "Question not found"),
-    //오타수정
-    며(404, "No authentication found in SecurityContextHolder");
+    AUTHENTICATION_NOT_FOUND(404, "No authentication found in SecurityContextHolder"),
+    EMAIL_EXISTS(409, "Email already exists"),
+    DISPLAY_NAME_EXISTS(409, "Display name already exists");
+
     private int code;
     private String description;
 }

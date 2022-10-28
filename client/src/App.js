@@ -8,6 +8,7 @@ import SideNav from './components/Layout/SideNav';
 import Home from './components/Main/Home';
 import QuestionContent from './pages/Questions/QuestionContent';
 import Login from './pages/Register/Login';
+import Logout from './pages/Register/Logout';
 import Signup from './pages/Register/Signup';
 
 function App() {
@@ -15,7 +16,11 @@ function App() {
   // background-color
   // login, signup: --black-050, ask: --black-025, 나머지: white
   let bgColor;
-  if (pathname === '/login' || pathname === '/signup') {
+  if (
+    pathname === '/login' ||
+    pathname === '/signup' ||
+    pathname === '/logout'
+  ) {
     bgColor = `var(--black-050)`;
   } else if (pathname === '/ask') {
     bgColor = `var(--black-025)`;
@@ -38,6 +43,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/questions" element={<div>questions</div>} />
           <Route path="/questions/ask" element={<div>ask</div>} />
           <Route path={`/questions/:id`} element={<QuestionContent />} />
