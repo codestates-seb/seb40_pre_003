@@ -2,6 +2,8 @@
 import AnswerLayout from '../../../components/AnswerLayout';
 import ContentLayout from '../../../components/ContentLayout';
 import QuestionHeader from '../../../components/QuestionHeader';
+import SideBarWidget from '../../../components/SideBarWidget';
+// import useAxios from '../../../util/useAxios';
 import { Container, MainBar, QuestionBody, SideBar } from './style';
 
 function QuestionContent() {
@@ -10,11 +12,12 @@ function QuestionContent() {
     body: `## Hi guys i'm a newbie in javascript so i testing a event handler so this is my code:
 
     \`\`\`js
-    let btn = document.getElementById('button')
+    let btn = document.getElementById('button');
     btn.addEventListener('click', () => {
-        window.location.href = 'https://www.youtube.com'
-    })
+      window.location.href = 'https://www.youtube.com';
+    });
     \`\`\`
+
     when i click the button it's nothing happen. Why the code didn't work? can anyone help me how to fix it?
     `,
     createdAt: '2022-10-26T16:00:07.131Z',
@@ -43,6 +46,11 @@ function QuestionContent() {
     ],
   };
 
+  console.log('testdata', testdata);
+
+  // const [testdata, error] = useAxios('/questions/1');
+  // console.log('error', error);
+
   return (
     <Container>
       <QuestionHeader testdata={testdata} />
@@ -51,7 +59,9 @@ function QuestionContent() {
           <ContentLayout testdata={testdata} />
           <AnswerLayout />
         </MainBar>
-        <SideBar></SideBar>
+        <SideBar>
+          <SideBarWidget />
+        </SideBar>
       </QuestionBody>
     </Container>
   );

@@ -10,7 +10,9 @@ export const Container = styled.div`
   border-left-width: 1px;
 `;
 
-export const QuestionBody = styled.section``;
+export const QuestionBody = styled.section`
+  display: flex;
+`;
 
 export const MainBar = styled.section`
   display: flex;
