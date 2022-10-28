@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter { // 인증된 USER에게 JWT 발행
 
     private final AuthenticationManager authenticationManager;
     private final JwtTokenizer jwtTokenizer;

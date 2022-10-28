@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-public class JwtVerificationFilter extends OncePerRequestFilter {
+public class JwtVerificationFilter extends OncePerRequestFilter { // JWT 확인 후 권한 부여
 
     private final JwtTokenizer jwtTokenizer;
     private final UserAuthorityUtils userAuthorityUtils;
