@@ -2,17 +2,19 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  width: 100%;
+  height: auto;
   padding: 24px;
   border-left-width: 1px;
 `;
 
-export const QuestionHeader = styled.header`
+export const QuestionBody = styled.section``;
+
+export const MainBar = styled.section`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 `;
 
-export const Title = styled.h1`
-  font-size: 27px;
-  font-weight: normal;
-  margin-bottom: 8px;
-`;
+export const SideBar = styled.section``;

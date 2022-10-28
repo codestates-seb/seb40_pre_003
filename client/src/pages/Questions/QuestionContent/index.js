@@ -1,14 +1,20 @@
-import { Container, QuestionHeader, Title } from './style';
+// import AskQuestionButton from '../../../components/Buttons/AskQuestionButton';
+import AnswerLayout from '../../../components/AnswerLayout';
+import ContentLayout from '../../../components/ContentLayout';
+import QuestionHeader from '../../../components/QuestionHeader';
+import { Container, MainBar, QuestionBody, SideBar } from './style';
 
 function QuestionContent() {
   const testdata = {
     title: 'Event click button cannot direct to another page',
-    body: `Hi guys i'm a newbie in javascript so i testing a event handler so this is my code:
+    body: `## Hi guys i'm a newbie in javascript so i testing a event handler so this is my code:
 
+    \`\`\`js
     let btn = document.getElementById('button')
     btn.addEventListener('click', () => {
         window.location.href = 'https://www.youtube.com'
     })
+    \`\`\`
     when i click the button it's nothing happen. Why the code didn't work? can anyone help me how to fix it?
     `,
     createdAt: '2022-10-26T16:00:07.131Z',
@@ -36,11 +42,17 @@ function QuestionContent() {
       },
     ],
   };
+
   return (
     <Container>
-      <QuestionHeader>
-        <Title>{testdata.title}</Title>
-      </QuestionHeader>
+      <QuestionHeader testdata={testdata} />
+      <QuestionBody>
+        <MainBar>
+          <ContentLayout testdata={testdata} />
+          <AnswerLayout />
+        </MainBar>
+        <SideBar></SideBar>
+      </QuestionBody>
     </Container>
   );
 }
