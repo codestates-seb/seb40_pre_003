@@ -14,7 +14,7 @@ public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tagId;
-    @Lob //오타 as-was : discription
+    @Lob
     private String description;
     private int questionCount = 0;
 
