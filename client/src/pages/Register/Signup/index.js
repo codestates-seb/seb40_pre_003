@@ -69,7 +69,9 @@ const Signup = () => {
           //alert('회원가입성공');
           console.log('회원가입성공');
           console.log(res);
-          navigate('/'); //회원가입 후 로그인으로..
+          navigate('/login'); //회원가입 후 홈으로?로그인페이지로?축하페이지로?
+          //자동 로그인되면 좋겠지만...그러면 여기서 axios요청해야 하나?
+          //어쨌든 회원가입 후 사용자가 하든, 자동으로 되든 로그인과정이 있어야 한다.
         })
         .catch((error) => {
           //오류메시지
@@ -161,8 +163,10 @@ const Signup = () => {
             <div>
               <label htmlFor={'password'}>Password</label>
               <input
-                type={'password'}
-                htmlFor={'password'}
+                name="password"
+                type="password"
+                htmlFor="password"
+                autoComplete="on"
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
