@@ -23,12 +23,8 @@ public class UserJoinController {
         this.userMapper = userMapper;
     }
 
-    // TODO: BindingResult 처리
     @PostMapping("/users")
-    public ResponseEntity signUp(@Valid @RequestBody UserDto.SignUp signUpDto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity(bindingResult.getFieldError().getDefaultMessage(), HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity signUp(@Valid @RequestBody UserDto.SignUp signUpDto) {
 
         userJoinService.createUser(userMapper.userDtoToUser(signUpDto));
         return new ResponseEntity(HttpStatus.CREATED);
