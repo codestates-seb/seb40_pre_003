@@ -6,6 +6,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class BusinessLogicException extends RuntimeException{
+    private String location;
     private ExceptionCode exceptionCode;
     private String rejectedValue;
 
