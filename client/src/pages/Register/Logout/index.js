@@ -5,10 +5,21 @@ import stackapps from '../../../../src/assets/images/stackapps.png';
 import stackexchange from '../../../../src/assets/images/stackexchange.png';
 import stackoverflow from '../../../../src/assets/images/stackoverflow.png';
 import superuser from '../../../../src/assets/images/superuser.png';
-
+import { logoutAction } from '../../../redux';
 import { Container, Logo, LogoutBlock } from './style';
 
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 export default function Logout() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    dispatch(logoutAction());
+    navigate('/');
+  };
+
   return (
     <Container>
       <div className="logout_guide">
@@ -52,7 +63,9 @@ export default function Logout() {
           <span>Log out on all devices</span>
         </div>
         <div id="buttons">
-          <button id="logout_button">Log out</button>
+          <button id="logout_button" onClick={handleLogoutClick}>
+            Log out
+          </button>
           <button id="cancel_button">Cancel</button>
         </div>
         <div id="logout_all_device_text">

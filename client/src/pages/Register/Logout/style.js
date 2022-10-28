@@ -27,7 +27,7 @@ export const Container = styled.div`
 export const LogoutBlock = styled.div`
   margin: 10px;
   width: 320px;
-  height: 480px;
+  height: 430px;
   padding: 24px;
   border-radius: 10px;
   background-color: white;
