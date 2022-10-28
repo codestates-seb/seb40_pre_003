@@ -1,0 +1,47 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "displayName": "파이리",
+        "email": "abc@google.com",
+        "password": "1234"
+      },
+      {
+        "id": 2,
+        "displayName": "피카츄",
+        "email": "abc@google.com",
+        "password": "1234"
+      },
+      {
+        "id": 3,
+        "displayName": "꼬북이",
+        "email": "abc@google.com",
+        "password": "1234"
+      },
+      {
+        "id": 4,
+        "displayName": "파이리",
+        "email": "abc@google.com",
+        "password": "1234"
+      }
+    ],
+    "auth": {
+      "login": [
+        {
+          "email": "abc@google.com",
+          "password": "1234",
+          "id": 10
+        },
+        {
+          "email": "abc@google.com",
+          "password": "1234",
+          "id": 11
+        },
+        {
+          "email": "abc@google.com",
+          "password": "1234",
+          "id": 12
+        }
+      ]
+    }
+  }
