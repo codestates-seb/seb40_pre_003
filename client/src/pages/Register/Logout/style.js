@@ -17,7 +17,7 @@ export const Container = styled.div`
 
   > div.logout_guide {
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 400;
     margin: 20px;
     text-align: center;
     //텍스트 줄간격 벌리기??
@@ -40,7 +40,7 @@ export const LogoutBlock = styled.div`
     padding: 3px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 600;
+    font-weight: 400;
   }
 
   > div#checkbox {
