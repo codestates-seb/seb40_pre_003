@@ -18,31 +18,32 @@ export default function Logout() {
       <LogoutBlock>
         <div className="linked_site">
           <Logo src={ubuntu} />
-          askubuntu.com
+          {/* 외부링크는 Link태그가 아니라 a태그만 가능 */}
+          <a href="https://askubuntu.com/">askubuntu.com</a>
         </div>
         <div className="linked_site">
           <Logo src={mathoverflow} />
-          mathoverflow.net
+          <a href="https://mathoverflow.net/">mathoverflow.net</a>
         </div>
         <div className="linked_site">
           <Logo src={serverfault} />
-          serverfault.com
+          <a href="https://serverfault.com/">serverfault.com</a>
         </div>
         <div className="linked_site">
           <Logo src={stackapps} />
-          stackapp.com
+          <a href="https://stackapps.com/">stackapp.com</a>
         </div>
         <div className="linked_site">
           <Logo src={stackexchange} />
-          stackexchange.com
+          <a href="https://stackexchange.com/">stackexchange.com</a>
         </div>
         <div className="linked_site">
           <Logo src={stackoverflow} />
-          stackoverflow.com
+          <a href="https://stackoverflow.com/">stackoverflow.com</a>
         </div>
         <div className="linked_site">
           <Logo src={superuser} />
-          superuser.com
+          <a href="https://superuser.com/">superuser.com</a>
         </div>
         <br />
         <hr></hr>

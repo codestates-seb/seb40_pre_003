@@ -16,7 +16,11 @@ function App() {
   // background-color
   // login, signup: --black-050, ask: --black-025, 나머지: white
   let bgColor;
-  if (pathname === '/login' || pathname === '/signup') {
+  if (
+    pathname === '/login' ||
+    pathname === '/signup' ||
+    pathname === '/logout'
+  ) {
     bgColor = `var(--black-050)`;
   } else if (pathname === '/ask') {
     bgColor = `var(--black-025)`;

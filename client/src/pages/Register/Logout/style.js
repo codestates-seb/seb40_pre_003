@@ -33,14 +33,15 @@ export const LogoutBlock = styled.div`
   background-color: white;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
-  > div.linked_site {
+  > div.linked_site > a {
     color: hsl(206, 100%, 40%);
     font-size: 15px;
     margin: 2px;
     padding: 3px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 400;
+    font-weight: 500;
+    text-decoration-line: none;
   }
 
   > div#checkbox {
