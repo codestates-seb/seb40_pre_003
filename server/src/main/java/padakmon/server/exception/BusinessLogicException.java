@@ -14,4 +14,10 @@ public class BusinessLogicException extends RuntimeException{
         this.exceptionCode = exceptionCode;
     }
 
+    public BusinessLogicException(ExceptionCode exceptionCode, String rejectedValue) {
+        this.exceptionCode = exceptionCode;
+        this.rejectedValue = rejectedValue;
+    }
+
+
 }
