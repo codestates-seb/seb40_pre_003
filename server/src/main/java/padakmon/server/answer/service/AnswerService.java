@@ -61,7 +61,7 @@ public class AnswerService {
         return answer;
     }
 
-    private Answer verifyAnswer(long answerId) {
+    public Answer verifyAnswer(long answerId) {
         Optional<Answer> optionalAnswer = answerRepository.findById(answerId);
         return optionalAnswer.orElseThrow(() -> new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
     }
