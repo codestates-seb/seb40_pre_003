@@ -14,6 +14,6 @@ public class LoggedInUserInfoUtils {
         if(claims == null) {
             throw new BusinessLogicException(ExceptionCode.AUTHENTICATION_NOT_FOUND);
         }
-        return (Long) claims.get("userId");
+        return ((Number)claims.get("userId")).longValue();
     }
 }

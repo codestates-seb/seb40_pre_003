@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class AnswerVote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long answerId;
+    private long answerVoteId;
     @ManyToOne
     @JoinColumn(name = "ANSWER_ID")
     private Answer answer;
