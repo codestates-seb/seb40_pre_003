@@ -34,4 +34,10 @@ public class Answer extends Auditable {
     @JoinColumn(name = "USER_ID")
     private User user;
 
+    public void scoreUp() {
+        this.score++;
+    }
+    public void scoreDown() {
+        this.score--;
+    }
 }

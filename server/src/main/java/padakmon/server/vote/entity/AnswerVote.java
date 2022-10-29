@@ -1,7 +1,8 @@
-package padakmon.server.answer.entity;
+package padakmon.server.vote.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import padakmon.server.answer.entity.Answer;
 import padakmon.server.audit.Auditable;
@@ -13,7 +14,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
-public class AnswerVote {
+@NoArgsConstructor
+public class AnswerVote implements Vote{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long answerVoteId;
@@ -23,4 +25,14 @@ public class AnswerVote {
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
+    private int voteCount = 0;
+    @Override
+    public void voteUp() {
+        this.voteCount++;
+    }
+
+    @Override
+    public void voteDown() {
+        this.voteCount--;
+    }
 }

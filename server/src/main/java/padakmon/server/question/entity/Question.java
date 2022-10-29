@@ -7,6 +7,7 @@ import lombok.Setter;
 import padakmon.server.audit.Auditable;
 import padakmon.server.tag.entity.QuestionTag;
 import padakmon.server.user.entity.User;
+import padakmon.server.vote.entity.QuestionVote;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -36,4 +37,10 @@ public class Question extends Auditable {
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<QuestionTag> questionTags = new HashSet<>();
 
+    public void scoreUp() {
+        this.score++;
+    }
+    public void scoreDown() {
+        this.score--;
+    }
 }
