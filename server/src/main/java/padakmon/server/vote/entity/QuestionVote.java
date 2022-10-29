@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import padakmon.server.audit.Auditable;
 import padakmon.server.question.entity.Question;
 import padakmon.server.user.entity.User;
 
@@ -15,24 +14,24 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class QuestionVote implements Vote{
+public class QuestionVote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long voteId;
-    @ManyToOne
+    private long questionVoteId;
+    //Vote 저장하면서 Question의 score 업데이트
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "QUESTION_ID")
     private Question question;
-    @ManyToOne
+    //Vote 조회할 때 유저 조회 필요없음
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
     private User user;
     private int voteCount = 0;
 
-    @Override
     public void voteUp() {
         this.voteCount++;
     }
 
-    @Override
     public void voteDown() {
         this.voteCount--;
     }
