@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 // 타이틀(Top Questions),버튼(Ask Question) 등 묶음 -> HomeHead
 export const HomeHead = styled.div`
@@ -14,10 +15,15 @@ export const TopQuestionsTitle = styled.span`
 `;
 
 // Ask Question 버튼
-export const AskQuestionButton = styled.button`
+export const AskQuestionButtonLink = styled(Link)`
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  padding: 0.8em;
   background-color: #0995ff;
+  font-size: 12.9px;
   font-family: inherit;
-  font-weight: bolder;
+  font-weight: normal;
   color: white;
   width: 103px;
   height: 37px;
@@ -26,11 +32,12 @@ export const AskQuestionButton = styled.button`
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
   outline: none;
   margin-top: 19.5px;
+  text-decoration-line: none;
   cursor: pointer;
 `;
 
 // 질문글 갯수
-const Total = styled.div`
+export const Total = styled.div`
   margin: 20px 0 27px 23px;
   font-size: 20px;
 `;

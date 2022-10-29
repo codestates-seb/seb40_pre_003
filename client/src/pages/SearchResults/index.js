@@ -3,6 +3,8 @@
 
 import styled from 'styled-components';
 import QuestionsList from '../../components/Main/QuestionsList';
+import { Link } from 'react-router-dom';
+// import { DummyData } from '../../components/Main/Data/DummyData';
 // import Question from '../Question';
 
 // 제목, 버튼, 링크 묶음
@@ -19,10 +21,15 @@ const SearchResultsTitle = styled.span`
 `;
 
 // 질문작성 버튼
-const AskQuestionButton = styled.button`
+const AskQuestionButton = styled(Link)`
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  padding: 0.8em;
   background-color: #0995ff;
+  font-size: 12.9px;
   font-family: inherit;
-  font-weight: bolder;
+  font-weight: normal;
   color: white;
   width: 103px;
   height: 37px;
@@ -31,6 +38,7 @@ const AskQuestionButton = styled.button`
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
   outline: none;
   margin-top: 19.5px;
+  text-decoration-line: none;
   cursor: pointer;
 `;
 
@@ -64,7 +72,9 @@ const SearchResults = () => {
           <SearchResultsTitle>Search Results</SearchResultsTitle>
           <div>
             <AdvancedTipButton>Advanced Search Tips</AdvancedTipButton>
-            <AskQuestionButton>Ask Question</AskQuestionButton>
+            <AskQuestionButton to={'/questions/ask'}>
+              Ask Question
+            </AskQuestionButton>
           </div>
         </SearchResultsHead>
       </div>
@@ -75,6 +85,7 @@ const SearchResults = () => {
         </Total>
       </div>
       <div>
+        {/* <QuestionsList dummy={DummyData}></QuestionsList> */}
         <QuestionsList></QuestionsList>
       </div>
     </div>

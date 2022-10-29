@@ -1,30 +1,34 @@
-import styled from 'styled-components';
-import { HomeHead, TopQuestionsTitle, AskQuestionButton } from './style';
+// -----------  Home -----------
+// Home || StackOverFlow 로고를 눌렀을때 기본적으로 보이게되는 페이지
+// Top Questions(Title) , Ask Question(버튼), QuestionList(질문목록들)
+
+import {
+  HomeHead,
+  TopQuestionsTitle,
+  AskQuestionButtonLink,
+  Total,
+} from './style';
 import QuestionsList from '../../components/Main/QuestionsList';
 import { DummyData } from '../../components/Main/Data/DummyData';
-import { useState } from 'react';
-
-// 질문글 갯수
-const Total = styled.div`
-  margin: 20px 0 27px 23px;
-  font-size: 20px;
-`;
+// import { Link } from 'react';
 
 const Home = () => {
-  const [totalCount, setTotalCount] = useState(DummyData);
+  // const [totalCount, setTotalCount] = useState(DummyData);
 
   return (
     <div>
       <div>
         <HomeHead>
           <TopQuestionsTitle>Top Questions</TopQuestionsTitle>
-          <AskQuestionButton>Ask Question</AskQuestionButton>
+          <AskQuestionButtonLink to={'/questions/ask'}>
+            Ask Question
+          </AskQuestionButtonLink>
         </HomeHead>
       </div>
       <Total>
-        <span>{totalCount.length} questions</span>
+        <span>5 questions</span>
       </Total>
-      <QuestionsList></QuestionsList>
+      <QuestionsList dummy={DummyData}></QuestionsList>
     </div>
   );
 };
