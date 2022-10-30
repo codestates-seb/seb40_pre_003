@@ -1,14 +1,12 @@
 // -------- QuestionsList ---------
 // 화면 중앙에 배치될 질문목록전체 모음
 
-import { DummyData } from '../Data/DummyData';
 import Question from '../Question';
 
-const QuestionsList = () => {
-  console.log(DummyData);
+const QuestionsList = ({ dummy }) => {
   return (
     <div>
-      {DummyData.map((el) => (
+      {dummy.map((el) => (
         <Question key={el.id} list={el} />
       ))}
     </div>

@@ -5,8 +5,10 @@ import GlobalStyle from './assets/GlobalStyle';
 import Footer from './components/Layout/Footer';
 import GlobalNav from './components/Layout/GlobalNav';
 import SideNav from './components/Layout/SideNav';
+import AskQuestion from './pages/AskQuestion/index';
 import Home from './pages/Home'; // 잠시 주석처리
-// import SearchResults from './components/Main/SearchResults';
+import SearchResults from './pages/SearchResults';
+
 import Login from './pages/Register/Login';
 import Signup from './pages/Register/Signup';
 
@@ -29,10 +31,10 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/questions" element={<div>questions</div>} />
-          <Route path="/questions/ask" element={<div>ask</div>} />
+          <Route path="/questions/ask" element={<AskQuestion />} />
           <Route path={`/questions/:id`} element={<div>questions/:id</div>} />
           {/* querystring으로 검색 결과 페이지 이동 (/search?q=springboot) */}
-          <Route path="/search" element={<div>search result</div>} />
+          <Route path="/search" element={<SearchResults />} />
           <Route path="/tags" element={<div>tags</div>} />
           <Route path="/users" element={<div>users</div>} />
           {/* id가 본인이면 마이페이지 */}
