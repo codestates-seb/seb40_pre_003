@@ -1,6 +1,6 @@
-// import styled from 'styled-components';
+// -------- QuestionsList ---------
+// 화면 중앙에 배치될 질문목록전체 모음
 
-// import dummyList from '../db/dummy';
 import { DummyData } from '../Data/DummyData';
 import Question from '../Question';
 
