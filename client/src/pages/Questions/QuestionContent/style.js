@@ -12,11 +12,13 @@ export const Container = styled.div`
 
 export const QuestionBody = styled.section`
   display: flex;
+  justify-content: space-between;
 `;
 
 export const MainBar = styled.section`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const SideBar = styled.section``;
