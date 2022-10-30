@@ -1,16 +1,16 @@
 // import GlobalNav from './components/Layout/GlobalNav';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import GlobalStyle from './assets/GlobalStyle';
 import Footer from './components/Layout/Footer';
 import GlobalNav from './components/Layout/GlobalNav';
 import SideNav from './components/Layout/SideNav';
 import Home from './pages/Home'; // 잠시 주석처리
-import SearchResults from './components/Main/SearchResults';
-import Login from './pages/Register/Login';
 import QuestionContent from './pages/Questions/QuestionContent';
+import Login from './pages/Register/Login';
 import Logout from './pages/Register/Logout';
 import Signup from './pages/Register/Signup';
+import SearchResults from './pages/SearchResults';
 
 function App() {
   const { pathname } = useLocation();
@@ -45,7 +45,10 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/questions" element={<div>questions</div>} />
+          <Route
+            path="/questions"
+            element={<Link to="/questions/1">questions</Link>}
+          />
           <Route path="/questions/ask" element={<div>ask</div>} />
           <Route path={`/questions/:id`} element={<QuestionContent />} />
           {/* querystring으로 검색 결과 페이지 이동 (/search?q=springboot) */}
