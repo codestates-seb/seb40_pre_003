@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -39,7 +40,7 @@ export const SignupBlock = styled.div`
     }
     margin-bottom: 10px;
   }
-
+  /* 반복되는 로그인스타일을 가입으로 가져왔는데...social_login을 social_btn으로 하면 더 좋았을 듯하다 */
   > section.social_login {
     /* flex-basis: 20%; */
 
@@ -88,8 +89,8 @@ export const SignupBlock = styled.div`
 
   > section.email_login {
     margin: 10px;
-    width: 280px;
-    height: 330px;
+    width: 310px;
+    height: 380px;
     padding: 20px;
     border-radius: 10px;
     background-color: white;
@@ -133,7 +134,7 @@ export const SignupBlock = styled.div`
 
     > form > button {
       margin-top: 15px;
-      width: 280px;
+      width: 270px;
       height: 38px;
       background-color: #0a95ff;
       border: none;

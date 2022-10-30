@@ -183,6 +183,8 @@ const variables = css`
   --theme-post-body-font-family: var(--ff-sans);
   --theme-post-owner-background-color: var(--theme-secondary-075);
   --theme-post-owner-new-background-color: var(--powder-200);
+
+  --theme-primary-color: #f48225;
 `;
 
 export default variables;

@@ -1,11 +1,14 @@
+import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { GrFacebook } from 'react-icons/gr';
 import { SiGithub } from 'react-icons/si';
+//import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { LoginBlock } from './style';
 
-import { useState } from 'react';
-
 import axios from 'axios';
+import { loginAction } from '../../../redux';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -14,37 +17,52 @@ export default function Login() {
   //The email is not a valid email address.
   const [loginFailMsg, setLoginFailMsg] = useState('');
   //The email or password is incorrect.
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    console.log(dispatch(loginAction('테스트')));
+
+    if (email.length === 0) {
+      setEmailValidMsg('Email cannot be empty.');
+      return;
+    } else if (!(email.includes('@') && email.includes('.'))) {
+      console.log('이메일 유효성검사: @랑 .이 없음');
+      setEmailValidMsg('The email is not a valid email address.');
+      return;
+    }
+
     axios
-      .get(`http://localhost:3001/auth`)
-      .then((res) => console.log(res.data.login));
-
-    // axios
-    //     .post(`http://localhost:3001/users`, {
-    //       email: email,
-    //       password: password
-    //     })
-    //     .then((res)=> {
-    //       console.log("로그인 성공")
-    //       let token = res.headers.authorization;
-    //       let userId = res.headers.id;
-    //       localStorage.setItem("authorization", token);
-    //       localStorage.setItem("id", userId)
-    //        //dispatch(loginAction(userId))
-    //       //navigate('/') //홈으로 이동
-    //     })
-    //     .catch((err)=> {
-    //       console.log(err);
-    //       setLoginFailMsg('The email or password is incorrect.')
-    //       setEmail('')
-    //       setPassword('')
-    //     })
-
-    // setEmailValidMsg('The email is not a valid email address.')
-    // setLoginFailMsg('The email or password is incorrect.')
+      .post(`/auth/login`, {
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        console.log('로그인 성공');
+        console.log('res: ', res);
+        let accessToken = res.headers.accesstoken;
+        let userId = res.headers.id;
+        //로컬 스토리지에 키와 값을 텍스트형식으로 담는다
+        //어차피 리덕스로 관리할건데, 로컬스토리지에 꼭 저장해야하는지는 좀더 알아봐야 한다.
+        localStorage.setItem('accesstoken', accessToken);
+        localStorage.setItem('id', userId);
+        console.log(localStorage);
+        dispatch(loginAction(userId));
+        console.log('로그인액션전달', dispatch(loginAction(userId)));
+        navigate('/');
+        //홈으로 이동 + 헤더에 로그인버튼이 사라지고, 이미지로 바뀌는거!!!
+      })
+      .then((data) => console.log(data))
+      .catch((error) => {
+        console.log('에러인건가', error);
+        if (error.message === 'Request failed with status code 401') {
+          setLoginFailMsg('The email or password is incorrect.');
+          setEmail(''); //왜 초기화가 안되지??아...리렌더링 시켜야하는데
+          setPassword('');
+        }
+      });
   };
   return (
     <LoginBlock className="login_block">
@@ -76,19 +94,22 @@ export default function Login() {
       <section className="email_login">
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Email</label>
+            <label htmlFor={'Email'}>Email</label>
             <input
               type="text"
               name="email"
+              htmlFor={'Email'}
               onChange={(e) => setEmail(e.target.value)}
             ></input>
             {emailValidMsg ? <div className="msg">{emailValidMsg}</div> : ''}
           </div>
           <div>
-            <label>Password</label>
+            <label htmlFor={'Password'}>Password</label>
             <input
               type="password"
               onChange={(e) => setPassword(e.target.value)}
+              htmlFor="Password"
+              autoComplete="on"
             ></input>
             {loginFailMsg ? <div className="msg">{loginFailMsg}</div> : ''}
           </div>
@@ -97,12 +118,11 @@ export default function Login() {
       </section>
       <div className="login_guide">
         <div>
-          {/* Link로 바꿀 예정 */}
-          Don't have an account? <a href="">Sign up</a>
+          Don&apos;t have an account? <Link to="/">Sign up</Link>
         </div>
         <br></br>
         <div>
-          Are you an employer? <a href="">Sign up on Talent</a>
+          Are you an employer? <Link to="/">Sign up on Talent</Link>
         </div>
       </div>
     </LoginBlock>
