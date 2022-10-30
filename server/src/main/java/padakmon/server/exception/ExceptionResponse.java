@@ -32,9 +32,8 @@ public class ExceptionResponse {
         ExceptionResponse response = new ExceptionResponse();
         response.setExceptionInfos(List.of(
                 new ExceptionInfo(
-                        // TODO where 부분
-                        null,
-                        e.getRejectedValue(),
+                        e.getLocation(),
+                        e.getRejectedValue() == null ? null : e.getRejectedValue().toString(),
                         e.getExceptionCode().getDescription()
                 )
         ));
@@ -47,7 +46,7 @@ public class ExceptionResponse {
                 errors.stream().map(
                         exception -> new ExceptionInfo(
                               exception.getField(),
-                              exception.getRejectedValue().toString(),
+                              exception.getRejectedValue() == null ? null : exception.getRejectedValue().toString(),
                               exception.getDefaultMessage()
                         )
                 ).collect(Collectors.toList()));
