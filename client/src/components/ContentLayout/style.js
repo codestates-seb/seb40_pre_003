@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   padding-right: 16px;
+  width: 100%;
 `;
 
 export const VoteLayout = styled.div`
@@ -14,4 +15,6 @@ export const VoteLayout = styled.div`
 export const ContentBody = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  flex: 1 1 auto;
 `;
