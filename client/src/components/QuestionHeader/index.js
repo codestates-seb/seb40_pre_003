@@ -11,26 +11,28 @@ import {
 
 function QuestionHeader({ testdata }) {
   return (
-    <Container>
-      <TitleContainer>
-        <Title>{testdata.title}</Title>
-        <AskQuestionButton />
-      </TitleContainer>
-      <FiguresContainer>
-        <Figure>
-          <FigureName>Asked</FigureName>
-          <FigureContent>today</FigureContent>
-        </Figure>
-        <Figure>
-          <FigureName>Modified</FigureName>
-          <FigureContent>today</FigureContent>
-        </Figure>
-        <Figure>
-          <FigureName>Viewed</FigureName>
-          <FigureContent>{`${testdata.views} times`}</FigureContent>
-        </Figure>
-      </FiguresContainer>
-    </Container>
+    testdata && (
+      <Container>
+        <TitleContainer>
+          <Title>{testdata.title}</Title>
+          <AskQuestionButton />
+        </TitleContainer>
+        <FiguresContainer>
+          <Figure>
+            <FigureName>Asked</FigureName>
+            <FigureContent>today</FigureContent>
+          </Figure>
+          <Figure>
+            <FigureName>Modified</FigureName>
+            <FigureContent>today</FigureContent>
+          </Figure>
+          <Figure>
+            <FigureName>Viewed</FigureName>
+            <FigureContent>{`${testdata.views} times`}</FigureContent>
+          </Figure>
+        </FiguresContainer>
+      </Container>
+    )
   );
 }
 
