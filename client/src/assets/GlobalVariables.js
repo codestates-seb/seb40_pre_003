@@ -50,6 +50,39 @@ const variables = css`
   --powder-800: hsl(205, 46%, 32%);
   --powder-900: hsl(205, 46%, 22%);
 
+  --green-025: hsl(140, 42%, 95%);
+  --green-050: hsl(140, 40%, 90%);
+  --green-100: hsl(140, 40%, 85%);
+  --green-200: hsl(140, 40%, 75%);
+  --green-300: hsl(140, 40%, 65%);
+  --green-400: hsl(140, 40%, 55%);
+  --green-500: hsl(140, 40%, 47%);
+  --green-600: hsl(140, 40%, 40%);
+  --green-700: hsl(140, 41%, 31%);
+  --green-800: hsl(140, 40%, 27%);
+  --green-900: hsl(140, 40%, 20%);
+  --yellow-050: hsl(47, 87%, 94%);
+  --yellow-100: hsl(47, 83%, 91%);
+  --yellow-200: hsl(47, 65%, 84%);
+  --yellow-300: hsl(47, 69%, 69%);
+  --yellow-400: hsl(47, 79%, 58%);
+  --yellow-500: hsl(47, 73%, 50%);
+  --yellow-600: hsl(47, 76%, 46%);
+  --yellow-700: hsl(47, 79%, 40%);
+  --yellow-800: hsl(47, 82%, 34%);
+  --yellow-900: hsl(47, 84%, 28%);
+  --red-025: hsl(358, 80%, 98%);
+  --red-050: hsl(358, 75%, 97%);
+  --red-100: hsl(358, 76%, 90%);
+  --red-200: hsl(358, 74%, 83%);
+  --red-300: hsl(358, 70%, 70%);
+  --red-400: hsl(358, 68%, 59%);
+  --red-500: hsl(358, 62%, 52%);
+  --red-600: hsl(358, 62%, 47%);
+  --red-700: hsl(358, 64%, 41%);
+  --red-800: hsl(358, 64%, 35%);
+  --red-900: hsl(358, 67%, 29%);
+
   --gold: hsl(48, 100%, 50%);
   --gold-lighter: hsl(48, 100%, 91%);
   --gold-darker: hsl(45, 100%, 47%);
@@ -183,6 +216,8 @@ const variables = css`
   --theme-post-body-font-family: var(--ff-sans);
   --theme-post-owner-background-color: var(--theme-secondary-075);
   --theme-post-owner-new-background-color: var(--powder-200);
+
+  --theme-primary-color: #f48225;
 `;
 
 export default variables;

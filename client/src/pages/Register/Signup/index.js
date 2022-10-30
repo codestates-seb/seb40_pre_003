@@ -6,15 +6,20 @@ import { GrFacebook } from 'react-icons/gr';
 import { RiQuestionAnswerFill } from 'react-icons/ri';
 import { SiGithub } from 'react-icons/si';
 import { TbTriangle } from 'react-icons/tb';
+import { Link, useNavigate } from 'react-router-dom';
 import { Container, SignupBlock } from './style';
 
 import axios from 'axios';
+
+axios.defaults.withCredentials = true;
 
 const Signup = () => {
   //signup 인풋 항목: name, email, password
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   //오류메시지 //The email is not a valid email address.
   const [nameValidMsg, setNameValidMsg] = useState('');
@@ -27,44 +32,65 @@ const Signup = () => {
   //회원가입 버튼 -> post 요청
   const handleSubmit = (e) => {
     e.preventDefault();
-    //axios.get(`http://localhost:3001/users`).then((res)=>console.log(res))
     //유효성 검사하기
-    console.log('네임', displayName);
+    //디스플레이네임은 영어, 숫자만 가능, 길이 15로 제한
+    //이메일은 이메일 폼
+    //비밀번호는 영어+숫자, 길이는 20
     if (displayName.length === 0) {
       setNameValidMsg('displayName cannot be empty.');
+      return;
+    } else if (displayName.length > 15 || displayName.length < 4) {
+      setNameValidMsg('The displayName is not a valid displayName.');
       return;
     } else if (email.length === 0) {
       setEmailValidMsg('Email cannot be empty.');
       return;
-    } else if (email.length < 4) {
-      console.log('짧음');
+    } else if (!(email.includes('@') && email.includes('.'))) {
+      console.log('이메일 유효성검사: @랑 .이 없음');
       setEmailValidMsg('The email is not a valid email address.');
       return;
     } else if (password.length === 0) {
       setPasswordValidMsg('Password cannot be empty.');
       return;
+    } else if (password.length > 20) {
+      console.log('비밀번호 유효성검사: 20자 미만');
+      setPasswordValidMsg('The password is not a valid password.');
+      return;
     }
     return (
       axios
         //.post(`${process.env.어쩌고환경변수}/회원가입주소`, {
-        .post(`http://localhost:3001/users`, {
+        .post(`/users`, {
           displayName: displayName,
           email: email,
           password: password,
         })
         .then((res) => {
-          alert('회원가입성공');
-          //회원가입 성공하면 인풋창 비워줘야하나?아니면 다른 페이지로 이동하니까 상관없나??
+          //alert('회원가입성공');
+          console.log('회원가입성공');
           console.log(res);
-          //console.log(res.data.jwt); //토큰을 받아와야 하는데, 지금은 undefined
-          //localStorage.setItem('token', res.data.jwt)
-          //navigate(`/users/login`); //회원가입 후 로그인으로..
+          navigate('/login'); //회원가입 후 홈으로?로그인페이지로?축하페이지로?
+          //자동 로그인되면 좋겠지만...그러면 여기서 axios요청해야 하나?
+          //어쨌든 회원가입 후 사용자가 하든, 자동으로 되든 로그인과정이 있어야 한다.
         })
         .catch((error) => {
           //오류메시지
           console.log('에러어어어어어');
-          if (error.response) {
-            console.log(error.response.data);
+          console.log(error.response);
+          if (error.response.data === '형식에 맞지 않음') {
+            setNameValidMsg('The displayName is not a valid displayName.');
+          }
+          if (error.response.data === '크기가 8에서 20 사이여야 합니다') {
+            setNameValidMsg('The displayName is not a valid displayName.');
+          } else if (
+            error.response.data === '올바른 형식의 이메일 주소여야 합니다'
+          ) {
+            setEmailValidMsg('The email is not a valid email address.');
+          } else if (
+            error.response.data ===
+            '"^(?=.*[a-zA-Z])(?=.*\\d)[a-zA-Z\\d]*$"와 일치해야 합니다'
+          ) {
+            setPasswordValidMsg('The password is not a valid password.');
           }
         })
     );
@@ -113,9 +139,10 @@ const Signup = () => {
         <section className="email_login">
           <form onSubmit={handleSubmit}>
             <div>
-              <label>Display name</label>
+              <label htmlFor={'displayName'}>Display name</label>
               <input
                 type={'text'}
+                htmlFor={'displayName'}
                 onChange={(e) => {
                   setDisplayName(e.target.value);
                 }}
@@ -123,9 +150,10 @@ const Signup = () => {
               {nameValidMsg ? <div className="msg">{nameValidMsg}</div> : ''}
             </div>
             <div>
-              <label>Email</label>
+              <label htmlFor={'Email'}>Email</label>
               <input
                 type={'text'}
+                htmlFor={'Email'}
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
@@ -133,9 +161,12 @@ const Signup = () => {
               {emailValidMsg ? <div className="msg">{emailValidMsg}</div> : ''}
             </div>
             <div>
-              <label>Password</label>
+              <label htmlFor={'password'}>Password</label>
               <input
-                type={'password'}
+                name="password"
+                type="password"
+                htmlFor="password"
+                autoComplete="on"
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
@@ -151,16 +182,16 @@ const Signup = () => {
         </section>
         <div className="login_guide">
           <div>
-            {/* a 태그는 react-router-dom에서 link to로 바꿔야 함 <Link to="/login">Log in</Link> */}
             Already have an account?
-            <a href="">Log in</a>
+            <Link to="/login">Log in</Link>
           </div>
           <br></br>
           <div>
             Are you an employer?
-            <a href="https://talent.stackoverflow.com/users/login">
+            {/* 외부링크로 이동할 방법 찾기 */}
+            <Link to="https://talent.stackoverflow.com/users/login">
               Sign up on Talent
-            </a>
+            </Link>
           </div>
         </div>
       </SignupBlock>

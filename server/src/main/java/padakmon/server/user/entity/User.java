@@ -1,14 +1,21 @@
 package padakmon.server.user.entity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import padakmon.server.answer.entity.Answer;
 import padakmon.server.audit.CreatedOnlyAuditable;
+import padakmon.server.question.entity.Question;
 
 import javax.persistence.*;
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "USERS")
-public class User extends CreatedOnlyAuditable {
+public class User extends CreatedOnlyAuditable implements Principal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,10 +25,9 @@ public class User extends CreatedOnlyAuditable {
     @Column(nullable = false, unique = true, length = 30)
     private String email;
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false)
     private String password;
 
-    // TODO: ERD length 변경 (20 -> 15)
     @Column(name = "DISPLAY_NAME", nullable = false, unique = true, length = 15)
     private String name;
 
@@ -29,11 +35,26 @@ public class User extends CreatedOnlyAuditable {
 
     private int answerCount;
 
-    // TODO: ERD 추가
     private String aboutMe;
 
-    // TODO: 연관관계 매핑, enum?(활동중, 삭제요청 등)
+    // TODO: 연관관계 매핑, enum?(활동중, 삭제요청 등), CASCADE
 
 //    @Lob
 //    private byte[] image;
+
+    @ElementCollection(fetch = FetchType.EAGER) // 별도의 테이블을 생성하여 컬렉션 관리
+    private List<String> roles = List.of("USER");
+
+    //유저가 삭제되면, 관련 질문과 답변도 삭제됨
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<Question> questions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<Answer> answers = new ArrayList<>();
+
+
+    @Override
+    public String getName() {
+        return getEmail();
+    }
 }
