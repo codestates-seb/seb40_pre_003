@@ -1,0 +1,21 @@
+= Stack Overflow clone
+:sectnums:
+:toc: left
+:toclevels: 4
+:toc-title: API of Contents
+:source-highlighter: prettify
+
+v1.0, 2022.10.28
+
+'''
+== USER API
+=== 회원 가입
+
+.HTTP request
+include::{snippets}/SignUp/http-request.adoc[]
+
+.Request body
+include::{snippets}/SignUp/request-fields.adoc[]
+
+.HTTP response
+include::{snippets}/SignUp/http-response.adoc[]

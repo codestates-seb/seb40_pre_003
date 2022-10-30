@@ -1,3 +1,8 @@
+// ---------- Question ----------
+// 질문목록에 들어오게될 질문글 하나의 컴포넌트
+// 왼쪽섹션 -> 투표수,답변수,조회수
+// 오른쪽섹션 -> 제목, 내용, 태그, 유저인포, 작성후지난시간
+
 import styled from 'styled-components';
 // react font-awesome npm i 로 필요 툴 설치하고 import 해오기
 import { faUser } from '@fortawesome/free-regular-svg-icons';
@@ -6,20 +11,20 @@ import './index.css';
 
 // ------------ Question.js  각 질문들 컴포넌트 -------
 
-// 질문리스트 전체 div
+// 질문 하나의 전체 div
 const QuBox = styled.div`
   padding: 15px 0 10px 0;
   border-top: 1px solid #d6d9dc;
 `;
 
-// 질문리스트 내부
+// 질문 내부
 const QuList = styled.li`
   display: flex;
   margin-top: 10px;
   height: 118px;
 `;
 
-// 질문리스트 -> 왼쪽섹션 -> 투표,조회수,답변수
+// 질문 -> 왼쪽섹션 -> 투표,조회수,답변수
 const LeftSection = styled.section`
   width: 108px;
 `;
@@ -70,7 +75,7 @@ const QuestionText = styled.p`
   margin-top: 5px;
 `;
 
-// 질문리스트 -> 하단 -> 태그목록, 질문자의정보(이미지, 닉네임, 작성날짜)
+// 질문 -> 하단 -> 태그목록, 질문자의정보(이미지, 닉네임, 작성날짜)
 const TagInfoFooter = styled.footer`
   display: flex;
   justify-content: space-between;
