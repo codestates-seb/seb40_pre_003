@@ -188,10 +188,10 @@ const Signup = () => {
           <br></br>
           <div>
             Are you an employer?
-            {/* 외부링크로 이동할 방법 찾기 */}
-            <Link to="https://talent.stackoverflow.com/users/login">
+            {/* 외부링크로 이동 */}
+            <a href="https://talent.stackoverflow.com/users/login">
               Sign up on Talent
-            </Link>
+            </a>
           </div>
         </div>
       </SignupBlock>

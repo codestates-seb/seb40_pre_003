@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { GrFacebook } from 'react-icons/gr';
 import { SiGithub } from 'react-icons/si';
-//import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { LoginBlock } from './style';
@@ -44,18 +43,22 @@ export default function Login() {
       withCredentials: true,
     };
 
+    //로그인한 유저를 처음으로 서버에 등록: post요청 -> 앞으로 확인할 때는 get요청
     axios
-      .post(`/auth/login`, loginData, loginConfig)
+      //.post(`/auth/login`, loginData, loginConfig)
+      // json-server용 json-server --watch mockData.json --port 8080
+      .post(`http://localhost:8080/users`, loginData, loginConfig)
       .then((res) => {
         console.log('로그인 성공');
         console.log('res: ', res);
         let accessToken = res.headers.accesstoken;
         let userId = res.headers.id;
-        //로컬 스토리지에 키와 값을 텍스트형식으로 담는다
-        //어차피 리덕스로 관리할건데, 로컬스토리지에 꼭 저장해야하는지는 좀더 알아봐야 한다.
+        //로컬 스토리지에 키와 값을 텍스트형식으로 담는다 -> JWT를 담아서 요청을 보낼 때 사용할 예정(서버와 통신/인가)
+        //스토리지에 저장한 토큰은 -> 새로고침 시에 사용
         localStorage.setItem('accesstoken', accessToken);
         localStorage.setItem('id', userId);
         console.log(localStorage);
+        //리덕스는 프론트에서 로그인된 유저 상태값 관리 용도(=사이트 내 액션 수행에서 사용)
         dispatch(loginAction(userId));
         console.log('로그인액션전달', dispatch(loginAction(userId)));
         navigate('/');
@@ -125,11 +128,14 @@ export default function Login() {
       </section>
       <div className="login_guide">
         <div>
-          Don&apos;t have an account? <Link to="/">Sign up</Link>
+          Don&apos;t have an account? <Link to="/signup">Sign up</Link>
         </div>
         <br></br>
         <div>
-          Are you an employer? <Link to="/">Sign up on Talent</Link>
+          Are you an employer?
+          <a href="https://talent.stackoverflow.com/users/login">
+            Sign up on Talent
+          </a>
         </div>
       </div>
     </LoginBlock>
