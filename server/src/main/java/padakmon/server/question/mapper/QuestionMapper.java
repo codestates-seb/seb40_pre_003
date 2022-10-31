@@ -25,7 +25,7 @@ public interface QuestionMapper {
         response.setBody(question.getBody());
         response.setCreatedAt(question.getCreatedAt());
         response.setModifiedAt(question.getModifiedAt());
-        response.setScore(question.getScore());
+        response.setScore(question.getVoteScore());
         response.setViewCount(question.getViewCount());
         response.setAnswerCount(question.getAnswerCount());
 
@@ -41,7 +41,7 @@ public interface QuestionMapper {
                 answer -> {
                     AnswerDto.Response answerResponse = new AnswerDto.Response();
                     answerResponse.setContents(answer.getContents());
-                    answerResponse.setScore(answer.getScore());
+                    answerResponse.setScore(answer.getVoteScore());
 
                     QuestionDto.UserInQuestion userOfAnswer = new QuestionDto.UserInQuestion();
                     user.setDisplayName(answer.getUser().getName());

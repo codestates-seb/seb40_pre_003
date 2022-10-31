@@ -40,7 +40,7 @@ public class DetailService implements UserDetailsService {
         public DetailsForUser(User user) {
             setId(user.getId());
             setEmail(user.getEmail());
-            setName(user.getName());
+            setDisplayName(user.getDisplayName());
             setPassword(user.getPassword());
             setRoles(user.getRoles());
         }
