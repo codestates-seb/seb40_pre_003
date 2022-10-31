@@ -7,23 +7,23 @@ import padakmon.server.user.entity.User;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-26T13:03:14+0900",
+    date = "2022-10-31T10:31:18+0900",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 11.0.16 (Azul Systems, Inc.)"
 )
 @Component
 public class UserMapperImpl implements UserMapper {
 
     @Override
-    public User userDtoToUser(UserDto.SignUp signUpDto) {
+    public User userSignUpDtoToUser(UserDto.SignUp signUpDto) {
         if ( signUpDto == null ) {
             return null;
         }
 
         User user = new User();
 
-        user.setName( signUpDto.getDisplayName() );
         user.setEmail( signUpDto.getEmail() );
         user.setPassword( signUpDto.getPassword() );
+        user.setDisplayName( signUpDto.getDisplayName() );
 
         return user;
     }

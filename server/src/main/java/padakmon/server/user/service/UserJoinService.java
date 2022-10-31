@@ -23,18 +23,18 @@ public class UserJoinService {
     }
 
     public void createUser(User user) {
-        verifyExistUser(user.getEmail(), user.getName());
+        verifyExistUser(user.getEmail(), user.getDisplayName());
         String encryptedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encryptedPassword);
 
         userRepository.save(user);
     }
 
-    private void verifyExistUser(String email, String name) {
+    private void verifyExistUser(String email, String displayName) {
         Optional<User> findUserByEmail = userRepository.findByEmail(email);
-        if (findUserByEmail.isPresent()) throw new BusinessLogicException(ExceptionCode.EMAIL_EXISTS, email);
+        if (findUserByEmail.isPresent()) throw new BusinessLogicException("email", ExceptionCode.EMAIL_EXISTS, email);
 
-        Optional<User> findUserByName = userRepository.findByName(name);
-        if (findUserByName.isPresent()) throw new BusinessLogicException(ExceptionCode.DISPLAY_NAME_EXISTS, name);
+        Optional<User> findUserByName = userRepository.findByDisplayName(displayName);
+        if (findUserByName.isPresent()) throw new BusinessLogicException("displayName", ExceptionCode.DISPLAY_NAME_EXISTS, displayName);
     }
 }
