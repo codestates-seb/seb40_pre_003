@@ -14,27 +14,35 @@ function VoteCell({ questionId, score, answerId }) {
     } else {
       uri = `/questions/${questionId}/votes`;
     }
-  }, []);
+  }, [nowScore]);
 
-  const vote = (num) => {
+  const handleVote = (num) => {
+    console.log("handleVote's uri:", uri);
     axios
-      .post(uri, {
-        vote: num,
+      .post(
+        uri,
+        {
+          vote: num,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem('accesstoken'),
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        if (res.data.success === 'true') {
+          setNowScore(nowScore + num);
+        }
       })
-      .then((res) => console.log(res));
-    setNowScore(nowScore + num);
-  };
-  const handleVoteUp = () => {
-    vote(1);
-  };
-  const handleVoteDown = () => {
-    vote(-1);
+      .catch((error) => console.log(error));
   };
   return (
     <Container>
-      <VoteUpButton handleVoteUp={handleVoteUp} />
+      <VoteUpButton handleVote={handleVote} />
       <VoteNum>{nowScore}</VoteNum>
-      <VoteDownButton handleVoteDown={handleVoteDown} />
+      <VoteDownButton handleVote={handleVote} />
     </Container>
   );
 }

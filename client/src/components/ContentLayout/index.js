@@ -15,8 +15,13 @@ import ContentTagList from './ContentTagList';
 import { Container, ContentBody, VoteLayout } from './style';
 
 function ContentLayout({ testdata, questionId, answerId }) {
-  // console.log(testdata);
   // const time = testdata.createdAt; // 임시로 지정
+  let writerType;
+  if (answerId) {
+    writerType = 'answerer';
+  } else {
+    writerType = 'questioner';
+  }
   return (
     testdata && (
       <Container>
@@ -29,13 +34,14 @@ function ContentLayout({ testdata, questionId, answerId }) {
         </VoteLayout>
         <ContentBody>
           <Viewer
-            initialValue={testdata.body}
+            initialValue={testdata.body ? testdata.body : testdata.contents}
             plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
           />
           {testdata.tags && <ContentTagList tags={testdata.tags} />}
           <ContentInfo
             time={testdata.createdAt}
             user={testdata.user ? testdata.user : testdata.displayName}
+            writerType={writerType}
           />
         </ContentBody>
       </Container>

@@ -1,30 +1,32 @@
-import { useState } from 'react';
-import ShareModal from '../ShareModal';
+// import { useState } from 'react';
+// import ShareModal from '../ShareModal';
 import WriterProfile from '../WriterProfile';
-import { Button, Buttons, Container, ModalBackdrop, StopProp } from './style';
+import { Button, Buttons, Container } from './style';
 
-function ContentInfo({ time, user }) {
-  const [shareOpen, setShareOpen] = useState(false);
+function ContentInfo({ time, user, writerType }) {
+  // const [shareOpen, setShareOpen] = useState(false);
 
-  const openModalHandler = () => {
-    setShareOpen(!shareOpen);
-  };
+  // const openModalHandler = () => {
+  //   setShareOpen(!shareOpen);
+  // };
 
   return (
     <Container>
       <Buttons>
-        <Button onClick={openModalHandler}>Share</Button>
+        {/* <Button onClick={openModalHandler}>Share</Button> */}
+        <Button>Share</Button>
         <Button>Edit</Button>
+        {<Button>Delete</Button>}
         <Button>Follow</Button>
-        {shareOpen && (
+        {/* {shareOpen && (
           <ModalBackdrop onClick={openModalHandler}>
             <StopProp onClick={(e) => e.stopPropagation()}>
               <ShareModal openModalHandler={openModalHandler} />
             </StopProp>
           </ModalBackdrop>
-        )}
+        )} */}
       </Buttons>
-      <WriterProfile time={time} user={user} />
+      <WriterProfile time={time} user={user} writerType={writerType} />
     </Container>
   );
 }

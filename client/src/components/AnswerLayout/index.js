@@ -7,7 +7,7 @@ function AnswerLayout({ answers, questionId }) {
     answers && (
       <Container>
         <Header>
-          <Count>{`${2} Answers`}</Count>
+          <Count>{`${answers.length} Answers`}</Count>
         </Header>
         <Answers answers={answers} questionId={questionId} />
         <WriteAnswer />

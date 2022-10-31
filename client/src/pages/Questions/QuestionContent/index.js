@@ -55,7 +55,6 @@ function QuestionContent() {
   // console.log('error', error);
 
   let { id } = useParams();
-  // console.log('params', id);
 
   const [testdata, setTestdata] = useState(null);
   useEffect(() => {
@@ -77,12 +76,9 @@ function QuestionContent() {
         <QuestionHeader testdata={testdata} />
         <QuestionBody>
           <MainBar>
-            <ContentLayout questionId={testdata.id} testdata={testdata} />
+            <ContentLayout questionId={id} testdata={testdata} />
             {testdata.answers && (
-              <AnswerLayout
-                answers={testdata.answers}
-                questionId={testdata.id}
-              />
+              <AnswerLayout answers={testdata.answers} questionId={id} />
             )}
           </MainBar>
           <SideBar>

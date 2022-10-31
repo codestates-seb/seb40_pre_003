@@ -6,12 +6,12 @@ function Answers({ questionId, answers }) {
     <Container>
       {answers &&
         answers.map((answer) => (
-          <Answer key={answer.id}>
+          <Answer key={answer.answerId}>
             <ContentLayout
-              key={answer.id}
+              key={answer.answerId}
               testdata={answer}
               questionId={questionId}
-              answerId={answer.id}
+              answerId={answer.answerId}
             />
           </Answer>
         ))}
