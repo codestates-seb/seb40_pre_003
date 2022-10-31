@@ -5,9 +5,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import padakmon.server.question.dto.PageInfo;
 import padakmon.server.question.dto.QuestionDto;
 import padakmon.server.question.dto.QuestionSearchDto;
@@ -19,6 +17,7 @@ import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 @Validated
 public class QuestionSearchController {
 
@@ -30,7 +29,7 @@ public class QuestionSearchController {
         this.mapper = mapper;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity getTopQuestions() {
         String orderMode = questionSearchService.getOrderModeDefault();
         Page<Question> questionPage =questionSearchService.findQuestions(0, 20, Sort.by(orderMode).descending());
@@ -41,10 +40,10 @@ public class QuestionSearchController {
         return new ResponseEntity(new QuestionSearchDto(responsePage), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/questions")
+    @GetMapping( "/questions")
     public ResponseEntity getOrderQuery(@RequestParam(name = "order", required = false) String order,
-                                     @RequestParam(name = "page", required = false, defaultValue = "1") int page,
-                                     @RequestParam(name = "size", required = false, defaultValue = "15") int size) {
+                                     @Positive @RequestParam(name = "page", required = false, defaultValue = "1") int page,
+                                     @Positive @RequestParam(name = "size", required = false, defaultValue = "15") int size) {
         String orderMode;
         if (order == null) {
             orderMode = questionSearchService.getOrderModeDefault();

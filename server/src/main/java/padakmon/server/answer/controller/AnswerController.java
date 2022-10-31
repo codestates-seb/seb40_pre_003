@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
 @RestController
-@RequestMapping("questions/{question-id}/answers")
+@RequestMapping("/api/questions/{question-id}/answers")
 @Validated
 @AllArgsConstructor
 public class AnswerController {
