@@ -1,3 +1,4 @@
+import axios from 'axios';
 import ubuntu from '../../../../src/assets/images/askubuntu.png';
 import mathoverflow from '../../../../src/assets/images/mathoverflow.png';
 import serverfault from '../../../../src/assets/images/serverfault.png';
@@ -16,8 +17,21 @@ export default function Logout() {
   const navigate = useNavigate();
 
   const handleLogoutClick = () => {
-    dispatch(logoutAction());
-    navigate('/');
+    //로그아웃 구현방법2...서버logout api로 요청을 보내고 응답 받아서 처리
+    axios
+      .post('로그아웃api주소')
+      .then((res) => {
+        //'서버에서 성공응답'
+        if (res) {
+          console.log('로그아웃성공');
+          //로컬스토리지에 담았던 키(스트링형식)를 제거
+          dispatch(logoutAction());
+          localStorage.removeItem('accesstoken');
+          localStorage.removeItem('id');
+          navigate('/');
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   return (

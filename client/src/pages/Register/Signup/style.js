@@ -157,6 +157,7 @@ export const SignupBlock = styled.div`
 
     > div > a {
       text-decoration-line: none;
+      margin-left: 5px;
     }
   }
 `;
