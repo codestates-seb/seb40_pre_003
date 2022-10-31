@@ -1,5 +1,6 @@
 package padakmon.server.vote.controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/questions/{question-id}/answers/{answer-id}/votes")
+@AllArgsConstructor
 public class VoteAnswerController {
     private VoteService voteService;
     @PostMapping
