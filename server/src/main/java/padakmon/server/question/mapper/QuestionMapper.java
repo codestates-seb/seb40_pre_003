@@ -40,8 +40,10 @@ public interface QuestionMapper {
         ArrayList<AnswerDto.Response> answersResponse = (ArrayList<AnswerDto.Response>) answers.stream().map(
                 answer -> {
                     AnswerDto.Response answerResponse = new AnswerDto.Response();
+                    answerResponse.setAnswerId(answer.getAnswerId());
                     answerResponse.setContents(answer.getContents());
                     answerResponse.setScore(answer.getVoteScore());
+                    answerResponse.setCreatedAt(answer.getCreatedAt());
 
                     QuestionDto.UserInQuestion userOfAnswer = new QuestionDto.UserInQuestion();
                     user.setDisplayName(answer.getUser().getName());
