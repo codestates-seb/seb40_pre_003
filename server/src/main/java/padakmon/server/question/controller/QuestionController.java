@@ -20,7 +20,7 @@ import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
-@RequestMapping("/questions")
+@RequestMapping("/api/questions")
 @Validated
 @Slf4j
 @AllArgsConstructor

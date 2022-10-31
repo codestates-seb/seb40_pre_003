@@ -12,7 +12,8 @@ public enum ExceptionCode {
     AUTHENTICATION_NOT_FOUND(404, "No authentication found in SecurityContextHolder"),
     EMAIL_EXISTS(409, "Email already exists"),
     DISPLAY_NAME_EXISTS(409, "Display name already exists"),
-    NOT_A_WRITER(403, "You are not write this");
+    NOT_A_WRITER(403, "You are not write this"),
+    NOT_VALID_ORDER(400, "Order not valid");
     private int code;
     private String description;
 }
