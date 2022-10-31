@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -42,4 +43,8 @@ export const ModalBackdrop = styled.div`
 export const StopProp = styled.button`
   border: none;
   background-color: rgba(0, 0, 0, 0);
+`;
+
+export const EditLink = styled(Link)`
+  text-decoration: none;
 `;
