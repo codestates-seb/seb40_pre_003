@@ -42,6 +42,8 @@ function ContentLayout({ testdata, questionId, answerId }) {
             time={testdata.createdAt}
             user={testdata.user ? testdata.user : testdata.displayName}
             writerType={writerType}
+            questionId={questionId}
+            answerId={answerId}
           />
         </ContentBody>
       </Container>
