@@ -33,6 +33,21 @@
       "email": "1234tyui@naver.com",
       "password": "1234tyui",
       "id": 6
+    },
+    {
+      "email": "1234tyui@na.xn--9pd",
+      "password": "1234tyui",
+      "id": 7
+    },
+    {
+      "email": "1234tyui@naver.xn--com-d3na",
+      "password": "1234tyui",
+      "id": 8
+    },
+    {
+      "email": "1234tyui@naver.xn--com-d3n",
+      "password": "1234tyui",
+      "id": 9
     }
   ],
   "auth": {

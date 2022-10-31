@@ -1,17 +1,18 @@
 import { createStore } from 'redux';
 
-const LOGIN = 'LOGIN';
+const LOGIN_USER = 'LOGIN_USER';
 const LOGOUT = 'LOGOUT';
 
 //액션객체생성자 -> 디스패치 함수에 전달인자로 담길 예정
 //로그인되면, 로그인된 id를 함께 담을 예정..
 export const loginAction = (res) => {
   return {
-    type: LOGIN,
+    type: LOGIN_USER,
     payload: res,
   };
 };
 
+//로그아웃은 보관하고 있던 id를 날리는 것
 export const logoutAction = () => {
   return {
     type: LOGOUT,
@@ -22,10 +23,11 @@ export const logoutAction = () => {
 const initialstate = {
   isLogin: false,
 };
+
 //리듀서함수 -> 디스패치가 호출하면 state를 바꿈
 const loginReducer = (state = initialstate, action) => {
   switch (action.type) {
-    case LOGIN:
+    case LOGIN_USER:
       return {
         isLogin: true,
         ...action.payload, //로그인되면, 로그인된 id를 함께 담을 예정..
@@ -46,6 +48,3 @@ const loginReducer = (state = initialstate, action) => {
 
 const store = createStore(loginReducer);
 export default store;
-
-//index.js로 가서 <Provider store={store}><App /></Provider>
-//import { Provider } from 'react-redux';

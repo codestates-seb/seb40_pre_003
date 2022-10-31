@@ -3,8 +3,9 @@ import { FcGoogle } from 'react-icons/fc';
 import { GrFacebook } from 'react-icons/gr';
 import { SiGithub } from 'react-icons/si';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { LoginBlock } from './style';
+//import { Link, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 import { loginAction } from '../../../redux';
@@ -16,7 +17,7 @@ export default function Login() {
   //The email is not a valid email address.
   const [loginFailMsg, setLoginFailMsg] = useState('');
   //The email or password is incorrect.
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -61,7 +62,7 @@ export default function Login() {
         //리덕스는 프론트에서 로그인된 유저 상태값 관리 용도(=사이트 내 액션 수행에서 사용)
         dispatch(loginAction(userId));
         console.log('로그인액션전달', dispatch(loginAction(userId)));
-        navigate('/');
+        //navigate('/'); //콘솔 확인을 위해 잠시 막아둠
         //홈으로 이동 + 헤더에 로그인버튼이 사라지고, 이미지로 바뀌는거!!!
       })
       .then((data) => console.log(data))
