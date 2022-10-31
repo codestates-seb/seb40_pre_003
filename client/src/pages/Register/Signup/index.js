@@ -123,7 +123,7 @@ const Signup = () => {
           <div>
             <button>
               <FcGoogle className="icons" size={22} />
-              Sign up with Google
+              <span>Sign up with Google</span>
             </button>
             <button>
               <SiGithub className="icons" size={22} />

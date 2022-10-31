@@ -58,10 +58,13 @@ export const SignupBlock = styled.div`
       margin: 4px;
       border: 1px;
       border-radius: 5px;
+
       cursor: pointer;
 
       :first-of-type {
+        color: black;
         background-color: white;
+
         :hover {
           background-color: #f8f9f9;
         }

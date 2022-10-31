@@ -39,6 +39,7 @@ export const LoginBlock = styled.div`
 
       :first-of-type {
         background-color: white;
+        color: black;
         :hover {
           background-color: #f8f9f9;
         }
