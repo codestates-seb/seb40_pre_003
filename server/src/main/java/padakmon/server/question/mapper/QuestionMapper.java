@@ -30,7 +30,7 @@ public interface QuestionMapper {
         response.setAnswerCount(question.getAnswerCount());
 
         QuestionDto.UserInQuestion user = new QuestionDto.UserInQuestion();
-        user.setDisplayName(question.getUser().getName());
+        user.setDisplayName(question.getUser().getDisplayName());
         response.setUser(user);
 
         response.setTags(question.getQuestionTags().stream().map(
@@ -46,7 +46,7 @@ public interface QuestionMapper {
                     answerResponse.setCreatedAt(answer.getCreatedAt());
 
                     QuestionDto.UserInQuestion userOfAnswer = new QuestionDto.UserInQuestion();
-                    user.setDisplayName(answer.getUser().getName());
+                    user.setDisplayName(answer.getUser().getDisplayName());
                     answerResponse.setUser(user);
                     return answerResponse;
                 })
