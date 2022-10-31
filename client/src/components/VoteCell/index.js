@@ -10,9 +10,9 @@ function VoteCell({ questionId, score, answerId }) {
   let uri;
   useEffect(() => {
     if (answerId) {
-      uri = `/questions/${questionId}/answers/${answerId}/votes`;
+      uri = `/api/questions/${questionId}/answers/${answerId}/votes`;
     } else {
-      uri = `/questions/${questionId}/votes`;
+      uri = `/api/questions/${questionId}/votes`;
     }
   }, [nowScore]);
 
