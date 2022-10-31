@@ -160,7 +160,7 @@ const Question = ({ list }) => {
               </TagBtn>
             </TagBox>
             <InfoBox>
-              <FontAwesomeIcon icon={faUser} className="fontImg" />
+              <FontAwesomeIcon icon={faUser} className="fontImg-user" />
               <InfoName>{list.user.displayName}</InfoName>
               <LastTime>
                 <span>asked 10 secs ago</span>

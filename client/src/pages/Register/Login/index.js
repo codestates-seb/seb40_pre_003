@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { GrFacebook } from 'react-icons/gr';
 import { SiGithub } from 'react-icons/si';
-//import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { LoginBlock } from './style';
+//import { Link, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 import { loginAction } from '../../../redux';
@@ -17,7 +17,7 @@ export default function Login() {
   //The email is not a valid email address.
   const [loginFailMsg, setLoginFailMsg] = useState('');
   //The email or password is incorrect.
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -34,24 +34,35 @@ export default function Login() {
       return;
     }
 
+    //될 수 있으면, config를 저장해둔 axios instance를 사용하는 것이 좋음.
+    //const instance = axios.create(//config객체)
+    const loginData = {
+      email: email,
+      password: password,
+    };
+    const loginConfig = {
+      withCredentials: true,
+    };
+
+    //로그인한 유저를 처음으로 서버에 등록: post요청 -> 앞으로 확인할 때는 get요청
     axios
-      .post(`/auth/login`, {
-        email: email,
-        password: password,
-      })
+      //.post(`/auth/login`, loginData, loginConfig)
+      // json-server용 json-server --watch mockData.json --port 8080
+      .post(`http://localhost:8080/users`, loginData, loginConfig)
       .then((res) => {
         console.log('로그인 성공');
         console.log('res: ', res);
         let accessToken = res.headers.accesstoken;
         let userId = res.headers.id;
-        //로컬 스토리지에 키와 값을 텍스트형식으로 담는다
-        //어차피 리덕스로 관리할건데, 로컬스토리지에 꼭 저장해야하는지는 좀더 알아봐야 한다.
+        //로컬 스토리지에 키와 값을 텍스트형식으로 담는다 -> JWT를 담아서 요청을 보낼 때 사용할 예정(서버와 통신/인가)
+        //스토리지에 저장한 토큰은 -> 새로고침 시에 사용
         localStorage.setItem('accesstoken', accessToken);
         localStorage.setItem('id', userId);
         console.log(localStorage);
+        //리덕스는 프론트에서 로그인된 유저 상태값 관리 용도(=사이트 내 액션 수행에서 사용)
         dispatch(loginAction(userId));
         console.log('로그인액션전달', dispatch(loginAction(userId)));
-        navigate('/');
+        //navigate('/'); //콘솔 확인을 위해 잠시 막아둠
         //홈으로 이동 + 헤더에 로그인버튼이 사라지고, 이미지로 바뀌는거!!!
       })
       .then((data) => console.log(data))
@@ -61,6 +72,7 @@ export default function Login() {
           setLoginFailMsg('The email or password is incorrect.');
           setEmail(''); //왜 초기화가 안되지??아...리렌더링 시켜야하는데
           setPassword('');
+          window.location.reload(); //리렌더링을 위한 임시방편
         }
       });
   };
@@ -96,8 +108,7 @@ export default function Login() {
           <div>
             <label htmlFor={'Email'}>Email</label>
             <input
-              type="text"
-              name="email"
+              type="email"
               htmlFor={'Email'}
               onChange={(e) => setEmail(e.target.value)}
             ></input>
@@ -118,11 +129,14 @@ export default function Login() {
       </section>
       <div className="login_guide">
         <div>
-          Don&apos;t have an account? <Link to="/">Sign up</Link>
+          Don&apos;t have an account? <Link to="/signup">Sign up</Link>
         </div>
         <br></br>
         <div>
-          Are you an employer? <Link to="/">Sign up on Talent</Link>
+          Are you an employer?
+          <a href="https://talent.stackoverflow.com/users/login">
+            Sign up on Talent
+          </a>
         </div>
       </div>
     </LoginBlock>

@@ -37,7 +37,10 @@ public class QuestionService {
         //접속한 사람이 작성한 글이 맞는지 확인
         Question question = verifyIfSameWriter(questionId);
         //질문한 사람의 질문 개수 하나 감소
-        question.getUser().setQuestionCount(question.getUser().getQuestionCount() - 1);
+        User user = question.getUser();
+        user.setQuestionCount(user.getQuestionCount() - 1);
+        userRepository.save(user);
+        //답변 개수는 감소 안함. 왜냐면 질문은 자신의 글을 자신의 의지로 지웠기 때문에 감소하고. 답변은 자신의 글을 타인의 의지로 지웠기 때문에 감소 안함.
         //질문에 등록된 태그들 하나씩 감소
         subtractQuestionTagCount(question.getQuestionTags());
         questionRepository.delete(question);

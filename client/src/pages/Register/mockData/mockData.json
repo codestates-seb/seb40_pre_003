@@ -1,0 +1,72 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "displayName": "파이리",
+      "email": "abc@google.com",
+      "password": "1234"
+    },
+    {
+      "id": 2,
+      "displayName": "피카츄",
+      "email": "abc@google.com",
+      "password": "1234"
+    },
+    {
+      "id": 3,
+      "displayName": "꼬북이",
+      "email": "abc@google.com",
+      "password": "1234"
+    },
+    {
+      "id": 4,
+      "displayName": "파이리",
+      "email": "abc@google.com",
+      "password": "1234"
+    },
+    {
+      "email": "coffee12345@naver.com",
+      "password": "coffee12345",
+      "id": 5
+    },
+    {
+      "email": "1234tyui@naver.com",
+      "password": "1234tyui",
+      "id": 6
+    },
+    {
+      "email": "1234tyui@na.xn--9pd",
+      "password": "1234tyui",
+      "id": 7
+    },
+    {
+      "email": "1234tyui@naver.xn--com-d3na",
+      "password": "1234tyui",
+      "id": 8
+    },
+    {
+      "email": "1234tyui@naver.xn--com-d3n",
+      "password": "1234tyui",
+      "id": 9
+    }
+  ],
+  "auth": {
+    "login": [
+      {
+        "email": "abc@google.com",
+        "password": "1234",
+        "id": 10
+      },
+      {
+        "email": "abc@google.com",
+        "password": "1234",
+        "id": 11
+      },
+      {
+        "email": "abc@google.com",
+        "password": "1234",
+        "id": 12
+      }
+    ]
+  }
+}

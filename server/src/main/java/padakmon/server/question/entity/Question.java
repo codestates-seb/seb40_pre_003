@@ -3,6 +3,7 @@ package padakmon.server.question.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import padakmon.server.answer.entity.Answer;
 import padakmon.server.audit.Auditable;
 import padakmon.server.tag.entity.QuestionTag;
 import padakmon.server.user.entity.User;
@@ -35,8 +36,10 @@ public class Question extends Auditable {
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private Set<QuestionVote> questionVotes = new HashSet<>();
     //질문 생성하면서 태그도 같이 생성 및 업데이트
-    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<QuestionTag> questionTags = new HashSet<>();
+    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
+    private Set<Answer> answers = new HashSet<>();
 
     public void scoreUp() {
         this.voteScore++;
