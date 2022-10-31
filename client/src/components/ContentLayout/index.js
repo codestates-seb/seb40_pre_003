@@ -14,14 +14,18 @@ import ContentInfo from './ContentInfo';
 import ContentTagList from './ContentTagList';
 import { Container, ContentBody, VoteLayout } from './style';
 
-function ContentLayout({ testdata }) {
+function ContentLayout({ testdata, questionId, answerId }) {
   // console.log(testdata);
   // const time = testdata.createdAt; // 임시로 지정
   return (
     testdata && (
       <Container>
         <VoteLayout>
-          <VoteCell score={testdata.score} />
+          <VoteCell
+            questionId={questionId}
+            score={testdata.score}
+            answerId={answerId}
+          />
         </VoteLayout>
         <ContentBody>
           <Viewer

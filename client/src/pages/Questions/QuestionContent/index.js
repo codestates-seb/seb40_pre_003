@@ -77,8 +77,13 @@ function QuestionContent() {
         <QuestionHeader testdata={testdata} />
         <QuestionBody>
           <MainBar>
-            <ContentLayout testdata={testdata} />
-            {testdata.answers && <AnswerLayout answers={testdata.answers} />}
+            <ContentLayout questionId={testdata.id} testdata={testdata} />
+            {testdata.answers && (
+              <AnswerLayout
+                answers={testdata.answers}
+                questionId={testdata.id}
+              />
+            )}
           </MainBar>
           <SideBar>
             <SideBarWidget />

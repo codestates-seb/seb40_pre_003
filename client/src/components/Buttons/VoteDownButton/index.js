@@ -1,8 +1,8 @@
 import { Button } from './style';
 
-function VoteUpButton() {
+function VoteUpButton({ handleVoteDown }) {
   return (
-    <Button>
+    <Button onClick={handleVoteDown}>
       <svg width="36" height="36">
         <path d="M2 11h32L18 27 2 11Z" fill="currentColor"></path>
       </svg>
