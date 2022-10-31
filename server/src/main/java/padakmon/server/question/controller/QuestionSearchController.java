@@ -33,7 +33,7 @@ public class QuestionSearchController {
     @GetMapping("/")
     public ResponseEntity getTopQuestions() {
         String orderMode = questionSearchService.getOrderModeDefault();
-        Page<Question> questionPage =questionSearchService.findQuestions(0, 20, Sort.by(orderMode));
+        Page<Question> questionPage =questionSearchService.findQuestions(0, 20, Sort.by(orderMode).descending());
         List<Question> questions = questionPage.getContent();
 
         List<QuestionDto.GetResponse> responsePage = mapper.questionsToPageResponses(questions);
@@ -41,30 +41,22 @@ public class QuestionSearchController {
         return new ResponseEntity(new QuestionSearchDto(responsePage), HttpStatus.OK);
     }
 
-    @GetMapping("/questions")
-    public ResponseEntity getAllQuestions(@Positive @RequestParam("page") int page,
-                                          @Positive @RequestParam("size") int size) {
-        String orderMode = questionSearchService.getOrderModeDefault();
-        Page<Question> questionPage =questionSearchService.findQuestions(page - 1, size, Sort.by(orderMode));
+    @GetMapping(path = "/questions")
+    public ResponseEntity getOrderQuery(@RequestParam(name = "order", required = false) String order,
+                                     @RequestParam(name = "page", required = false, defaultValue = "1") int page,
+                                     @RequestParam(name = "size", required = false, defaultValue = "15") int size) {
+        String orderMode;
+        if (order == null) {
+            orderMode = questionSearchService.getOrderModeDefault();
+        } else {
+            orderMode = questionSearchService.getOrderMode(order);
+        }
+        Page<Question> questionPage =questionSearchService.findQuestions(page - 1, size, Sort.by(orderMode).descending());
         PageInfo pageInfo = PageInfo.of(questionPage, page, size);
         List<Question> questions = questionPage.getContent();
 
         List<QuestionDto.GetResponse> responsePage = mapper.questionsToPageResponses(questions);
 
-        return new ResponseEntity(new QuestionSearchDto(pageInfo, responsePage), HttpStatus.OK);
-    }
-
-    @GetMapping("/questions")
-    public ResponseEntity getOrderQuery(@RequestParam("order") String order,
-                                     @RequestParam("page") int page,
-                                     @RequestParam("size") int size) {
-        String orderMode = questionSearchService.getOrderMode(order);
-        Page<Question> questionPage =questionSearchService.findQuestions(page - 1, size, Sort.by(orderMode));
-        PageInfo pageInfo = PageInfo.of(questionPage, page, size);
-        List<Question> questions = questionPage.getContent();
-
-        List<QuestionDto.GetResponse> responsePage = mapper.questionsToPageResponses(questions);
-
-        return new ResponseEntity(new QuestionSearchDto(order,pageInfo, responsePage), HttpStatus.OK);
+        return new ResponseEntity(new QuestionSearchDto(order, pageInfo, responsePage), HttpStatus.OK);
     }
 }
