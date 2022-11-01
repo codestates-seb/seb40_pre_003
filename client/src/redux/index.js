@@ -64,7 +64,7 @@ const loginReducer = (state = initialstate, action) => {
     case LOGIN_USER:
       return {
         isLogin: true,
-        ...action.payload, //로그인되면, 로그인된 id를 함께 담을 예정..
+        id: action.payload, //로그인되면, 로그인된 id를 함께 담을 예정..
       };
     case LOGOUT:
       return {

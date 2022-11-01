@@ -60,7 +60,7 @@ const Signup = () => {
     return (
       axios
         //.post(`${process.env.어쩌고환경변수}/회원가입주소`, {
-        .post(`/users`, {
+        .post(`/api/users`, {
           displayName: displayName,
           email: email,
           password: password,
@@ -123,7 +123,7 @@ const Signup = () => {
           <div>
             <button>
               <FcGoogle className="icons" size={22} />
-              Sign up with Google
+              <span>Sign up with Google</span>
             </button>
             <button>
               <SiGithub className="icons" size={22} />

@@ -2,6 +2,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function (app) {
   app.use(
+    // ['/api/auth/login', '/api/users', '/api/questions/:id', '/api'], //proxy가 필요한 path prameter를 입력합니다.
     ['/api'], //proxy가 필요한 path prameter를 입력합니다.
     createProxyMiddleware({
       target: 'https://5068-124-5-120-166.jp.ngrok.io/', //타겟이 되는 api url를 입력합니다.

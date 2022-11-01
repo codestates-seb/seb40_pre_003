@@ -24,7 +24,7 @@ export const Header = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
-  height: 50px;
+  height: 58px;
   border-top: 3px solid #f48224;
   background-color: #f8f9f9;
   width: 100%;
@@ -80,11 +80,25 @@ export const SignupButton = styled.span`
   cursor: pointer;
   margin-left: 4px;
   background-color: hsl(206, 100%, 52%);
-  :hover {
-    background-color: var(--blue-600);
-  }
 `;
 
 export const RegiLink = styled(Link)`
   text-decoration: none;
+`;
+
+export const AferLoginIcons = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  > button {
+    background-color: #f8f9f9;
+    color: black;
+    :hover {
+      background-color: var(--black-075);
+    }
+    > img {
+      width: 20px;
+      height: 20px;
+    }
+  }
 `;
