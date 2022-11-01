@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../../assets/stackoverflow_logo.png';
 import Search from '../Search';
 import {
-  AferLoinIcons,
+  AferLoginIcons,
   Button,
   ButtonContainer,
   Container,
@@ -48,7 +48,7 @@ function GlobalNav() {
         </ButtonContainer>
         <Search />
         {isLogin !== null ? (
-          <AferLoinIcons>
+          <AferLoginIcons>
             <button>
               <img src={userimg} alt="img" />
             </button>
@@ -61,11 +61,8 @@ function GlobalNav() {
             <button>
               <img src={question} alt="img" />
             </button>
-            {/* <button>
-              <img src={message} alt="img" />
-            </button> */}
             <HeaderModalButton />
-          </AferLoinIcons>
+          </AferLoginIcons>
         ) : (
           <>
             <RegiLink to={'/login'}>

@@ -86,21 +86,19 @@ export const RegiLink = styled(Link)`
   text-decoration: none;
 `;
 
-export const AferLoinIcons = styled.div`
+export const AferLoginIcons = styled.div`
   display: flex;
   justify-content: flex-end;
 
   > button {
     background-color: #f8f9f9;
-    margin-left: 10px;
     color: black;
     :hover {
       background-color: var(--black-075);
     }
     > img {
-      width: 18px;
-      height: 18px;
-      background-color: #f8f9f9;
+      width: 20px;
+      height: 20px;
     }
   }
 `;
