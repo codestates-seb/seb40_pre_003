@@ -47,4 +47,5 @@ export const StopProp = styled.button`
 
 export const EditLink = styled(Link)`
   text-decoration: none;
+  color: var(--black-500);
 `;
