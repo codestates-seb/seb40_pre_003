@@ -27,10 +27,12 @@ function QuestionContent() {
       })
       .then((res) => {
         console.log('questions res', res);
-        dispatch(questionAction(res.data));
         return res.data;
       })
-      .then((data) => setTestdata(data))
+      .then((data) => {
+        setTestdata(data);
+        dispatch(questionAction(data));
+      })
       .catch((error) => {
         console.log('error', error);
       });
