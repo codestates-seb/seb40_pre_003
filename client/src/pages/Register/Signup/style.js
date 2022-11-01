@@ -55,6 +55,7 @@ export const SignupBlock = styled.div`
     > div > button {
       /* width: 316px; */
       height: 38px;
+      width: 314px;
       margin: 4px;
       border: 1px;
       border-radius: 5px;
