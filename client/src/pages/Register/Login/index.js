@@ -50,21 +50,26 @@ export default function Login() {
 
     //로그인한 유저를 처음으로 서버에 등록: post요청 -> 앞으로 확인할 때는 get요청
     axios
-      .post(`/auth/login`, loginData, loginConfig)
+      .post(`/api/auth/login`, loginData, loginConfig)
       // json-server용 json-server --watch mockData.json --port 8080
       //.post(`http://localhost:8080/users`, loginData, loginConfig)
       .then((res) => {
         console.log('로그인 성공');
-        console.log('res: ', res);
+        console.log('로그인 시 들어오는 정보', res);
+
         let accessToken = res.headers.accesstoken;
         let userId = res.headers.id;
+        let displayName = res.headers.displayname;
         //로컬 스토리지에 키와 값을 텍스트형식으로 담는다 -> JWT를 담아서 요청을 보낼 때 사용할 예정(서버와 통신/인가)
         //스토리지에 저장한 토큰은 -> 새로고침 시에 사용
         localStorage.setItem('accesstoken', accessToken);
         localStorage.setItem('id', userId);
+        localStorage.setItem('displayname', displayName);
+
         console.log(localStorage);
         //const isLoginCheck = localStorage.getItem('accesstoken', accessToken);
         //리덕스는 프론트에서 로그인된 유저 상태값 관리 용도(=사이트 내 액션 수행에서 사용)
+        //잠시 dispatch(loginAction(userId));
         dispatch(loginAction(userId));
         console.log('로그인액션전달', dispatch(loginAction(userId)));
         navigate('/'); //콘솔 확인을 위해 잠시 막아둠
