@@ -21,6 +21,7 @@ export const Button = styled.button`
   background-color: rgba(0, 0, 0, 0);
   font-size: 13px;
   color: var(--black-500);
+  padding: 0;
   margin: 4px;
   font-weight: 500;
   :hover {
