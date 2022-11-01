@@ -1,9 +1,9 @@
 import { Editor } from '@toast-ui/react-editor';
 import axios from 'axios';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { HiPencil } from 'react-icons/hi';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import {
   Container,
@@ -21,9 +21,10 @@ import {
 } from './style';
 
 function Edit() {
-  const question = useSelector((state) => state.question);
-  console.log('question in Edit', question);
+  const navigate = useNavigate();
+  const question = useSelector((state) => state.questionReducer.question);
   let { id, answerid } = useParams();
+  let isAnswer = answerid === undefined ? false : true;
   console.log('useParams - id in Edit', id);
   console.log('useParams - answerid in Edit', answerid);
   const titleInputValue = useRef();
@@ -39,50 +40,116 @@ function Edit() {
   let title, body;
 
   if (question && answerid) {
-    body = question.answers.find((el) => el.answerid === answerid).contents;
+    // body = question.answers.find((el) => el.answerid === answerid).contents;
+    // console.log(question.answers.filter((el) => el.answerId === +answerid)[0]);
+    body = question.answers.find((el) => el.answerId === +answerid).contents;
   } else if (question) {
     title = question.title;
     body = question.body;
   }
 
+  const [titleValue, setTitleValue] = useState(title ? title : '');
+
   const handleEdit = () => {
-    let newTitle = titleInputValue.current.value;
     let newBody = editorRef.current?.getInstance().getMarkdown();
     // let newTags;
 
+    let uri, reqBody;
+
+    if (answerid) {
+      uri = `/api/questions/${id}/answers/${answerid}`;
+      reqBody = {
+        contents: newBody,
+      };
+    } else {
+      let newTitle = titleInputValue.current.value;
+      uri = `/api/questions/${id}`;
+      reqBody = {
+        title: newTitle,
+        body: newBody,
+        tags: [],
+      };
+    }
+
+    axios
+      .patch(uri, reqBody, {
+        headers: {
+          Authorization: localStorage.getItem('accesstoken'),
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.status >= 200 && res.status < 300) {
+          navigate(`/questions/${id}`);
+        }
+      })
+      .catch((error) => console.log(error));
+
+    /*
     if (answerid) {
       axios
-        .patch(`/api/questions/${id}/answers/${answerid}`, {
-          contents: newBody,
+        .patch(
+          `/api/questions/${id}/answers/${answerid}`,
+          {
+            contents: newBody,
+          },
+          {
+            headers: {
+              Authorization: localStorage.getItem('accesstoken'),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          if (res.status === 200) {
+            navigate(`/questions/${id}`);
+          }
         })
-        .then((res) => console.log(res))
         .catch((error) => console.log(error));
     } else {
+      let newTitle = titleInputValue.current.value;
+      console.log(newTitle, newBody);
       axios
-        .patch(`/api/questions/${id}`, {
-          title: newTitle,
-          body: newBody,
+        .patch(
+          `/api/questions/${id}`,
+          {
+            title: newTitle,
+            body: newBody,
+            tags: [],
+          },
+          {
+            headers: {
+              Authorization: localStorage.getItem('accesstoken'),
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          navigate(`/questions/${id}`);
         })
-        .then((res) => console.log(res))
         .catch((error) => console.log(error));
     }
+    */
   };
 
   return (
     <Container>
       <Main>
-        <InputTitleDiv>
-          <div>
-            <H2>Title</H2>
-          </div>
-          <input
-            type="text"
-            placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
-            ref={titleInputValue}
-            value={title ? title : ''}
-          />
-          {/* <button onClick={outputTitle}>Next</button> */}
-        </InputTitleDiv>
+        {!isAnswer && (
+          <InputTitleDiv>
+            <div>
+              <H2>Title</H2>
+            </div>
+            <input
+              type="text"
+              placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
+              ref={titleInputValue}
+              value={titleValue}
+              onChange={(e) => setTitleValue(e.target.value)}
+            />
+            {/* <button onClick={outputTitle}>Next</button> */}
+          </InputTitleDiv>
+        )}
         <ToastDiv>
           <div>
             <H2>Body</H2>
