@@ -7,6 +7,7 @@ import GlobalNav from './components/Layout/GlobalNav';
 import SideNav from './components/Layout/SideNav';
 import AskQuestion from './pages/AskQuestion/index';
 import Home from './pages/Home'; // 잠시 주석처리
+import Edit from './pages/Questions/Edit';
 import QuestionContent from './pages/Questions/QuestionContent';
 import Logout from './pages/Register/Logout';
 import SearchResults from './pages/SearchResults';
@@ -54,6 +55,8 @@ function App() {
           />
           <Route path="/questions/ask" element={<AskQuestion />} />
           <Route path={`/questions/:id`} element={<QuestionContent />} />
+          <Route path={`/questions/edit/:id`} element={<Edit />} />
+          <Route path={`/questions/edit/:id/:answerid`} element={<Edit />} />
           {/* querystring으로 검색 결과 페이지 이동 (/search?q=springboot) */}
           <Route path="/search" element={<SearchResults />} />
           <Route path="/tags" element={<div>tags</div>} />

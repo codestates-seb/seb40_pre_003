@@ -15,7 +15,6 @@ import {
 
 function SideNav() {
   const { pathname } = useLocation();
-  console.log(pathname);
 
   return (
     <Container>

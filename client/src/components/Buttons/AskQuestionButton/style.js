@@ -5,8 +5,7 @@ export const QuestionButton = styled.button`
   font-family: inherit;
   font-weight: 500;
   color: white;
-  width: 103px;
-  height: 37px;
+  padding: 10.4px;
   border: 1px solid transparent;
   border-radius: 3px;
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
