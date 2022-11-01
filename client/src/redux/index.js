@@ -20,12 +20,37 @@ export const logoutAction = () => {
   };
 };
 
+// 현재 조회한 question 데이터
 export const questionAction = (res) => {
   return {
     type: QUESTION,
     payload: res,
   };
 };
+
+// // 질문 작성 데이터 (Title)
+// export const askTitleAction = (res) => {
+//   return {
+//     type: 'TITLE',
+//     payload: res,
+//   };
+// };
+
+// // 질문 작성 데이터 (Title)
+// export const askBodyAction = (res) => {
+//   return {
+//     type: 'BODY',
+//     payload: res,
+//   };
+// };
+
+// // 질문 작성 데이터 (Tags)
+// export const askTagsAction = (res) => {
+//   return {
+//     type: 'TAGS',
+//     payload: res,
+//   };
+// };
 
 //리듀서에 넣을 초기값 -> 내가 관리할 state 객체의 모습
 const initialstate = {
@@ -53,6 +78,7 @@ const loginReducer = (state = initialstate, action) => {
 const questionReducer = (state = initialstate, action) => {
   switch (action.type) {
     case QUESTION:
+      console.log('action.payload:', action.payload);
       return {
         question: action.payload,
       };
