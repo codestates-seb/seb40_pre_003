@@ -5,7 +5,6 @@
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './style.css';
-// import TitleEditor from '../../components/TitleEditor';
 import ToastEditor from './ToastEditor';
 import {
   AskQuestionDiv,

@@ -1,25 +1,21 @@
-// -----------  Home -----------
-// Home || StackOverFlow 로고를 눌렀을때 기본적으로 보이게되는 페이지
-// Top Questions(Title) , Ask Question(버튼), QuestionList(질문목록들)
-
+// import { DummyData } from '../../components/Main/Data/DummyData';
 import {
-  HomeHead,
-  TopQuestionsTitle,
+  AllQuestionsHead,
+  AllQuestionsTitle,
   AskQuestionButtonLink,
   Total,
 } from './style';
 import QuestionsList from '../../components/Main/QuestionsList';
-// import { DummyData } from '../../components/Main/Data/DummyData';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const Home = () => {
+const AllQuestions = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [homeData, setHomeData] = useState(null);
 
   useEffect(() => {
     axios
-      .get('/api', {
+      .get('/api/questions', {
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
           'Access-Control-Allow-Origin': '*',
@@ -37,12 +33,12 @@ const Home = () => {
   return (
     <div>
       <div>
-        <HomeHead>
-          <TopQuestionsTitle>Top Questions</TopQuestionsTitle>
+        <AllQuestionsHead>
+          <AllQuestionsTitle>All Questions</AllQuestionsTitle>
           <AskQuestionButtonLink to={'/questions/ask'}>
             Ask Question
           </AskQuestionButtonLink>
-        </HomeHead>
+        </AllQuestionsHead>
       </div>
       <Total>
         <span>{totalCount} questions</span>
@@ -53,4 +49,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default AllQuestions;
