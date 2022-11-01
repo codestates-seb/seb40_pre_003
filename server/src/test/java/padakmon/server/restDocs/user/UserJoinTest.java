@@ -53,7 +53,7 @@ public class UserJoinTest {
         String content = gson.toJson(signUpDto);
 
         // when
-        given(mapper.userDtoToUser(any(UserDto.SignUp.class))).willReturn(new User());
+        given(mapper.userSignUpDtoToUser(any(UserDto.SignUp.class))).willReturn(new User());
         doNothing().when(userJoinService).createUser(any());
 
         // then

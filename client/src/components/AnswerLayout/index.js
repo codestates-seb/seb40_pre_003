@@ -2,14 +2,14 @@ import Answers from './Answers';
 import { Container, Count, Header } from './style';
 import WriteAnswer from './WriteAnswer';
 
-function AnswerLayout({ answers }) {
+function AnswerLayout({ answers, questionId }) {
   return (
     answers && (
       <Container>
         <Header>
-          <Count>{`${2} Answers`}</Count>
+          <Count>{`${answers.length} Answers`}</Count>
         </Header>
-        <Answers answers={answers} />
+        <Answers answers={answers} questionId={questionId} />
         <WriteAnswer />
       </Container>
     )

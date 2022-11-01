@@ -25,12 +25,12 @@ public interface QuestionMapper {
         response.setBody(question.getBody());
         response.setCreatedAt(question.getCreatedAt());
         response.setModifiedAt(question.getModifiedAt());
-        response.setScore(question.getScore());
+        response.setScore(question.getVoteScore());
         response.setViewCount(question.getViewCount());
         response.setAnswerCount(question.getAnswerCount());
 
         QuestionDto.UserInQuestion user = new QuestionDto.UserInQuestion();
-        user.setDisplayName(question.getUser().getName());
+        user.setDisplayName(question.getUser().getDisplayName());
         response.setUser(user);
 
         response.setTags(question.getQuestionTags().stream().map(
@@ -40,11 +40,13 @@ public interface QuestionMapper {
         ArrayList<AnswerDto.Response> answersResponse = (ArrayList<AnswerDto.Response>) answers.stream().map(
                 answer -> {
                     AnswerDto.Response answerResponse = new AnswerDto.Response();
+                    answerResponse.setAnswerId(answer.getAnswerId());
                     answerResponse.setContents(answer.getContents());
-                    answerResponse.setScore(answer.getScore());
+                    answerResponse.setScore(answer.getVoteScore());
+                    answerResponse.setCreatedAt(answer.getCreatedAt());
 
                     QuestionDto.UserInQuestion userOfAnswer = new QuestionDto.UserInQuestion();
-                    user.setDisplayName(answer.getUser().getName());
+                    user.setDisplayName(answer.getUser().getDisplayName());
                     answerResponse.setUser(user);
                     return answerResponse;
                 })

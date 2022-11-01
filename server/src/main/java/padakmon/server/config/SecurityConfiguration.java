@@ -57,9 +57,9 @@ public class SecurityConfiguration {
                 .apply(new CustomFilterConfigurer())
                 .and()
                 .authorizeHttpRequests(authorize ->
-                        authorize.antMatchers(HttpMethod.POST, "/questions/**").hasRole("USER") // TODO USER 권한 URL 수정
-                                .antMatchers(HttpMethod.PATCH, "/questions/**").hasRole("USER")
-                                .antMatchers(HttpMethod.DELETE, "/questions/**").hasRole("USER")
+                        authorize.antMatchers(HttpMethod.POST, "api/questions/**").hasRole("USER") // TODO USER 권한 URL 수정
+                                .antMatchers(HttpMethod.PATCH, "api/questions/**").hasRole("USER")
+                                .antMatchers(HttpMethod.DELETE, "api/questions/**").hasRole("USER")
                                 .anyRequest().permitAll()
                 );
 
@@ -89,7 +89,7 @@ public class SecurityConfiguration {
             AuthenticationManager authenticationManager = httpSecurity.getSharedObject(AuthenticationManager.class);
 
             JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);
-            jwtAuthenticationFilter.setFilterProcessesUrl("/auth/login");
+            jwtAuthenticationFilter.setFilterProcessesUrl("/api/auth/login");
             jwtAuthenticationFilter.setAuthenticationFailureHandler(new UserAuthenticationFailureHandler());
 
             JwtVerificationFilter jwtVerificationFilter = new JwtVerificationFilter(jwtTokenizer, userAuthorityUtils);

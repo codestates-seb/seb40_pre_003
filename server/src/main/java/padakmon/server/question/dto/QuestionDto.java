@@ -6,7 +6,6 @@ import padakmon.server.answer.dto.AnswerDto;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionDto {
@@ -22,6 +21,7 @@ public class QuestionDto {
     @Getter
     @Setter
     static public class GetResponse {
+        private long questionId;
         private String title;
         private String body;
         private LocalDateTime createdAt;
@@ -30,7 +30,7 @@ public class QuestionDto {
         private int viewCount;
         private int answerCount;
         private UserInQuestion user;
-        private ArrayList<AnswerDto.Response> answers;
+        private List<AnswerDto.Response> answers;
         private List<String> tags;
     }
     @Getter

@@ -29,7 +29,7 @@ public class User extends CreatedOnlyAuditable implements Principal {
     private String password;
 
     @Column(name = "DISPLAY_NAME", nullable = false, unique = true, length = 15)
-    private String name;
+    private String displayName;
 
     private int questionCount;
 
@@ -37,10 +37,8 @@ public class User extends CreatedOnlyAuditable implements Principal {
 
     private String aboutMe;
 
-    // TODO: 연관관계 매핑, enum?(활동중, 삭제요청 등), CASCADE
-
-//    @Lob
-//    private byte[] image;
+    @Lob
+    private byte[] image;
 
     @ElementCollection(fetch = FetchType.EAGER) // 별도의 테이블을 생성하여 컬렉션 관리
     private List<String> roles = List.of("USER");

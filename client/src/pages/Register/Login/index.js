@@ -52,7 +52,7 @@ export default function Login() {
     axios
       .post(`/api/auth/login`, loginData, loginConfig)
       // json-server용 json-server --watch mockData.json --port 8080
-      //.post(`http://localhost:8080/users`, loginData, loginConfig)
+      // .post(`http://localhost:8080/users`, loginData, loginConfig)
       .then((res) => {
         console.log('로그인 성공');
         console.log('로그인 시 들어오는 정보', res);
