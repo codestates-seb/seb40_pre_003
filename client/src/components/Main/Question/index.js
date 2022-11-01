@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './index.css';
+import { Link } from 'react-router-dom';
 
 // ------------ Question.js  각 질문들 컴포넌트 -------
 
@@ -64,7 +65,7 @@ const RigthSection = styled.section`
 const TextSection = styled.section``;
 
 // 질문 제목 -> 링크달아서 클릭시 질문내용 상세페이지로 ~
-const QuestionTitle = styled.a`
+const QuestionTitle = styled(Link)`
   color: #0063bf;
   cursor: pointer;
 `;
@@ -125,7 +126,9 @@ const LastTime = styled.div`
 `;
 
 const Question = ({ list }) => {
-  console.log(list.title);
+  // console.log(list.title);
+  // console.log(list.tags);
+
   return (
     <QuBox>
       <QuList>
@@ -144,11 +147,22 @@ const Question = ({ list }) => {
         </LeftSection>
         <RigthSection>
           <TextSection>
-            <QuestionTitle>{list.title}</QuestionTitle>
+            <QuestionTitle to={`/questions/${list.questionId}`}>
+              {list.title}
+            </QuestionTitle>
             <QuestionText>{list.body}</QuestionText>
           </TextSection>
           <TagInfoFooter>
             <TagBox>
+              {list.tags.map((el) => {
+                return (
+                  <TagBtn key={el.id}>
+                    <span>{el}</span>
+                  </TagBtn>
+                );
+              })}
+            </TagBox>
+            {/* <TagBox>
               <TagBtn>
                 <span>javascript</span>
               </TagBtn>
@@ -158,7 +172,7 @@ const Question = ({ list }) => {
               <TagBtn>
                 <span>java</span>
               </TagBtn>
-            </TagBox>
+            </TagBox> */}
             <InfoBox>
               <FontAwesomeIcon icon={faUser} className="fontImg-user" />
               <InfoName>{list.user.displayName}</InfoName>

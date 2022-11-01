@@ -3,12 +3,10 @@
 
 import Question from '../Question';
 
-const QuestionsList = ({ dummy }) => {
+const QuestionsList = ({ homeData }) => {
   return (
     <div>
-      {dummy.map((el) => (
-        <Question key={el.id} list={el} />
-      ))}
+      {homeData && homeData.map((el) => <Question key={el.id} list={el} />)}
     </div>
   );
 };
