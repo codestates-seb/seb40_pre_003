@@ -12,7 +12,6 @@ import padakmon.server.question.dto.QuestionSearchDto;
 import padakmon.server.question.entity.Question;
 import padakmon.server.question.mapper.QuestionSearchMapper;
 import padakmon.server.question.service.QuestionSearchService;
-
 import javax.validation.constraints.Positive;
 import java.util.List;
 
@@ -40,17 +39,28 @@ public class QuestionSearchController {
         return new ResponseEntity(new QuestionSearchDto(responsePage), HttpStatus.OK);
     }
 
+
     @GetMapping( "/questions")
-    public ResponseEntity getOrderQuery(@RequestParam(name = "order", required = false) String order,
-                                     @Positive @RequestParam(name = "page", required = false, defaultValue = "1") int page,
-                                     @Positive @RequestParam(name = "size", required = false, defaultValue = "15") int size) {
+    public ResponseEntity getOrderQuery(@RequestParam(name = "query", required = false) String query,
+                                        @RequestParam(name = "order", required = false) String order,
+                                        @Positive @RequestParam(name = "page", required = false, defaultValue = "1") int page,
+                                        @Positive @RequestParam(name = "size", required = false, defaultValue = "15") int size) {
+
         String orderMode;
         if (order == null) {
             orderMode = questionSearchService.getOrderModeDefault();
         } else {
             orderMode = questionSearchService.getOrderMode(order);
         }
-        Page<Question> questionPage =questionSearchService.findQuestions(page - 1, size, Sort.by(orderMode).descending());
+
+        //쿼리가 있으면 쿼리로 검색하고 아니면 최근껄로 뿌림.
+        Page<Question> questionPage;
+        if (query == null) {
+            questionPage = questionSearchService.findQuestions(page - 1, size, Sort.by(orderMode).descending());
+        } else {
+            questionPage = questionSearchService.delegateSearch(query, page - 1, size, Sort.by(orderMode).descending());
+        }
+
         PageInfo pageInfo = PageInfo.of(questionPage, page, size);
         List<Question> questions = questionPage.getContent();
 
@@ -58,4 +68,15 @@ public class QuestionSearchController {
 
         return new ResponseEntity(new QuestionSearchDto(order, pageInfo, responsePage), HttpStatus.OK);
     }
+
+//    @GetMapping("/questions")
+//    public ResponseEntity searchQuery(@RequestParam("query") String query,
+//                                      @RequestParam int page,
+//                                      @RequestParam int size) {
+//        Page<Question> questionPage = questionSearchService.delegateSearch(query, page - 1, size, Sort.by("createdAt"));
+//        PageInfo pageInfo = PageInfo.of(questionPage, page, size);
+//        List<Question> questions = questionPage.getContent();
+//        List<QuestionDto.GetResponse> responsePage = mapper.questionsToPageResponses(questions);
+//        return new ResponseEntity(new QuestionSearchDto(pageInfo, responsePage), HttpStatus.OK);
+//    }
 }

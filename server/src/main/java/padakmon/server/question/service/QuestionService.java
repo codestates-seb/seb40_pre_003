@@ -33,6 +33,8 @@ public class QuestionService {
     private TagService tagService;
     private TagRepository tagRepository;
 
+
+
     public void delete(long questionId) {
         //접속한 사람이 작성한 글이 맞는지 확인
         Question question = verifyIfSameWriter(questionId);
