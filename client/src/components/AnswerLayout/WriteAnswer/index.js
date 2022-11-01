@@ -9,7 +9,7 @@ import { Editor } from '@toast-ui/react-editor';
 import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 import '@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import PostAnswerButton from '../../Buttons/PostAnswerButton';
 import { ButtonContainer, Container, Header } from './style';
 // import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
@@ -17,6 +17,7 @@ import { ButtonContainer, Container, Header } from './style';
 // import 'tui-color-picker/dist/tui-color-picker.css';
 
 function WriteAnswer() {
+  const navigate = useNavigate();
   const { id } = useParams();
   let editorRef = useRef();
   useEffect(() => {
@@ -31,10 +32,23 @@ function WriteAnswer() {
     const markdownValue = editorRef.current.getInstance().getMarkdown();
     console.log(markdownValue);
     axios
-      .post(`/api/questions/${id}/answers`, {
-        contents: markdownValue,
+      .post(
+        `/api/questions/${id}/answers`,
+        {
+          contents: markdownValue,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem('accesstoken'),
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        if (res.status >= 200 && res.status < 300) {
+          navigate(`/questions/${id}`);
+        }
       })
-      .then((res) => console.log(res))
       .catch((error) => console.log(error));
   };
 
