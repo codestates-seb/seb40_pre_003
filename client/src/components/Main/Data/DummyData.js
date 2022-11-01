@@ -9,6 +9,7 @@ export const DummyData = [
     score: '5',
     views: '10',
     answers: '0',
+    tags: ['javascript', 'react', 'express'],
     user: {
       displayName: '효중',
       image: '이미지사진',
@@ -23,6 +24,7 @@ export const DummyData = [
     score: '10',
     views: '10',
     answers: '2',
+    tags: ['javascript', 'react', 'express'],
     user: {
       displayName: '주은',
       image: '이미지사진',
@@ -37,6 +39,7 @@ export const DummyData = [
     score: '10',
     views: '15',
     answers: '1',
+    tags: ['javascript', 'react', 'express'],
     user: {
       displayName: '민경',
       image: '이미지사진',
@@ -51,6 +54,7 @@ export const DummyData = [
     score: '20',
     views: '30',
     answers: '4',
+    tags: ['java'],
     user: {
       displayName: '기홍',
       image: '이미지사진',
@@ -65,6 +69,7 @@ export const DummyData = [
     score: '25',
     views: '30',
     answers: '1',
+    tags: ['spring'],
     user: {
       displayName: '기범',
       image: '이미지사진',
