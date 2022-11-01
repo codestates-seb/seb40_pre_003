@@ -5,20 +5,18 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import padakmon.server.question.dto.PageInfo;
 import padakmon.server.question.dto.QuestionDto;
 import padakmon.server.question.dto.QuestionSearchDto;
 import padakmon.server.question.entity.Question;
 import padakmon.server.question.mapper.QuestionSearchMapper;
 import padakmon.server.question.service.QuestionSearchService;
-
 import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 @Validated
 public class QuestionSearchController {
 
@@ -30,27 +28,46 @@ public class QuestionSearchController {
         this.mapper = mapper;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity getTopQuestions() {
-        int page = 1;
-        int size = 20;
-        Page<Question> questionPage =questionSearchService.findQuestions(page - 1, size, Sort.by("createdAt"));
-        PageInfo pageInfo = PageInfo.of(questionPage, page, size);
-
+        String orderMode = questionSearchService.getOrderModeDefault();
+        Page<Question> questionPage =questionSearchService.findQuestions(0, 20, Sort.by(orderMode).descending());
         List<Question> questions = questionPage.getContent();
+
         List<QuestionDto.GetResponse> responsePage = mapper.questionsToPageResponses(questions);
 
-        return new ResponseEntity(new QuestionSearchDto(pageInfo, responsePage), HttpStatus.OK);
+        return new ResponseEntity(new QuestionSearchDto(responsePage), HttpStatus.OK);
     }
 
-//    @GetMapping("/questions")
-//    public ResponseEntity getAllQuestions(@Positive @RequestParam("page") int page,
-//                                         @Positive @RequestParam("size") int size) {
-//        return null;
-//    }
 
-//    @GetMapping("/questions")
-//    public ResponseEntity searchQuery(@RequestParam("query") String title) {
-//        return null;
-//    }
+    @GetMapping( "/questions")
+    public ResponseEntity getOrderQuery(@RequestParam(name = "query", required = false) String query,
+                                        @RequestParam(name = "order", required = false) String order,
+                                        @Positive @RequestParam(name = "page", required = false, defaultValue = "1") int page,
+                                        @Positive @RequestParam(name = "size", required = false, defaultValue = "15") int size) {
+
+        String orderMode;
+        if (order == null) {
+            orderMode = questionSearchService.getOrderModeDefault();
+        } else {
+            orderMode = questionSearchService.getOrderMode(order);
+        }
+
+        //쿼리가 있으면 쿼리로 검색하고 아니면 최근껄로 뿌림.
+        Page<Question> questionPage;
+        QuestionSearchDto.SearchInfo searchInfo = new QuestionSearchDto.SearchInfo();
+        if (query == null) {
+            questionPage = questionSearchService.findQuestions(page - 1, size, Sort.by(orderMode).descending());
+        } else {
+            questionPage = questionSearchService.delegateSearch(query, page - 1, size, Sort.by(orderMode).descending());
+            questionSearchService.getSearchInfo(query, searchInfo);
+        }
+
+        PageInfo pageInfo = PageInfo.of(questionPage, page, size);
+        List<Question> questions = questionPage.getContent();
+
+        List<QuestionDto.GetResponse> responsePage = mapper.questionsToPageResponses(questions);
+
+        return new ResponseEntity(new QuestionSearchDto(order, searchInfo, pageInfo, responsePage), HttpStatus.OK);
+    }
 }

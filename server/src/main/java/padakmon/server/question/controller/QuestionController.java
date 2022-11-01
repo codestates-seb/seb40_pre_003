@@ -20,7 +20,7 @@ import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
-@RequestMapping("/questions")
+@RequestMapping("/api/questions")
 @Validated
 @Slf4j
 @AllArgsConstructor
@@ -30,7 +30,7 @@ public class QuestionController {
     private final QuestionMapper mapper;
 
     @PostMapping
-    public ResponseEntity post(@RequestBody @Valid QuestionDto.Post post){
+    public ResponseEntity post(@RequestBody @Valid QuestionDto.Post post) {
         Question question = questionService.create(mapper.postToEntity(post), post.getTags());
         QuestionDto.SuccessResponse response = mapper.EntityToSuccessResponse(question);
         return new ResponseEntity(response, HttpStatus.CREATED);
@@ -44,6 +44,7 @@ public class QuestionController {
         QuestionDto.GetResponse response = mapper.QuestionAnswersToResponse(question, answers);
         return new ResponseEntity(response, HttpStatus.OK);
     }
+
     @PatchMapping("/{question-id}")
     public ResponseEntity patch(@PathVariable(name = "question-id") @Positive long questionId,
                                 @RequestBody @Valid QuestionDto.Patch patch) {

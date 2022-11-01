@@ -7,7 +7,7 @@ export const Container = styled.div`
   margin-top: 4px;
   padding: 5px 6px 7px 7px;
   color: var(--black-500);
-  background-color: #d9e9f7;
+  background-color: ${'#d9e9f7'};
   border-radius: 3px;
 `;
 
@@ -23,7 +23,7 @@ export const Profile = styled.div`
 export const Image = styled.div`
   width: 32px;
   height: 32px;
-  background-color: white;
+  background-color: gray;
 `;
 
 export const Name = styled.div`

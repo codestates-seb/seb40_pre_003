@@ -10,7 +10,7 @@ import padakmon.server.vote.service.VoteService;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/questions/{question-id}/answers/{answer-id}/votes")
+@RequestMapping("/api/questions/{question-id}/answers/{answer-id}/votes")
 @AllArgsConstructor
 public class VoteAnswerController {
     private VoteService voteService;

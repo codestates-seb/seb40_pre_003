@@ -15,8 +15,10 @@ import java.util.Map;
 public class LoggedInUserInfoUtils {
     private UserRepository userRepository;
     public Long extractUserId() {
-        Map<String, Object> claims = (Map)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(claims == null) {
+        Map<String, Object> claims;
+        try {
+            claims = (Map)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception e) {
             throw new BusinessLogicException(ExceptionCode.AUTHENTICATION_NOT_FOUND);
         }
         return ((Number)claims.get("userId")).longValue();

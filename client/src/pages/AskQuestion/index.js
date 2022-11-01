@@ -5,7 +5,9 @@
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './style.css';
-import ToastEditor from './ToastEditor';
+// import TitleEditor from '../../components/TitleEditor';
+import { useRef } from 'react';
+import ToastEditor from '../../components/ToastEditor';
 import {
   AskQuestionDiv,
   AskQuestionHead,
@@ -13,14 +15,13 @@ import {
   BackGroundImg,
   GoodInfoDiv,
   GoodQuestionInfo,
-  GoodTitleInfo,
   GoodTitleHead,
+  GoodTitleInfo,
   GoodTitleInfoText,
   InputTitleDiv,
-  ToastDiv,
   TagDiv,
+  ToastDiv,
 } from './style';
-import { useRef } from 'react';
 
 const AskQuestion = () => {
   const titleInputValue = useRef();

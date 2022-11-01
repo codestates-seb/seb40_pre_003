@@ -14,24 +14,36 @@ import ContentInfo from './ContentInfo';
 import ContentTagList from './ContentTagList';
 import { Container, ContentBody, VoteLayout } from './style';
 
-function ContentLayout({ testdata }) {
-  // console.log(testdata);
+function ContentLayout({ testdata, questionId, answerId }) {
   // const time = testdata.createdAt; // 임시로 지정
+  let writerType;
+  if (answerId) {
+    writerType = 'answerer';
+  } else {
+    writerType = 'questioner';
+  }
   return (
     testdata && (
       <Container>
         <VoteLayout>
-          <VoteCell score={testdata.score} />
+          <VoteCell
+            questionId={questionId}
+            score={testdata.score}
+            answerId={answerId}
+          />
         </VoteLayout>
         <ContentBody>
           <Viewer
-            initialValue={testdata.body}
+            initialValue={testdata.body ? testdata.body : testdata.contents}
             plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
           />
           {testdata.tags && <ContentTagList tags={testdata.tags} />}
           <ContentInfo
             time={testdata.createdAt}
             user={testdata.user ? testdata.user : testdata.displayName}
+            writerType={writerType}
+            questionId={questionId}
+            answerId={answerId}
           />
         </ContentBody>
       </Container>

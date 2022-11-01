@@ -28,7 +28,7 @@ function QuestionHeader({ testdata }) {
           </Figure>
           <Figure>
             <FigureName>Viewed</FigureName>
-            <FigureContent>{`${testdata.views} times`}</FigureContent>
+            <FigureContent>{`${testdata.viewCount} times`}</FigureContent>
           </Figure>
         </FiguresContainer>
       </Container>

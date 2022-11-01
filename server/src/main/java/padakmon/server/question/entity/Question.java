@@ -36,7 +36,7 @@ public class Question extends Auditable {
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private Set<QuestionVote> questionVotes = new HashSet<>();
     //질문 생성하면서 태그도 같이 생성 및 업데이트
-    @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     private Set<QuestionTag> questionTags = new HashSet<>();
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private Set<Answer> answers = new HashSet<>();
