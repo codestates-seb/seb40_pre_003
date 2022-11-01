@@ -2,11 +2,16 @@ import { useState } from 'react';
 import { GoSearch } from 'react-icons/go';
 import { useNavigate } from 'react-router-dom';
 // import SearchResults from '../../../pages/SearchResults';
+import SearchModal from '../../SearchModal';
 import { Container, Input, SearchContainer } from './style';
 
 function Search() {
   const [searchValue, setSearchValue] = useState('');
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const handleOnClick = () => {
+    setIsOpen(!isOpen);
+  };
 
   // 검색조건에 tag: 가 있는지 없는지 - 불린값
   // let isSearchTag = false;
@@ -44,8 +49,10 @@ function Search() {
           placeholder="Search..."
           onChange={onChangeValue}
           onKeyPress={handleEnter}
+          onClick={handleOnClick}
         />
       </SearchContainer>
+      {isOpen ? <SearchModal /> : null}
     </Container>
   );
 }
