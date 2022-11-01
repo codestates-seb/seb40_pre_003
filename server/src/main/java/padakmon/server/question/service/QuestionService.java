@@ -16,9 +16,7 @@ import padakmon.server.tag.service.TagService;
 import padakmon.server.user.entity.User;
 import padakmon.server.user.repository.UserRepository;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,19 +51,35 @@ public class QuestionService {
         //수정사항 반영
         question.setTitle(patchQuestion.getTitle());
         question.setBody(patchQuestion.getBody());
-        //태그는 전체 질문 숫자 1씩 감소
-        subtractQuestionTagCount(question.getQuestionTags());
-        Set<QuestionTag> questionTagSet = tags.stream().map(
-                tagName -> {
-                    QuestionTag questionTag = new QuestionTag();
-                    questionTag.setQuestion(question);
-                    questionTag.setTag(tagService.createOrUpdate(tagName));
-                    return questionTag;
-                }).collect(Collectors.toSet());
-        question.setQuestionTags(questionTagSet);
 
+        //기존에 있던 태그 중 새로 수정한 태그에는 없는 것들을 삭제
+        Set<QuestionTag> questionTags = question.getQuestionTags();
+        Set<QuestionTag> temp = new HashSet<>();
+        for(QuestionTag questionTag : questionTags) {
+            Tag tag = questionTag.getTag();
+            if(!tags.contains(tag.getName())) {
+                //태그에 해당하는 질문하나 감소 후 저장
+                tag.subtractQuestionCountByOne();
+                tagRepository.save(tag);
+                //그 후 이 게시글에서 삭제하기 위해 일단 temp에 임시 저장
+                temp.add(questionTag);
+            } else {
+                //새로 수정한 태그에도 있으면, 새로운 태그 목록에서도 삭제를 해서 추가 저장을 방지
+                tags.remove(tag.getName());
+            }
+        }
+        //임시 저장해둔 QuestionTag삭제
+        questionTags.removeAll(temp);
+
+        //새로 추가된 태그들을 추가 저장
+        for(String tagName : tags) {
+            //새로운 조인 엔티티를 생성
+            QuestionTag questionTag = new QuestionTag();
+            questionTag.setQuestion(question);
+            questionTag.setTag(tagService.createOrUpdate(tagName));
+            questionTags.add(questionTag);
+        }
         return questionRepository.save(question);
-
     }
     private void subtractQuestionTagCount(Set<QuestionTag> questionTags) {
         questionTags.stream().forEach(questionTag -> {
