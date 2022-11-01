@@ -9,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import padakmon.server.exception.BusinessLogicException;
 import padakmon.server.exception.ExceptionCode;
 import padakmon.server.authority.utils.LoggedInUserInfoUtils;
+import padakmon.server.question.dto.QuestionSearchDto;
 import padakmon.server.question.entity.Question;
 import padakmon.server.question.repository.QuestionRepository;
+import padakmon.server.tag.repository.TagRepository;
 
 @Service
 @Transactional
@@ -19,6 +21,7 @@ public class QuestionSearchService {
 
     private final QuestionRepository questionRepository;
     private final LoggedInUserInfoUtils userInfoUtils;
+    private final TagRepository tagRepository;
 
     public Page<Question> findQuestions(int page, int size, Sort sort) {
         PageRequest pageRequest = PageRequest.of(page, size, sort);
@@ -26,6 +29,18 @@ public class QuestionSearchService {
     }
 
 
+    public QuestionSearchDto.SearchInfo getSearchInfo(String query, QuestionSearchDto.SearchInfo searchInfo) {
+        String trimmedQuery = query.trim();
+        //태그 검색
+        if(trimmedQuery.startsWith("tag:")) {
+            trimmedQuery = query.substring(4);
+            String tagDescription = tagRepository.getDescription(trimmedQuery);
+
+            searchInfo.setSearchTitle("Questions tagged [" + trimmedQuery + "]");
+            searchInfo.setTagDescription(tagDescription);
+        }
+        return searchInfo;
+    }
     public String getOrderMode(String order) {
         if (Order.NEWEST.orderParam.equals(order)) {
             return Order.NEWEST.orderMode;
@@ -44,7 +59,7 @@ public class QuestionSearchService {
         PageRequest pageRequest = PageRequest.of(page, size, sort);
         String trimmedQuery = query.trim();
         //태그 검색
-        if(trimmedQuery.charAt(0) == '[' && trimmedQuery.charAt(trimmedQuery.length() - 1) == ']') {
+        if(trimmedQuery.startsWith("tag:")) {
             return tagSearch(trimmedQuery, pageRequest);
         }
         //유저 검색
@@ -65,7 +80,7 @@ public class QuestionSearchService {
     }
 
     private Page<Question> tagSearch(String query, PageRequest pageRequest) {
-        return questionRepository.tagSearch(query.substring(1, query.length() - 1), pageRequest);
+        return questionRepository.tagSearch(query.substring(4), pageRequest);
     }
 
     private Page<Question> userSearch(String query, PageRequest pageRequest) {

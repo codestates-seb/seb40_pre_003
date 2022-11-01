@@ -16,6 +16,7 @@ public interface QuestionSearchMapper {
 
         for (Question question : questions) {
             QuestionDto.GetResponse responseDto = new QuestionDto.GetResponse();
+            responseDto.setQuestionId(question.getQuestionId());
             responseDto.setTitle(question.getTitle());
             responseDto.setBody(question.getBody());
             responseDto.setCreatedAt(question.getCreatedAt());
