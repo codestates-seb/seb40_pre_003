@@ -28,34 +28,39 @@ export const questionAction = (res) => {
   };
 };
 
-// // 질문 작성 데이터 (Title)
-// export const askTitleAction = (res) => {
-//   return {
-//     type: 'TITLE',
-//     payload: res,
-//   };
-// };
+// 질문 작성 데이터 (Title)
+export const askTitleAction = (res) => {
+  return {
+    type: 'TITLE',
+    payload: res,
+  };
+};
 
-// // 질문 작성 데이터 (Title)
-// export const askBodyAction = (res) => {
-//   return {
-//     type: 'BODY',
-//     payload: res,
-//   };
-// };
+// 질문 작성 데이터 (Body)
+export const askBodyAction = (res) => {
+  return {
+    type: 'BODY',
+    payload: res,
+  };
+};
 
-// // 질문 작성 데이터 (Tags)
-// export const askTagsAction = (res) => {
-//   return {
-//     type: 'TAGS',
-//     payload: res,
-//   };
-// };
+// 질문 작성 데이터 (Tags)
+export const askTagsAction = (res) => {
+  return {
+    type: 'TAGS',
+    payload: res,
+  };
+};
 
 //리듀서에 넣을 초기값 -> 내가 관리할 state 객체의 모습
 const initialstate = {
   isLogin: false,
   question: null,
+  ask: {
+    title: null,
+    body: null,
+    tags: null,
+  },
 };
 
 //리듀서함수 -> 디스패치가 호출하면 state를 바꿈
@@ -78,9 +83,31 @@ const loginReducer = (state = initialstate, action) => {
 const questionReducer = (state = initialstate, action) => {
   switch (action.type) {
     case QUESTION:
-      console.log('action.payload:', action.payload);
+      // console.log('action.payload:', action.payload);
       return {
         question: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+const askReducer = (state = initialstate, action) => {
+  switch (action.type) {
+    case 'TITLE':
+      return {
+        ...state,
+        title: action.payload,
+      };
+    case 'BODY':
+      return {
+        ...state,
+        body: action.payload,
+      };
+    case 'TAGS':
+      return {
+        ...state,
+        tags: action.payload,
       };
     default:
       return state;
@@ -91,6 +118,7 @@ const questionReducer = (state = initialstate, action) => {
 const combinedReducer = combineReducers({
   loginReducer,
   questionReducer,
+  askReducer,
 });
 
 // const store = createStore(loginReducer);
