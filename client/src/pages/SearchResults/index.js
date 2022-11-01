@@ -4,6 +4,8 @@
 import styled from 'styled-components';
 import QuestionsList from '../../components/Main/QuestionsList';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 // import { DummyData } from '../../components/Main/Data/DummyData';
 // import Question from '../Question';
 
@@ -65,6 +67,29 @@ const Total = styled.div`
 `;
 
 const SearchResults = () => {
+  const [searchResultsData, setSearchResultsData] = useState(null);
+  const [totalCount, setTotalCount] = useState(0);
+  // const [params] = useSearchParams();
+  // const search = params;
+  // console.log('params : ', search);
+
+  useEffect(() => {
+    axios
+      .get('/api/questions', {
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+          'Access-Control-Allow-Origin': '*',
+          'ngrok-skip-browser-warning': '111',
+        },
+      })
+      .then((res) => {
+        console.log('searchResultsResponse : ', res.data.questions);
+        setSearchResultsData(res.data.questions);
+        setTotalCount(res.data.questions.length);
+      })
+      .catch((error) => console.log('error : ', error));
+  }, []);
+
   return (
     <div>
       <div>
@@ -81,12 +106,12 @@ const SearchResults = () => {
       <div>
         <Total>
           <AboutResult>Results for javascript</AboutResult>
-          <span>5 results</span>
+          <span>{totalCount} results</span>
         </Total>
       </div>
       <div>
         {/* <QuestionsList dummy={DummyData}></QuestionsList> */}
-        <QuestionsList></QuestionsList>
+        <QuestionsList homeData={searchResultsData}></QuestionsList>
       </div>
     </div>
   );

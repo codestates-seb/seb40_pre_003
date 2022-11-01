@@ -1,5 +1,5 @@
 // import GlobalNav from './components/Layout/GlobalNav';
-import { Link, Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom'; // Link 잠시 지움
 import styled from 'styled-components';
 import GlobalStyle from './assets/GlobalStyle';
 import Footer from './components/Layout/Footer';
@@ -14,6 +14,7 @@ import SearchResults from './pages/SearchResults';
 
 import Login from './pages/Register/Login';
 import Signup from './pages/Register/Signup';
+import AllQuestions from './pages/AllQuestions';
 
 function App() {
   const { pathname } = useLocation();
@@ -51,7 +52,8 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route
             path="/questions"
-            element={<Link to="/questions/1">questions</Link>}
+            // element={<Link to="/questions/1">questions</Link>}
+            element={<AllQuestions />}
           />
           <Route path="/questions/ask" element={<AskQuestion />} />
           <Route path={`/questions/:id`} element={<QuestionContent />} />
