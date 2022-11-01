@@ -1,4 +1,5 @@
-import { Link, useNavigate } from 'react-router-dom';
+//import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from '../../../assets/stackoverflow_logo.png';
 import Search from '../Search';
 import {
@@ -15,20 +16,21 @@ import {
 } from './style';
 
 import inbox from '../../../assets/images/inbox_icon.png';
-import message from '../../../assets/images/message_icon.png';
+// import message from '../../../assets/images/message_icon.png';
 import question from '../../../assets/images/question_icon.png';
 import trophy from '../../../assets/images/trophy_icon.png';
 import userimg from '../../../assets/images/userimg_icon.png';
+import HeaderModalButton from '../../HeaderModalButton';
 
 function GlobalNav() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   //const isLogin = useSelector((state) => state.isLogin);
   const isLogin = localStorage.getItem('accesstoken');
   console.log('헤더 이즈로그인:', isLogin);
-  const handleClickLogout = () => {
-    navigate('/logout');
-  };
+  // const handleClickLogout = () => {
+  //   navigate('/logout');
+  // };
   console.log('로컬스토리지액세스토큰', localStorage.getItem('accesstoken'));
 
   return (
@@ -59,10 +61,10 @@ function GlobalNav() {
             <button>
               <img src={question} alt="img" />
             </button>
-            <button>
+            {/* <button>
               <img src={message} alt="img" />
-            </button>
-            <button onClick={handleClickLogout}>로그아웃</button>
+            </button> */}
+            <HeaderModalButton />
           </AferLoinIcons>
         ) : (
           <>
