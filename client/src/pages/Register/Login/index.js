@@ -46,7 +46,7 @@ export default function Login() {
 
     //로그인한 유저를 처음으로 서버에 등록: post요청 -> 앞으로 확인할 때는 get요청
     axios
-      .post(`/auth/login`, loginData, loginConfig)
+      .post(`/api/auth/login`, loginData, loginConfig)
       // json-server용 json-server --watch mockData.json --port 8080
       // .post(`http://localhost:8080/users`, loginData, loginConfig)
       .then((res) => {
