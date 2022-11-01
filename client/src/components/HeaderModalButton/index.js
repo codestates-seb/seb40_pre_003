@@ -32,11 +32,16 @@ const Container = styled.div``;
 const ModalButton = styled.button`
   > img {
     width: 20px;
+    height: 18px;
+    margin: 0px 5px;
   }
   border: 0;
   background-color: rgb(247, 247, 247);
   position: fixed;
   z-index: 1;
+  :hover {
+    background-color: var(--black-075);
+  }
 `;
 
 const ModalContent = styled.div`
