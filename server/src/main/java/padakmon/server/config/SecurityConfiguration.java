@@ -57,9 +57,9 @@ public class SecurityConfiguration {
                 .apply(new CustomFilterConfigurer())
                 .and()
                 .authorizeHttpRequests(authorize ->
-                        authorize.antMatchers(HttpMethod.POST, "/questions/**").hasRole("USER") // TODO USER 권한 URL 수정
-                                .antMatchers(HttpMethod.PATCH, "/questions/**").hasRole("USER")
-                                .antMatchers(HttpMethod.DELETE, "/questions/**").hasRole("USER")
+                        authorize.antMatchers(HttpMethod.POST, "api/questions/**").hasRole("USER") // TODO USER 권한 URL 수정
+                                .antMatchers(HttpMethod.PATCH, "api/questions/**").hasRole("USER")
+                                .antMatchers(HttpMethod.DELETE, "api/questions/**").hasRole("USER")
                                 .anyRequest().permitAll()
                 );
 

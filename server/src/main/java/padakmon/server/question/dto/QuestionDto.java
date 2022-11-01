@@ -21,6 +21,7 @@ public class QuestionDto {
     @Getter
     @Setter
     static public class GetResponse {
+        private long questionId;
         private String title;
         private String body;
         private LocalDateTime createdAt;

@@ -55,10 +55,12 @@ public class QuestionSearchController {
 
         //쿼리가 있으면 쿼리로 검색하고 아니면 최근껄로 뿌림.
         Page<Question> questionPage;
+        QuestionSearchDto.SearchInfo searchInfo = new QuestionSearchDto.SearchInfo();
         if (query == null) {
             questionPage = questionSearchService.findQuestions(page - 1, size, Sort.by(orderMode).descending());
         } else {
             questionPage = questionSearchService.delegateSearch(query, page - 1, size, Sort.by(orderMode).descending());
+            questionSearchService.getSearchInfo(query, searchInfo);
         }
 
         PageInfo pageInfo = PageInfo.of(questionPage, page, size);
@@ -66,17 +68,6 @@ public class QuestionSearchController {
 
         List<QuestionDto.GetResponse> responsePage = mapper.questionsToPageResponses(questions);
 
-        return new ResponseEntity(new QuestionSearchDto(order, pageInfo, responsePage), HttpStatus.OK);
+        return new ResponseEntity(new QuestionSearchDto(order, searchInfo, pageInfo, responsePage), HttpStatus.OK);
     }
-
-//    @GetMapping("/questions")
-//    public ResponseEntity searchQuery(@RequestParam("query") String query,
-//                                      @RequestParam int page,
-//                                      @RequestParam int size) {
-//        Page<Question> questionPage = questionSearchService.delegateSearch(query, page - 1, size, Sort.by("createdAt"));
-//        PageInfo pageInfo = PageInfo.of(questionPage, page, size);
-//        List<Question> questions = questionPage.getContent();
-//        List<QuestionDto.GetResponse> responsePage = mapper.questionsToPageResponses(questions);
-//        return new ResponseEntity(new QuestionSearchDto(pageInfo, responsePage), HttpStatus.OK);
-//    }
 }
