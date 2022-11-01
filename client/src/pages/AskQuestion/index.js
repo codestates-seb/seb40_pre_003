@@ -6,7 +6,9 @@ import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './style.css';
 // import TitleEditor from '../../components/TitleEditor';
+import axios from 'axios';
 import { useRef } from 'react';
+import { useSelector } from 'react-redux';
 import ToastEditor from '../../components/ToastEditor';
 import {
   AskQuestionDiv,
@@ -25,7 +27,10 @@ import {
 
 const AskQuestion = () => {
   const titleInputValue = useRef();
+  // const bodyInputValue = useRef();
   const tagInputValue = useRef();
+
+  const body = useSelector((state) => state.askReducer.body);
 
   const outputTitle = () => {
     console.log(titleInputValue.current.value);
@@ -34,6 +39,34 @@ const AskQuestion = () => {
   const outputTag = () => {
     console.log(tagInputValue.current.value);
   };
+
+  function handleSubmit() {
+    console.log(titleInputValue.current.value);
+    // console.log(bodyInputValue.current.value);
+    console.log(body);
+    console.log(tagInputValue.current.value);
+
+    let title = titleInputValue.current.value;
+    let tags = [];
+    axios
+      .post(
+        '/api/questions',
+        {
+          title: title,
+          body: body,
+          tags: tags,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem('accesstoken'),
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => console.log(error));
+  }
 
   return (
     <AskQuestionDiv>
@@ -102,7 +135,7 @@ const AskQuestion = () => {
             Minimum 20 characters.
           </p>
         </div>
-        <ToastEditor></ToastEditor>
+        <ToastEditor />
       </ToastDiv>
       <TagDiv>
         <div>
@@ -119,7 +152,7 @@ const AskQuestion = () => {
         />
         <button onClick={outputTag}>Next</button>
       </TagDiv>
-      <button>Submit your question</button>
+      <button onClick={handleSubmit}>Submit your question</button>
     </AskQuestionDiv>
   );
 };
