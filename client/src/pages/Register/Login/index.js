@@ -72,8 +72,7 @@ export default function Login() {
         //잠시 dispatch(loginAction(userId));
         dispatch(loginAction(userId));
         console.log('로그인액션전달', dispatch(loginAction(userId)));
-        navigate('/'); //콘솔 확인을 위해 잠시 막아둠
-        //홈으로 이동 + 헤더에 로그인버튼이 사라지고, 이미지로 바뀌는거!!!
+        navigate('/');
       })
       .then((data) => console.log(data))
       .catch((error) => {

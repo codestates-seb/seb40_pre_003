@@ -136,6 +136,7 @@ export const LoginBlock = styled.div`
     > div > a {
       text-decoration-line: none;
       margin-left: 5px;
+      color: #0074cc;
     }
   }
 `;

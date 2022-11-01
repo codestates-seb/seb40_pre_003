@@ -8,10 +8,8 @@ import { SiGithub } from 'react-icons/si';
 import { TbTriangle } from 'react-icons/tb';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container, SignupBlock } from './style';
-
 import axios from 'axios';
-
-axios.defaults.withCredentials = true;
+//axios.defaults.withCredentials = true;
 
 const Signup = () => {
   //signup 인풋 항목: name, email, password
@@ -25,9 +23,6 @@ const Signup = () => {
   const [nameValidMsg, setNameValidMsg] = useState('');
   const [emailValidMsg, setEmailValidMsg] = useState('');
   const [passwordValidMsg, setPasswordValidMsg] = useState('');
-  //navigate -> 회원가입 성공 시 로그인페이지?홈페이지?로 이동
-  //useHistory가 useNavigate로 바뀜
-  //const navigate = useNavigate();
 
   //회원가입 버튼 -> post 요청
   const handleSubmit = (e) => {
@@ -119,7 +114,7 @@ const Signup = () => {
       </div>
       <SignupBlock className="">
         {/* 소셜 가입 */}
-        <section className="social_login">
+        <section className="social_signup">
           <div>
             <button>
               <FcGoogle className="icons" size={22} />
@@ -136,7 +131,7 @@ const Signup = () => {
           </div>
         </section>
         {/* 이메일 가입 */}
-        <section className="email_login">
+        <section className="email_signup">
           <form onSubmit={handleSubmit}>
             <div>
               <label htmlFor={'displayName'}>Display name</label>
@@ -177,10 +172,10 @@ const Signup = () => {
                 ''
               )}
             </div>
-            <button className="login_btn">Sign up</button>
+            <button className="signup_btn">Sign up</button>
           </form>
         </section>
-        <div className="login_guide">
+        <div className="signup_guide">
           <div>
             Already have an account?
             <Link to="/login">Log in</Link>
