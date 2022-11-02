@@ -6,7 +6,11 @@ import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './style.css';
 // import TitleEditor from '../../components/TitleEditor';
+import axios from 'axios';
 import { useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import TagInput from '../../components/TagInput';
 import ToastEditor from '../../components/ToastEditor';
 import {
   AskQuestionDiv,
@@ -24,16 +28,50 @@ import {
 } from './style';
 
 const AskQuestion = () => {
+  const navigate = useNavigate();
   const titleInputValue = useRef();
-  const tagInputValue = useRef();
+  // const bodyInputValue = useRef();
+  // const tagInputValue = useRef();
+
+  const body = useSelector((state) => state.askReducer.body);
+  const tags = useSelector((state) => state.askReducer.tags);
 
   const outputTitle = () => {
     console.log(titleInputValue.current.value);
   };
 
   const outputTag = () => {
-    console.log(tagInputValue.current.value);
+    // console.log(tagInputValue.current.value);
   };
+
+  function handleSubmit() {
+    console.log(titleInputValue.current.value);
+    console.log(body);
+    console.log(tags);
+
+    let title = titleInputValue.current.value;
+    axios
+      .post(
+        '/api/questions',
+        {
+          title: title,
+          body: body,
+          tags: tags,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem('accesstoken'),
+          },
+        }
+      )
+      .then((res) => {
+        if (res.status >= 200 && res.status < 300) {
+          navigate(`/questions/${res.data.postId}`);
+        }
+        console.log(res);
+      })
+      .catch((error) => console.log(error));
+  }
 
   return (
     <AskQuestionDiv>
@@ -102,7 +140,7 @@ const AskQuestion = () => {
             Minimum 20 characters.
           </p>
         </div>
-        <ToastEditor></ToastEditor>
+        <ToastEditor />
       </ToastDiv>
       <TagDiv>
         <div>
@@ -112,14 +150,15 @@ const AskQuestion = () => {
             typing to see suggestions.
           </p>
         </div>
-        <input
+        {/* <input
           type="text"
           placeholder="e.g (excel string regex)"
           ref={tagInputValue}
-        />
+        /> */}
+        <TagInput />
         <button onClick={outputTag}>Next</button>
       </TagDiv>
-      <button>Submit your question</button>
+      <button onClick={handleSubmit}>Submit your question</button>
     </AskQuestionDiv>
   );
 };

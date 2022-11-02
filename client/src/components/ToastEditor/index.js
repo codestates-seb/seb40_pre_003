@@ -10,15 +10,25 @@ import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 import '@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
+import { useDispatch } from 'react-redux';
 import 'tui-color-picker/dist/tui-color-picker.css';
+import { askBodyAction } from '../../redux';
 import './style.css';
 
 const ToastEditor = ({ isEdit = false, value }) => {
+  const dispatch = useDispatch();
   const editorRef = useRef();
+  // const [body, setBody] = useState(isEdit ? value : '');
 
   const editorDataButton = () => {
     const markdownValue = editorRef.current?.getInstance().getMarkdown();
     console.log(markdownValue);
+  };
+
+  const onChangeBody = () => {
+    dispatch(askBodyAction(editorRef.current?.getInstance().getMarkdown()));
+    // setBody(editorRef.current?.getInstance().getMarkdown());
+    // console.log(body);
   };
 
   return (
@@ -27,6 +37,7 @@ const ToastEditor = ({ isEdit = false, value }) => {
         ref={editorRef}
         height="400px"
         initialValue={isEdit ? value : ''}
+        // value={body}
         initialEditType="markdown"
         // hideModeSwitch={true}
         useCommandShortcut={true}
@@ -40,6 +51,7 @@ const ToastEditor = ({ isEdit = false, value }) => {
           ['code'],
           ['scrollSync'],
         ]}
+        onChange={onChangeBody}
       ></Editor>
       {isEdit || <button onClick={editorDataButton}>Next</button>}
     </div>

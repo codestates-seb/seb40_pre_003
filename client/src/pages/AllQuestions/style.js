@@ -1,5 +1,15 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+export const Container = styled.div`
+  display: flex;
+  padding: 24px 24px 0 0;
+`;
+
+export const Main = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 // 타이틀(Top Questions),버튼(Ask Question) 등 묶음 -> HomeHead
 export const AllQuestionsHead = styled.div`
