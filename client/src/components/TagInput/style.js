@@ -8,6 +8,7 @@ export const TagsInput = styled.div`
   /* min-height: 48px; */
   width: 100%;
   padding: 2px;
+  margin-bottom: 30px;
   border: 1px solid rgb(214, 216, 218);
   border-radius: 6px;
   > ul {

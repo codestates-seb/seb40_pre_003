@@ -5,12 +5,10 @@ import { useDispatch } from 'react-redux';
 import { askTagsAction } from '../../redux';
 import { TagsInput } from './style';
 
-function TagInput() {
+function TagInput({ initialTags = [] }) {
   const dispatch = useDispatch();
-  //   const initialTags = [];
+  const [tags, setTags] = useState(initialTags);
 
-  const [tags, setTags] = useState([]);
-  //   const tags = useSelector((state) => state.askReducer.ask.tags);
   const removeTags = (indexToRemove) => {
     let newTags = tags.slice();
     newTags.splice(indexToRemove, 1);
@@ -56,7 +54,7 @@ function TagInput() {
             if (event.key === 'Enter' || event.key === ' ') addTags(event);
           }
         }}
-        placeholder="Press enter to add tags"
+        placeholder="e.g (excel string regex)"
       />
     </TagsInput>
   );
