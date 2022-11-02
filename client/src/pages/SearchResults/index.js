@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 // import { DummyData } from '../../components/Main/Data/DummyData';
 // import Question from '../Question';
+import { useSelector } from 'react-redux';
 
 // 제목, 버튼, 링크 묶음
 const SearchResultsHead = styled.div`
@@ -69,13 +70,15 @@ const Total = styled.div`
 const SearchResults = () => {
   const [searchResultsData, setSearchResultsData] = useState(null);
   const [totalCount, setTotalCount] = useState(0);
+  const searchGen = useSelector((state) => state.searchReducer.searchGen);
+  console.log('searchResults컴포-> redux로 받아온 searchGen : ', searchGen);
   // const [params] = useSearchParams();
   // const search = params;
   // console.log('params : ', search);
 
   useEffect(() => {
     axios
-      .get('/api/questions', {
+      .get(`/api/questions?query=${searchGen}&page=1&size=20&order=newest`, {
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
           'Access-Control-Allow-Origin': '*',
@@ -83,7 +86,7 @@ const SearchResults = () => {
         },
       })
       .then((res) => {
-        console.log('searchResultsResponse : ', res.data.questions);
+        console.log('SearchResults컴포->axios요청 값 : ', res.data);
         setSearchResultsData(res.data.questions);
         setTotalCount(res.data.questions.length);
       })
