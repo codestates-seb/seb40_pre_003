@@ -9,6 +9,8 @@ import './style.css';
 import axios from 'axios';
 import { useRef } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import TagInput from '../../components/TagInput';
 import ToastEditor from '../../components/ToastEditor';
 import {
   AskQuestionDiv,
@@ -26,28 +28,28 @@ import {
 } from './style';
 
 const AskQuestion = () => {
+  const navigate = useNavigate();
   const titleInputValue = useRef();
   // const bodyInputValue = useRef();
-  const tagInputValue = useRef();
+  // const tagInputValue = useRef();
 
   const body = useSelector((state) => state.askReducer.body);
+  const tags = useSelector((state) => state.askReducer.tags);
 
   const outputTitle = () => {
     console.log(titleInputValue.current.value);
   };
 
   const outputTag = () => {
-    console.log(tagInputValue.current.value);
+    // console.log(tagInputValue.current.value);
   };
 
   function handleSubmit() {
     console.log(titleInputValue.current.value);
-    // console.log(bodyInputValue.current.value);
     console.log(body);
-    console.log(tagInputValue.current.value);
+    console.log(tags);
 
     let title = titleInputValue.current.value;
-    let tags = [];
     axios
       .post(
         '/api/questions',
@@ -63,6 +65,9 @@ const AskQuestion = () => {
         }
       )
       .then((res) => {
+        if (res.status >= 200 && res.status < 300) {
+          navigate(`/questions/${res.data.postId}`);
+        }
         console.log(res);
       })
       .catch((error) => console.log(error));
@@ -145,11 +150,12 @@ const AskQuestion = () => {
             typing to see suggestions.
           </p>
         </div>
-        <input
+        {/* <input
           type="text"
           placeholder="e.g (excel string regex)"
           ref={tagInputValue}
-        />
+        /> */}
+        <TagInput />
         <button onClick={outputTag}>Next</button>
       </TagDiv>
       <button onClick={handleSubmit}>Submit your question</button>
