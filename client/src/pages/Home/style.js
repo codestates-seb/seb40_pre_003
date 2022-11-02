@@ -10,8 +10,9 @@ export const Container = styled.div`
 
 export const Main = styled.div`
   display: flex;
-  width: 100%;
+  /* width: 100%; */
   flex-direction: column;
+  flex: 1 1 auto;
 `;
 
 // 타이틀(Top Questions),버튼(Ask Question) 등 묶음 -> HomeHead
