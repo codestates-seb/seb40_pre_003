@@ -74,7 +74,11 @@ function App() {
   );
 }
 const Root = styled.section`
+  display: flex;
+  flex-direction: column;
+
   background-color: ${(props) => props.color};
+  width: 100%;
 `;
 
 const Body = styled.div`
@@ -83,5 +87,10 @@ const Body = styled.div`
   padding-top: 50px;
   min-height: 80vh;
 `;
+
+// const Main = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+// `;
 
 export default App;
