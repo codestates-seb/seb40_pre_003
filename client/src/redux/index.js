@@ -4,6 +4,11 @@ const LOGIN_USER = 'LOGIN_USER';
 const LOGOUT = 'LOGOUT';
 const QUESTION = 'QUESTION';
 
+// 일반 검색 type
+const SEARCH_GEN = 'SEARCH_GEN';
+// 태그 검색 type
+const SEARCH_TAG = 'SEARCH_TAG';
+
 //액션객체생성자 -> 디스패치 함수에 전달인자로 담길 예정
 //로그인되면, 로그인된 id를 함께 담을 예정..
 export const loginAction = (res) => {
@@ -24,6 +29,20 @@ export const logoutAction = () => {
 export const questionAction = (res) => {
   return {
     type: QUESTION,
+    payload: res,
+  };
+};
+
+// search한 데이터
+export const searchGenAction = (res) => {
+  return {
+    type: SEARCH_GEN,
+    payload: res,
+  };
+};
+export const searchTagAction = (res) => {
+  return {
+    type: SEARCH_TAG,
     payload: res,
   };
 };
@@ -56,6 +75,8 @@ export const questionAction = (res) => {
 const initialstate = {
   isLogin: false,
   question: null,
+  searchGen: null,
+  searchTag: null,
 };
 
 //리듀서함수 -> 디스패치가 호출하면 state를 바꿈
@@ -87,10 +108,34 @@ const questionReducer = (state = initialstate, action) => {
   }
 };
 
+const searchReducer = (state = initialstate, action) => {
+  switch (action.type) {
+    case SEARCH_GEN:
+      console.log(
+        'redux -> case Search_gen -> action.payload: ',
+        action.payload
+      );
+      return {
+        searchGen: action.payload,
+      };
+    case SEARCH_TAG:
+      console.log(
+        'redux -> case Search_tag -> action.payload: ',
+        action.payload
+      );
+      return {
+        searchTag: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
 //리듀서가 1개인데, combineReducers가 필요한가?
 const combinedReducer = combineReducers({
   loginReducer,
   questionReducer,
+  searchReducer,
 });
 
 // const store = createStore(loginReducer);
