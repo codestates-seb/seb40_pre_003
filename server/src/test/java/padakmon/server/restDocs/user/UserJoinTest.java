@@ -58,7 +58,7 @@ public class UserJoinTest {
 
         // then
         mockMvc.perform(
-                        post("/users")
+                        post("/api/users")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .accept(MediaType.APPLICATION_JSON)
                                 .content(content)
