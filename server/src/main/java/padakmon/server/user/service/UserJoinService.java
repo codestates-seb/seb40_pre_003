@@ -37,4 +37,7 @@ public class UserJoinService {
         Optional<User> findUserByName = userRepository.findByDisplayName(displayName);
         if (findUserByName.isPresent()) throw new BusinessLogicException("displayName", ExceptionCode.DISPLAY_NAME_EXISTS, displayName);
     }
+    public Optional<User> findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 }
