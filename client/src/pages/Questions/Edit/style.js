@@ -5,8 +5,13 @@ export const Container = styled.div`
   padding: 24px;
 `;
 
+export const TagContainer = styled.div`
+  margin-top: 30px;
+`;
+
 export const H2 = styled.h2`
   font-size: 15px;
+  /* margin-top: 30px; */
   margin-bottom: 6px;
   font-weight: 600;
 `;
@@ -34,6 +39,7 @@ export const Side = styled.section`
 export const InputTitleDiv = styled.div`
   /* width: 790px; */
   /* margin-top: 30px; */
+  margin-bottom: 30px;
   border-radius: 3px;
   div > div {
     font-size: 15px;
@@ -73,7 +79,7 @@ export const InputTitleDiv = styled.div`
 /* Toast Editor 감쌀 div */
 export const ToastDiv = styled.div`
   /* width: 790px; */
-  margin-top: 30px;
+  /* margin-top: 30px; */
   border-radius: 3px;
 
   div > div {
@@ -88,10 +94,13 @@ export const ToastDiv = styled.div`
 
 /* Tag -> 문구, 설명, 인풋창 부분 감쌀 div */
 export const TagDiv = styled.div`
-  /* width: 790px; */
+  width: 790px;
   margin-top: 30px;
   margin-bottom: 10px;
   border-radius: 3px;
+  border: 1px solid #d6d9dc;
+  /* height: 208px; */
+  padding: 35px 30px 15px 30px;
   div > div {
     font-size: 17px;
     font-weight: bolder;
@@ -102,13 +111,13 @@ export const TagDiv = styled.div`
     font-size: 14px;
     margin-bottom: 8px;
   }
-  input {
-    width: 100%;
+  /* input {
+    width: 730px;
     height: 40px;
     border: 1px solid #babfc4;
     border-radius: 3px;
     padding-left: 8px;
-  }
+  } */
   button {
     margin-top: 8px;
     position: relative;
@@ -124,7 +133,6 @@ export const TagDiv = styled.div`
     font-weight: normal;
     text-align: center;
     cursor: pointer;
-    /* width: auto; */
   }
 `;
 

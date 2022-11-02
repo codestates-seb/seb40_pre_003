@@ -2,16 +2,19 @@
 // Home || StackOverFlow 로고를 눌렀을때 기본적으로 보이게되는 페이지
 // Top Questions(Title) , Ask Question(버튼), QuestionList(질문목록들)
 
+import QuestionsList from '../../components/Main/QuestionsList';
 import {
-  HomeHead,
-  TopQuestionsTitle,
   AskQuestionButtonLink,
+  Container,
+  HomeHead,
+  Main,
+  TopQuestionsTitle,
   Total,
 } from './style';
-import QuestionsList from '../../components/Main/QuestionsList';
 // import { DummyData } from '../../components/Main/Data/DummyData';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import SideBarWidget from '../../components/SideBarWidget';
 
 const Home = () => {
   const [totalCount, setTotalCount] = useState(0);
@@ -35,21 +38,24 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <div>
-        <HomeHead>
-          <TopQuestionsTitle>Top Questions</TopQuestionsTitle>
-          <AskQuestionButtonLink to={'/questions/ask'}>
-            Ask Question
-          </AskQuestionButtonLink>
-        </HomeHead>
-      </div>
-      <Total>
-        <span>{totalCount} questions</span>
-        {/* <span>5 questions</span> */}
-      </Total>
-      <QuestionsList homeData={homeData}></QuestionsList>
-    </div>
+    <Container>
+      <Main>
+        <div>
+          <HomeHead>
+            <TopQuestionsTitle>Top Questions</TopQuestionsTitle>
+            <AskQuestionButtonLink to={'/questions/ask'}>
+              Ask Question
+            </AskQuestionButtonLink>
+          </HomeHead>
+        </div>
+        <Total>
+          <span>{totalCount} questions</span>
+          {/* <span>5 questions</span> */}
+        </Total>
+        <QuestionsList homeData={homeData}></QuestionsList>
+      </Main>
+      <SideBarWidget />
+    </Container>
   );
 };
 

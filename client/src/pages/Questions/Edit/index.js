@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { HiPencil } from 'react-icons/hi';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import TagInput from '../../../components/TagInput';
 
 import {
   Container,
@@ -15,7 +16,7 @@ import {
   Li,
   Main,
   Side,
-  TagDiv,
+  TagContainer,
   Text,
   ToastDiv,
 } from './style';
@@ -29,19 +30,9 @@ function Edit() {
   console.log('useParams - answerid in Edit', answerid);
   const titleInputValue = useRef();
   const editorRef = useRef();
-  const tagInputValue = useRef();
-  //   const outputTitle = () => {
-  //     console.log(titleInputValue.current.value);
-  //   };
-  //   const outputTag = () => {
-  //     console.log(tagInputValue.current.value);
-  //   };
-
   let title, body;
 
   if (question && answerid) {
-    // body = question.answers.find((el) => el.answerid === answerid).contents;
-    // console.log(question.answers.filter((el) => el.answerId === +answerid)[0]);
     body = question.answers.find((el) => el.answerId === +answerid).contents;
   } else if (question) {
     title = question.title;
@@ -49,11 +40,11 @@ function Edit() {
   }
 
   const [titleValue, setTitleValue] = useState(title ? title : '');
+  let newTags = useSelector((state) => state.askReducer.tags);
+  console.log('newTags in Edit:', newTags);
 
-  const handleEdit = () => {
+  function handleEdit() {
     let newBody = editorRef.current?.getInstance().getMarkdown();
-    // let newTags;
-
     let uri, reqBody;
 
     if (answerid) {
@@ -67,7 +58,7 @@ function Edit() {
       reqBody = {
         title: newTitle,
         body: newBody,
-        tags: [],
+        tags: newTags,
       };
     }
 
@@ -84,53 +75,7 @@ function Edit() {
         }
       })
       .catch((error) => console.log(error));
-
-    /*
-    if (answerid) {
-      axios
-        .patch(
-          `/api/questions/${id}/answers/${answerid}`,
-          {
-            contents: newBody,
-          },
-          {
-            headers: {
-              Authorization: localStorage.getItem('accesstoken'),
-            },
-          }
-        )
-        .then((res) => {
-          console.log(res);
-          if (res.status === 200) {
-            navigate(`/questions/${id}`);
-          }
-        })
-        .catch((error) => console.log(error));
-    } else {
-      let newTitle = titleInputValue.current.value;
-      console.log(newTitle, newBody);
-      axios
-        .patch(
-          `/api/questions/${id}`,
-          {
-            title: newTitle,
-            body: newBody,
-            tags: [],
-          },
-          {
-            headers: {
-              Authorization: localStorage.getItem('accesstoken'),
-            },
-          }
-        )
-        .then((res) => {
-          console.log(res);
-          navigate(`/questions/${id}`);
-        })
-        .catch((error) => console.log(error));
-    }
-    */
-  };
+  }
 
   return (
     <Container>
@@ -147,14 +92,12 @@ function Edit() {
               value={titleValue}
               onChange={(e) => setTitleValue(e.target.value)}
             />
-            {/* <button onClick={outputTitle}>Next</button> */}
           </InputTitleDiv>
         )}
         <ToastDiv>
           <div>
             <H2>Body</H2>
           </div>
-          {/* <ToastEditor isEdit={true} value={body ? body : ''}></ToastEditor> */}
           <Editor
             ref={editorRef}
             height="400px"
@@ -174,66 +117,55 @@ function Edit() {
             ]}
           ></Editor>
         </ToastDiv>
-        <TagDiv>
-          <div>
-            <H2>Tags</H2>
-          </div>
-          <input
+        {/* <TagDiv> */}
+        {!isAnswer && (
+          <TagContainer>
+            <div>
+              <H2>Tags</H2>
+            </div>
+            {/* <input
             type="text"
             placeholder="e.g (excel string regex)"
             ref={tagInputValue}
-          />
-          {/* <button onClick={outputTag}>Next</button> */}
-        </TagDiv>
+          /> */}
+            <TagInput initialTags={question.tags} />
+          </TagContainer>
+        )}
+        {/* </TagDiv> */}
         <button onClick={handleEdit}>Submit Edits</button>
       </Main>
       <Side>
-        <Header>The Overflow Blog</Header>
+        <Header>How to Edit</Header>
         <Item>
           <Li>
             <IconContainer>
               <HiPencil size="14px" />
             </IconContainer>
-            <Text>
-              Introducing the Ask Wizard: Your guide to crafting high-quality
-              questions
-            </Text>
+            <Text>Correct minor typos or mistakes</Text>
           </Li>
           <Li>
             <IconContainer>
               <HiPencil size="14px" />
             </IconContainer>
-            <Text>
-              How to get more engineers entangled with quantum computing (Ep.
-              501)
-            </Text>
-          </Li>
-        </Item>
-        <Header>Featured on Meta</Header>
-        <Item className="last">
-          <Li>
-            <IconContainer>
-              <HiPencil size="14px" />
-            </IconContainer>
-            <Text>The 2022 Community-a-thon has begun!</Text>
+            <Text>Clarify meaning without changing it</Text>
           </Li>
           <Li>
             <IconContainer>
               <HiPencil size="14px" />
             </IconContainer>
-            <Text>Mobile app infrastructure being decommissioned</Text>
+            <Text>Add related resources or links</Text>
           </Li>
           <Li>
             <IconContainer>
               <HiPencil size="14px" />
             </IconContainer>
-            <Text>Staging Ground Workflow: Canned Comments</Text>
+            <Text>Always respect the author’s intent</Text>
           </Li>
           <Li>
             <IconContainer>
               <HiPencil size="14px" />
             </IconContainer>
-            <Text>The Ask Wizard (2022) has graduated</Text>
+            <Text>Don’t use edits to reply to the author</Text>
           </Li>
         </Item>
       </Side>
