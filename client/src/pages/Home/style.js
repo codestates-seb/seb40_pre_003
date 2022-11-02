@@ -3,11 +3,14 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
+  justify-content: space-between;
+  width: 100%;
   padding: 24px 24px 0 0;
 `;
 
 export const Main = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
 `;
 
@@ -15,13 +18,17 @@ export const Main = styled.div`
 export const HomeHead = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 0 0 0 20px;
+  /* button {
+    margin-top: 19.
+  } */
 `;
 
 // Top Questions 라고 쓰여진 상단 제목
 export const TopQuestionsTitle = styled.span`
   font-size: 27px;
-  margin-top: 19.5px;
+  /* margin-top: 19.5px; */
 `;
 
 // Ask Question 버튼
