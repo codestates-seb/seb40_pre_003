@@ -25,6 +25,10 @@ export default function Logout() {
     navigate('/');
   };
 
+  const handleCancelClick = () => {
+    navigate('/');
+  };
+
   return (
     <Container>
       <div className="logout_guide">
@@ -71,7 +75,9 @@ export default function Logout() {
           <button id="logout_button" onClick={handleLogoutClick}>
             Log out
           </button>
-          <button id="cancel_button">Cancel</button>
+          <button id="cancel_button" onClick={handleCancelClick}>
+            Cancel
+          </button>
         </div>
         <div id="logout_all_device_text">
           If you’re on a shared computer, remember to

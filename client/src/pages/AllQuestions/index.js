@@ -1,13 +1,16 @@
 // import { DummyData } from '../../components/Main/Data/DummyData';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import QuestionsList from '../../components/Main/QuestionsList';
+import SideBarWidget from '../../components/SideBarWidget';
 import {
   AllQuestionsHead,
   AllQuestionsTitle,
   AskQuestionButtonLink,
+  Container,
+  Main,
   Total,
 } from './style';
-import QuestionsList from '../../components/Main/QuestionsList';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
 
 const AllQuestions = () => {
   const [totalCount, setTotalCount] = useState(0);
@@ -31,21 +34,24 @@ const AllQuestions = () => {
   }, []);
 
   return (
-    <div>
-      <div>
-        <AllQuestionsHead>
-          <AllQuestionsTitle>All Questions</AllQuestionsTitle>
-          <AskQuestionButtonLink to={'/questions/ask'}>
-            Ask Question
-          </AskQuestionButtonLink>
-        </AllQuestionsHead>
-      </div>
-      <Total>
-        <span>{totalCount} questions</span>
-        {/* <span>5 questions</span> */}
-      </Total>
-      <QuestionsList homeData={homeData}></QuestionsList>
-    </div>
+    <Container>
+      <Main>
+        <div>
+          <AllQuestionsHead>
+            <AllQuestionsTitle>All Questions</AllQuestionsTitle>
+            <AskQuestionButtonLink to={'/questions/ask'}>
+              Ask Question
+            </AskQuestionButtonLink>
+          </AllQuestionsHead>
+        </div>
+        <Total>
+          <span>{totalCount} questions</span>
+          {/* <span>5 questions</span> */}
+        </Total>
+        <QuestionsList homeData={homeData}></QuestionsList>
+      </Main>
+      <SideBarWidget />
+    </Container>
   );
 };
 

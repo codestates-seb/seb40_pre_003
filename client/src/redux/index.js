@@ -54,22 +54,29 @@ export const searchTagAction = (res) => {
 //     payload: res,
 //   };
 // };
+// 질문 작성 데이터 (Title)
+export const askTitleAction = (res) => {
+  return {
+    type: 'TITLE',
+    payload: res,
+  };
+};
 
-// // 질문 작성 데이터 (Title)
-// export const askBodyAction = (res) => {
-//   return {
-//     type: 'BODY',
-//     payload: res,
-//   };
-// };
+// 질문 작성 데이터 (Body)
+export const askBodyAction = (res) => {
+  return {
+    type: 'BODY',
+    payload: res,
+  };
+};
 
-// // 질문 작성 데이터 (Tags)
-// export const askTagsAction = (res) => {
-//   return {
-//     type: 'TAGS',
-//     payload: res,
-//   };
-// };
+// 질문 작성 데이터 (Tags)
+export const askTagsAction = (res) => {
+  return {
+    type: 'TAGS',
+    payload: res,
+  };
+};
 
 //리듀서에 넣을 초기값 -> 내가 관리할 state 객체의 모습
 const initialstate = {
@@ -77,6 +84,11 @@ const initialstate = {
   question: null,
   searchGen: null,
   searchTag: null,
+  ask: {
+    title: null,
+    body: null,
+    tags: [],
+  },
 };
 
 //리듀서함수 -> 디스패치가 호출하면 state를 바꿈
@@ -99,7 +111,7 @@ const loginReducer = (state = initialstate, action) => {
 const questionReducer = (state = initialstate, action) => {
   switch (action.type) {
     case QUESTION:
-      console.log('action.payload:', action.payload);
+      // console.log('action.payload:', action.payload);
       return {
         question: action.payload,
       };
@@ -130,12 +142,35 @@ const searchReducer = (state = initialstate, action) => {
       return state;
   }
 };
+const askReducer = (state = initialstate, action) => {
+  switch (action.type) {
+    case 'TITLE':
+      return {
+        ...state,
+        title: action.payload,
+      };
+    case 'BODY':
+      return {
+        ...state,
+        body: action.payload,
+      };
+    case 'TAGS':
+      // console.log('TAGS:', action.payload);
+      return {
+        ...state,
+        tags: action.payload,
+      };
+    default:
+      return state;
+  }
+};
 
 //리듀서가 1개인데, combineReducers가 필요한가?
 const combinedReducer = combineReducers({
   loginReducer,
   questionReducer,
   searchReducer,
+  askReducer,
 });
 
 // const store = createStore(loginReducer);

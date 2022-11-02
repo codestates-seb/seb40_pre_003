@@ -41,13 +41,18 @@ function ContentInfo({ time, user, writerType, questionId, answerId }) {
   };
 
   // displayName 비교해서 본인 글인지 확인
+  const isMyPost = () => {
+    if (localStorage.getItem('displayname') === user.displayName) {
+      return true;
+    } else return false;
+  };
 
   return (
     <Container>
       <Buttons>
         {/* <Button onClick={openModalHandler}>Share</Button> */}
         <Button>Share</Button>
-        {
+        {isMyPost() && (
           <Button>
             <EditLink
               to={`/questions/edit/${questionId}${
@@ -57,8 +62,8 @@ function ContentInfo({ time, user, writerType, questionId, answerId }) {
               Edit
             </EditLink>
           </Button>
-        }
-        {<Button onClick={handleDelete}>Delete</Button>}
+        )}
+        {isMyPost() && <Button onClick={handleDelete}>Delete</Button>}
         <Button>Follow</Button>
         {/* {shareOpen && (
           <ModalBackdrop onClick={openModalHandler}>

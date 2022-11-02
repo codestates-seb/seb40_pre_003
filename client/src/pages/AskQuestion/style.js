@@ -163,7 +163,7 @@ export const TagDiv = styled.div`
   border-radius: 3px;
   border: 1px solid #d6d9dc;
   height: 208px;
-  padding: 35px 0 15px 30px;
+  padding: 35px 30px 15px 30px;
   div > div {
     font-size: 17px;
     font-weight: bolder;
@@ -174,13 +174,13 @@ export const TagDiv = styled.div`
     font-size: 14px;
     margin-bottom: 8px;
   }
-  input {
+  /* input {
     width: 730px;
     height: 40px;
     border: 1px solid #babfc4;
     border-radius: 3px;
     padding-left: 8px;
-  }
+  } */
   button {
     margin-top: 8px;
     position: relative;

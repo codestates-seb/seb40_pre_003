@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { GoSearch } from 'react-icons/go';
 import { useNavigate } from 'react-router-dom';
+// import SearchResults from '../../../pages/SearchResults';
+import SearchModal from '../../SearchModal';
 import { Container, Input, SearchContainer } from './style';
 import { searchGenAction, searchTagAction } from '../../../redux';
 import { useDispatch } from 'react-redux';
@@ -10,6 +12,32 @@ function Search() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // const state = useSelector((state) => state);
+  const [isOpen, setIsOpen] = useState(false);
+  const handleOnClick = () => {
+    setIsOpen(!isOpen);
+  };
+  const modalRef = useRef();
+
+  const clickModalOutside = (event) => {
+    if (
+      isOpen &&
+      (!modalRef.current || !modalRef.current.contains(event.target))
+    ) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('mousedown', clickModalOutside);
+
+    return () => {
+      window.removeEventListener('mousedown', clickModalOutside);
+    };
+  });
+
+  // 검색조건에 tag: 가 있는지 없는지 - 불린값
+  // let isSearchTag = false;
+  // console.log(searchValue);
 
   // 검색창에 tag: 이 들어갈때
   const onChangeValue = (e) => {
@@ -27,6 +55,8 @@ function Search() {
     ) {
       // Questions tagged [] 로 이동!
       dispatch(searchTagAction(searchValue.slice(1, searchValue.length - 1)));
+      setIsOpen(false);
+      navigate('/searchtag');
       console.log(
         'Search컴포->[tag]검색->엔터->상태값-> : ',
         searchValue.slice(1, searchValue.length - 1)
@@ -35,8 +65,13 @@ function Search() {
       dispatch(searchGenAction(searchValue));
       console.log('Search컴포->일반검색->엔터->상태값-> : ', searchValue);
       navigate('/search');
+      setIsOpen(false);
     }
   };
+
+  // if (!modalRef.current) {
+  //   setIsOpen(false);
+  // }
 
   return (
     <Container>
@@ -47,8 +82,11 @@ function Search() {
           placeholder="Search..."
           onChange={onChangeValue}
           onKeyPress={handleEnter}
+          onClick={handleOnClick}
+          ref={modalRef}
         />
       </SearchContainer>
+      {isOpen ? <SearchModal /> : null}
     </Container>
   );
 }
