@@ -29,19 +29,17 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-    - name: Set yaml file 
-        uses: microsoft/variable-substitution@v1
-        with:
-          files: Server/src/main/resources/application-dev.properties
-        env:
-          spring.datasource.url: ${{ secrets.RDS_ENDPOINT }}
-          spring.datasource.username: ${{ secrets.RDS_ADMIN }}
-          spring.datasource.password: ${{ secrets.RDS_PASSWORD }}
-          config.domain: ${{ secrets.S3_ENDPOINT }}
-          jwt.secret-key: ${{ secrets.JWT_SECRET_KEY }}
-          jwt.access-token-expiration-minutes: ${{ secrets.JWT_ACCESS_TOKEN_EXPIRATION_MINUTES }}
-          jwt.refresh-token-expiration-minutes: ${{ secrets.JWT_REFRESH_TOKEN_EXPIRATION_MINUTES }}
-          
+        
+    - name: Set application.properties 
+      run: |
+        echo "spring.datasource.url=${{ secrets.RDS_ENDPOINT }}" > ./server/src/main/resources/application-dev.properties
+        echo "spring.datasource.username=${{ secrets.RDS_ADMIN }}" > ./server/src/main/resources/application-dev.properties
+        echo "spring.datasource.password=${{ secrets.RDS_PASSWORD }}" > ./server/src/main/resources/application-dev.properties
+        echo "config.domain=${{ secrets.S3_ENDPOINT }}" > ./server/src/main/resources/application-dev.properties
+        echo "jwt.secret-key=${{ secrets.JWT_SECRET_KEY }}" > ./server/src/main/resources/application-dev.properties
+        echo "jwt.access-token-expiration-minutes=${{ secrets.JWT_ACCESS_TOKEN_EXPIRATION_MINUTES }}" > ./server/src/main/resources/application-dev.properties
+        echo "jwt.refresh-token-expiration-minutes=${{ secrets.JWT_REFRESH_TOKEN_EXPIRATION_MINUTES }}" > ./server/src/main/resources/application-dev.properties
+        
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
       working-directory: ${{ env.working-directory }}
