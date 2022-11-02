@@ -52,6 +52,7 @@ const ToastEditor = ({ isEdit = false, value }) => {
           ['scrollSync'],
         ]}
         onChange={onChangeBody}
+        autofocus={false}
       ></Editor>
       {isEdit || <button onClick={editorDataButton}>Next</button>}
     </div>
