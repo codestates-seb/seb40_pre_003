@@ -33,7 +33,7 @@ jobs:
     - name: Set application.properties 
       uses: christian-draeger/write-properties@1.1.0
       with:
-        path: './Server/src/main/resources/application-dev.properties'
+        path: './server/src/main/resources/application-dev.properties'
         property: |
           'spring.datasource.url'
           'spring.datasource.username'
