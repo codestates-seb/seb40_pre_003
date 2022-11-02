@@ -10,6 +10,8 @@ import { LoginBlock } from './style';
 import axios from 'axios';
 import { loginAction } from '../../../redux';
 
+import ServersideGoogleLogin from '../ServersideGoogleLogin';
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -100,6 +102,7 @@ export default function Login() {
       {/* 소셜 로그인 */}
       <section className="social_login">
         <div>
+          <ServersideGoogleLogin />
           <button onClick={handleGoogleLogin}>
             <FcGoogle className="icons" size={22} />
             Log in with Google
