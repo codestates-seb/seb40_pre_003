@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import axios from 'axios';
 import { AiFillTags, AiFillTrophy } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { GrFacebook } from 'react-icons/gr';
@@ -8,7 +9,6 @@ import { SiGithub } from 'react-icons/si';
 import { TbTriangle } from 'react-icons/tb';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container, SignupBlock } from './style';
-import axios from 'axios';
 //axios.defaults.withCredentials = true;
 
 const Signup = () => {
@@ -134,10 +134,10 @@ const Signup = () => {
         <section className="email_signup">
           <form onSubmit={handleSubmit}>
             <div>
-              <label htmlFor={'displayName'}>Display name</label>
+              <label htmlFor="displayName">Display name</label>
               <input
-                type={'text'}
-                htmlFor={'displayName'}
+                type="text"
+                htmlFor="displayName"
                 onChange={(e) => {
                   setDisplayName(e.target.value);
                 }}
@@ -147,8 +147,8 @@ const Signup = () => {
             <div>
               <label htmlFor={'Email'}>Email</label>
               <input
-                type={'text'}
-                htmlFor={'Email'}
+                type="text"
+                htmlFor="Email"
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}

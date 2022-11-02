@@ -85,13 +85,8 @@ export default function Login() {
         }
       });
   };
-  //로그인유지를 위해 useEffect를 써야하는데 그 위치를 모르겠다
-  // useEffect(() => {
-  //   if (isLogin) {
-  //     // 로그인유지를 위해서 isLogin을 true로 변경해줘야한다.
-  //     dispatch(loginAction(userId));
-  //   }
-  // }, []);
+
+  const handleGoogleLogin = () => {};
 
   return (
     <LoginBlock className="login_block">
@@ -105,7 +100,7 @@ export default function Login() {
       {/* 소셜 로그인 */}
       <section className="social_login">
         <div>
-          <button>
+          <button onClick={handleGoogleLogin}>
             <FcGoogle className="icons" size={22} />
             Log in with Google
           </button>
@@ -123,16 +118,16 @@ export default function Login() {
       <section className="email_login">
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor={'Email'}>Email</label>
+            <label htmlFor="Email">Email</label>
             <input
               type="email"
-              htmlFor={'Email'}
+              htmlFor="Email"
               onChange={(e) => setEmail(e.target.value)}
             ></input>
             {emailValidMsg ? <div className="msg">{emailValidMsg}</div> : ''}
           </div>
           <div>
-            <label htmlFor={'Password'}>Password</label>
+            <label htmlFor="Password">Password</label>
             <input
               type="password"
               onChange={(e) => setPassword(e.target.value)}

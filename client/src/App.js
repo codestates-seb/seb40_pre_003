@@ -12,9 +12,9 @@ import QuestionContent from './pages/Questions/QuestionContent';
 import Logout from './pages/Register/Logout';
 import SearchResults from './pages/SearchResults';
 
+import AllQuestions from './pages/AllQuestions';
 import Login from './pages/Register/Login';
 import Signup from './pages/Register/Signup';
-import AllQuestions from './pages/AllQuestions';
 
 function App() {
   const { pathname } = useLocation();
