@@ -1,8 +1,9 @@
 #!/bin/bash
 
-PROJECT_ROOT="/home/ec2-user/action"
-JAR_FILE="$PROJECT_ROOT/Server-0.0.1-SNAPSHOT.jar"
+BUILD_JAR=$(ls /home/ec2-user/action/build/libs/Server-0.0.1-SNAPSHOT.jar)
+JAR_FILE=$(basename $BUILD_JAR)
 
+PROJECT_ROOT="/home/ec2-user/action"
 DEPLOY_LOG="$PROJECT_ROOT/deploy.log"
 
 TIME_NOW=$(date +%c)
