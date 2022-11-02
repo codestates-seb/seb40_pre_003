@@ -59,7 +59,7 @@ const initialstate = {
   ask: {
     title: null,
     body: null,
-    tags: null,
+    tags: [],
   },
 };
 
@@ -105,6 +105,7 @@ const askReducer = (state = initialstate, action) => {
         body: action.payload,
       };
     case 'TAGS':
+      // console.log('TAGS:', action.payload);
       return {
         ...state,
         tags: action.payload,
