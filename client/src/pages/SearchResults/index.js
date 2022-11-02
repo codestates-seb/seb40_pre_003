@@ -90,7 +90,7 @@ const SearchResults = () => {
         },
       })
       .then((res) => {
-        console.log('searchResultsResponse : ', res.data.questions);
+        console.log('SearchResults컴포->axios요청 값 : ', res.data);
         setSearchResultsData(res.data.questions);
         setTotalCount(res.data.questions.length);
       })
