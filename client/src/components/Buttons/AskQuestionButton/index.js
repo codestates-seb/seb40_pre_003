@@ -2,8 +2,15 @@ import { Link } from 'react-router-dom';
 import { QuestionButton } from './style';
 
 function AskQuestionButton() {
+  const isLogin = localStorage.getItem('accesstoken');
+  let to;
+  if (isLogin) {
+    to = '/questions/ask';
+  } else {
+    to = '/login';
+  }
   return (
-    <Link to="/questions/ask">
+    <Link to={to}>
       <QuestionButton>Ask Question</QuestionButton>
     </Link>
   );
