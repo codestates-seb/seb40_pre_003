@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import QuestionsList from '../../components/Main/QuestionsList';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const QuestionsTaggedHead = styled.div`
   display: flex;
@@ -56,10 +57,11 @@ const Total = styled.div`
 const QuestionsTagged = () => {
   const [tagData, setTagData] = useState(null);
   const [totalCount, setTotalCount] = useState(0);
+  const searchTag = useSelector((state) => state.searchReducer.searchTag);
 
   useEffect(() => {
     axios
-      .get(`/api/questions`, {
+      .get(`/api/questions?query=tag:${searchTag}&page=1&size=20&order=score`, {
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
           'Access-Control-Allow-Origin': '*',
@@ -67,7 +69,7 @@ const QuestionsTagged = () => {
         },
       })
       .then((res) => {
-        console.log('QuestionsTagged의 Data : ', res.data.questions);
+        console.log('QuestionsTagged컴포->axios요청 값 : ', res.data);
         setTagData(res.data.questions);
         setTotalCount(res.data.questions.length);
       })

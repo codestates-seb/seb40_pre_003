@@ -4,6 +4,11 @@ const LOGIN_USER = 'LOGIN_USER';
 const LOGOUT = 'LOGOUT';
 const QUESTION = 'QUESTION';
 
+// 일반 검색 type
+const SEARCH_GEN = 'SEARCH_GEN';
+// 태그 검색 type
+const SEARCH_TAG = 'SEARCH_TAG';
+
 //액션객체생성자 -> 디스패치 함수에 전달인자로 담길 예정
 //로그인되면, 로그인된 id를 함께 담을 예정..
 export const loginAction = (res) => {
@@ -28,6 +33,27 @@ export const questionAction = (res) => {
   };
 };
 
+// search한 데이터
+export const searchGenAction = (res) => {
+  return {
+    type: SEARCH_GEN,
+    payload: res,
+  };
+};
+export const searchTagAction = (res) => {
+  return {
+    type: SEARCH_TAG,
+    payload: res,
+  };
+};
+
+// // 질문 작성 데이터 (Title)
+// export const askTitleAction = (res) => {
+//   return {
+//     type: 'TITLE',
+//     payload: res,
+//   };
+// };
 // 질문 작성 데이터 (Title)
 export const askTitleAction = (res) => {
   return {
@@ -56,6 +82,8 @@ export const askTagsAction = (res) => {
 const initialstate = {
   isLogin: false,
   question: null,
+  searchGen: null,
+  searchTag: null,
   ask: {
     title: null,
     body: null,
@@ -92,6 +120,28 @@ const questionReducer = (state = initialstate, action) => {
   }
 };
 
+const searchReducer = (state = initialstate, action) => {
+  switch (action.type) {
+    case SEARCH_GEN:
+      console.log(
+        'redux -> case Search_gen -> action.payload: ',
+        action.payload
+      );
+      return {
+        searchGen: action.payload,
+      };
+    case SEARCH_TAG:
+      console.log(
+        'redux -> case Search_tag -> action.payload: ',
+        action.payload
+      );
+      return {
+        searchTag: action.payload,
+      };
+    default:
+      return state;
+  }
+};
 const askReducer = (state = initialstate, action) => {
   switch (action.type) {
     case 'TITLE':
@@ -119,6 +169,7 @@ const askReducer = (state = initialstate, action) => {
 const combinedReducer = combineReducers({
   loginReducer,
   questionReducer,
+  searchReducer,
   askReducer,
 });
 

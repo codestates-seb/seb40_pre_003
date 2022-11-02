@@ -6,6 +6,7 @@ import QuestionsList from '../../components/Main/QuestionsList';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 // import { DummyData } from '../../components/Main/Data/DummyData';
 // import Question from '../Question';
 
@@ -69,13 +70,19 @@ const Total = styled.div`
 const SearchResults = () => {
   const [searchResultsData, setSearchResultsData] = useState(null);
   const [totalCount, setTotalCount] = useState(0);
+
+  const searchGen = useSelector((state) => state.searchReducer.searchGen);
+  console.log(
+    'SearchResults컴포 -> useSelector() -> searchGen 값 :',
+    searchGen
+  );
   // const [params] = useSearchParams();
   // const search = params;
   // console.log('params : ', search);
 
   useEffect(() => {
     axios
-      .get('/api/questions', {
+      .get(`/api/questions?query=${searchGen}&page=1&size=20&order=newest`, {
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
           'Access-Control-Allow-Origin': '*',
@@ -83,7 +90,7 @@ const SearchResults = () => {
         },
       })
       .then((res) => {
-        console.log('searchResultsResponse : ', res.data.questions);
+        console.log('SearchResults컴포->axios요청 값 : ', res.data);
         setSearchResultsData(res.data.questions);
         setTotalCount(res.data.questions.length);
       })

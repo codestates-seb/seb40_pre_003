@@ -15,6 +15,7 @@ import SearchResults from './pages/SearchResults';
 import AllQuestions from './pages/AllQuestions';
 import Login from './pages/Register/Login';
 import Signup from './pages/Register/Signup';
+import QuestionsTagged from './pages/QuestionsTagged';
 
 function App() {
   const { pathname } = useLocation();
@@ -61,6 +62,7 @@ function App() {
           <Route path={`/questions/edit/:id/:answerid`} element={<Edit />} />
           {/* querystring으로 검색 결과 페이지 이동 (/search?q=springboot) */}
           <Route path="/search" element={<SearchResults />} />
+          <Route path="/searchtag" element={<QuestionsTagged />} />
           <Route path="/tags" element={<div>tags</div>} />
           <Route path="/users" element={<div>users</div>} />
           {/* id가 본인이면 마이페이지 */}
