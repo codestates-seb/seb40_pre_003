@@ -1,12 +1,12 @@
 // import { DummyData } from '../../components/Main/Data/DummyData';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import AskQuestionButton from '../../components/Buttons/AskQuestionButton';
 import QuestionsList from '../../components/Main/QuestionsList';
 import SideBarWidget from '../../components/SideBarWidget';
 import {
   AllQuestionsHead,
   AllQuestionsTitle,
-  AskQuestionButtonLink,
   Container,
   Main,
   Total,
@@ -39,14 +39,11 @@ const AllQuestions = () => {
         <div>
           <AllQuestionsHead>
             <AllQuestionsTitle>All Questions</AllQuestionsTitle>
-            <AskQuestionButtonLink to={'/questions/ask'}>
-              Ask Question
-            </AskQuestionButtonLink>
+            <AskQuestionButton />
           </AllQuestionsHead>
         </div>
         <Total>
           <span>{totalCount} questions</span>
-          {/* <span>5 questions</span> */}
         </Total>
         <QuestionsList homeData={homeData}></QuestionsList>
       </Main>
