@@ -32,13 +32,14 @@ jobs:
         
     - name: Set application.properties 
       run: |
-        echo "spring.datasource.url=${{ secrets.RDS_ENDPOINT }}" > ./server/src/main/resources/application-dev.properties
-        echo "spring.datasource.username=${{ secrets.RDS_ADMIN }}" > ./server/src/main/resources/application-dev.properties
-        echo "spring.datasource.password=${{ secrets.RDS_PASSWORD }}" > ./server/src/main/resources/application-dev.properties
-        echo "config.domain=${{ secrets.S3_ENDPOINT }}" > ./server/src/main/resources/application-dev.properties
-        echo "jwt.secret-key=${{ secrets.JWT_SECRET_KEY }}" > ./server/src/main/resources/application-dev.properties
-        echo "jwt.access-token-expiration-minutes=${{ secrets.JWT_ACCESS_TOKEN_EXPIRATION_MINUTES }}" > ./server/src/main/resources/application-dev.properties
-        echo "jwt.refresh-token-expiration-minutes=${{ secrets.JWT_REFRESH_TOKEN_EXPIRATION_MINUTES }}" > ./server/src/main/resources/application-dev.properties
+        echo "spring.datasource.url=${{ secrets.RDS_ENDPOINT }}\n
+        spring.datasource.username=${{ secrets.RDS_ADMIN }}\n
+        spring.datasource.username=${{ secrets.RDS_ADMIN }}\n
+        spring.datasource.password=${{ secrets.RDS_PASSWORD }}\n
+        config.domain=${{ secrets.S3_ENDPOINT }}\n
+        jwt.secret-key=${{ secrets.JWT_SECRET_KEY }}\n
+        jwt.access-token-expiration-minutes=${{ secrets.JWT_ACCESS_TOKEN_EXPIRATION_MINUTES }}\n
+        jwt.refresh-token-expiration-minutes=${{ secrets.JWT_REFRESH_TOKEN_EXPIRATION_MINUTES }}" > ./server/src/main/resources/application-dev.properties
         
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
