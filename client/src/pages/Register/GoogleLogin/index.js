@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 
 const clientId = '받아온 클라이언트 아이디';
 
+//수정용
+
 useEffect(() => {
   const initClient = () => {
     gapi.client.init({
