@@ -49,7 +49,7 @@ const ModalContent = styled.div`
   border-radius: 15px;
   background-color: #fff;
   position: absolute; //포지션 잡느라 죽는줄..ㅠㅠ
-  top: 230px;
+  top: 224px;
   right: -200px;
   transform: translate(-50%, -50%);
 `;
