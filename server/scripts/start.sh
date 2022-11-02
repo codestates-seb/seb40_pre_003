@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROJECT_ROOT="/home/ubuntu/action"
+PROJECT_ROOT="/home/ec2-user/action"
 JAR_FILE="$PROJECT_ROOT/Server-0.0.1-SNAPSHOT.jar"
 
 APP_LOG="$PROJECT_ROOT/application.log"

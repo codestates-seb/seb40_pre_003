@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source:  /
-    destination: /home/ubuntu/action
+    destination: /home/ec2-user/action
     overwrite: yes
 
 permissions:
@@ -15,8 +15,8 @@ hooks:
   AfterInstall:
     - location: server/scripts/stop.sh
       timeout: 60
-      runas: ubuntu
+      runas: ec2-user
   ApplicationStart:
     - location: server/scripts/start.sh
       timeout: 60
-      runas: ubuntu
+      runas: ec2-user
