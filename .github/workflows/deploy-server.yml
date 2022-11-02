@@ -35,22 +35,22 @@ jobs:
       with:
         path: './server/src/main/resources/application-dev.properties'
         property: |
-          'spring.datasource.url'
-          'spring.datasource.username'
-          'spring.datasource.password'
-          'config.domain'
-          'jwt.secret-key'
-          'jwt.access-token-expiration-minutes'
-          'jwt.refresh-token-expiration-minutes'
+           spring.datasource.url
+           spring.datasource.username
+           spring.datasource.password
+           config.domain
+           jwt.secret-key
+           jwt.access-token-expiration-minutes
+           jwt.refresh-token-expiration-minutes
         value: |
-          '${{ secrets.RDS_ENDPOINT }}'
-          '${{ secrets.RDS_ADMIN }}'
-          '${{ secrets.RDS_PASSWORD }}'
-          '${{ secrets.S3_ENDPOINT }}'
-          '${{ secrets.JWT_SECRET_KEY }}'
-          '${{ secrets.JWT_ACCESS_TOKEN_EXPIRATION_MINUTES }}'
-          '${{ secrets.JWT_REFRESH_TOKEN_EXPIRATION_MINUTES }}'
-          
+           ${{ secrets.RDS_ENDPOINT }}
+           ${{ secrets.RDS_ADMIN }}
+           ${{ secrets.RDS_PASSWORD }}
+           ${{ secrets.S3_ENDPOINT }}
+           ${{ secrets.JWT_SECRET_KEY }}
+           ${{ secrets.JWT_ACCESS_TOKEN_EXPIRATION_MINUTES }}
+           ${{ secrets.JWT_REFRESH_TOKEN_EXPIRATION_MINUTES }}
+        
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
       working-directory: ${{ env.working-directory }}
