@@ -32,6 +32,7 @@ export const LoginBlock = styled.div`
     > div > button {
       /* width: 316px; */
       height: 38px;
+      width: 314px;
       margin: 4px;
       border: 1px;
       border-radius: 5px;
@@ -135,6 +136,7 @@ export const LoginBlock = styled.div`
     > div > a {
       text-decoration-line: none;
       margin-left: 5px;
+      color: #0074cc;
     }
   }
 `;

@@ -1,12 +1,35 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { GoSearch } from 'react-icons/go';
 import { useNavigate } from 'react-router-dom';
 // import SearchResults from '../../../pages/SearchResults';
+import SearchModal from '../../SearchModal';
 import { Container, Input, SearchContainer } from './style';
 
 function Search() {
   const [searchValue, setSearchValue] = useState('');
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const handleOnClick = () => {
+    setIsOpen(!isOpen);
+  };
+  const modalRef = useRef();
+
+  const clickModalOutside = (event) => {
+    if (
+      isOpen &&
+      (!modalRef.current || !modalRef.current.contains(event.target))
+    ) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('mousedown', clickModalOutside);
+
+    return () => {
+      window.removeEventListener('mousedown', clickModalOutside);
+    };
+  });
 
   // 검색조건에 tag: 가 있는지 없는지 - 불린값
   // let isSearchTag = false;
@@ -29,11 +52,17 @@ function Search() {
     console.log(searchValue);
     if (e.key === 'Enter' && searchValue.includes('tag:')) {
       console.log('tag: 검색하고 엔터');
+      setIsOpen(false);
     } else if (e.key === 'Enter' && !searchValue.includes('tag:')) {
       console.log('일반 검색하고 엔터!');
       navigate('/search');
+      setIsOpen(false);
     }
   };
+
+  // if (!modalRef.current) {
+  //   setIsOpen(false);
+  // }
 
   return (
     <Container>
@@ -44,8 +73,11 @@ function Search() {
           placeholder="Search..."
           onChange={onChangeValue}
           onKeyPress={handleEnter}
+          onClick={handleOnClick}
+          ref={modalRef}
         />
       </SearchContainer>
+      {isOpen ? <SearchModal /> : null}
     </Container>
   );
 }
