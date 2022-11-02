@@ -43,6 +43,11 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew clean build
       working-directory: ${{ env.working-directory }}
+    
+    - name: Make zip file
+      run: zip -r ./$GITHUB_SHA.zip .
+      shell: bash
+      working-directory: ${{ env.working-directory }}
       
       # AWS 인증
     - name: Configure AWS credentials
@@ -54,12 +59,7 @@ jobs:
         
       # 빌드 결과물 S3 Server Bucket에 업로드
     - name: Upload to AWS S3
-      run: |
-        aws deploy push \
-          --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
-          --s3-location s3://$S3_SERVER_BUCKET_NAME/$GITHUB_SHA.zip \
-          --ignore-hidden-files \
-          --source .
+      run: aws s3 cp --region ap-northeast-2 ./${{ env.working-directory }}/$GITHUB_SHA.zip s3://$S3_SERVER_BUCKET_NAME/$GITHUB_SHA.zip
     
       # S3 Server Bucket에 있는 파일을 대상으로 CodeDeploy 실행
     - name: Deploy to AWS EC2 from S3
