@@ -12,13 +12,7 @@ env:
   S3_SERVER_BUCKET_NAME: padakmon-server-bucket
   CODE_DEPLOY_APPLICATION_NAME: codedeploy-padakmon
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: codedeploy-padakmon-group
-  spring.datasource.url: ${{ secrets.RDS_ENDPOINT }}
-  spring.datasource.username: ${{ secrets.RDS_ADMIN }}
-  spring.datasource.password: ${{ secrets.RDS_PASSWORD }}
-  config.domain: ${{ secrets.S3_ENDPOINT }}
-  wt.secret-key: ${{ secrets.JWT_SECRET_KEY }}
-  jwt.access-token-expiration-minutes: ${{ secrets.JWT_ACCESS_TOKEN_EXPIRATION_MINUTES }}
-  jwt.refresh-token-expiration-minutes: ${{ secrets.JWT_REFRESH_TOKEN_EXPIRATION_MINUTES }}
+  
   
 permissions:
   contents: read
@@ -43,6 +37,14 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew clean build
       working-directory: ${{ env.working-directory }}
+      env:
+        spring.datasource.url: ${{ secrets.RDS_ENDPOINT }}
+        spring.datasource.username: ${{ secrets.RDS_ADMIN }}
+        spring.datasource.password: ${{ secrets.RDS_PASSWORD }}
+        config.domain: ${{ secrets.S3_ENDPOINT }}
+        jwt.secret-key: ${{ secrets.JWT_SECRET_KEY }}
+        jwt.access-token-expiration-minutes: ${{ secrets.JWT_ACCESS_TOKEN_EXPIRATION_MINUTES }}
+        jwt.refresh-token-expiration-minutes: ${{ secrets.JWT_REFRESH_TOKEN_EXPIRATION_MINUTES }}
     
     - name: Make zip file
       run: zip -r ./$GITHUB_SHA.zip .
