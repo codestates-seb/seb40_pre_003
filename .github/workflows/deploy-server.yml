@@ -35,13 +35,13 @@ jobs:
       with:
         path: './server/src/main/resources/application-dev.properties'
         property: |
-           spring.datasource.url
-           spring.datasource.username
-           spring.datasource.password
-           config.domain
-           jwt.secret-key
-           jwt.access-token-expiration-minutes
-           jwt.refresh-token-expiration-minutes
+           'spring.datasource.url'
+           'spring.datasource.username'
+           'spring.datasource.password'
+           'config.domain'
+           'jwt.secret-key'
+           'jwt.access-token-expiration-minutes'
+           'jwt.refresh-token-expiration-minutes'
         value: |
            ${{ secrets.RDS_ENDPOINT }}
            ${{ secrets.RDS_ADMIN }}
