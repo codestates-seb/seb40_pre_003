@@ -17,16 +17,11 @@ import { ButtonContainer, Container, Header } from './style';
 // import 'tui-color-picker/dist/tui-color-picker.css';
 
 function WriteAnswer() {
-  // const navigate = useNavigate();
   const { id } = useParams();
   let editorRef = useRef();
   useEffect(() => {
     if (editorRef && editorRef.current.blur) editorRef.current.blur();
   }, []);
-
-  const handleFocus = () => {
-    // change color
-  };
 
   const handlePostAnswer = () => {
     const markdownValue = editorRef.current.getInstance().getMarkdown();
@@ -46,7 +41,6 @@ function WriteAnswer() {
       .then((res) => {
         console.log(res);
         if (res.status >= 200 && res.status < 300) {
-          // navigate(`/questions/${id}`);
           location.reload();
         }
       })
@@ -73,7 +67,7 @@ function WriteAnswer() {
           ['code'],
           ['scrollSync'],
         ]}
-        onFocus={handleFocus}
+        autofocus={false}
       ></Editor>
       <ButtonContainer>
         <PostAnswerButton handlePostAnswer={handlePostAnswer} />

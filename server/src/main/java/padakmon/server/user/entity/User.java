@@ -1,5 +1,6 @@
 package padakmon.server.user.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import padakmon.server.answer.entity.Answer;

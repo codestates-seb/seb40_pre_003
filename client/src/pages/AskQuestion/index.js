@@ -36,13 +36,13 @@ const AskQuestion = () => {
   const body = useSelector((state) => state.askReducer.body);
   const tags = useSelector((state) => state.askReducer.tags);
 
-  const outputTitle = () => {
-    console.log(titleInputValue.current.value);
-  };
+  // const outputTitle = () => {
+  //   console.log(titleInputValue.current.value);
+  // };
 
-  const outputTag = () => {
-    // console.log(tagInputValue.current.value);
-  };
+  // const outputTag = () => {
+  //   // console.log(tagInputValue.current.value);
+  // };
 
   function handleSubmit() {
     console.log(titleInputValue.current.value);
@@ -130,7 +130,7 @@ const AskQuestion = () => {
           placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
           ref={titleInputValue}
         />
-        <button onClick={outputTitle}>Next</button>
+        {/* <button onClick={outputTitle}>Next</button> */}
       </InputTitleDiv>
       <ToastDiv>
         <div>
@@ -156,7 +156,7 @@ const AskQuestion = () => {
           ref={tagInputValue}
         /> */}
         <TagInput />
-        <button onClick={outputTag}>Next</button>
+        {/* <button onClick={outputTag}>Next</button> */}
       </TagDiv>
       <button onClick={handleSubmit}>Submit your question</button>
     </AskQuestionDiv>

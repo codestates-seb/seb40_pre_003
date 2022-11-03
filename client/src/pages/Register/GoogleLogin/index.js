@@ -3,7 +3,6 @@
 
 // const clientId = '받아온 클라이언트 아이디';
 
-
 // useEffect(() => {
 //   const initClient = () => {
 //     gapi.client.init({
