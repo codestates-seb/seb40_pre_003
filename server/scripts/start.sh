@@ -20,5 +20,7 @@ DEPLOY_JAR=$PROJECT_ROOT$JAR_FILE
 echo "$TIME_NOW > $JAR_FILE 파일 실행" >> $DEPLOY_LOG
 sudo nohup java -jar -Duser.timezone=Asia/Seoul $DEPLOY_JAR >> $APP_LOG 2> $ERROR_LOG &
 
-CURRENT_PID=$(pgrep -f $JAR_FILE)
+sleep 3
+
+CURRENT_PID=$(pgrep -f $JAR_FILE | sed -n '2p')
 echo "$TIME_NOW > 실행된 PID는 $CURRENT_PID 입니다." >> $DEPLOY_LOG
