@@ -22,6 +22,8 @@ export default function Logout() {
     dispatch(logoutAction());
     localStorage.removeItem('accesstoken');
     localStorage.removeItem('id');
+    localStorage.removeItem('googleAceessToken');
+
     navigate('/');
   };
 
