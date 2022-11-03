@@ -22,7 +22,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      working-directory: ./server
+      working-directory: /server
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 11
@@ -50,7 +50,7 @@ jobs:
       working-directory: ${{ env.working-directory }}
 
     - name: Build with Gradle
-      run: ./gradlew clean build
+      run: ./gradlew clean build -x test
       working-directory: ${{ env.working-directory }}
       
     - name: Make zip file
