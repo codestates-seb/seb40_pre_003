@@ -105,7 +105,7 @@ const SearchResults = () => {
         setTotalCount(res.data.questions.length);
       })
       .catch((error) => console.log('error : ', error));
-  }, []);
+  }, [searchGen]);
 
   console.log('SearchResults컴포 -> searchResultsData : ', searchResultsData);
 
