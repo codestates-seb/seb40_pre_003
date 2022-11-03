@@ -28,7 +28,7 @@ jobs:
         node-version: 18.x
         
     - name: Install modules
-      run: npm install --legacy-peer-deps
+      run: npm install --save-dev prettier --legacy-peer-deps
       working-directory: ${{ env.working-directory }}
       
     - name: Build project
