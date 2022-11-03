@@ -7,6 +7,7 @@ import styled from 'styled-components';
 // react font-awesome npm i 로 필요 툴 설치하고 import 해오기
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import removeMarkdown from 'markdown-to-text';
 import { Link } from 'react-router-dom';
 import { getPrettyTime } from '../../ContentLayout/WriterProfile';
 import './index.css';
@@ -154,7 +155,7 @@ const Question = ({ list }) => {
             <QuestionTitle to={`/questions/${list.questionId}`}>
               {list.title}
             </QuestionTitle>
-            <QuestionText>{list.body}</QuestionText>
+            <QuestionText>{removeMarkdown(list.body)}</QuestionText>
           </TextSection>
           <TagInfoFooter>
             <TagBox>
