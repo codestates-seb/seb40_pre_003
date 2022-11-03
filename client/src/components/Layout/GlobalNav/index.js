@@ -26,7 +26,9 @@ function GlobalNav() {
   // const navigate = useNavigate();
 
   //const isLogin = useSelector((state) => state.isLogin);
-  const isLogin = localStorage.getItem('accesstoken');
+  const isLogin =
+    localStorage.getItem('accesstoken') ||
+    localStorage.getItem('googleAceessToken');
   console.log('헤더 이즈로그인:', isLogin);
   // const handleClickLogout = () => {
   //   navigate('/logout');

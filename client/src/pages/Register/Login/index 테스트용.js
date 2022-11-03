@@ -1,6 +1,6 @@
 import { useState } from 'react';
 //import { useEffect } from 'react';
-//import { FcGoogle } from 'react-icons/fc';
+import { FcGoogle } from 'react-icons/fc';
 import { GrFacebook } from 'react-icons/gr';
 import { SiGithub } from 'react-icons/si';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,7 +10,12 @@ import { LoginBlock } from './style';
 import axios from 'axios';
 import { loginAction } from '../../../redux';
 
-import ServersideGoogleLogin from '../ServersideGoogleLogin';
+//import ServersideGoogleLogin from '../ServersideGoogleLogin';
+// import GoogleLoginBtn from '../GoogleLoginBtn';
+
+const onClick = (res) => {
+  console.log(res);
+};
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -104,13 +109,14 @@ export default function Login() {
       {/* 소셜 로그인 */}
       <section className="social_login">
         <div>
-          <ServersideGoogleLogin />
-          {/* <button onClick={handleGoogleLogin}>
-            <FcGoogle className="icons" size={22} />
-            Log in with Google
-          </button> */}
-          {/* <FcGoogle className="icons" size={22} />
-          Log in with Google */}
+          {/* <ServersideGoogleLogin /> */}
+          {/* <GoogleLoginBtn /> */}
+          <a href="http://localhost:8080/oauth2/authorization/google">
+            <button onClick={onClick}>
+              <FcGoogle className="icons" size={22} />
+              Log in with Google
+            </button>
+          </a>
           <button id="github_login">
             <SiGithub className="icons" size={22} />
             Log in with Github

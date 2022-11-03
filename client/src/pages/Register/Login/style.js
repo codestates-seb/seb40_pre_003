@@ -38,21 +38,21 @@ export const LoginBlock = styled.div`
       border-radius: 5px;
       cursor: pointer;
 
-      :first-of-type {
+      /* :first-of-type {
         background-color: white;
         color: black;
         :hover {
           background-color: #f8f9f9;
         }
-      }
-      :nth-of-type(2) {
+      } */
+      :first-of-type {
         background-color: #232628;
         color: white;
         :hover {
           background-color: black;
         }
       }
-      :nth-of-type(3) {
+      :nth-of-type(2) {
         background-color: #3a5796;
         color: white;
         :hover {
@@ -64,6 +64,14 @@ export const LoginBlock = styled.div`
     > div > button .icons {
       margin-right: 10px;
     }
+
+    /* div.button#github_login {
+      background-color: #232628;
+      color: white;
+      :hover {
+        background-color: black;
+      }
+    } */
   }
 
   > section.email_login {
