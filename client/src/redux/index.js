@@ -82,8 +82,8 @@ export const askTagsAction = (res) => {
 const initialstate = {
   isLogin: false,
   question: null,
-  searchGen: null,
-  searchTag: null,
+  searchGen: '',
+  searchTag: '',
   ask: {
     title: null,
     body: null,
