@@ -84,7 +84,7 @@ public class QuestionSearchService {
     }
 
     private Page<Question> userSearch(String query, PageRequest pageRequest) {
-        String userQuery = query.substring(5, query.length());
+        String userQuery = query.substring(5);
         //나의 검색 결과 출력
 
         //mine이나 me인 경우, 로그인된 정보로 아이디 얻어오기
