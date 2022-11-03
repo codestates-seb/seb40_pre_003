@@ -115,6 +115,7 @@ function Edit() {
               ['code'],
               ['scrollSync'],
             ]}
+            autofocus={false}
           ></Editor>
         </ToastDiv>
         {/* <TagDiv> */}

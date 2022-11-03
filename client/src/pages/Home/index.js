@@ -3,17 +3,11 @@
 // Top Questions(Title) , Ask Question(버튼), QuestionList(질문목록들)
 
 import QuestionsList from '../../components/Main/QuestionsList';
-import {
-  AskQuestionButtonLink,
-  Container,
-  HomeHead,
-  Main,
-  TopQuestionsTitle,
-  Total,
-} from './style';
+import { Container, HomeHead, Main, TopQuestionsTitle, Total } from './style';
 // import { DummyData } from '../../components/Main/Data/DummyData';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import AskQuestionButton from '../../components/Buttons/AskQuestionButton';
 import SideBarWidget from '../../components/SideBarWidget';
 
 const Home = () => {
@@ -43,14 +37,11 @@ const Home = () => {
         <div>
           <HomeHead>
             <TopQuestionsTitle>Top Questions</TopQuestionsTitle>
-            <AskQuestionButtonLink to={'/questions/ask'}>
-              Ask Question
-            </AskQuestionButtonLink>
+            <AskQuestionButton />
           </HomeHead>
         </div>
         <Total>
           <span>{totalCount} questions</span>
-          {/* <span>5 questions</span> */}
         </Total>
         <QuestionsList homeData={homeData}></QuestionsList>
       </Main>
