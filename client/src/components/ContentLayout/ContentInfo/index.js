@@ -34,6 +34,7 @@ function ContentInfo({ time, user, writerType, questionId, answerId }) {
         .then((res) => {
           console.log(res);
           navigate(to);
+          location.reload();
         })
         .catch((error) => console.log(error));
       navigate(to);

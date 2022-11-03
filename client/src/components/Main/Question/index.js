@@ -7,8 +7,10 @@ import styled from 'styled-components';
 // react font-awesome npm i 로 필요 툴 설치하고 import 해오기
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './index.css';
+import removeMarkdown from 'markdown-to-text';
 import { Link } from 'react-router-dom';
+import { getPrettyTime } from '../../ContentLayout/WriterProfile';
+import './index.css';
 
 // ------------ Question.js  각 질문들 컴포넌트 -------
 
@@ -16,6 +18,7 @@ import { Link } from 'react-router-dom';
 const QuBox = styled.div`
   padding: 15px 0 10px 0;
   border-top: 1px solid #d6d9dc;
+  width: 100%;
 `;
 
 // 질문 내부
@@ -56,7 +59,7 @@ const ViewsCount = styled.div`
 
 // 질문리스트 -> 오른쪽섹션 -> 질문제목,내용 & 하단엔 footer
 const RigthSection = styled.section`
-  width: 630px;
+  width: 100%;
   margin: 0 0 0 20px;
   font-size: 17px;
 `;
@@ -66,7 +69,9 @@ const TextSection = styled.section``;
 
 // 질문 제목 -> 링크달아서 클릭시 질문내용 상세페이지로 ~
 const QuestionTitle = styled(Link)`
+  text-decoration: none;
   color: #0063bf;
+  font-weight: 500;
   cursor: pointer;
 `;
 
@@ -150,7 +155,7 @@ const Question = ({ list }) => {
             <QuestionTitle to={`/questions/${list.questionId}`}>
               {list.title}
             </QuestionTitle>
-            <QuestionText>{list.body}</QuestionText>
+            <QuestionText>{removeMarkdown(list.body)}</QuestionText>
           </TextSection>
           <TagInfoFooter>
             <TagBox>
@@ -166,7 +171,9 @@ const Question = ({ list }) => {
               <FontAwesomeIcon icon={faUser} className="fontImg-user" />
               <InfoName>{list.user.displayName}</InfoName>
               <LastTime>
-                <span>asked 10 secs ago</span>
+                <span>{`asked ${getPrettyTime(
+                  new Date(list.createdAt)
+                )}`}</span>
               </LastTime>
             </InfoBox>
           </TagInfoFooter>

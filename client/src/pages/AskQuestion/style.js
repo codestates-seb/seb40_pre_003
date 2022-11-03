@@ -98,8 +98,8 @@ export const InputTitleDiv = styled.div`
   margin-top: 30px;
   border-radius: 3px;
   border: 1px solid #d6d9dc;
-  height: 208px;
-  padding: 35px 0 15px 30px;
+  /* height: 208px; */
+  padding: 35px 0 35px 30px;
   div > div {
     font-size: 15px;
     font-weight: bolder;
@@ -141,8 +141,8 @@ export const ToastDiv = styled.div`
   margin-top: 30px;
   border-radius: 3px;
   border: 1px solid #d6d9dc;
-  height: 580px;
-  padding: 35px 35px 15px 30px;
+  /* height: 580px; */
+  padding: 35px 35px 35px 30px;
   div > div {
     font-size: 17px;
     font-weight: bolder;
@@ -162,7 +162,7 @@ export const TagDiv = styled.div`
   margin-bottom: 10px;
   border-radius: 3px;
   border: 1px solid #d6d9dc;
-  height: 208px;
+  /* height: 208px; */
   padding: 35px 30px 15px 30px;
   div > div {
     font-size: 17px;
