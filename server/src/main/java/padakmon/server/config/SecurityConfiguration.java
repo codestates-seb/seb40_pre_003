@@ -63,10 +63,10 @@ public class SecurityConfiguration {
                                 .antMatchers(HttpMethod.PATCH, "api/questions/**").hasRole("USER")
                                 .antMatchers(HttpMethod.DELETE, "api/questions/**").hasRole("USER")
                                 .anyRequest().permitAll()
-                )
-                .oauth2Login()
-                .successHandler(oAuth2SuccessHandler)
-                .userInfoEndpoint().userService(customOAuth2UserService);
+                );
+//                .oauth2Login()
+//                .successHandler(oAuth2SuccessHandler)
+//                .userInfoEndpoint().userService(customOAuth2UserService);
 
 
 
