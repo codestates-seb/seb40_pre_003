@@ -26,8 +26,8 @@ const AllQuestions = () => {
         },
       })
       .then((res) => {
-        console.log('res : ', res.data.questions);
-        setHomeData(res.data.questions);
+        console.log('res : ', res.data);
+        setHomeData(res.data);
         setTotalCount(res.data.questions.length);
       })
       .catch((error) => console.log('error : ', error));

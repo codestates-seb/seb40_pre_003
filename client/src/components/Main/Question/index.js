@@ -127,7 +127,7 @@ const LastTime = styled.div`
 
 const Question = ({ list }) => {
   // console.log(list.title);
-  // console.log(list.tags);
+  console.log('Question컴포 -> props로 받아온 Data.body : ', list.body);
 
   return (
     <QuBox>
@@ -156,23 +156,12 @@ const Question = ({ list }) => {
             <TagBox>
               {list.tags.map((el) => {
                 return (
-                  <TagBtn key={el.id}>
+                  <TagBtn key={el.toString()}>
                     <span>{el}</span>
                   </TagBtn>
                 );
               })}
             </TagBox>
-            {/* <TagBox>
-              <TagBtn>
-                <span>javascript</span>
-              </TagBtn>
-              <TagBtn>
-                <span>react</span>
-              </TagBtn>
-              <TagBtn>
-                <span>java</span>
-              </TagBtn>
-            </TagBox> */}
             <InfoBox>
               <FontAwesomeIcon icon={faUser} className="fontImg-user" />
               <InfoName>{list.user.displayName}</InfoName>

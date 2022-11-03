@@ -45,9 +45,14 @@ function Search() {
     console.log(searchValue);
   };
 
+  // const onChangeInitialValue = () => {
+  //   setSearchValue('');
+  // };
+
   // tag: 가 포함된 상태로 Enter를 눌렀을때랑 아닐때 이벤트핸들러
+
   const handleEnter = (e) => {
-    console.log(searchValue);
+    console.log('Search컴포-> searchValue : ', searchValue);
     if (
       e.key === 'Enter' &&
       searchValue.includes('[') &&
@@ -55,17 +60,26 @@ function Search() {
     ) {
       // Questions tagged [] 로 이동!
       dispatch(searchTagAction(searchValue.slice(1, searchValue.length - 1)));
-      setIsOpen(false);
-      navigate('/searchtag');
       console.log(
         'Search컴포->[tag]검색->엔터->상태값-> : ',
         searchValue.slice(1, searchValue.length - 1)
       );
-    } else if (e.key === 'Enter' && !searchValue.includes('[')) {
+      console.log('초기화된 searchValue : ', searchValue);
+      setIsOpen(false);
+      navigate('/searchtag');
+    } else if (
+      e.key === 'Enter' &&
+      !searchValue.includes('[') &&
+      searchValue.length > 0
+    ) {
       dispatch(searchGenAction(searchValue));
       console.log('Search컴포->일반검색->엔터->상태값-> : ', searchValue);
+
+      console.log('초기화된 searchValue: ', searchValue);
       navigate('/search');
       setIsOpen(false);
+    } else if (searchValue.length === 0) {
+      return;
     }
   };
 
