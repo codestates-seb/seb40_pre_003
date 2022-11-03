@@ -56,3 +56,8 @@ export const Total = styled.div`
   margin: 20px 0 27px 23px;
   font-size: 20px;
 `;
+
+export const PaginationContainer = styled.div`
+  border-top: 1px solid #d6d9dc;
+  padding: 60px 20px 20px 20px;
+`;

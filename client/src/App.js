@@ -12,6 +12,7 @@ import QuestionContent from './pages/Questions/QuestionContent';
 import Logout from './pages/Register/Logout';
 import SearchResults from './pages/SearchResults';
 
+import { useEffect } from 'react';
 import AllQuestions from './pages/AllQuestions';
 import QuestionsTagged from './pages/QuestionsTagged';
 import Login from './pages/Register/Login';
@@ -40,6 +41,11 @@ function App() {
 
   const hideSnb = noSnb.includes(pathname);
   const hideFooter = noFooter.includes(pathname);
+  useEffect(() => {
+    window.onbeforeunload = function pushRefresh() {
+      window.scrollTo(0, 0);
+    };
+  }, []);
   return (
     <Root color={bgColor}>
       <GlobalStyle />
