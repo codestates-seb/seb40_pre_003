@@ -22,10 +22,10 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v3
     
-    - name: Use Node.js 16.x to build
+    - name: Use Node.js 18.x to build
       uses: actions/setup-node@v2
       with:
-        node-version: 16.x
+        node-version: 18.x
         
     - name: Install modules
       run: npm install
