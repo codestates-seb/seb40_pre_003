@@ -13,9 +13,9 @@ import Logout from './pages/Register/Logout';
 import SearchResults from './pages/SearchResults';
 
 import AllQuestions from './pages/AllQuestions';
-import Login from './pages/Register/Login';
-import Signup from './pages/Register/Signup';
 import QuestionsTagged from './pages/QuestionsTagged';
+import Login from './pages/Register/Login/index';
+import Signup from './pages/Register/Signup';
 
 function App() {
   const { pathname } = useLocation();

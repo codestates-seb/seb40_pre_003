@@ -6,8 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { loginAction } from '../../../redux';
 
+//const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+//내아이디
 const clientId =
   '1037041682371-ht3h9ic8p826d3s9313oifff3drthjj4.apps.googleusercontent.com';
+//기홍님 아이디
+// const clientId =
+//   '948722864071 - nqo3i01477pvm3ouripnkdv4pntirbgr.apps.googleusercontent.com';
 
 const ServersideGoogleLogin = () => {
   useEffect(() => {
@@ -27,11 +32,12 @@ const ServersideGoogleLogin = () => {
   const onSuccess = (res) => {
     console.log('성공:', res);
     let googleAceessToken = res.accesstoken;
+    //var accessToken = gapi.auth.getToken().access_token;
     localStorage.setItem('googleAceessToken', googleAceessToken);
     dispatch(loginAction('333'));
     //useSelertor로 로그인상태로 바꿔주어야 하나??
     console.log('유즈셀렉터', selec);
-    alert('로그인되었습니다');
+    alert('google 로그인을 환영합니다!');
     navigate('/'); //홈으로 보내야함
   };
   const onFailure = (err) => {
@@ -46,7 +52,7 @@ const ServersideGoogleLogin = () => {
         onSuccess={onSuccess}
         onFailure={onFailure}
         cookiePolicy={'single_host_origin'}
-        isSignedIn={true}
+        //isSignedIn={true} //버튼클릭 없이 자동 로그인
       />
     </StyledContainer>
   );
