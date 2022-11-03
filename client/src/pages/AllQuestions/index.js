@@ -1,6 +1,8 @@
 // import { DummyData } from '../../components/Main/Data/DummyData';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+// import Pagination from 'react-js-pagination';
+
 import AskQuestionButton from '../../components/Buttons/AskQuestionButton';
 import QuestionsList from '../../components/Main/QuestionsList';
 import SideBarWidget from '../../components/SideBarWidget';
@@ -33,6 +35,10 @@ const AllQuestions = () => {
       .catch((error) => console.log('error : ', error));
   }, []);
 
+  // const handlePageChange = () => {
+  //   console.log('changed!');
+  // };
+
   return (
     <Container>
       <Main>
@@ -46,6 +52,14 @@ const AllQuestions = () => {
           <span>{totalCount} questions</span>
         </Total>
         <QuestionsList homeData={homeData}></QuestionsList>
+        {/* <>PAGINATION</> */}
+        {/* <Pagination
+          activePage={1}
+          itemsCountPerPage={5}
+          totalItemsCount={300}
+          pageRangeDisplayed={5}
+          onChange={handlePageChange}
+        /> */}
       </Main>
       <SideBarWidget />
     </Container>
