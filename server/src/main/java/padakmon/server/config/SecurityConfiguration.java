@@ -74,7 +74,8 @@ public class SecurityConfiguration {
     @Bean
     CorsConfigurationSource corsConfigurationSource() { // CORS 정책
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://padakmon-client-bucket.s3-website.ap-northeast-2.amazonaws.com")); // TODO S3
+        configuration.setAllowedOrigins(List.of("*"));
+//        configuration.setAllowedOrigins(List.of("http://padakmon-client-bucket.s3-website.ap-northeast-2.amazonaws.com")); // TODO S3
         configuration.setAllowedMethods(List.of("GET", "POST", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Content-Type", "Authorization", "Content-Length", "X-Requested_With"));
 
