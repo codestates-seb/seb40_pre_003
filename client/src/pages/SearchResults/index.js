@@ -10,6 +10,16 @@ import { useSelector } from 'react-redux';
 // import { DummyData } from '../../components/Main/Data/DummyData';
 // import Question from '../Question';
 
+const Container = styled.div`
+  display: flex;
+  padding: 24px 24px 0 0;
+`;
+
+const Main = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 // 제목, 버튼, 링크 묶음
 const SearchResultsHead = styled.div`
   display: flex;
@@ -91,36 +101,45 @@ const SearchResults = () => {
       })
       .then((res) => {
         console.log('SearchResults컴포->axios요청 값 : ', res.data);
-        setSearchResultsData(res.data.questions);
+        setSearchResultsData(res.data);
         setTotalCount(res.data.questions.length);
       })
       .catch((error) => console.log('error : ', error));
-  }, []);
+  }, [searchGen]);
+
+  console.log('SearchResults컴포 -> searchResultsData : ', searchResultsData);
 
   return (
-    <div>
-      <div>
-        <SearchResultsHead>
-          <SearchResultsTitle>Search Results</SearchResultsTitle>
-          <div>
-            <AdvancedTipButton>Advanced Search Tips</AdvancedTipButton>
-            <AskQuestionButton to={'/questions/ask'}>
-              Ask Question
-            </AskQuestionButton>
-          </div>
-        </SearchResultsHead>
-      </div>
-      <div>
-        <Total>
-          <AboutResult>Results for javascript</AboutResult>
-          <span>{totalCount} results</span>
-        </Total>
-      </div>
-      <div>
-        {/* <QuestionsList dummy={DummyData}></QuestionsList> */}
-        <QuestionsList homeData={searchResultsData}></QuestionsList>
-      </div>
-    </div>
+    <Container>
+      <Main>
+        <div>
+          <SearchResultsHead>
+            {searchResultsData ? (
+              <SearchResultsTitle>
+                {searchResultsData.searchInfo.searchTitle}
+              </SearchResultsTitle>
+            ) : (
+              <SearchResultsTitle></SearchResultsTitle>
+            )}
+            <div>
+              <AdvancedTipButton>Advanced Search Tips</AdvancedTipButton>
+              <AskQuestionButton to={'/questions/ask'}>
+                Ask Question
+              </AskQuestionButton>
+            </div>
+          </SearchResultsHead>
+        </div>
+        <div>
+          <Total>
+            <AboutResult>Results for javascript</AboutResult>
+            <span>{totalCount} results</span>
+          </Total>
+        </div>
+        <div>
+          <QuestionsList homeData={searchResultsData}></QuestionsList>
+        </div>
+      </Main>
+    </Container>
   );
 };
 

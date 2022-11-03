@@ -1,5 +1,7 @@
 package padakmon.server.config;
 
+import lombok.AllArgsConstructor;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -20,6 +22,8 @@ import padakmon.server.authority.handler.UserAccessDeniedHandler;
 import padakmon.server.authority.handler.UserAuthenticationEntryPoint;
 import padakmon.server.authority.handler.UserAuthenticationFailureHandler;
 import padakmon.server.authority.jwt.JwtTokenizer;
+import padakmon.server.authority.oauth.CustomOAuth2UserService;
+import padakmon.server.authority.oauth.OAuth2SuccessHandler;
 import padakmon.server.authority.sercurity.DetailService;
 import padakmon.server.authority.utils.UserAuthorityUtils;
 
@@ -28,16 +32,14 @@ import java.util.List;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
+@AllArgsConstructor
 public class SecurityConfiguration {
     private final JwtTokenizer jwtTokenizer;
     private final UserAuthorityUtils userAuthorityUtils;
     private final DetailService detailService;
+    private final OAuth2SuccessHandler oAuth2SuccessHandler;
+    private final CustomOAuth2UserService customOAuth2UserService;
 
-    public SecurityConfiguration(JwtTokenizer jwtTokenizer, UserAuthorityUtils userAuthorityUtils, DetailService detailService) {
-        this.jwtTokenizer = jwtTokenizer;
-        this.userAuthorityUtils = userAuthorityUtils;
-        this.detailService = detailService;
-    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -61,7 +63,12 @@ public class SecurityConfiguration {
                                 .antMatchers(HttpMethod.PATCH, "api/questions/**").hasRole("USER")
                                 .antMatchers(HttpMethod.DELETE, "api/questions/**").hasRole("USER")
                                 .anyRequest().permitAll()
-                );
+                )
+                .oauth2Login()
+                .successHandler(oAuth2SuccessHandler)
+                .userInfoEndpoint().userService(customOAuth2UserService);
+
+
 
         return http.build();
     }
@@ -107,4 +114,5 @@ public class SecurityConfiguration {
         authenticationProvider.setHideUserNotFoundExceptions(false);
         return authenticationProvider;
     }
+
 }

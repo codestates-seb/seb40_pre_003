@@ -4,10 +4,13 @@
 import Question from '../Question';
 
 const QuestionsList = ({ homeData }) => {
+  console.log('QuestionList컴포->homeData :', homeData);
   return (
     <div>
       {homeData &&
-        homeData.map((el) => <Question key={el.questionId} list={el} />)}
+        homeData.questions.map((el) => (
+          <Question key={el.questionId} list={el} />
+        ))}
     </div>
   );
 };

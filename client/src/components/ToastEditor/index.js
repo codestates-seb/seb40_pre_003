@@ -20,10 +20,10 @@ const ToastEditor = ({ isEdit = false, value }) => {
   const editorRef = useRef();
   // const [body, setBody] = useState(isEdit ? value : '');
 
-  const editorDataButton = () => {
-    const markdownValue = editorRef.current?.getInstance().getMarkdown();
-    console.log(markdownValue);
-  };
+  // const editorDataButton = () => {
+  //   const markdownValue = editorRef.current?.getInstance().getMarkdown();
+  //   console.log(markdownValue);
+  // };
 
   const onChangeBody = () => {
     dispatch(askBodyAction(editorRef.current?.getInstance().getMarkdown()));
@@ -52,8 +52,9 @@ const ToastEditor = ({ isEdit = false, value }) => {
           ['scrollSync'],
         ]}
         onChange={onChangeBody}
+        autofocus={false}
       ></Editor>
-      {isEdit || <button onClick={editorDataButton}>Next</button>}
+      {/* {isEdit || <button onClick={editorDataButton}>Next</button>} */}
     </div>
   );
 };
