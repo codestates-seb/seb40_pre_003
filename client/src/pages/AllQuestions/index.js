@@ -36,10 +36,10 @@ const AllQuestions = () => {
         }
       )
       .then((res) => {
-        // console.log('res : ', res.data);
+        console.log('AllQuestions컴포 -> axios요청 -> res.data : ', res);
         setHomeData(res.data);
-        setTotalCount(res.data.questions.length);
-
+        // setTotalCount(res.data.questions.length);
+        setTotalCount(res.data.pageInfo.totalElements);
         setTotalPage(res.data.pageInfo.totalPages);
         setTotalElements(res.data.pageInfo.totalElements);
         window.scrollTo(0, 0);
