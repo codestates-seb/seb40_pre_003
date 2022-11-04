@@ -17,8 +17,8 @@ import AllQuestions from './pages/AllQuestions';
 import QuestionsTagged from './pages/QuestionsTagged';
 import Login from './pages/Register/Login';
 import Signup from './pages/Register/Signup';
-import Users from './pages/Users';
 import TagsTab from './pages/TagsTab';
+import Users from './pages/Users';
 
 function App() {
   const { pathname } = useLocation();
