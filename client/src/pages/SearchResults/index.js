@@ -17,7 +17,8 @@ const Container = styled.div`
 `;
 
 const Main = styled.div`
-  width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 // // 제목, 버튼, 링크 묶음
@@ -111,9 +112,12 @@ const SearchResults = () => {
       <Main>
         <div>
           <HomeHead>
-            <TopQuestionsTitle>
-              {searchResultsData.searchInfo.searchTitle}
-            </TopQuestionsTitle>
+            {searchResultsData && (
+              <TopQuestionsTitle>
+                {searchResultsData.searchInfo.searchTitle}
+              </TopQuestionsTitle>
+            )}
+
             <div>
               <AdvancedTipButton>Advanced Search Tips</AdvancedTipButton>
               <AskQuestionButton />
