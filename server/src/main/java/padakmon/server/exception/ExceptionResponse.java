@@ -7,7 +7,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import javax.validation.ConstraintViolationException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 

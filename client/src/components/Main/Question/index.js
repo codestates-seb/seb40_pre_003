@@ -18,7 +18,7 @@ import './index.css';
 const QuBox = styled.div`
   padding: 15px 0 10px 0;
   border-top: 1px solid #d6d9dc;
-  width: 100%;
+  /* width: 700px; */
 `;
 
 // 질문 내부
@@ -79,6 +79,13 @@ const QuestionTitle = styled(Link)`
 const QuestionText = styled.p`
   font-size: 13px;
   margin-top: 5px;
+  word-break: break-all;
+  overflow: hidden; // 사용해 영역을 감출 것 ?
+  text-overflow: ellipsis; // 로 ... 을 만들기
+  /* white-space: nowrap; // 아래줄로 내려가는 거 막는것 여기선 안씀! */
+  display: -webkit-box; // 몇줄이상부터 ... 쓸건지 하기전에 얘 추가
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 `;
 
 // 질문 -> 하단 -> 태그목록, 질문자의정보(이미지, 닉네임, 작성날짜)

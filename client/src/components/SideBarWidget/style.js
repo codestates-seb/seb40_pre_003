@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  @media screen and (max-width: 980px) {
+    display: none;
+  }
   width: 300px;
   height: fit-content;
   margin: 0 0 15px 24px;

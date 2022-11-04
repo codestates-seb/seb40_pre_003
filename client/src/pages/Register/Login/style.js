@@ -38,21 +38,26 @@ export const LoginBlock = styled.div`
       border-radius: 5px;
       cursor: pointer;
 
-      /* :first-of-type {
+      a {
+        text-decoration: none;
+        color: black;
+      }
+
+      :first-of-type {
         background-color: white;
         color: black;
         :hover {
           background-color: #f8f9f9;
         }
-      } */
-      :first-of-type {
+      }
+      :nth-of-type(2) {
         background-color: #232628;
         color: white;
         :hover {
           background-color: black;
         }
       }
-      :nth-of-type(2) {
+      :nth-of-type(3) {
         background-color: #3a5796;
         color: white;
         :hover {

@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import padakmon.server.dto.PageInfo;
 
-import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @AllArgsConstructor

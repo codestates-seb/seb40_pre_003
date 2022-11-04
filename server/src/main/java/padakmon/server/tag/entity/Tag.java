@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import padakmon.server.audit.Auditable;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -14,16 +15,24 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Tag {
+public class Tag extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long tagId;
+    private Long tagId;
+
     @Column(unique = true)
     private String name;
+
     @Lob
     private String description;
-    private int questionCount = 1;
-    @OneToMany(mappedBy = "tag", fetch = FetchType.LAZY)
+
+    private Long questionCount = 1L;
+
+    private Long questionCountWeek;
+
+    private Long questionCountToday;
+
+    @OneToMany(mappedBy = "tag")
     private Set<QuestionTag> questionTags = new HashSet<>();
 
     public void addQuestionCountByOne() {

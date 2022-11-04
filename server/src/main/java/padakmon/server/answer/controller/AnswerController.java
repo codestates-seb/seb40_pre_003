@@ -2,7 +2,6 @@ package padakmon.server.answer.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import padakmon.server.answer.dto.AnswerDto;
@@ -23,15 +22,15 @@ public class AnswerController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public long post(@PathVariable(name = "question-id") @Positive long questionId,
-                               @RequestBody @Valid AnswerDto.Post post) throws Exception {
+    public long postAnswer(@Positive @PathVariable("question-id") long questionId,
+                           @Valid @RequestBody AnswerDto.Post post) {
         Answer response = answerService.create(questionId, answerMapper.postToEntity(post));
         return response.getAnswerId();
     }
 
     @PatchMapping("/{answer-id}")
-    public long patch(@PathVariable(name = "answer-id") @Positive long answerId,
-                      @RequestBody @Valid AnswerDto.Patch patch) throws Exception {
+    public long patchAnswer(@PathVariable(name = "answer-id") @Positive long answerId,
+                            @Valid @RequestBody AnswerDto.Patch patch) {
         Answer response = answerService.update(answerId, answerMapper.patchToEntity(patch));
         return response.getAnswerId();
     }
