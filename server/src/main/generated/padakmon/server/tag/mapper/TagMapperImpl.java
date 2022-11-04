@@ -1,4 +1,4 @@
-package padakmon.server.question.mapper;
+package padakmon.server.tag.mapper;
 
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
@@ -9,5 +9,5 @@ import org.springframework.stereotype.Component;
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 11.0.16 (Azul Systems, Inc.)"
 )
 @Component
-public class QuestionSearchMapperImpl implements QuestionSearchMapper {
+public class TagMapperImpl implements TagMapper {
 }
