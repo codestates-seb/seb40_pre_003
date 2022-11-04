@@ -38,3 +38,5 @@ out/
 
 ### Custom ###
 **/application-local.properties
+**/data.sql
+**/Admin.java
