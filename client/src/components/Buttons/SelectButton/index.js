@@ -4,7 +4,7 @@ import { Buttons } from './style';
 
 const SelectButton = () => {
   const name = ['Reputation', 'New users', 'Voters', 'Editors', 'Moderators'];
-  const [btnActive, setBtnActive] = useState(-1);
+  const [btnActive, setBtnActive] = useState(4);
   return (
     <Buttons>
       {name.map((ele, index) => (
