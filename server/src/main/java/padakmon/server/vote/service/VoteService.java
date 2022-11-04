@@ -39,12 +39,16 @@ public class VoteService {
         } else if(answerVote.getVoteCount() <= -1) {
             answerVote.voteUp();
             answerScore(answerVote.getAnswer(), 1);
+            //유저 voteCount -1
+            answerVote.getUser().voteDown();
             answerVoteRepository.save(answerVote);
             return new VoteDto.Response("true", "Canceled voting down");
         //아무것도 누른 적 없는 경우, 좋아요 누름
         } else {
             answerVote.voteUp();
             answerScore(answerVote.getAnswer(), 1);
+            //유저 voteCount +1
+            answerVote.getUser().voteUp();
             answerVoteRepository.save(answerVote);
             return new VoteDto.Response("true", "Voted up successfully");
         }
@@ -57,6 +61,8 @@ public class VoteService {
         if(answerVote.getVoteCount() >= 1) {
             answerVote.voteDown();
             answerScore(answerVote.getAnswer(), -1);
+            //유저 voteCount -1
+            answerVote.getUser().voteDown();
             answerVoteRepository.save(answerVote);
             return new VoteDto.Response("true", "Canceled voting up");
         //이미 싫어요를 눌렀다면, 또 누르지 못함
@@ -66,6 +72,8 @@ public class VoteService {
         } else {
             answerVote.voteDown();
             answerScore(answerVote.getAnswer(), -1);
+            //유저 voteCount +1
+            answerVote.getUser().voteUp();
             answerVoteRepository.save(answerVote);
             return new VoteDto.Response("true", "Voted down successfully");
         }
@@ -98,12 +106,16 @@ public class VoteService {
         } else if(questionVote.getVoteCount() <= -1) {
             questionVote.voteUp();
             questionScore(questionVote.getQuestion(), 1);
+            //유저 voteCount -1
+            questionVote.getUser().voteDown();
             questionVoteRepository.save(questionVote);
             return new VoteDto.Response("true", "Canceled voting down");
             //아무것도 누른 적 없는 경우, 좋아요 누름
         } else {
             questionVote.voteUp();
             questionScore(questionVote.getQuestion(), 1);
+            //유저 voteCount +1
+            questionVote.getUser().voteUp();
             questionVoteRepository.save(questionVote);
             return new VoteDto.Response("true", "Voted up successfully");
         }
@@ -116,6 +128,8 @@ public class VoteService {
         if(questionVote.getVoteCount() >= 1) {
             questionVote.voteDown();
             questionScore(questionVote.getQuestion(), -1);
+            //유저 voteCount -1
+            questionVote.getUser().voteDown();
             questionVoteRepository.save(questionVote);
             return new VoteDto.Response("true", "Canceled voting up");
             //이미 싫어요를 눌렀다면, 또 누르지 못함
@@ -125,6 +139,8 @@ public class VoteService {
         } else {
             questionVote.voteDown();
             questionScore(questionVote.getQuestion(), -1);
+            //유저 voteCount +1
+            questionVote.getUser().voteUp();
             questionVoteRepository.save(questionVote);
             return new VoteDto.Response("true", "Voted down successfully");
         }

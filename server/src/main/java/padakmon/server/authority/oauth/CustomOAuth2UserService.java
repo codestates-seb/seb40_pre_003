@@ -51,7 +51,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         } else {
             user = joinInSocialUser(oAuthUser);
         }
-        oAuthUser.setId(user.getId());
+        oAuthUser.setUserId(user.getUserId());
         oAuthUser.setRoles(user.getRoles());
         return oAuthUser;
     }

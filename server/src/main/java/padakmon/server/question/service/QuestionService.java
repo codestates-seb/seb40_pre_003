@@ -92,7 +92,7 @@ public class QuestionService {
         //접속한 사람이 작성한 글이 맞는지 확인
         long userId = userInfoUtils.extractUserId();
         Question question = verifyQuestion(questionId);
-        if(question.getUser().getId() != userId) {
+        if(question.getUser().getUserId() != userId) {
             throw new BusinessLogicException("Editing the question", ExceptionCode.NOT_A_WRITER, String.valueOf(userId));
         }
         return question;
