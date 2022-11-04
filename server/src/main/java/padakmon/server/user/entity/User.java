@@ -1,6 +1,5 @@
 package padakmon.server.user.entity;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import padakmon.server.answer.entity.Answer;
@@ -21,7 +20,7 @@ public class User extends CreatedOnlyAuditable implements Principal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID")
-    private Long id;
+    private Long userId;
 
     @Column(nullable = false, unique = true, length = 30)
     private String email;
@@ -31,10 +30,12 @@ public class User extends CreatedOnlyAuditable implements Principal {
 
     @Column(name = "DISPLAY_NAME", nullable = false, unique = true, length = 15)
     private String displayName;
-
-    private int questionCount;
-
-    private int answerCount;
+    @Column(columnDefinition = "INTEGER default 0")
+    private long questionCount;
+    @Column(columnDefinition = "INTEGER default 0")
+    private long answerCount;
+    @Column(columnDefinition = "INTEGER default 0")
+    private long voteCount;
 
     private String aboutMe;
 
@@ -51,9 +52,20 @@ public class User extends CreatedOnlyAuditable implements Principal {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Answer> answers = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserTag> userTags = new ArrayList<>();
+
 
     @Override
     public String getName() {
         return getEmail();
+    }
+
+    public void voteUp() {
+        this.voteCount++;
+    }
+
+    public void voteDown() {
+        this.voteCount--;
     }
 }

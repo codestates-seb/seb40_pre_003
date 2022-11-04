@@ -23,7 +23,7 @@ public class QuestionVote {
     @JoinColumn(name = "QUESTION_ID")
     private Question question;
     //Vote 조회할 때 유저 조회 필요없음
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "USER_ID")
     private User user;
     private int voteCount = 0;

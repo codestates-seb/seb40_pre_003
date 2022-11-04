@@ -1,11 +1,15 @@
 package padakmon.server.user.dto;
 
 import lombok.*;
+import padakmon.server.dto.PageInfo;
+import padakmon.server.tag.dto.TagDto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDto {
 
@@ -47,5 +51,22 @@ public class UserDto {
 
         @Size(max = 255, message = "255자까지 입력할 수 있습니다.")
         private String aboutMe;
+    }
+
+    @Getter
+    @Setter
+    public static class searchResponse {
+        private String orderMode;
+        private PageInfo pageInfo;
+        private List<UserDto.Info> users = new ArrayList<>();
+    }
+
+    @Getter
+    @Setter
+    public static class Info {
+        private Long userId;
+        private String displayName;
+        private Long answerCount;
+        private List<String> tags = new ArrayList<>();
     }
 }
