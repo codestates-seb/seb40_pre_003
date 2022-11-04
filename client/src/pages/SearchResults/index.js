@@ -1,15 +1,17 @@
 // ------------ SearchResult -------------
 // 검색창에 검색을 하였을때 연관 질문들이 나올 페이지 화면
 
+import styled from 'styled-components';
+import QuestionsList from '../../components/Main/QuestionsList';
+
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
 import AskQuestionButton from '../../components/Buttons/AskQuestionButton';
-import QuestionsList from '../../components/Main/QuestionsList';
 import SideBarWidget from '../../components/SideBarWidget';
 // import { DummyData } from '../../components/Main/Data/DummyData';
 // import Question from '../Question';
+import { HomeHead, TopQuestionsTitle, Total } from '../Home/style';
 
 const Container = styled.div`
   display: flex;
@@ -23,21 +25,20 @@ const Main = styled.div`
   flex: 1 1 auto;
 `;
 
-// 제목, 버튼, 링크 묶음
-const SearchResultsHead = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 0 0 20px;
-`;
+// // 제목, 버튼, 링크 묶음
+// const SearchResultsHead = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   margin: 0 0 0 20px;
+// `;
 
-// 제목
-const SearchResultsTitle = styled.span`
-  font-size: 27px;
-  /* margin-top: 19.5px; */
-`;
+// // 제목
+// const SearchResultsTitle = styled.span`
+//   font-size: 27px;
+//   margin-top: 19.5px;
+// `;
 
-// 질문작성 버튼
+// // 질문작성 버튼
 // const AskQuestionButton = styled(Link)`
 //   text-align: center;
 //   position: relative;
@@ -76,10 +77,10 @@ const AboutResult = styled.p`
 `;
 
 // 질문 갯수
-const Total = styled.div`
-  margin: 20px 0 27px 23px;
-  font-size: 20px;
-`;
+// const Total = styled.div`
+//   margin: 20px 0 27px 23px;
+//   font-size: 20px;
+// `;
 
 const SearchResults = () => {
   const [searchResultsData, setSearchResultsData] = useState(null);
@@ -90,9 +91,6 @@ const SearchResults = () => {
     'SearchResults컴포 -> useSelector() -> searchGen 값 :',
     searchGen
   );
-  // const [params] = useSearchParams();
-  // const search = params;
-  // console.log('params : ', search);
 
   useEffect(() => {
     axios
@@ -117,26 +115,22 @@ const SearchResults = () => {
     <Container>
       <Main>
         <div>
-          <SearchResultsHead>
-            {searchResultsData ? (
-              <SearchResultsTitle>
+          <HomeHead>
+            {searchResultsData && (
+              <TopQuestionsTitle>
                 {searchResultsData.searchInfo.searchTitle}
-              </SearchResultsTitle>
-            ) : (
-              <SearchResultsTitle></SearchResultsTitle>
+              </TopQuestionsTitle>
             )}
+
             <div>
               <AdvancedTipButton>Advanced Search Tips</AdvancedTipButton>
-              {/* <AskQuestionButton to={'/questions/ask'}>
-                Ask Question
-              </AskQuestionButton> */}
               <AskQuestionButton />
             </div>
-          </SearchResultsHead>
+          </HomeHead>
         </div>
         <div>
           <Total>
-            <AboutResult>Results for javascript</AboutResult>
+            <AboutResult>Results for {searchGen}</AboutResult>
             <span>{totalCount} results</span>
           </Total>
         </div>

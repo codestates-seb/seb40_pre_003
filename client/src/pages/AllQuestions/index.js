@@ -7,13 +7,13 @@ import QuestionsList from '../../components/Main/QuestionsList';
 import PaginationBar from '../../components/PaginationBar';
 import SideBarWidget from '../../components/SideBarWidget';
 import {
-  AllQuestionsHead,
-  AllQuestionsTitle,
   Container,
+  HomeHead,
   Main,
-  PaginationContainer,
+  TopQuestionsTitle,
   Total,
-} from './style';
+} from '../Home/style';
+import { PaginationContainer } from './style';
 
 const AllQuestions = () => {
   const [totalCount, setTotalCount] = useState(0);
@@ -55,10 +55,10 @@ const AllQuestions = () => {
     <Container>
       <Main>
         <div>
-          <AllQuestionsHead>
-            <AllQuestionsTitle>All Questions</AllQuestionsTitle>
+          <HomeHead>
+            <TopQuestionsTitle>All Questions</TopQuestionsTitle>
             <AskQuestionButton />
-          </AllQuestionsHead>
+          </HomeHead>
         </div>
         <Total>
           <span>{totalCount} questions</span>
