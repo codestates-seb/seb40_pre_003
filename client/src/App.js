@@ -13,9 +13,10 @@ import Logout from './pages/Register/Logout';
 import SearchResults from './pages/SearchResults';
 
 import AllQuestions from './pages/AllQuestions';
-import QuestionsTagged from './pages/QuestionsTagged';
 import Login from './pages/Register/Login';
 import Signup from './pages/Register/Signup';
+import QuestionsTagged from './pages/QuestionsTagged';
+import TagsTab from './pages/TagsTab';
 
 function App() {
   const { pathname } = useLocation();
@@ -63,7 +64,7 @@ function App() {
           {/* querystring으로 검색 결과 페이지 이동 (/search?q=springboot) */}
           <Route path="/search" element={<SearchResults />} />
           <Route path="/searchtag" element={<QuestionsTagged />} />
-          <Route path="/tags" element={<div>tags</div>} />
+          <Route path="/tags" element={<TagsTab />} />
           <Route path="/users" element={<div>users</div>} />
           {/* id가 본인이면 마이페이지 */}
           <Route path={`/users/:id`} element={<div>users/:id</div>} />
@@ -74,23 +75,13 @@ function App() {
   );
 }
 const Root = styled.section`
-  display: flex;
-  flex-direction: column;
-
   background-color: ${(props) => props.color};
-  width: 100%;
 `;
 
 const Body = styled.div`
   display: flex;
   margin: 0 124px;
   padding-top: 50px;
-  min-height: 80vh;
 `;
-
-// const Main = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-// `;
 
 export default App;

@@ -7,12 +7,12 @@ import AskQuestionButton from '../../components/Buttons/AskQuestionButton';
 import QuestionsList from '../../components/Main/QuestionsList';
 import SideBarWidget from '../../components/SideBarWidget';
 import {
-  AllQuestionsHead,
-  AllQuestionsTitle,
   Container,
   Main,
+  HomeHead,
+  TopQuestionsTitle,
   Total,
-} from './style';
+} from '../Home/style';
 
 const AllQuestions = () => {
   const [totalCount, setTotalCount] = useState(0);
@@ -43,10 +43,10 @@ const AllQuestions = () => {
     <Container>
       <Main>
         <div>
-          <AllQuestionsHead>
-            <AllQuestionsTitle>All Questions</AllQuestionsTitle>
+          <HomeHead>
+            <TopQuestionsTitle>All Questions</TopQuestionsTitle>
             <AskQuestionButton />
-          </AllQuestionsHead>
+          </HomeHead>
         </div>
         <Total>
           <span>{totalCount} questions</span>

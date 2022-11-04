@@ -72,7 +72,8 @@ export default function Login() {
         //잠시 dispatch(loginAction(userId));
         dispatch(loginAction(userId));
         console.log('로그인액션전달', dispatch(loginAction(userId)));
-        navigate('/');
+        navigate('/'); //콘솔 확인을 위해 잠시 막아둠
+        //홈으로 이동 + 헤더에 로그인버튼이 사라지고, 이미지로 바뀌는거!!!
       })
       .then((data) => console.log(data))
       .catch((error) => {
@@ -85,8 +86,13 @@ export default function Login() {
         }
       });
   };
-
-  const handleGoogleLogin = () => {};
+  //로그인유지를 위해 useEffect를 써야하는데 그 위치를 모르겠다
+  // useEffect(() => {
+  //   if (isLogin) {
+  //     // 로그인유지를 위해서 isLogin을 true로 변경해줘야한다.
+  //     dispatch(loginAction(userId));
+  //   }
+  // }, []);
 
   return (
     <LoginBlock className="login_block">
@@ -100,7 +106,7 @@ export default function Login() {
       {/* 소셜 로그인 */}
       <section className="social_login">
         <div>
-          <button onClick={handleGoogleLogin}>
+          <button>
             <FcGoogle className="icons" size={22} />
             Log in with Google
           </button>
@@ -118,16 +124,16 @@ export default function Login() {
       <section className="email_login">
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="Email">Email</label>
+            <label htmlFor={'Email'}>Email</label>
             <input
               type="email"
-              htmlFor="Email"
+              htmlFor={'Email'}
               onChange={(e) => setEmail(e.target.value)}
             ></input>
             {emailValidMsg ? <div className="msg">{emailValidMsg}</div> : ''}
           </div>
           <div>
-            <label htmlFor="Password">Password</label>
+            <label htmlFor={'Password'}>Password</label>
             <input
               type="password"
               onChange={(e) => setPassword(e.target.value)}
