@@ -18,7 +18,7 @@ import './index.css';
 const QuBox = styled.div`
   padding: 15px 0 10px 0;
   border-top: 1px solid #d6d9dc;
-  width: 700px;
+  /* width: 700px; */
 `;
 
 // 질문 내부

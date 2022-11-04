@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -11,7 +10,7 @@ export const Container = styled.div`
 export const Main = styled.div`
   display: flex;
   flex-direction: column;
-  /* width: 100%; */
+  width: 100%;
   flex: 1 1 auto;
 `;
 
@@ -27,28 +26,6 @@ export const AllQuestionsHead = styled.div`
 export const AllQuestionsTitle = styled.span`
   font-size: 27px;
   /* margin-top: 19.5px; */
-`;
-
-// Ask Question 버튼
-export const AskQuestionButtonLink = styled(Link)`
-  text-align: center;
-  position: relative;
-  display: inline-block;
-  padding: 0.8em;
-  background-color: #0995ff;
-  font-size: 12.9px;
-  font-family: inherit;
-  font-weight: normal;
-  color: white;
-  width: 103px;
-  height: 37px;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
-  outline: none;
-  margin-top: 19.5px;
-  text-decoration-line: none;
-  cursor: pointer;
 `;
 
 // 질문글 갯수

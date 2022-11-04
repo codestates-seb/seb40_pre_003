@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   // width: 100% 주면 큰 화면에서 정렬이 완전 오른쪽 끝으로감...
-  /* width: 100%; */
+  width: 100%;
   padding: 24px 24px 0 0;
 `;
 
