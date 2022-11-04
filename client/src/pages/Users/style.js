@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  padding: 24px;
   > h1 {
-    font-weight: 400;
-    margin: 40px;
+    font-size: 27px;
   }
 `;
 
@@ -33,28 +33,6 @@ export const FilterBlock = styled.div`
 export const Buttons = styled.div`
   //position: absolute;
   //right: 290px;
-
-  > button {
-    background-color: white;
-    border: 1px rgb(159, 166, 173) solid;
-    font-weight: 400;
-    color: rgb(159, 166, 173);
-    font-size: 13px;
-    flex-wrap: nowrap;
-    height: 40px;
-    width: auto;
-    margin: 0;
-  }
-
-  > button#reputation {
-    border-radius: 5px 0px 0px 5px;
-  }
-  > button#moderators {
-    border-radius: 0px 5px 5px 0px;
-    background-color: rgb(221, 224, 227);
-    color: rgb(60, 65, 69);
-    font-weight: 200;
-  }
 `;
 
 export const TextBlock = styled.div`

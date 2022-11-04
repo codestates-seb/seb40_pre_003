@@ -1,14 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
+import SelectButton from '../../components/Buttons/SelectButton';
 import UserCard from '../../components/UserCard';
-import {
-  Buttons,
-  Container,
-  FilterBlock,
-  TextBlock,
-  UserListBlock,
-} from './style';
+import { Container, FilterBlock, TextBlock, UserListBlock } from './style';
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -38,13 +33,7 @@ const Users = () => {
           <AiOutlineSearch color="rgb(159, 166, 173)" />
           <input placeholder="Filter by user"></input>
         </div>
-        <Buttons>
-          <button id="reputation">Reputation</button>
-          <button id="newusers">New users</button>
-          <button>Voters</button>
-          <button>Editors</button>
-          <button id="moderators">Moderators</button>
-        </Buttons>
+        <SelectButton />
       </FilterBlock>
       <TextBlock>
         <h2>Who are the moderators?</h2>
