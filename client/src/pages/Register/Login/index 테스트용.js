@@ -1,6 +1,6 @@
 import { useState } from 'react';
 //import { useEffect } from 'react';
-//import { FcGoogle } from 'react-icons/fc';
+import { FcGoogle } from 'react-icons/fc';
 import { GrFacebook } from 'react-icons/gr';
 import { SiGithub } from 'react-icons/si';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,7 +10,12 @@ import { LoginBlock } from './style';
 import axios from 'axios';
 import { loginAction } from '../../../redux';
 
-import ServersideGoogleLogin from '../ServersideGoogleLogin';
+//import ServersideGoogleLogin from '../ServersideGoogleLogin';
+// import GoogleLoginBtn from '../GoogleLoginBtn';
+
+const onClick = (res) => {
+  console.log(res);
+};
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -74,8 +79,7 @@ export default function Login() {
         //잠시 dispatch(loginAction(userId));
         dispatch(loginAction(userId));
         console.log('로그인액션전달', dispatch(loginAction(userId)));
-        navigate('/'); //콘솔 확인을 위해 잠시 막아둠
-        //홈으로 이동 + 헤더에 로그인버튼이 사라지고, 이미지로 바뀌는거!!!
+        navigate('/');
       })
       .then((data) => console.log(data))
       .catch((error) => {
@@ -88,13 +92,6 @@ export default function Login() {
         }
       });
   };
-  //로그인유지를 위해 useEffect를 써야하는데 그 위치를 모르겠다
-  // useEffect(() => {
-  //   if (isLogin) {
-  //     // 로그인유지를 위해서 isLogin을 true로 변경해줘야한다.
-  //     dispatch(loginAction(userId));
-  //   }
-  // }, []);
 
   // const handleGoogleLogin = () => {
   //   axios.get(`/api/auth/login`).then((res) => console.log(res));
@@ -112,13 +109,14 @@ export default function Login() {
       {/* 소셜 로그인 */}
       <section className="social_login">
         <div>
-          <ServersideGoogleLogin />
-          {/* <button onClick={handleGoogleLogin}>
-            <FcGoogle className="icons" size={22} />
-            Log in with Google
-          </button> */}
-          {/* <FcGoogle className="icons" size={22} />
-          Log in with Google */}
+          {/* <ServersideGoogleLogin /> */}
+          {/* <GoogleLoginBtn /> */}
+          <a href="http://localhost:8080/oauth2/authorization/google">
+            <button onClick={onClick}>
+              <FcGoogle className="icons" size={22} />
+              Log in with Google
+            </button>
+          </a>
           <button id="github_login">
             <SiGithub className="icons" size={22} />
             Log in with Github
@@ -133,16 +131,16 @@ export default function Login() {
       <section className="email_login">
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor={'Email'}>Email</label>
+            <label htmlFor="Email">Email</label>
             <input
               type="email"
-              htmlFor={'Email'}
+              htmlFor="Email"
               onChange={(e) => setEmail(e.target.value)}
             ></input>
             {emailValidMsg ? <div className="msg">{emailValidMsg}</div> : ''}
           </div>
           <div>
-            <label htmlFor={'Password'}>Password</label>
+            <label htmlFor="Password">Password</label>
             <input
               type="password"
               onChange={(e) => setPassword(e.target.value)}

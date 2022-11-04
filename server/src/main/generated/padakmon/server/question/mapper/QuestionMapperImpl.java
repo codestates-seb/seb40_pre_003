@@ -7,7 +7,7 @@ import padakmon.server.question.entity.Question;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-31T14:36:29+0900",
+    date = "2022-11-01T15:00:14+0900",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 11.0.16 (Azul Systems, Inc.)"
 )
 @Component

@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import padakmon.server.question.dto.PageInfo;
+import padakmon.server.dto.PageInfo;
 import padakmon.server.question.dto.QuestionDto;
 import padakmon.server.question.dto.QuestionSearchDto;
 import padakmon.server.question.entity.Question;
