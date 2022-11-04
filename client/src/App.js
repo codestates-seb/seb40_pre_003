@@ -16,6 +16,7 @@ import AllQuestions from './pages/AllQuestions';
 import QuestionsTagged from './pages/QuestionsTagged';
 import Login from './pages/Register/Login';
 import Signup from './pages/Register/Signup';
+import Users from './pages/Users';
 
 function App() {
   const { pathname } = useLocation();
@@ -64,7 +65,7 @@ function App() {
           <Route path="/search" element={<SearchResults />} />
           <Route path="/searchtag" element={<QuestionsTagged />} />
           <Route path="/tags" element={<div>tags</div>} />
-          <Route path="/users" element={<div>users</div>} />
+          <Route path="/users" element={<Users />} />
           {/* id가 본인이면 마이페이지 */}
           <Route path={`/users/:id`} element={<div>users/:id</div>} />
         </Routes>

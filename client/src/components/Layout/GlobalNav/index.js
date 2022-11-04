@@ -27,8 +27,8 @@ function GlobalNav() {
 
   //const isLogin = useSelector((state) => state.isLogin);
   const isLogin =
-    localStorage.getItem('accesstoken') ||
-    localStorage.getItem('googleAceessToken');
+    localStorage.getItem('accesstoken') !== null ||
+    localStorage.getItem('googleAccessToken') !== null;
   console.log('헤더 이즈로그인:', isLogin);
   // const handleClickLogout = () => {
   //   navigate('/logout');
@@ -49,7 +49,7 @@ function GlobalNav() {
           <Button>For Teams</Button>
         </ButtonContainer>
         <Search />
-        {isLogin !== null ? (
+        {isLogin ? (
           <AferLoginIcons>
             <button>
               <img src={userimg} alt="img" />

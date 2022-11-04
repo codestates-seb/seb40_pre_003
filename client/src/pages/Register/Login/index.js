@@ -1,6 +1,5 @@
 import { useState } from 'react';
-//import { useEffect } from 'react';
-//import { FcGoogle } from 'react-icons/fc';
+import { FcGoogle } from 'react-icons/fc';
 import { GrFacebook } from 'react-icons/gr';
 import { SiGithub } from 'react-icons/si';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,8 +8,6 @@ import { LoginBlock } from './style';
 
 import axios from 'axios';
 import { loginAction } from '../../../redux';
-
-import ServersideGoogleLogin from '../ServersideGoogleLogin';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -65,7 +62,6 @@ export default function Login() {
         //로컬 스토리지에 키와 값을 텍스트형식으로 담는다 -> JWT를 담아서 요청을 보낼 때 사용할 예정(서버와 통신/인가)
         //스토리지에 저장한 토큰은 -> 새로고침 시에 사용
         localStorage.setItem('accesstoken', accessToken);
-        localStorage.setItem('id', userId);
         localStorage.setItem('displayname', displayName);
 
         console.log(localStorage);
@@ -83,14 +79,28 @@ export default function Login() {
           setLoginFailMsg('The email or password is incorrect.');
           setEmail(''); //왜 초기화가 안되지??아...리렌더링 시켜야하는데
           setPassword('');
-          window.location.reload(); //리렌더링을 위한 임시방편
+          location.reload(); //리렌더링을 위한 임시방편 window
         }
       });
   };
 
-  // const handleGoogleLogin = () => {
-  //   axios.get(`/api/auth/login`).then((res) => console.log(res));
-  // };
+  const onClick = () => {
+    location.href(
+      'https://50de-2001-e60-875c-55fc-a458-e696-b3e9-e1b2.jp.ngrok.io/oauth2/authorization/google'
+    );
+    //구글로그인 리다이렉트 후 진행사항
+    let googleAccessToken = new URL(location.href).searchParams.get(
+      'access_token'
+    );
+    let googleRefreshToken = new URL(location.href).searchParams.get(
+      'refresh_token'
+    );
+    console.log('구글액세스토큰', googleAccessToken);
+    console.log('구글리프레시토큰', googleRefreshToken);
+    localStorage.setItem('googleAccessToken', googleAccessToken);
+    localStorage.setItem('googleRefreshToken', googleRefreshToken);
+    navigate('/');
+  };
 
   return (
     <LoginBlock className="login_block">
@@ -104,13 +114,13 @@ export default function Login() {
       {/* 소셜 로그인 */}
       <section className="social_login">
         <div>
-          <ServersideGoogleLogin />
-          {/* <button onClick={handleGoogleLogin}>
+          <button onClick={onClick}>
             <FcGoogle className="icons" size={22} />
-            Log in with Google
-          </button> */}
-          {/* <FcGoogle className="icons" size={22} />
-          Log in with Google */}
+            <a href="https://50de-2001-e60-875c-55fc-a458-e696-b3e9-e1b2.jp.ngrok.io/oauth2/authorization/google">
+              Log in with Google
+            </a>
+          </button>
+
           <button id="github_login">
             <SiGithub className="icons" size={22} />
             Log in with Github
