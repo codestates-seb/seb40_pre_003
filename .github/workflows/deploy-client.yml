@@ -35,21 +35,23 @@ jobs:
       run: |
         touch ${{ env.working-directory }}/.env
         echo "REACT_APP_API_URL=${{ secrets.EC2_URL }}" > ${{ env.working-directory }}/.env
+        
+        cat ${{ env.working-directory }}/.env
         cat ${{ env.working-directory }}/.env
       
     - name: Build project
       run: npm run build
       working-directory: ${{ env.working-directory }}
       
-    - name: Deploy
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: |
-        aws s3 cp \
-            --recursive \
-            --region ap-northeast-2 \
-            ./${{ env.working-directory }}/build s3://$S3_CLIENT_BUCKET_NAME
+    #- name: Deploy
+    #  env:
+    #    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #  run: |
+    #    aws s3 cp \
+    #        --recursive \
+    #        --region ap-northeast-2 \
+    #        ./${{ env.working-directory }}/build s3://$S3_CLIENT_BUCKET_NAME
         
         
 
