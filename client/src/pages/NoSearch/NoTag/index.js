@@ -5,8 +5,8 @@ const NoSearchMainDiv = styled.div`
   border-top: 1px solid #d6d9dc;
 `;
 
-const NoSearch = () => {
-  return <NoSearchMainDiv>검색 결과 없어요~</NoSearchMainDiv>;
+const NoSearch = ({ noTag }) => {
+  return <NoSearchMainDiv>Results for [{noTag}]</NoSearchMainDiv>;
 };
 
 export default NoSearch;

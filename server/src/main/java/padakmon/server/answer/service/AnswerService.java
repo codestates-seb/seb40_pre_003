@@ -10,10 +10,13 @@ import padakmon.server.exception.ExceptionCode;
 import padakmon.server.question.entity.Question;
 import padakmon.server.question.service.QuestionService;
 import padakmon.server.user.entity.User;
+import padakmon.server.user.entity.UserTag;
 import padakmon.server.user.repository.UserRepository;
+import padakmon.server.user.service.UserJoinService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -22,12 +25,13 @@ public class AnswerService {
     private final UserRepository userRepository;
     private final QuestionService questionService;
     private final LoggedInUserInfoUtils loggedInUserInfoUtils;
+    private final UserJoinService userJoinService;
 
     public void delete(long answerId, long questionId) throws Exception {
         //접속한 사람이 썼는가?
         long userId = loggedInUserInfoUtils.extractUserId();
         Answer answer = verifyAnswer(answerId);
-        if(answer.getUser().getId() != userId) {
+        if(answer.getUser().getUserId() != userId) {
             throw new BusinessLogicException("Editing the question", ExceptionCode.NOT_A_WRITER, String.valueOf(userId));
         }
 
@@ -55,7 +59,7 @@ public class AnswerService {
         //접속한 사람이 작성한 글이 맞는지 확인
         long userId = loggedInUserInfoUtils.extractUserId();
         Answer answer = verifyAnswer(answerId);
-        if(answer.getUser().getId() != userId) {
+        if(answer.getUser().getUserId() != userId) {
             throw new BusinessLogicException("Editing the question", ExceptionCode.NOT_A_WRITER, String.valueOf(userId));
         }
         return answer;
@@ -74,7 +78,16 @@ public class AnswerService {
         //Question에 AnswerCount 하나 up
         Question question = questionService.read(questionId);
         question.setAnswerCount(question.getAnswerCount() + 1);
-
+        //User와 태그 연관관계 M:M연관관계 설정
+        List<UserTag> userTags = question.getQuestionTags().stream().map(
+                questionTag -> {
+                    UserTag userTag = new UserTag();
+                    userTag.setTag(questionTag.getTag());
+                    userTag.setUser(user);
+                    return userTag;
+                }
+        ).collect(Collectors.toList());
+        user.setUserTags(userTags);
         //Cascade이용하여 저장
         answer.setQuestion(question);
         answer.setUser(user);

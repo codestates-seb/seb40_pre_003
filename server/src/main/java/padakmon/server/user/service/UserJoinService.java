@@ -1,13 +1,18 @@
 package padakmon.server.user.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import padakmon.server.exception.BusinessLogicException;
 import padakmon.server.exception.ExceptionCode;
+import padakmon.server.tag.entity.Tag;
 import padakmon.server.user.entity.User;
 import padakmon.server.user.repository.UserRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,9 +40,22 @@ public class UserJoinService {
         if (findUserByEmail.isPresent()) throw new BusinessLogicException("email", ExceptionCode.EMAIL_EXISTS, email);
 
         Optional<User> findUserByName = userRepository.findByDisplayName(displayName);
-        if (findUserByName.isPresent()) throw new BusinessLogicException("displayName", ExceptionCode.DISPLAY_NAME_EXISTS, displayName);
+        if (findUserByName.isPresent())
+            throw new BusinessLogicException("displayName", ExceptionCode.DISPLAY_NAME_EXISTS, displayName);
     }
+
     public Optional<User> findUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public Page<User> delegateFindUsers(String query, int page, int size, Sort sort) {
+        PageRequest pageRequest = PageRequest.of(page, size, sort);
+        Page<User> users;
+        if (query == null) {
+            users = userRepository.findAll(pageRequest);
+        } else {
+            users = userRepository.findByDisplayNameContaining(query.trim(), pageRequest);
+        }
+        return users;
     }
 }

@@ -24,7 +24,7 @@ public class AnswerVote{
     @JoinColumn(name = "ANSWER_ID")
     private Answer answer;
     //AnswerVote -> User 조회할 필요 없음
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "USER_ID")
     private User user;
     private int voteCount = 0;
