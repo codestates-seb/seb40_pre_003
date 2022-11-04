@@ -1,12 +1,35 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 auto;
+  max-width: 1264px;
+  width: 100%;
+`;
+
 export const Logo = styled.img`
+  @media screen and (max-width: 640px) {
+    display: none;
+  }
   display: flex;
   justify-content: center;
   align-items: center;
   width: 150px;
   height: 30px;
+`;
+
+export const ShortLogo = styled.img`
+  @media screen and (min-width: 640px) {
+    display: none;
+  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
 `;
 
 export const LogoContainer = styled.span`
@@ -30,14 +53,6 @@ export const Header = styled.div`
   width: 100%;
   box-shadow: 0px 1px 2px hsl(210, 8%, 85%);
   z-index: 1;
-`;
-
-export const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0px 124px;
-  width: 100%;
 `;
 
 export const ButtonContainer = styled.div`

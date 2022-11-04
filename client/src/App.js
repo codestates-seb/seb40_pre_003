@@ -12,7 +12,7 @@ import QuestionContent from './pages/Questions/QuestionContent';
 import Logout from './pages/Register/Logout';
 import SearchResults from './pages/SearchResults';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import AllQuestions from './pages/AllQuestions';
 import QuestionsTagged from './pages/QuestionsTagged';
 import Login from './pages/Register/Login';
@@ -36,6 +36,13 @@ function App() {
     bgColor = `white`;
   }
 
+  // hamburger
+  const [hamburger, setHamburger] = useState(false);
+  const openHamburger = () => {
+    setHamburger(!hamburger);
+    console.log('HAMHAM!');
+  };
+
   const noSnb = ['/ask', '/login', '/logout', '/signup'];
   const noFooter = ['/login', '/logout', '/signup'];
 
@@ -49,9 +56,18 @@ function App() {
   return (
     <Root color={bgColor}>
       <GlobalStyle />
-      <GlobalNav />
+      <GlobalNav hamburger={hamburger} openHamburger={openHamburger} />
+      {hamburger && (
+        <SNBModal>
+          <SideNav />
+        </SNBModal>
+      )}
       <Body>
-        {hideSnb || <SideNav />}
+        {hideSnb || (
+          <SNBContainer>
+            <SideNav />
+          </SNBContainer>
+        )}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
@@ -89,9 +105,25 @@ const Root = styled.section`
 
 const Body = styled.div`
   display: flex;
-  margin: 0 124px;
+  margin: 0 auto;
+  max-width: 1264px;
+  width: 100%;
   padding-top: 50px;
   min-height: 80vh;
+`;
+
+const SNBContainer = styled.div`
+  @media screen and (max-width: 640px) {
+    display: none;
+  }
+`;
+
+const SNBModal = styled.div`
+  margin-top: 52px;
+  position: fixed;
+  background-color: white;
+  z-index: 1;
+  border-bottom: 1px solid var(--black-100);
 `;
 
 // const Main = styled.div`
