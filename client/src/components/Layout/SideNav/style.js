@@ -8,6 +8,7 @@ export const Container = styled.div`
   position: sticky;
   border-right: 1px solid #d6d9dc;
   padding-top: 24px;
+  height: 100%;
 `;
 
 export const HomeLink = styled(Link)`

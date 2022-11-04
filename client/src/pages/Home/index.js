@@ -4,7 +4,6 @@
 
 import QuestionsList from '../../components/Main/QuestionsList';
 import { Container, HomeHead, Main, TopQuestionsTitle, Total } from './style';
-// import { DummyData } from '../../components/Main/Data/DummyData';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import AskQuestionButton from '../../components/Buttons/AskQuestionButton';

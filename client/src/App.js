@@ -12,11 +12,13 @@ import QuestionContent from './pages/Questions/QuestionContent';
 import Logout from './pages/Register/Logout';
 import SearchResults from './pages/SearchResults';
 
+import { useEffect, useState } from 'react';
 import AllQuestions from './pages/AllQuestions';
 import QuestionsTagged from './pages/QuestionsTagged';
 import Login from './pages/Register/Login';
 import Signup from './pages/Register/Signup';
 import Users from './pages/Users';
+import TagsTab from './pages/TagsTab';
 
 function App() {
   const { pathname } = useLocation();
@@ -36,17 +38,38 @@ function App() {
     bgColor = `white`;
   }
 
+  // hamburger
+  const [hamburger, setHamburger] = useState(false);
+  const openHamburger = () => {
+    setHamburger(!hamburger);
+    console.log('HAMHAM!');
+  };
+
   const noSnb = ['/ask', '/login', '/logout', '/signup'];
   const noFooter = ['/login', '/logout', '/signup'];
 
   const hideSnb = noSnb.includes(pathname);
   const hideFooter = noFooter.includes(pathname);
+  useEffect(() => {
+    window.onbeforeunload = function pushRefresh() {
+      window.scrollTo(0, 0);
+    };
+  }, []);
   return (
     <Root color={bgColor}>
       <GlobalStyle />
-      <GlobalNav />
+      <GlobalNav hamburger={hamburger} openHamburger={openHamburger} />
+      {hamburger && (
+        <SNBModal>
+          <SideNav />
+        </SNBModal>
+      )}
       <Body>
-        {hideSnb || <SideNav />}
+        {hideSnb || (
+          <SNBContainer>
+            <SideNav />
+          </SNBContainer>
+        )}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
@@ -64,8 +87,8 @@ function App() {
           {/* querystring으로 검색 결과 페이지 이동 (/search?q=springboot) */}
           <Route path="/search" element={<SearchResults />} />
           <Route path="/searchtag" element={<QuestionsTagged />} />
-          <Route path="/tags" element={<div>tags</div>} />
           <Route path="/users" element={<Users />} />
+          <Route path="/tags" element={<TagsTab />} />
           {/* id가 본인이면 마이페이지 */}
           <Route path={`/users/:id`} element={<div>users/:id</div>} />
         </Routes>
@@ -75,18 +98,29 @@ function App() {
   );
 }
 const Root = styled.section`
-  display: flex;
-  flex-direction: column;
-
   background-color: ${(props) => props.color};
-  width: 100%;
 `;
 
 const Body = styled.div`
   display: flex;
-  margin: 0 124px;
+  margin: 0 auto;
+  max-width: 1264px;
+  width: 100%;
   padding-top: 50px;
-  min-height: 80vh;
+`;
+
+const SNBContainer = styled.div`
+  @media screen and (max-width: 640px) {
+    display: none;
+  }
+`;
+
+const SNBModal = styled.div`
+  margin-top: 52px;
+  position: fixed;
+  background-color: white;
+  z-index: 1;
+  border-bottom: 1px solid var(--black-100);
 `;
 
 // const Main = styled.div`
