@@ -13,7 +13,7 @@ import padakmon.server.user.service.UserJoinService;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/sign-up")
 public class UserJoinController {
 
     private final UserJoinService userJoinService;
