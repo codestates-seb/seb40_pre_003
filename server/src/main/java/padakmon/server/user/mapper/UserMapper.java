@@ -7,4 +7,8 @@ import padakmon.server.user.entity.User;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
     User userSignUpDtoToUser(UserDto.SignUp signUpDto);
+
+    User patchMyPageDtoToUser(UserDto.PatchMyPage patchMyPageDto);
+
+    UserDto.UserPageResponse userToUserPageResponse(User user);
 }

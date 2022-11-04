@@ -37,15 +37,30 @@ public class UserDto {
 
     @Getter
     @Setter
-    public static class myPage { // 마이페이지 수정
+    public static class PatchMyPage { // 마이페이지 수정
 
         private byte[] image;
 
         @Size(min = 4, max = 15, message = "길이가 4이상 15이하여야 합니다.")
         @Pattern(regexp = "^(?=.*[a-zA-Z])[0-9a-zA-Z]*$", message = "영어 또는 영어+숫자의 조합만 입력할 수 있습니다.")
-        private String name;
+        private String displayName;
 
         @Size(max = 255, message = "255자까지 입력할 수 있습니다.")
         private String aboutMe;
+    }
+
+    @Setter
+    @Getter
+    public static class UserPageResponse {
+
+        private byte[] image;
+
+        private String displayName;
+
+        private String aboutMe;
+
+        private int questionCount;
+
+        private int answerCount;
     }
 }
