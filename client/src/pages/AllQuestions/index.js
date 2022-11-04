@@ -1,43 +1,55 @@
 // import { DummyData } from '../../components/Main/Data/DummyData';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-// import Pagination from 'react-js-pagination';
 
 import AskQuestionButton from '../../components/Buttons/AskQuestionButton';
 import QuestionsList from '../../components/Main/QuestionsList';
+import PaginationBar from '../../components/PaginationBar';
 import SideBarWidget from '../../components/SideBarWidget';
 import {
   Container,
-  Main,
   HomeHead,
+  Main,
   TopQuestionsTitle,
   Total,
 } from '../Home/style';
+import { PaginationContainer } from './style';
 
 const AllQuestions = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [homeData, setHomeData] = useState(null);
 
+  const [totalElements, setTotalElements] = useState(0);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPage] = useState(null);
+
   useEffect(() => {
     axios
-      .get('/api/questions', {
-        headers: {
-          'Content-Type': 'application/json;charset=UTF-8',
-          'Access-Control-Allow-Origin': '*',
-          'ngrok-skip-browser-warning': '111',
-        },
-      })
+      .get(
+        `/api/questions${page ? `?page=${page}` : ''}&size=15&order=newest`,
+        {
+          headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            'Access-Control-Allow-Origin': '*',
+            'ngrok-skip-browser-warning': '111',
+          },
+        }
+      )
       .then((res) => {
-        console.log('res : ', res.data);
+        // console.log('res : ', res.data);
         setHomeData(res.data);
         setTotalCount(res.data.questions.length);
+
+        setTotalPage(res.data.pageInfo.totalPages);
+        setTotalElements(res.data.pageInfo.totalElements);
+        window.scrollTo(0, 0);
       })
       .catch((error) => console.log('error : ', error));
-  }, []);
+  }, [page]);
 
-  // const handlePageChange = () => {
-  //   console.log('changed!');
-  // };
+  const handlePageChange = (e) => {
+    setPage(e);
+  };
 
   return (
     <Container>
@@ -52,14 +64,14 @@ const AllQuestions = () => {
           <span>{totalCount} questions</span>
         </Total>
         <QuestionsList homeData={homeData}></QuestionsList>
-        {/* <>PAGINATION</> */}
-        {/* <Pagination
-          activePage={1}
-          itemsCountPerPage={5}
-          totalItemsCount={300}
-          pageRangeDisplayed={5}
-          onChange={handlePageChange}
-        /> */}
+        <PaginationContainer>
+          <PaginationBar
+            page={page}
+            totalElements={totalElements}
+            handlePageChange={handlePageChange}
+            totalPages={totalPages}
+          />
+        </PaginationContainer>
       </Main>
       <SideBarWidget />
     </Container>

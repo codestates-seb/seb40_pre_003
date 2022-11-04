@@ -4,21 +4,25 @@
 import styled from 'styled-components';
 import QuestionsList from '../../components/Main/QuestionsList';
 
-import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import SideBarWidget from '../../components/SideBarWidget';
-import { HomeHead, TopQuestionsTitle, Total } from '../Home/style';
 import AskQuestionButton from '../../components/Buttons/AskQuestionButton';
+import SideBarWidget from '../../components/SideBarWidget';
+// import { DummyData } from '../../components/Main/Data/DummyData';
+// import Question from '../Question';
+import { HomeHead, TopQuestionsTitle, Total } from '../Home/style';
 
 const Container = styled.div`
   display: flex;
+  width: 100%;
   padding: 24px 24px 0 0;
 `;
 
 const Main = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1 1 auto;
 `;
 
 // // 제목, 버튼, 링크 묶음

@@ -1,6 +1,7 @@
 //import { Link, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/stackoverflow_logo.png';
+import shortlogo from '../../../assets/Stack_Overflow_icon.svg.png';
 import Search from '../Search';
 import {
   AferLoginIcons,
@@ -12,6 +13,7 @@ import {
   Logo,
   LogoContainer,
   RegiLink,
+  ShortLogo,
   SignupButton,
 } from './style';
 
@@ -21,8 +23,9 @@ import question from '../../../assets/images/question_icon.png';
 import trophy from '../../../assets/images/trophy_icon.png';
 import userimg from '../../../assets/images/userimg_icon.png';
 import HeaderModalButton from '../../HeaderModalButton';
+import Hamburger from './Hamburger';
 
-function GlobalNav() {
+function GlobalNav({ hamburger, openHamburger }) {
   // const navigate = useNavigate();
 
   //const isLogin = useSelector((state) => state.isLogin);
@@ -38,15 +41,17 @@ function GlobalNav() {
   return (
     <Header>
       <Container>
+        <Hamburger hamburger={hamburger} openHamburger={openHamburger} />
         <Link to={'/'}>
           <LogoContainer>
             <Logo src={logo} />
+            <ShortLogo src={shortlogo} />
           </LogoContainer>
         </Link>
         <ButtonContainer>
-          <Button>About</Button>
+          {isLogin === null && <Button>About</Button>}
           <Button>Products</Button>
-          <Button>For Teams</Button>
+          {isLogin === null && <Button>For Teams</Button>}
         </ButtonContainer>
         <Search />
         {isLogin !== null ? (
