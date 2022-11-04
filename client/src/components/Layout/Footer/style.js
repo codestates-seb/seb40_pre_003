@@ -10,7 +10,8 @@ export const FooterContainer = styled.footer`
 
 export const Container = styled.div`
   display: flex;
-  margin: 0 124px;
+  max-width: 1264px;
+  margin: 0 auto;
 `;
 
 export const LogoContainer = styled.div`
