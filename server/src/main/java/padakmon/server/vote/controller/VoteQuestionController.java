@@ -15,7 +15,8 @@ import javax.validation.Valid;
 public class VoteQuestionController {
     private VoteService voteService;
     @PostMapping
-    public ResponseEntity vote(@PathVariable(name = "question-id") long questionId, @RequestBody @Valid VoteDto.Post post) {
+    public ResponseEntity vote(@PathVariable(name = "question-id") long questionId,
+                               @Valid @RequestBody VoteDto.Post post) {
         VoteDto.Response response;
         if(post.getVote() == 1) {
             response = voteService.questionCountUp(questionId);

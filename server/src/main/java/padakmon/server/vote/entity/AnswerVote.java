@@ -18,16 +18,20 @@ public class AnswerVote{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long answerVoteId;
+
     //투표하면서 answer의 voteCount 변경 ->  persist
     //AnswerVote -> Answer 조회할 필요 없음
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "ANSWER_ID")
     private Answer answer;
+
     //AnswerVote -> User 조회할 필요 없음
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "USER_ID")
     private User user;
-    private int voteCount = 0;
+
+    private int voteCount;
+
     public void voteUp() {
         this.voteCount++;
     }

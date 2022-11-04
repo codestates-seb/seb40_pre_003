@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface TagMapper {
-    default public TagDto.response tagsToResponse(String orderMode, PageInfo pageInfo, List<Tag> tags) {
+    default TagDto.response tagsToResponse(String orderMode, PageInfo pageInfo, List<Tag> tags) {
         TagDto.response response = new TagDto.response();
 
         response.setOrderMode(orderMode);

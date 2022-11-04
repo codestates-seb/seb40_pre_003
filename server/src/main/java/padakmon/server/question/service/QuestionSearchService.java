@@ -28,7 +28,6 @@ public class QuestionSearchService {
         return questionRepository.findAll(pageRequest);
     }
 
-
     public QuestionSearchDto.SearchInfo getSearchInfo(String query, QuestionSearchDto.SearchInfo searchInfo) {
         String trimmedQuery = query.trim();
         //태그 검색
@@ -60,6 +59,11 @@ public class QuestionSearchService {
             case "popular":
                 return Order.POPULAR.orderMode;
 
+            case "reputation":
+                return Order.REPUTATION.orderMode;
+
+            case "voters":
+                return Order.VOTERS.orderMode;
         }
         throw new BusinessLogicException(ExceptionCode.NOT_VALID_ORDER);
     }

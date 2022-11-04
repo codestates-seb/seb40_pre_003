@@ -1,6 +1,9 @@
 package padakmon.server.user.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import padakmon.server.authority.utils.LoggedInUserInfoUtils;
@@ -41,9 +44,20 @@ public class UserPageService {
     private User verifySameUser(long userId) {
         User authorizedUser = userInfoUtils.extractUser();
 
-        if (userId != authorizedUser.getId()) {
+        if (userId != authorizedUser.getUserId()) {
             throw new BusinessLogicException("Editing my page", ExceptionCode.UNAUTHORIZED_USER, String.valueOf(userId));
         }
         return authorizedUser;
+    }
+
+    public Page<User> delegateFindUsers(String query, int page, int size, Sort sort) {
+        PageRequest pageRequest = PageRequest.of(page, size, sort);
+        Page<User> users;
+        if (query == null) {
+            users = userRepository.findAll(pageRequest);
+        } else {
+            users = userRepository.findByDisplayNameContaining(query.trim(), pageRequest);
+        }
+        return users;
     }
 }

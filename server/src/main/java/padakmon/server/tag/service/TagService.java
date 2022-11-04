@@ -18,7 +18,6 @@ import java.util.Optional;
 public class TagService {
     private TagRepository tagRepository;
 
-
     public Tag createOrUpdate(String tagName) {
         //태그 이름 정제
         String trimmedName = tagName.toLowerCase().trim();
@@ -65,5 +64,4 @@ public class TagService {
         LocalDateTime weekStart = LocalDateTime.of(LocalDate.now().minusWeeks(1), LocalTime.of(0, 0, 0));
         return tagRepository.calculateQuestionAfterDate(tagId, weekStart);
     }
-
 }

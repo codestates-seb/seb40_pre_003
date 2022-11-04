@@ -8,7 +8,7 @@ import padakmon.server.user.entity.User;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-04T17:43:30+0900",
+    date = "2022-11-04T19:14:11+0900",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 11.0.16 (Azul Systems, Inc.)"
 )
 @Component
@@ -61,8 +61,8 @@ public class UserMapperImpl implements UserMapper {
         }
         userPageResponse.setDisplayName( user.getDisplayName() );
         userPageResponse.setAboutMe( user.getAboutMe() );
-        userPageResponse.setQuestionCount( user.getQuestionCount() );
-        userPageResponse.setAnswerCount( user.getAnswerCount() );
+        userPageResponse.setQuestionCount( (int) user.getQuestionCount() );
+        userPageResponse.setAnswerCount( (int) user.getAnswerCount() );
 
         return userPageResponse;
     }

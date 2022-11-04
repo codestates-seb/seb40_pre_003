@@ -29,15 +29,11 @@ public class AnswerService {
 
     public void delete(long answerId, long questionId) throws Exception {
         //접속한 사람이 썼는가?
-        long userId = loggedInUserInfoUtils.extractUserId();
-        Answer answer = verifyAnswer(answerId);
-        if(answer.getUser().getUserId() != userId) {
-            throw new BusinessLogicException("Editing the question", ExceptionCode.NOT_A_WRITER, String.valueOf(userId));
-        }
+        Answer answer = verifyIfSameWriter(answerId);
 
         //User에 AnswerCount 하나 down
         //TODO: verify 메서드 기범님 파트 껄 끌어다 쓰기
-        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("존재 하지 않는 회원이다."));
+        User user = loggedInUserInfoUtils.extractUser();
         user.setAnswerCount(user.getAnswerCount() - 1);
         //Question에 AnswerCount 하나 down
         Question question = questionService.read(questionId);
@@ -69,12 +65,12 @@ public class AnswerService {
         Optional<Answer> optionalAnswer = answerRepository.findById(answerId);
         return optionalAnswer.orElseThrow(() -> new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
     }
-    public Answer create(long questionId, Answer answer) throws Exception {
+    public Answer create(long questionId, Answer answer) {
         //User에 AnswerCount 하나 up
-        long userId = loggedInUserInfoUtils.extractUserId();
         //TODO: verify 메서드 기범님 파트 껄 끌어다 쓰기
-        User user = userRepository.findById(userId).orElseThrow(() -> new Exception("존재 하지 않는 회원이다."));
+        User user = loggedInUserInfoUtils.extractUser();
         user.setAnswerCount(user.getAnswerCount() + 1);
+
         //Question에 AnswerCount 하나 up
         Question question = questionService.read(questionId);
         question.setAnswerCount(question.getAnswerCount() + 1);
@@ -93,6 +89,7 @@ public class AnswerService {
         answer.setUser(user);
         return answerRepository.save(answer);
     }
+
     public List<Answer> getAnswersOfQuestion(Question question) {
         return answerRepository.findAllByQuestion(question);
     }

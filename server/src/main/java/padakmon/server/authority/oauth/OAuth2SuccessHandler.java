@@ -69,7 +69,7 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         return UriComponentsBuilder
                 .newInstance()
                 .scheme("http")
-                .host("padakmon-client-bucket.s3-website.ap-northeast-2.amazonaws.com")
+                .host("padakmon-client-bucket.s3-website.ap-northeast-2.amazonaws.com") // TODO 환경변수
                 .port(80)
                 .path("/login")
                 .queryParams(queryParams)

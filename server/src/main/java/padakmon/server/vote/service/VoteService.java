@@ -26,8 +26,6 @@ public class VoteService {
     private QuestionVoteRepository questionVoteRepository;
     private AnswerService answerService;
     private LoggedInUserInfoUtils userInfoUtils;
-    private QuestionRepository questionRepository;
-    private AnswerRepository answerRepository;
 
     public VoteDto.Response answerCountUp(long answerId) {
         //이 회원이 이 답변에 누른 vote 객체 추출. 없으면 새로 만듦
