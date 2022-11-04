@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/sign-up")
 public class UserJoinController {
 
     private final UserJoinService userJoinService;

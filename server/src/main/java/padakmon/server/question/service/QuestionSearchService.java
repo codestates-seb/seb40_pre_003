@@ -41,18 +41,27 @@ public class QuestionSearchService {
         }
         return searchInfo;
     }
-    public String getOrderMode(String order) {
-        if (Order.NEWEST.orderParam.equals(order)) {
-            return Order.NEWEST.orderMode;
-        } else if (Order.SCORE.orderParam.equals(order)) {
-            return Order.SCORE.orderMode;
-        } else {
-            throw new BusinessLogicException(ExceptionCode.NOT_VALID_ORDER);
-        }
-    }
 
-    public String getOrderModeDefault() {
-        return Order.NEWEST.orderMode;
+    public String getOrderMode(String orderParam) {
+        if(orderParam == null) {
+            return Order.NEWEST.orderMode;
+        }
+
+        switch(orderParam) {
+            case "score":
+                return Order.SCORE.orderMode;
+
+            case "newest":
+                return Order.NEWEST.orderMode;
+
+            case "name":
+                return Order.NAME.orderMode;
+
+            case "popular":
+                return Order.POPULAR.orderMode;
+
+        }
+        throw new BusinessLogicException(ExceptionCode.NOT_VALID_ORDER);
     }
 
     public Page<Question> delegateSearch(String query, int page, int size, Sort sort) {

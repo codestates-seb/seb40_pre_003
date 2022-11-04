@@ -12,6 +12,10 @@ import java.util.stream.Collectors;
 public interface UserMapper {
     User userSignUpDtoToUser(UserDto.SignUp signUpDto);
 
+    User patchMyPageDtoToUser(UserDto.PatchMyPage patchMyPageDto);
+
+    UserDto.UserPageResponse userToUserPageResponse(User user);
+
     default UserDto.Info userToUserInfo(User user) {
         UserDto.Info info = new UserDto.Info();
         info.setUserId(user.getUserId());

@@ -30,6 +30,11 @@ jobs:
     - name: Install modules
       run: npm install --save-dev prettier --legacy-peer-deps
       working-directory: ${{ env.working-directory }}
+
+    - name: Set .env
+      run: |
+        touch ${{ env.working-directory }}/.env
+        echo "REACT_APP_API_URL=${{ secrets.EC2_URL }}" > ${{ env.working-directory }}/.env
       
     - name: Build project
       run: npm run build

@@ -30,7 +30,7 @@ public class QuestionSearchController {
 
     @GetMapping
     public ResponseEntity getTopQuestions() {
-        String orderMode = questionSearchService.getOrderModeDefault();
+        String orderMode = questionSearchService.getOrderMode(null);
         Page<Question> questionPage =questionSearchService.findQuestions(0, 20, Sort.by(orderMode).descending());
         List<Question> questions = questionPage.getContent();
 
@@ -46,12 +46,7 @@ public class QuestionSearchController {
                                         @Positive @RequestParam(name = "page", required = false, defaultValue = "1") int page,
                                         @Positive @RequestParam(name = "size", required = false, defaultValue = "15") int size) {
 
-        String orderMode;
-        if (order == null) {
-            orderMode = questionSearchService.getOrderModeDefault();
-        } else {
-            orderMode = questionSearchService.getOrderMode(order);
-        }
+        String orderMode = questionSearchService.getOrderMode(order);
 
         //쿼리가 있으면 쿼리로 검색하고 아니면 최근껄로 뿌림.
         Page<Question> questionPage;

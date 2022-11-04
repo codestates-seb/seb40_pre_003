@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import padakmon.server.dto.PageInfo;
 import padakmon.server.question.service.Order;
+import padakmon.server.question.service.QuestionSearchService;
 import padakmon.server.tag.dto.TagDto;
 import padakmon.server.tag.entity.Tag;
 import padakmon.server.tag.mapper.TagMapper;
@@ -24,6 +25,7 @@ import javax.validation.constraints.Positive;
 public class TagController {
     private final TagService tagService;
     private final TagMapper tagMapper;
+    private final QuestionSearchService questionSearchService;
 
     @GetMapping
     public ResponseEntity get(@RequestParam(name = "query", required = false) String query,
@@ -31,7 +33,7 @@ public class TagController {
                               @Positive @RequestParam(name = "page", required = false, defaultValue = "1") int page,
                               @Positive @RequestParam(name = "size", required = false, defaultValue = "15") int size) {
         //오더 모드
-        String orderMode = Order.getOrderMode(order);
+        String orderMode = questionSearchService.getOrderMode(order);
 
         //쿼리가 있으면 쿼리로 검색하고 아니면 최근껄로 뿌림.
         Page<Tag> tags = tagService.delegateFindTags(query, page - 1, size, Sort.by(orderMode).descending());
