@@ -30,10 +30,13 @@ public class User extends CreatedOnlyAuditable implements Principal {
 
     @Column(name = "DISPLAY_NAME", nullable = false, unique = true, length = 15)
     private String displayName;
+
     @Column(columnDefinition = "INTEGER default 0")
     private long questionCount;
+
     @Column(columnDefinition = "INTEGER default 0")
     private long answerCount;
+
     @Column(columnDefinition = "INTEGER default 0")
     private long voteCount;
 

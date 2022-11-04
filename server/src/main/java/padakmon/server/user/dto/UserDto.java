@@ -66,6 +66,7 @@ public class UserDto {
         private int questionCount;
 
         private int answerCount;
+    }
 
     @Getter
     @Setter

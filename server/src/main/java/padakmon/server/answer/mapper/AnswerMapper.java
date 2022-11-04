@@ -6,6 +6,6 @@ import padakmon.server.answer.entity.Answer;
 
 @Mapper(componentModel = "spring")
 public interface AnswerMapper {
-    public Answer postToEntity(AnswerDto.Post post);
-    public Answer patchToEntity(AnswerDto.Patch patch);
+    Answer postToEntity(AnswerDto.Post post);
+    Answer patchToEntity(AnswerDto.Patch patch);
 }
