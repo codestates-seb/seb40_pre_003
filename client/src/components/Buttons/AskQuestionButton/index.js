@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
+import { isLogin } from '../../../util/isLogin';
 import { QuestionButton } from './style';
 
 function AskQuestionButton() {
-  const isLogin = localStorage.getItem('accesstoken');
   let to;
-  if (isLogin) {
+  if (isLogin()) {
     to = '/questions/ask';
   } else {
     to = '/login';

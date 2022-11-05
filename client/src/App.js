@@ -5,7 +5,7 @@ import GlobalStyle from './assets/GlobalStyle';
 import Footer from './components/Layout/Footer';
 import GlobalNav from './components/Layout/GlobalNav';
 import SideNav from './components/Layout/SideNav';
-import AskQuestion from './pages/AskQuestion/index';
+import AskQuestion from './pages/AskQuestion';
 import Home from './pages/Home'; // 잠시 주석처리
 import Edit from './pages/Questions/Edit';
 import QuestionContent from './pages/Questions/QuestionContent';
@@ -17,9 +17,9 @@ import AllQuestions from './pages/AllQuestions';
 import QuestionsTagged from './pages/QuestionsTagged';
 import Login from './pages/Register/Login';
 import Signup from './pages/Register/Signup';
-import Users from './pages/Users';
-import TagsTab from './pages/TagsTab';
 import SearchTip from './pages/SearchResults/AdvancedSearchTips/SearchTip';
+import TagsTab from './pages/TagsTab';
+import Users from './pages/Users';
 
 function App() {
   const { pathname } = useLocation();
@@ -109,6 +109,7 @@ const Body = styled.div`
   max-width: 1264px;
   width: 100%;
   padding-top: 50px;
+  min-height: calc(100vh - 332px);
 `;
 
 const SNBContainer = styled.div`
@@ -118,6 +119,9 @@ const SNBContainer = styled.div`
 `;
 
 const SNBModal = styled.div`
+  @media screen and (min-width: 640px) {
+    display: none;
+  }
   margin-top: 52px;
   position: fixed;
   background-color: white;

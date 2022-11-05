@@ -9,7 +9,7 @@ import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import removeMarkdown from 'markdown-to-text';
 import { Link } from 'react-router-dom';
-import { getPrettyTime } from '../../ContentLayout/WriterProfile';
+import { getPrettyTime } from '../../../util/getPrettyTime';
 import './index.css';
 
 // ------------ Question.js  각 질문들 컴포넌트 -------
