@@ -55,7 +55,7 @@ const Signup = () => {
     return (
       axios
         //.post(`${process.env.어쩌고환경변수}/회원가입주소`, {
-        .post(`/api/users`, {
+        .post(`/api/sign-up`, {
           displayName: displayName,
           email: email,
           password: password,
