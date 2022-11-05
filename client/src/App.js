@@ -19,6 +19,7 @@ import Login from './pages/Register/Login';
 import Signup from './pages/Register/Signup';
 import Users from './pages/Users';
 import TagsTab from './pages/TagsTab';
+import SearchTip from './pages/SearchResults/AdvancedSearchTips/SearchTip';
 
 function App() {
   const { pathname } = useLocation();
@@ -86,6 +87,7 @@ function App() {
           <Route path={`/questions/edit/:id/:answerid`} element={<Edit />} />
           {/* querystring으로 검색 결과 페이지 이동 (/search?q=springboot) */}
           <Route path="/search" element={<SearchResults />} />
+          <Route path="/searchtip" element={<SearchTip />} />
           <Route path="/searchtag" element={<QuestionsTagged />} />
           <Route path="/users" element={<Users />} />
           <Route path="/tags" element={<TagsTab />} />

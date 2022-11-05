@@ -1,7 +1,6 @@
 package padakmon.server.question.controller;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,6 @@ import padakmon.server.question.dto.QuestionDto;
 import padakmon.server.question.entity.Question;
 import padakmon.server.question.mapper.QuestionMapper;
 import padakmon.server.question.service.QuestionService;
-import padakmon.server.tag.service.TagService;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
@@ -22,7 +20,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/questions")
 @Validated
-@Slf4j
 @AllArgsConstructor
 public class QuestionController {
     private final QuestionService questionService;
@@ -30,14 +27,15 @@ public class QuestionController {
     private final QuestionMapper mapper;
 
     @PostMapping
-    public ResponseEntity post(@RequestBody @Valid QuestionDto.Post post) {
+    public ResponseEntity postQuestion(@Valid @RequestBody QuestionDto.Post post) {
         Question question = questionService.create(mapper.postToEntity(post), post.getTags());
         QuestionDto.SuccessResponse response = mapper.EntityToSuccessResponse(question);
+
         return new ResponseEntity(response, HttpStatus.CREATED);
     }
 
     @GetMapping("/{question-id}")
-    public ResponseEntity get(@PathVariable(name = "question-id") @Positive long questionId) {
+    public ResponseEntity getQuestion(@Positive @PathVariable("question-id") long questionId) {
         Question question = questionService.read(questionId);
         List<Answer> answers = answerService.getAnswersOfQuestion(question);
 
@@ -46,16 +44,16 @@ public class QuestionController {
     }
 
     @PatchMapping("/{question-id}")
-    public ResponseEntity patch(@PathVariable(name = "question-id") @Positive long questionId,
-                                @RequestBody @Valid QuestionDto.Patch patch) {
+    public ResponseEntity patchQuestion(@Positive @PathVariable("question-id") long questionId,
+                                        @Valid @RequestBody QuestionDto.Patch patch) {
         Question question = questionService.update(mapper.patchToEntity(patch), patch.getTags(), questionId);
         QuestionDto.SuccessResponse response = mapper.EntityToSuccessResponse(question);
         return new ResponseEntity(response, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{question-id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void delete(@PathVariable(name = "question-id") @Positive long questionId) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteQuestion(@Positive @PathVariable("question-id") long questionId) {
 
         questionService.delete(questionId);
     }

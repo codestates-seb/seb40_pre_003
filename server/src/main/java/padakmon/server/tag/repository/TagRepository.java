@@ -13,11 +13,13 @@ import java.util.Optional;
 
 @Repository
 public interface TagRepository extends JpaRepository<Tag, Long> {
-    public Optional<Tag> findByName(String name);
-    public Page<Tag> findByNameContaining(String name, Pageable pageable);
+    Optional<Tag> findByName(String name);
+
+    Page<Tag> findByNameContaining(String name, Pageable pageable);
+
     @Query("SELECT t.description FROM Tag t WHERE t.name = :name")
-    public String getDescription(@Param("name") String name);
+    String getDescription(@Param("name") String name);
 
     @Query("SELECT COUNT(t.tagId) FROM Tag t INNER JOIN t.questionTags qt INNER JOIN qt.question q WHERE t.tagId = :tagId AND q.createdAt >= :date")
-    public long calculateQuestionAfterDate(@Param("tagId") long tagId, @Param("date") LocalDateTime date);
+    long calculateQuestionAfterDate(@Param("tagId") long tagId, @Param("date") LocalDateTime date);
 }

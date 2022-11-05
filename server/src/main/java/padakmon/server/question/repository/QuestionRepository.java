@@ -15,14 +15,11 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
 
     @Query(value = "SELECT q FROM Question q WHERE q.title LIKE %:query% OR q.body LIKE %:query%")
     Page<Question> search(@Param("query") String query, Pageable pageable);
-    //select
-    //from
-    //where
 
     @Query(value = "SELECT q FROM Question q INNER JOIN q.questionTags qt INNER JOIN qt.tag t WHERE t.name = :query")
     Page<Question> tagSearch(@Param("query") String query, Pageable pageable);
 
-    @Query(value = "SELECT q FROM Question q INNER JOIN q.user u WHERE u.id = :query")
+    @Query(value = "SELECT q FROM Question q INNER JOIN q.user u WHERE u.userId = :query")
     Page<Question> userSearch(@Param("query") long query, Pageable pageable);
 
     @Query(value = "SELECT q FROM Question q WHERE q.answerCount = 0")
