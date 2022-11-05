@@ -5,7 +5,6 @@
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './style.css';
-// import TitleEditor from '../../components/TitleEditor';
 import axios from 'axios';
 import { useRef } from 'react';
 import { useSelector } from 'react-redux';
@@ -35,14 +34,6 @@ const AskQuestion = () => {
 
   const body = useSelector((state) => state.askReducer.body);
   const tags = useSelector((state) => state.askReducer.tags);
-
-  // const outputTitle = () => {
-  //   console.log(titleInputValue.current.value);
-  // };
-
-  // const outputTag = () => {
-  //   // console.log(tagInputValue.current.value);
-  // };
 
   function handleSubmit() {
     console.log(titleInputValue.current.value);
@@ -130,7 +121,6 @@ const AskQuestion = () => {
           placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
           ref={titleInputValue}
         />
-        {/* <button onClick={outputTitle}>Next</button> */}
       </InputTitleDiv>
       <ToastDiv>
         <div>
@@ -150,13 +140,7 @@ const AskQuestion = () => {
             typing to see suggestions.
           </p>
         </div>
-        {/* <input
-          type="text"
-          placeholder="e.g (excel string regex)"
-          ref={tagInputValue}
-        /> */}
         <TagInput />
-        {/* <button onClick={outputTag}>Next</button> */}
       </TagDiv>
       <button onClick={handleSubmit}>Submit your question</button>
     </AskQuestionDiv>
