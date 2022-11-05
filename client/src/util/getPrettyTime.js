@@ -24,7 +24,9 @@ export function getPrettyTime(dateObj) {
   let postedTime = dateObj.getTime();
 
   let secDiff = Math.floor((nowTime - postedTime) / 1000);
-  if (secDiff < 60) {
+  if (secDiff <= 0) {
+    return `now`;
+  } else if (secDiff < 60) {
     return `${secDiff} sec${secDiff === 1 ? '' : 's'} ago`;
   }
   let minDiff = Math.floor(secDiff / 60);
