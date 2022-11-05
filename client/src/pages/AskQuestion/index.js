@@ -4,14 +4,13 @@
 // import styled from 'styled-components';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './style.css';
-// import TitleEditor from '../../components/TitleEditor';
 import axios from 'axios';
-import { useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import TagInput from '../../components/TagInput';
 import ToastEditor from '../../components/ToastEditor';
+import { askTagsAction } from '../../redux';
 import {
   AskQuestionDiv,
   AskQuestionHead,
@@ -26,23 +25,19 @@ import {
   TagDiv,
   ToastDiv,
 } from './style';
+import './style.css';
 
 const AskQuestion = () => {
   const navigate = useNavigate();
   const titleInputValue = useRef();
-  // const bodyInputValue = useRef();
-  // const tagInputValue = useRef();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(askTagsAction([]));
+  }, []);
 
   const body = useSelector((state) => state.askReducer.body);
   const tags = useSelector((state) => state.askReducer.tags);
-
-  // const outputTitle = () => {
-  //   console.log(titleInputValue.current.value);
-  // };
-
-  // const outputTag = () => {
-  //   // console.log(tagInputValue.current.value);
-  // };
 
   function handleSubmit() {
     console.log(titleInputValue.current.value);
@@ -130,7 +125,6 @@ const AskQuestion = () => {
           placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
           ref={titleInputValue}
         />
-        {/* <button onClick={outputTitle}>Next</button> */}
       </InputTitleDiv>
       <ToastDiv>
         <div>
@@ -150,13 +144,7 @@ const AskQuestion = () => {
             typing to see suggestions.
           </p>
         </div>
-        {/* <input
-          type="text"
-          placeholder="e.g (excel string regex)"
-          ref={tagInputValue}
-        /> */}
         <TagInput />
-        {/* <button onClick={outputTag}>Next</button> */}
       </TagDiv>
       <button onClick={handleSubmit}>Submit your question</button>
     </AskQuestionDiv>
