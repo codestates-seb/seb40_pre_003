@@ -1,22 +1,22 @@
-package padakmon.server.search;
+package padakmon.server.repository.questionRepository;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import padakmon.server.question.entity.Question;
 import padakmon.server.question.repository.QuestionRepository;
 
-@SpringBootTest
+@DataJpaTest
 public class SearchTest {
     @Autowired
     private QuestionRepository questionRepository;
     @Test
     public void search() {
         PageRequest pageRequest = PageRequest.of(0, 10, Sort.by("createdAt"));
-        Page<Question> response = questionRepository.search("ABC", pageRequest);
+        Page<Question> response = questionRepository.search("hi", pageRequest);
         System.out.println(response.getContent().get(0).getTitle());
     }
 

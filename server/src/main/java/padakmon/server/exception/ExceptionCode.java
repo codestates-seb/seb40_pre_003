@@ -13,7 +13,9 @@ public enum ExceptionCode {
     EMAIL_EXISTS(409, "Email already exists"),
     DISPLAY_NAME_EXISTS(409, "Display name already exists"),
     NOT_A_WRITER(403, "You are not write this"),
-    NOT_VALID_ORDER(400, "Order not valid");
+    NOT_VALID_ORDER(400, "Order not valid"),
+    UNAUTHORIZED_USER(401,"You are Unauthorized");
+
     private int code;
     private String description;
 }
