@@ -33,6 +33,9 @@ export const Categories = styled.div`
   padding-bottom: 24px;
   height: 254px;
   width: 100%;
+  @media screen and (max-width: 980px) {
+    flex-direction: column;
+  }
 `;
 
 export const Category = styled.h5`
