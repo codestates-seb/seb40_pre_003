@@ -25,7 +25,7 @@ const QuBox = styled.div`
 const QuList = styled.li`
   display: flex;
   margin-top: 10px;
-  height: 118px;
+  height: 105px;
 `;
 
 // 질문 -> 왼쪽섹션 -> 투표,조회수,답변수
@@ -72,6 +72,12 @@ const QuestionTitle = styled(Link)`
   text-decoration: none;
   color: #0063bf;
   font-weight: 500;
+  word-break: break-all;
+  overflow: hidden; // 사용해 넘치는 값들의 영역을(보이는것을) 감춘다!
+  text-overflow: ellipsis; // 로 ... 을 만들기
+  display: -webkit-box; // 몇줄이상부터 ... 쓸건지 하기전에 얘 추가
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
   cursor: pointer;
 `;
 
@@ -80,9 +86,8 @@ const QuestionText = styled.p`
   font-size: 13px;
   margin-top: 5px;
   word-break: break-all;
-  overflow: hidden; // 사용해 영역을 감출 것 ?
+  overflow: hidden; // 사용해 넘치는 값들의 영역을(보이는것을) 감춘다!
   text-overflow: ellipsis; // 로 ... 을 만들기
-  /* white-space: nowrap; // 아래줄로 내려가는 거 막는것 여기선 안씀! */
   display: -webkit-box; // 몇줄이상부터 ... 쓸건지 하기전에 얘 추가
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -98,7 +103,14 @@ const TagInfoFooter = styled.footer`
 
 // 오른쪽섹션 -> footer 내부 -> 태그박스
 const TagBox = styled.div`
+  width: 360px;
   height: 27px;
+  word-break: break-all;
+  overflow: hidden; // 사용해 넘치는 값들의 영역을(보이는것을) 감춘다!
+  text-overflow: ellipsis; // 로 ... 을 만들기
+  display: -webkit-box; // 몇줄이상부터 ... 쓸건지 하기전에 얘 추가
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 `;
 // 오른쪽섹션->footer->태그박스-> 버튼태그
 const TagBtn = styled.button`
@@ -111,6 +123,7 @@ const TagBtn = styled.button`
   text-align: center;
   font-size: 12px;
   color: rgb(57, 115, 157);
+
   cursor: pointer;
 `;
 
