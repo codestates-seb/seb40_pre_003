@@ -26,12 +26,12 @@ const AllQuestions = () => {
   useEffect(() => {
     axios
       .get(
-        `/api/questions${page ? `?page=${page}` : ''}&size=15&order=newest`,
+        `http://ec2-3-37-123-253.ap-northeast-2.compute.amazonaws.com:8080/api/questions${
+          page ? `?page=${page}` : ''
+        }&size=15&order=newest`,
         {
           headers: {
             'Content-Type': 'application/json;charset=UTF-8',
-            'Access-Control-Allow-Origin': '*',
-            'ngrok-skip-browser-warning': '111',
           },
         }
       )
