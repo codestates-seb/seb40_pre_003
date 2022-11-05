@@ -24,6 +24,7 @@ export default function Logout() {
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('googleAccessToken');
     localStorage.removeItem('googleRefreshToken');
+    localStorage.removeItem('displayname');
 
     console.log(localStorage);
     navigate('/');

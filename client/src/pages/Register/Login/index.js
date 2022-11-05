@@ -93,9 +93,10 @@ export default function Login() {
   // }, []);
 
   const onClick = () => {
-    location.href(
-      'https://50de-2001-e60-875c-55fc-a458-e696-b3e9-e1b2.jp.ngrok.io/oauth2/authorization/google'
+    window.location.assign(
+      'https://50de-2001-e60-875c-55fc-a458-e696-b3e9-e1b2.jp.ngrok.io/'
     );
+
     //구글로그인 리다이렉트 후 진행사항
     let googleAccessToken = new URL(location.href).searchParams.get(
       'access_token'
@@ -105,9 +106,11 @@ export default function Login() {
     );
     console.log('구글액세스토큰', googleAccessToken);
     console.log('구글리프레시토큰', googleRefreshToken);
-    localStorage.setItem('googleAccessToken', googleAccessToken);
-    localStorage.setItem('googleRefreshToken', googleRefreshToken);
-    navigate('/');
+    if (googleAccessToken !== null) {
+      localStorage.setItem('googleAccessToken', googleAccessToken);
+      localStorage.setItem('googleRefreshToken', googleRefreshToken);
+      navigate('/');
+    }
   };
 
   return (
@@ -124,9 +127,7 @@ export default function Login() {
         <div>
           <button onClick={onClick}>
             <FcGoogle className="icons" size={22} />
-            {/* <a href="https://50de-2001-e60-875c-55fc-a458-e696-b3e9-e1b2.jp.ngrok.io/oauth2/authorization/google">
-              Log in with Google
-            </a> */}
+            Log in with Google
           </button>
 
           <button id="github_login">
