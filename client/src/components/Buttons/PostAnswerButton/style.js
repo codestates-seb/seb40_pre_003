@@ -14,4 +14,7 @@ export const AnswerButton = styled.button`
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
   outline: none;
   cursor: pointer;
+  :disabled {
+    cursor: not-allowed;
+  }
 `;

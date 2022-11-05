@@ -1,3 +1,4 @@
+import { getPrettyDateAgo } from '../../util/getPrettyDateAgo';
 import AskQuestionButton from '..//Buttons/AskQuestionButton';
 import {
   Container,
@@ -10,6 +11,9 @@ import {
 } from './style';
 
 function QuestionHeader({ testdata }) {
+  let asked = getPrettyDateAgo(new Date(testdata.createdAt));
+  let modified = getPrettyDateAgo(new Date(testdata.modifiedAt));
+
   return (
     testdata && (
       <Container>
@@ -20,11 +24,11 @@ function QuestionHeader({ testdata }) {
         <FiguresContainer>
           <Figure>
             <FigureName>Asked</FigureName>
-            <FigureContent>today</FigureContent>
+            <FigureContent>{asked}</FigureContent>
           </Figure>
           <Figure>
             <FigureName>Modified</FigureName>
-            <FigureContent>today</FigureContent>
+            <FigureContent>{modified}</FigureContent>
           </Figure>
           <Figure>
             <FigureName>Viewed</FigureName>

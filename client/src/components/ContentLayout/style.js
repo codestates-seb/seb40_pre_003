@@ -17,4 +17,7 @@ export const ContentBody = styled.div`
   flex-direction: column;
   width: 100%;
   flex: 1 1 auto;
+  p {
+    max-width: 670px;
+  }
 `;
