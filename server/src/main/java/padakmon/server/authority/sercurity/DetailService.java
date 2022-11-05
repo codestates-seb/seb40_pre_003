@@ -7,8 +7,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import padakmon.server.authority.utils.UserAuthorityUtils;
-import padakmon.server.exception.BusinessLogicException;
-import padakmon.server.exception.ExceptionCode;
 import padakmon.server.user.entity.User;
 import padakmon.server.user.repository.UserRepository;
 
@@ -38,7 +36,7 @@ public class DetailService implements UserDetailsService {
     private final class DetailsForUser extends User implements UserDetails { // User 정보
 
         public DetailsForUser(User user) {
-            setId(user.getId());
+            setUserId(user.getUserId());
             setEmail(user.getEmail());
             setDisplayName(user.getDisplayName());
             setPassword(user.getPassword());

@@ -4,7 +4,9 @@ public enum Order {
     SCORE("score", "voteScore"),
     NEWEST("newest", "createdAt"),
     NAME("name", "tagName"),
-    POPULAR("popular", "questionCount");
+    POPULAR("popular", "questionCount"),
+    REPUTATION("reputation", "questionCount"),
+    VOTERS("voters", "voteCount");
 
     public String orderParam;
     public String orderMode;
@@ -13,23 +15,5 @@ public enum Order {
         this.orderParam = orderParam;
         this.orderMode = orderMode;
     }
-
-    public static String getOrderMode(String orderParam) {
-        if(orderParam == null) {
-            return NEWEST.orderMode;
-        }
-        String orderMode = null;
-        switch(orderParam) {
-            case "score":
-                orderMode = SCORE.orderMode;
-            case "newest":
-                orderMode = NEWEST.orderMode;
-            case "name":
-                orderMode = NAME.orderMode;
-            case "popular":
-                orderMode = POPULAR.orderMode;
-
-        }
-        return orderMode;
-    }
 }
+

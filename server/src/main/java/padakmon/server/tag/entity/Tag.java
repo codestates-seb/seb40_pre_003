@@ -19,14 +19,20 @@ public class Tag extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tagId;
+
     @Column(unique = true)
     private String name;
+
     @Lob
     private String description;
+
     private Long questionCount = 1L;
+
     private Long questionCountWeek;
+
     private Long questionCountToday;
-    @OneToMany(mappedBy = "tag", fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "tag")
     private Set<QuestionTag> questionTags = new HashSet<>();
 
     public void addQuestionCountByOne() {

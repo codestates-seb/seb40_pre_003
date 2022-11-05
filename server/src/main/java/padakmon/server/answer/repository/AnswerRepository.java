@@ -6,9 +6,8 @@ import padakmon.server.answer.entity.Answer;
 import padakmon.server.question.entity.Question;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface AnswerRepository extends JpaRepository<Answer, Long> {
-    public List<Answer> findAllByQuestion(Question question);
+    List<Answer> findAllByQuestion(Question question);
 }

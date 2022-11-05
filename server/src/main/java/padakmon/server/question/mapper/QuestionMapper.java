@@ -46,8 +46,8 @@ public interface QuestionMapper {
                     answerResponse.setCreatedAt(answer.getCreatedAt());
 
                     QuestionDto.UserInQuestion userOfAnswer = new QuestionDto.UserInQuestion();
-                    user.setDisplayName(answer.getUser().getDisplayName());
-                    answerResponse.setUser(user);
+                    userOfAnswer.setDisplayName(answer.getUser().getDisplayName());
+                    answerResponse.setUser(userOfAnswer);
                     return answerResponse;
                 })
                 .collect(Collectors.toList());
