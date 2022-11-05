@@ -107,6 +107,7 @@ const Body = styled.div`
   max-width: 1264px;
   width: 100%;
   padding-top: 50px;
+  min-height: calc(100vh - 332px);
 `;
 
 const SNBContainer = styled.div`
