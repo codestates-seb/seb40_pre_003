@@ -92,6 +92,7 @@ public class SecurityConfiguration {
         configuration.setAllowedMethods(List.of("GET", "POST", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*", "Authorization"));
         configuration.setAllowCredentials(true);
+        configuration.setExposedHeaders(List.of("AccessToken", "RefreshToken", "Id", "DisplayName"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
