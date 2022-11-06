@@ -16,6 +16,7 @@ import { ButtonContainer, Container, Header, NeedLogin } from './style';
 // import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 // import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 // import 'tui-color-picker/dist/tui-color-picker.css';
+const URL = process.env.REACT_APP_API_URL;
 
 function WriteAnswer() {
   const { id } = useParams();
@@ -25,7 +26,7 @@ function WriteAnswer() {
     const markdownValue = editorRef.current.getInstance().getMarkdown();
     axios
       .post(
-        `/api/questions/${id}/answers`,
+        `${URL}/api/questions/${id}/answers`,
         {
           contents: markdownValue,
         },

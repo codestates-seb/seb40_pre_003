@@ -26,6 +26,7 @@ import {
   ToastDiv,
 } from './style';
 import './style.css';
+const URL = process.env.REACT_APP_API_URL;
 
 const AskQuestion = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const AskQuestion = () => {
     let title = titleInputValue.current.value;
     axios
       .post(
-        '/api/questions',
+        `${URL}/api/questions`,
         {
           title: title,
           body: body,

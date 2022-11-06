@@ -20,6 +20,7 @@ import {
   Text,
   ToastDiv,
 } from './style';
+const URL = process.env.REACT_APP_API_URL;
 
 function Edit() {
   const navigate = useNavigate();
@@ -48,13 +49,13 @@ function Edit() {
     let uri, reqBody;
 
     if (answerid) {
-      uri = `/api/questions/${id}/answers/${answerid}`;
+      uri = `${URL}/api/questions/${id}/answers/${answerid}`;
       reqBody = {
         contents: newBody,
       };
     } else {
       let newTitle = titleInputValue.current.value;
-      uri = `/api/questions/${id}`;
+      uri = `${URL}/api/questions/${id}`;
       reqBody = {
         title: newTitle,
         body: newBody,
