@@ -8,6 +8,7 @@ import { LoginBlock } from './style';
 
 import axios from 'axios';
 import { loginAction } from '../../../redux';
+const url = process.env.REACT_APP_API_URL;
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -49,7 +50,7 @@ export default function Login() {
 
     //로그인한 유저를 처음으로 서버에 등록: post요청 -> 앞으로 확인할 때는 get요청
     axios
-      .post(`/api/auth/login`, loginData, loginConfig)
+      .post(`${url}/api/auth/login`, loginData, loginConfig)
       // json-server용 json-server --watch mockData.json --port 8080
       // .post(`http://localhost:8080/users`, loginData, loginConfig)
       .then((res) => {
@@ -80,7 +81,7 @@ export default function Login() {
           setLoginFailMsg('The email or password is incorrect.');
           setEmail(''); //왜 초기화가 안되지??아...리렌더링 시켜야하는데
           setPassword('');
-          location.reload(); //리렌더링을 위한 임시방편 window
+          // location.reload(); //리렌더링을 위한 임시방편 window
         }
       });
   };

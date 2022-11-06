@@ -4,20 +4,21 @@
 import styled from 'styled-components';
 import QuestionsList from '../../components/Main/QuestionsList';
 
-import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import AskQuestionButton from '../../components/Buttons/AskQuestionButton';
 import SideBarWidget from '../../components/SideBarWidget';
 import {
+  Container,
   HomeHead,
+  Main,
   TopQuestionsTitle,
   Total,
-  Container,
-  Main,
 } from '../Home/style';
-import AskQuestionButton from '../../components/Buttons/AskQuestionButton';
 import NoSearch from '../NoSearch';
-import { Link } from 'react-router-dom';
+const URL = process.env.REACT_APP_API_URL;
 
 // const Container = styled.div`
 //   display: flex;
@@ -58,13 +59,14 @@ const SearchResults = () => {
 
   useEffect(() => {
     axios
-      .get(`/api/questions?query=${searchGen}&page=1&size=20&order=newest`, {
-        headers: {
-          'Content-Type': 'application/json;charset=UTF-8',
-          'Access-Control-Allow-Origin': '*',
-          'ngrok-skip-browser-warning': '111',
-        },
-      })
+      .get(
+        `${URL}/api/questions?query=${searchGen}&page=1&size=20&order=newest`,
+        {
+          headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+          },
+        }
+      )
       .then((res) => {
         console.log('SearchResults컴포->axios요청 값 : ', res.data);
         setSearchResultsData(res.data);

@@ -8,6 +8,7 @@ import AskQuestionButton from '../../components/Buttons/AskQuestionButton';
 import QuestionsList from '../../components/Main/QuestionsList';
 import SideBarWidget from '../../components/SideBarWidget';
 import { Container, HomeHead, Main, TopQuestionsTitle, Total } from './style';
+const URL = process.env.REACT_APP_API_URL;
 
 const Home = () => {
   const [totalCount, setTotalCount] = useState(0);
@@ -15,11 +16,9 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get('/api', {
+      .get(`${URL}/api`, {
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
-          'Access-Control-Allow-Origin': '*',
-          'ngrok-skip-browser-warning': '111',
         },
       })
       .then((res) => {

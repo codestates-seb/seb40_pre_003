@@ -1,12 +1,13 @@
 // import { TDummy } from "../../components/Main/TData/TDummyData";
 
-import TagList from './TagList';
 import styled from 'styled-components';
+import TagList from './TagList';
 
-import { GoSearch } from 'react-icons/go';
-import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { GoSearch } from 'react-icons/go';
 // import { TDummy } from '../../components/Main/TData/TDummyData';
+const URL = process.env.REACT_APP_API_URL;
 
 // container
 const TagContainer = styled.div`
@@ -65,11 +66,9 @@ const TagsTab = () => {
 
   useEffect(() => {
     axios
-      .get('/api/tags', {
+      .get(`${URL}/api/tags`, {
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
-          'Access-Control-Allow-Origin': '*',
-          'ngrok-skip-browser-warning': '111',
         },
       })
       .then((res) => {

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import WriterProfile from '../WriterProfile';
 import { Button, Buttons, Container, EditLink } from './style';
+const URL = process.env.REACT_APP_API_URL;
 
 function ContentInfo({ time, user, writerType, questionId, answerId }) {
   // const [shareOpen, setShareOpen] = useState(false);
@@ -19,10 +20,10 @@ function ContentInfo({ time, user, writerType, questionId, answerId }) {
     if (window.confirm('Delete this page?')) {
       let uri, to;
       if (answerId) {
-        uri = `/api/questions/${questionId}/answers/${answerId}`;
+        uri = `${URL}/api/questions/${questionId}/answers/${answerId}`;
         to = `/questions/${questionId}`;
       } else {
-        uri = `/api/questions/${questionId}`;
+        uri = `${URL}/api/questions/${questionId}`;
         to = `/`;
       }
       axios

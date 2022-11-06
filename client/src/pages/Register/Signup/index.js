@@ -10,6 +10,7 @@ import { TbTriangle } from 'react-icons/tb';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container, SignupBlock } from './style';
 //axios.defaults.withCredentials = true;
+const URL = process.env.REACT_APP_API_URL;
 
 const Signup = () => {
   //signup 인풋 항목: name, email, password
@@ -55,7 +56,7 @@ const Signup = () => {
     return (
       axios
         //.post(`${process.env.어쩌고환경변수}/회원가입주소`, {
-        .post(`/api/sign-up`, {
+        .post(`${URL}/api/sign-up`, {
           displayName: displayName,
           email: email,
           password: password,
