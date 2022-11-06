@@ -13,8 +13,10 @@ const Users = () => {
   const [order, setOrder] = useState('');
 
   useEffect(() => {
+    console.log('order: ', order);
+    //버튼이 안되면
     axios
-      .get(`/api/users`, {
+      .get(`${URL}/api/users`, {
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
         },
