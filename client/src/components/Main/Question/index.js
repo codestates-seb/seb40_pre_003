@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import removeMarkdown from 'markdown-to-text';
 import { Link } from 'react-router-dom';
 import { getPrettyTime } from '../../../util/getPrettyTime';
+import Tag from '../../Tag';
 import './index.css';
 
 // ------------ Question.js  각 질문들 컴포넌트 -------
@@ -106,26 +107,27 @@ const TagBox = styled.div`
   width: 360px;
   height: 27px;
   word-break: break-all;
-  overflow: hidden; // 사용해 넘치는 값들의 영역을(보이는것을) 감춘다!
+  overflow: scroll; // 사용해 넘치는 값들의 영역을(보이는것을) 감춘다!
   text-overflow: ellipsis; // 로 ... 을 만들기
   display: -webkit-box; // 몇줄이상부터 ... 쓸건지 하기전에 얘 추가
   -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
+  /* -webkit-box-orient: vertical; */
+  -webkit-box-orient: horizontal;
 `;
 // 오른쪽섹션->footer->태그박스-> 버튼태그
-const TagBtn = styled.button`
-  height: 23px;
-  padding: 0.4em 0.5em;
-  margin: 2px;
-  border: none;
-  border-radius: 3px;
-  background-color: #e1ecf4;
-  text-align: center;
-  font-size: 12px;
-  color: rgb(57, 115, 157);
+// const TagBtn = styled.button`
+//   height: 23px;
+//   padding: 0.4em 0.5em;
+//   margin: 2px;
+//   border: none;
+//   border-radius: 3px;
+//   background-color: #e1ecf4;
+//   text-align: center;
+//   font-size: 12px;
+//   color: rgb(57, 115, 157);
 
-  cursor: pointer;
-`;
+//   cursor: pointer;
+// `;
 
 // 오른쪽섹션 -> footer 내부 -> 작성자 info(img,name,작성후지난시간)
 const InfoBox = styled.div`
@@ -181,9 +183,10 @@ const Question = ({ list }) => {
             <TagBox>
               {list.tags.map((el) => {
                 return (
-                  <TagBtn key={el.toString()}>
-                    <span>{el}</span>
-                  </TagBtn>
+                  // <TagBtn key={el.toString()}>
+                  //   <span>{el}</span>
+                  // </TagBtn>
+                  <Tag key={el.toString()} name={el} />
                 );
               })}
             </TagBox>
