@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import UserCard from '../../components/UserCard';
 import { Buttons, Container, FilterBlock, UserListBlock } from './style';
+const URL = process.env.REACT_APP_API_URL;
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -28,8 +29,8 @@ const Users = () => {
     axios
       .get(
         btnActive === 0 || btnActive === 2
-          ? `/api/users?order=${order}`
-          : `/api/users`,
+          ? `${URL}/api/users?order=${order}`
+          : `${URL}/api/users`,
         {
           headers: {
             'Content-Type': 'application/json;charset=UTF-8',

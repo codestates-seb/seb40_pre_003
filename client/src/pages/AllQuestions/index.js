@@ -14,6 +14,7 @@ import {
   Total,
 } from '../Home/style';
 import { PaginationContainer } from './style';
+const URL = process.env.REACT_APP_API_URL;
 
 const AllQuestions = () => {
   const [totalCount, setTotalCount] = useState(0);
@@ -26,7 +27,7 @@ const AllQuestions = () => {
   useEffect(() => {
     axios
       .get(
-        `http://ec2-3-37-123-253.ap-northeast-2.compute.amazonaws.com:8080/api/questions${
+        `${URL}/api/questions${
           page ? `?page=${page}` : ''
         }&size=15&order=newest`,
         {
