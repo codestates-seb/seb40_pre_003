@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import UserCard from '../../components/UserCard';
 import { Buttons, Container, FilterBlock, UserListBlock } from './style';
@@ -12,18 +12,18 @@ const Users = () => {
   const [btnActive, setBtnActive] = useState(4);
   const [order, setOrder] = useState('');
 
-  // useEffect(() => {
-  //   console.log('order: ', order);
-  //   //버튼이 안되면
-  //   axios
-  //     .get(`/api/users`, {
-  //       headers: {
-  //         'Content-Type': 'application/json;charset=UTF-8',
-  //       },
-  //     })
-  //     .then((res) => setUsers(res.data))
-  //     .catch((error) => console.log(error));
-  // }, []);
+  useEffect(() => {
+    console.log('order: ', order);
+    //버튼이 안되면
+    axios
+      .get(`${URL}/api/users`, {
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8',
+        },
+      })
+      .then((res) => setUsers(res.data.users))
+      .catch((error) => console.log(error));
+  }, []);
 
   const handleClick = (e) => {
     setBtnActive(e.target.value);
