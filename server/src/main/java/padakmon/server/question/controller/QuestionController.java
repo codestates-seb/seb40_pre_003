@@ -36,7 +36,7 @@ public class QuestionController {
 
     @GetMapping("/{question-id}")
     public ResponseEntity getQuestion(@Positive @PathVariable("question-id") long questionId) {
-        Question question = questionService.read(questionId);
+        Question question = questionService.readAndViewCount(questionId);
         List<Answer> answers = answerService.getAnswersOfQuestion(question);
 
         QuestionDto.GetResponse response = mapper.QuestionAnswersToResponse(question, answers);
