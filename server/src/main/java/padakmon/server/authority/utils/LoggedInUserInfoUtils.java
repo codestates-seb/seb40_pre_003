@@ -9,6 +9,7 @@ import padakmon.server.user.entity.User;
 import padakmon.server.user.repository.UserRepository;
 
 import java.util.Map;
+import java.util.Optional;
 
 @Component
 @AllArgsConstructor
@@ -27,5 +28,15 @@ public class LoggedInUserInfoUtils {
         long userId = extractUserId();
         User user = userRepository.findById(userId).orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
         return user;
+    }
+
+    public Optional<User> extractOptionalUser() {
+        try {
+            Map<String, Object> claims = (Map)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            long userId = ((Number)claims.get("userId")).longValue();
+            return userRepository.findById(userId);
+        } catch (Exception e) {
+            return Optional.ofNullable(null);
+        }
     }
 }
