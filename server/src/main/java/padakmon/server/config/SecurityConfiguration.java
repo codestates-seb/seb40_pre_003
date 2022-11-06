@@ -52,11 +52,12 @@ public class SecurityConfiguration {
                 .headers().frameOptions().sameOrigin()
                 .and()
                 .csrf().disable()
-                .cors(withDefaults())
+                .cors().configurationSource(corsConfigurationSource())
+                .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .formLogin().disable()
-                .httpBasic().disable() // http header로 인증하는 방식은 사용하지 않음
+                .httpBasic().disable()
                 .exceptionHandling()
                 .authenticationEntryPoint(new UserAuthenticationEntryPoint())
                 .accessDeniedHandler(new UserAccessDeniedHandler())
@@ -89,7 +90,7 @@ public class SecurityConfiguration {
         configuration.setAllowedOriginPatterns(List.of("*"));
 //        configuration.setAllowedOrigins(List.of(domain)); // TODO 배포시 S3로 변경
         configuration.setAllowedMethods(List.of("GET", "POST", "PATCH", "DELETE", "OPTIONS"));
-//        configuration.setAllowedHeaders(List.of("*", "Authorization"));
+        configuration.setAllowedHeaders(List.of("*", "Authorization"));
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
