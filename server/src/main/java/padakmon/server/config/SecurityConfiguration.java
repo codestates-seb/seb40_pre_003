@@ -1,7 +1,5 @@
 package padakmon.server.config;
 
-import lombok.AllArgsConstructor;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -30,8 +28,6 @@ import padakmon.server.authority.sercurity.DetailService;
 import padakmon.server.authority.utils.UserAuthorityUtils;
 
 import java.util.List;
-
-import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @RequiredArgsConstructor
