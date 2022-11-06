@@ -8,6 +8,7 @@ import padakmon.server.authority.utils.LoggedInUserInfoUtils;
 import padakmon.server.exception.BusinessLogicException;
 import padakmon.server.exception.ExceptionCode;
 import padakmon.server.question.entity.Question;
+import padakmon.server.question.entity.QuestionView;
 import padakmon.server.question.repository.QuestionRepository;
 import padakmon.server.tag.entity.QuestionTag;
 import padakmon.server.tag.entity.Tag;
@@ -119,8 +120,21 @@ public class QuestionService {
         return questionRepository.save(question);
     }
 
-    public Question read(long questionId) {
-        return verifyQuestion(questionId);
+    public Question readAndViewCount(long questionId) {
+        Question question = verifyQuestion(questionId);
+        Optional<User> optionalUser = userInfoUtils.extractOptionalUser();
+        if(optionalUser.isPresent()) {
+            QuestionView questionView = new QuestionView();
+            questionView.setQuestion(question);
+            questionView.setUser(optionalUser.get());
+            Set<QuestionView> questionViews = question.getQuestionViews();
+            if(!questionViews.contains(questionView)) {
+                question.viewUp();
+                question.addQuestionView(questionView);
+                return questionRepository.save(question);
+            }
+        }
+        return question;
     }
     private Question verifyQuestion(long questionId) {
         Optional<Question> optionalQuestion = questionRepository.findById(questionId);

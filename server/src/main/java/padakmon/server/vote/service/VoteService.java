@@ -3,11 +3,9 @@ package padakmon.server.vote.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import padakmon.server.answer.entity.Answer;
-import padakmon.server.answer.repository.AnswerRepository;
 import padakmon.server.answer.service.AnswerService;
 import padakmon.server.authority.utils.LoggedInUserInfoUtils;
 import padakmon.server.question.entity.Question;
-import padakmon.server.question.repository.QuestionRepository;
 import padakmon.server.question.service.QuestionService;
 import padakmon.server.user.entity.User;
 import padakmon.server.vote.dto.VoteDto;
@@ -148,7 +146,7 @@ public class VoteService {
         //회원 추출
         User user = userInfoUtils.extractUser();
         //Question 객체 얻기
-        Question question = questionService.read(questionId);
+        Question question = questionService.readAndViewCount(questionId);
         //이 회원이 이 답변에 누른 vote 객체 추출. 없으면 새로 만듦
         Optional<QuestionVote> optionalQuestionVote = questionVoteRepository.findByQuestionAndUser(question, user);
         if(optionalQuestionVote.isPresent()) {
