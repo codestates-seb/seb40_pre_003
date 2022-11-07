@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -48,8 +49,7 @@ public class SecurityConfiguration {
                 .headers().frameOptions().sameOrigin()
                 .and()
                 .csrf().disable()
-                .cors().configurationSource(corsConfigurationSource())
-                .and()
+                .cors(Customizer.withDefaults())
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .formLogin().disable()
@@ -69,8 +69,6 @@ public class SecurityConfiguration {
                 .oauth2Login()
                 .successHandler(oAuth2SuccessHandler)
                 .userInfoEndpoint().userService(customOAuth2UserService);
-
-
 
         return http.build();
     }
@@ -118,5 +116,4 @@ public class SecurityConfiguration {
         authenticationProvider.setHideUserNotFoundExceptions(false);
         return authenticationProvider;
     }
-
 }

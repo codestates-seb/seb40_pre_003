@@ -72,7 +72,9 @@ public class UserDto {
     @Setter
     public static class searchResponse {
         private String orderMode;
+
         private PageInfo pageInfo;
+
         private List<UserDto.Info> users = new ArrayList<>();
     }
 
@@ -80,8 +82,11 @@ public class UserDto {
     @Setter
     public static class Info {
         private Long userId;
+
         private String displayName;
+
         private Long answerCount;
+
         private List<String> tags = new ArrayList<>();
     }
 }

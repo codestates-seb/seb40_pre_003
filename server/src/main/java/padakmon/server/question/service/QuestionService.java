@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 public class QuestionService {
     private QuestionRepository questionRepository;
     private LoggedInUserInfoUtils userInfoUtils;
-    //todo: 임시
+
     private UserRepository userRepository;
     private TagService tagService;
     private TagRepository tagRepository;
@@ -101,7 +101,6 @@ public class QuestionService {
 
     public Question create(Question question, List<String> tags) {
         long userId = userInfoUtils.extractUserId();
-        //todo: 진짜 메서드로 변경해야함. 유저 서비스에서 유저 찾아오는 걸로 변환
         User user = getUser(userId);
         //질문 숫자 하나 늘려줌.
         user.setQuestionCount(user.getQuestionCount() + 1);
@@ -140,7 +139,7 @@ public class QuestionService {
         Optional<Question> optionalQuestion = questionRepository.findById(questionId);
         return optionalQuestion.orElseThrow(() -> new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
     }
-    //todo: 임시메서드
+
     private User getUser(long userId) {
         return userRepository.findById(userId).get();
     }

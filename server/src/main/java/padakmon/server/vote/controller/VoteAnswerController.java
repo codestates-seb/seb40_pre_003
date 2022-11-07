@@ -23,6 +23,7 @@ public class VoteAnswerController {
         } else {
             response = voteService.answerCountDown(answerId);
         }
+
         return new ResponseEntity(response, HttpStatus.OK);
     }
 }

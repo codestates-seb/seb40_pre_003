@@ -1,6 +1,7 @@
 package padakmon.server.user.service;
 
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -12,6 +13,8 @@ import padakmon.server.exception.ExceptionCode;
 import padakmon.server.user.entity.User;
 import padakmon.server.user.repository.UserRepository;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Optional;
 
 @Service
@@ -50,12 +53,14 @@ public class UserPageService {
         return authorizedUser;
     }
 
+    @SneakyThrows
     public Page<User> delegateFindUsers(String query, int page, int size, Sort sort) {
         PageRequest pageRequest = PageRequest.of(page, size, sort);
         Page<User> users;
         if (query == null) {
             users = userRepository.findAll(pageRequest);
         } else {
+            query = URLDecoder.decode(query, "UTF-8");
             users = userRepository.findByDisplayNameContaining(query.trim(), pageRequest);
         }
         return users;

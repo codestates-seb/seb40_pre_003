@@ -28,7 +28,7 @@ public class QuestionSearchService {
         return questionRepository.findAll(pageRequest);
     }
 
-    public QuestionSearchDto.SearchInfo getSearchInfo(String query, QuestionSearchDto.SearchInfo searchInfo) {
+    public void setSearchInfo(String query, QuestionSearchDto.SearchInfo searchInfo) {
         String trimmedQuery = query.trim();
         //태그 검색
         if(trimmedQuery.startsWith("tag:")) {
@@ -38,7 +38,6 @@ public class QuestionSearchService {
             searchInfo.setSearchTitle("Questions tagged [" + trimmedQuery + "]");
             searchInfo.setTagDescription(tagDescription);
         }
-        return searchInfo;
     }
 
     public String getOrderMode(String orderParam) {

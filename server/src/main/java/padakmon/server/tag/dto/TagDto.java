@@ -12,16 +12,23 @@ public class TagDto {
     @Setter
     public static class response {
         private String orderMode;
+
         private PageInfo pageInfo;
+
         private List<Info> tags = new ArrayList<>();
     }
+
     @Getter
     @Setter
     public static class Info {
         private String tagName;
+
         private String tagDescription;
+
         private long questionCountTotal;
+
         private long questionCountToday;
+
         private long questionCountWeek;
     }
 }

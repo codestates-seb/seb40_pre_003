@@ -12,8 +12,11 @@ import java.util.List;
 @Getter
 public class QuestionSearchDto {
     private String orderMode;
+
     private SearchInfo searchInfo;
+
     private PageInfo pageInfo;
+
     private List<QuestionDto.GetResponse> questions;
 
     public QuestionSearchDto(List<QuestionDto.GetResponse> questions) {

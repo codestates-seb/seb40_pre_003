@@ -12,14 +12,17 @@ import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface QuestionMapper {
-    public Question postToEntity(QuestionDto.Post post);
-    public Question patchToEntity(QuestionDto.Patch patch);
-    default public QuestionDto.SuccessResponse EntityToSuccessResponse(Question question) {
+    Question postToEntity(QuestionDto.Post post);
+
+    Question patchToEntity(QuestionDto.Patch patch);
+
+    default QuestionDto.SuccessResponse EntityToSuccessResponse(Question question) {
         QuestionDto.SuccessResponse response = new QuestionDto.SuccessResponse();
         response.setPostId(question.getQuestionId());
         return response;
     }
-    default public QuestionDto.GetResponse QuestionAnswersToResponse(Question question, List<Answer> answers) {
+
+    default QuestionDto.GetResponse QuestionAnswersToResponse(Question question, List<Answer> answers) {
         QuestionDto.GetResponse response = new QuestionDto.GetResponse();
         response.setTitle(question.getTitle());
         response.setBody(question.getBody());
