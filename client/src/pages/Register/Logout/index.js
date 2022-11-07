@@ -16,9 +16,7 @@ export default function Logout() {
   const navigate = useNavigate();
 
   const handleLogoutClick = () => {
-    //로그아웃 구현방법2...서버logout api로 요청을 보내고 응답 받아서 처리
     console.log('로그아웃성공');
-    //로컬스토리지에 담았던 키(스트링형식)를 제거
     dispatch(logoutAction());
     localStorage.removeItem('accesstoken');
     localStorage.removeItem('refreshToken');
@@ -26,7 +24,7 @@ export default function Logout() {
     localStorage.removeItem('googleRefreshToken');
     localStorage.removeItem('displayname');
 
-    console.log(localStorage);
+    console.log('localStorage', localStorage);
     navigate('/');
   };
 
@@ -43,7 +41,6 @@ export default function Logout() {
       <LogoutBlock>
         <div className="linked_site">
           <Logo src={ubuntu} />
-          {/* 외부링크는 Link태그가 아니라 a태그만 가능 */}
           <a href="https://askubuntu.com/">askubuntu.com</a>
         </div>
         <div className="linked_site">

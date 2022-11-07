@@ -55,7 +55,6 @@ export const Buttons = styled.div`
   }
 `;
 
-
 export const TextBlock = styled.div`
   padding: 10px 40px;
   > h2 {

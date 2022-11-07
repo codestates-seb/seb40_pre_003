@@ -1,7 +1,3 @@
-// -----------  Home -----------
-// Home || StackOverFlow 로고를 눌렀을때 기본적으로 보이게되는 페이지
-// Top Questions(Title) , Ask Question(버튼), QuestionList(질문목록들)
-
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import AskQuestionButton from '../../components/Buttons/AskQuestionButton';

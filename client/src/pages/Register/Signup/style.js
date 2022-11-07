@@ -33,17 +33,13 @@ export const SignupBlock = styled.div`
   background-color: #f1f2f3;
 
   > div:first-of-type {
-    /* flex-basis: 10%; */
     > img {
       width: 70px;
       height: 70px;
     }
     margin-bottom: 10px;
   }
-  /* 반복되는 로그인스타일을 가입으로 가져왔는데...social_login을 social_btn으로 하면 더 좋았을 듯하다 */
   > section.social_signup {
-    /* flex-basis: 20%; */
-
     > div {
       display: flex;
       flex-direction: column;
@@ -53,7 +49,6 @@ export const SignupBlock = styled.div`
     }
 
     > div > button {
-      /* width: 316px; */
       height: 38px;
       width: 314px;
       margin: 4px;
