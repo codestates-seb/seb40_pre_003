@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import QuestionsList from '../../components/Main/QuestionsList';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -13,18 +12,7 @@ import {
 } from '../Home/style';
 import SideBarWidget from '../../components/SideBarWidget';
 import NoSearch from '../NoSearch';
-
-const AboutTagDiv = styled.div`
-  width: 700px;
-`;
-
-// 타이틀 아래 tag에 대한 기본 설명 텍스트
-const AboutTag = styled.p`
-  font-size: 12px;
-  font-weight: normal;
-  color: #6a737c;
-  margin: 20px 0 10px 20px;
-`;
+import { AboutTagDiv, AboutTag } from './style';
 
 const QuestionsTagged = () => {
   const [tagData, setTagData] = useState(null);
@@ -63,9 +51,6 @@ const QuestionsTagged = () => {
       })
       .catch((error) => console.log(`error : `, error));
   }, [searchTag]);
-  // -> searchTag는 useSelector() 로 가져온 상태라서
-  // useState처럼 상태가 변할때마다 렌더링을 시키지않아서
-  // useEffect를 실행시키려면 searchTag가 바뀔때마다 실행시켜주는 조건으로 두번째인자로 넣어야함!
 
   return (
     tagData && (

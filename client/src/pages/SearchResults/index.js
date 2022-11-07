@@ -1,7 +1,3 @@
-// ------------ SearchResult -------------
-// 검색창에 검색을 하였을때 연관 질문들이 나올 페이지 화면
-
-import styled from 'styled-components';
 import QuestionsList from '../../components/Main/QuestionsList';
 
 import { useEffect, useState } from 'react';
@@ -17,34 +13,7 @@ import {
 } from '../Home/style';
 import AskQuestionButton from '../../components/Buttons/AskQuestionButton';
 import NoSearch from '../NoSearch';
-import { Link } from 'react-router-dom';
-
-// const Container = styled.div`
-//   display: flex;
-//   padding: 24px 24px 0 0;
-// `;
-
-// const Main = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `;
-
-// AskQuestion 버튼옆에 Tip링크
-const AdvancedTipButton = styled(Link)`
-  color: #0074cc;
-  font-size: 12.8px;
-  width: 110px;
-  margin-right: 20px;
-  text-decoration-line: none;
-  cursor: pointer;
-`;
-
-// ~에대한 검색결과 라는 문구
-const AboutResult = styled.p`
-  font-size: 12px;
-  color: #6a737c;
-  margin-bottom: 10px;
-`;
+import { AdvancedTipButton, AboutResult } from './style';
 
 const SearchResults = () => {
   const [searchResultsData, setSearchResultsData] = useState(null);
