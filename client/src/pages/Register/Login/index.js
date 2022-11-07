@@ -64,7 +64,7 @@ export default function Login() {
 
   const onClick = () => {
     navigate('/');
-    //window.location.assign(url + `/oauth2/authorization/google`);
+    window.location.assign(url + `/oauth2/authorization/google`);
 
     // let googleAccessToken = new URL(location.href).searchParams.get(
     //   'access_token'
