@@ -6,6 +6,7 @@ import { isLogin } from '../../util/isLogin';
 import VoteDownButton from '../Buttons/VoteDownButton';
 import VoteUpButton from '../Buttons/VoteUpButton';
 import { Container, VoteNum } from './style';
+const URL = process.env.REACT_APP_API_URL;
 
 function VoteCell({ questionId, score, answerId }) {
   const navigate = useNavigate();
@@ -13,9 +14,9 @@ function VoteCell({ questionId, score, answerId }) {
   let uri;
   useEffect(() => {
     if (answerId) {
-      uri = `/api/questions/${questionId}/answers/${answerId}/votes`;
+      uri = `${URL}/api/questions/${questionId}/answers/${answerId}/votes`;
     } else {
-      uri = `/api/questions/${questionId}/votes`;
+      uri = `${URL}/api/questions/${questionId}/votes`;
     }
   }, [nowScore]);
 

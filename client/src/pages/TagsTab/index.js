@@ -1,75 +1,25 @@
-// import { TDummy } from "../../components/Main/TData/TDummyData";
-
 import TagList from './TagList';
-import styled from 'styled-components';
-
 import { GoSearch } from 'react-icons/go';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-// import { TDummy } from '../../components/Main/TData/TDummyData';
+import {
+  TagContainer,
+  TagMain,
+  TagsTabHead,
+  SearchContainer,
+  Input,
+} from './style';
 
-// container
-const TagContainer = styled.div`
-  display: flex;
-  padding: 24px;
-`;
-const TagMain = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-//TagsTab-> head div
-const TagsTabHead = styled.div`
-  padding-right: 366px;
-  h1 {
-    font-size: 27px;
-    margin-bottom: 20px;
-    box-sizing: inherit;
-    text-align: left;
-  }
-  p {
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
-  div {
-    margin-bottom: 20px;
-  }
-  div > div {
-    font-size: 14px;
-    color: #0074cc;
-  }
-`;
-
-const SearchContainer = styled.div`
-  display: flex;
-  width: 190px;
-  height: 40px;
-  align-items: center;
-  padding: 7.8px 9.1px 7.8px 9.1px;
-  border: 1px solid #babfc3;
-  border-radius: 3px;
-  background-color: white;
-`;
-
-const Input = styled.input`
-  border: none;
-  background-color: rgba(0, 0, 0, 0);
-  margin-left: 2px;
-  :focus {
-    outline: none;
-  }
-`;
+const URL = process.env.REACT_APP_API_URL;
 
 const TagsTab = () => {
   const [tagData, setTagData] = useState(null);
 
   useEffect(() => {
     axios
-      .get('/api/tags', {
+      .get(`${URL}/api/tags`, {
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
-          'Access-Control-Allow-Origin': '*',
-          'ngrok-skip-browser-warning': '111',
         },
       })
       .then((res) => {

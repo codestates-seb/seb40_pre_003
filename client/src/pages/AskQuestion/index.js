@@ -1,7 +1,3 @@
-// -------------- AskQuestion -------------
-// 화면에있는 Ask Question 버튼을 눌렀을때 나오는 페이지 -> 질문 작성 페이지
-
-// import styled from 'styled-components';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
@@ -26,6 +22,7 @@ import {
   ToastDiv,
 } from './style';
 import './style.css';
+const URL = process.env.REACT_APP_API_URL;
 
 const AskQuestion = () => {
   const navigate = useNavigate();
@@ -47,7 +44,7 @@ const AskQuestion = () => {
     let title = titleInputValue.current.value;
     axios
       .post(
-        '/api/questions',
+        `${URL}/api/questions`,
         {
           title: title,
           body: body,

@@ -11,4 +11,5 @@ export const QuestionButton = styled.button`
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
   outline: none;
   cursor: pointer;
+  white-space: nowrap;
 `;

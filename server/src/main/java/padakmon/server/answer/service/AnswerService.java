@@ -36,7 +36,7 @@ public class AnswerService {
         User user = loggedInUserInfoUtils.extractUser();
         user.setAnswerCount(user.getAnswerCount() - 1);
         //Question에 AnswerCount 하나 down
-        Question question = questionService.read(questionId);
+        Question question = questionService.readAndViewCount(questionId);
         question.setAnswerCount(question.getAnswerCount() - 1);
 
         answer.setUser(user);
@@ -72,7 +72,7 @@ public class AnswerService {
         user.setAnswerCount(user.getAnswerCount() + 1);
 
         //Question에 AnswerCount 하나 up
-        Question question = questionService.read(questionId);
+        Question question = questionService.readAndViewCount(questionId);
         question.setAnswerCount(question.getAnswerCount() + 1);
         //User와 태그 연관관계 M:M연관관계 설정
         List<UserTag> userTags = question.getQuestionTags().stream().map(

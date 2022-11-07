@@ -9,6 +9,7 @@ import { SiGithub } from 'react-icons/si';
 import { TbTriangle } from 'react-icons/tb';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container, SignupBlock } from './style';
+const URL = process.env.REACT_APP_API_URL;
 
 const Signup = () => {
   const [displayName, setDisplayName] = useState('');
@@ -45,17 +46,18 @@ const Signup = () => {
       return;
     }
     return axios
-      .post(`/api/sign-up`, {
+      .post(`${URL}/api/sign-up`, {
         displayName: displayName,
         email: email,
         password: password,
       })
       .then((res) => {
+        console.log('회원가입성공');
         console.log(res);
         navigate('/login');
       })
       .catch((error) => {
-        console.log('에러');
+        console.log('에러어어어어어');
         console.log(error.response);
         if (error.response.data === '형식에 맞지 않음') {
           setNameValidMsg('The displayName is not a valid displayName.');

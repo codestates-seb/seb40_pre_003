@@ -1,4 +1,5 @@
 import { useState } from 'react';
+//import { useEffect } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { GrFacebook } from 'react-icons/gr';
 import { SiGithub } from 'react-icons/si';
@@ -8,6 +9,7 @@ import { LoginBlock } from './style';
 
 import axios from 'axios';
 import { loginAction } from '../../../redux';
+const url = process.env.REACT_APP_API_URL;
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -42,7 +44,7 @@ export default function Login() {
     };
 
     axios
-      .post(`/api/auth/login`, loginData, loginConfig)
+      .post(`${url}/api/auth/login`, loginData, loginConfig)
       .then((res) => {
         console.log('로그인 성공');
         console.log('로그인 시 들어오는 정보', res);
@@ -52,6 +54,7 @@ export default function Login() {
         let displayName = res.headers.displayname;
 
         localStorage.setItem('accesstoken', accessToken);
+        localStorage.setItem('id', userId);
         localStorage.setItem('displayname', displayName);
 
         console.log(localStorage);
@@ -119,8 +122,6 @@ export default function Login() {
           </button>
         </div>
       </section>
-
-      {/* 이메일 로그인 */}
       <section className="email_login">
         <form onSubmit={handleSubmit}>
           <div>
