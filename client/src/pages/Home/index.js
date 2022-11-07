@@ -4,7 +4,7 @@ import AskQuestionButton from '../../components/Buttons/AskQuestionButton';
 import QuestionsList from '../../components/Main/QuestionsList';
 import SideBarWidget from '../../components/SideBarWidget';
 import { Container, HomeHead, Main, TopQuestionsTitle, Total } from './style';
-const URL = process.env.REACT_APP_API_URL;
+const url = process.env.REACT_APP_API_URL;
 
 const Home = () => {
   const [totalCount, setTotalCount] = useState(0);
@@ -12,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(`${URL}/api`, {
+      .get(`${url}/api`, {
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
         },
@@ -23,6 +23,18 @@ const Home = () => {
       })
       .catch((error) => console.log('error : ', error));
   }, []);
+
+  window.location.assign(url + `/oauth2/authorization/google`);
+
+  let googleAccessToken = new URL(location.href).searchParams.get(
+    'access_token'
+  );
+  //   let googleRefreshToken = new URL(location.href).searchParams.get(
+  //     'refresh_token'
+  //   );
+  if (googleAccessToken) {
+    localStorage.setItem('accesstoken', googleAccessToken);
+  }
 
   return (
     <Container>
