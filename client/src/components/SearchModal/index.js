@@ -36,9 +36,8 @@ const Container = styled.div`
   flex-direction: row;
   width: 56%;
   background-color: #fff;
-  position: absolute; //포지션 잡느라 죽는줄..ㅠㅠ
+  position: absolute;
   top: 50px;
-  //left: 540px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 2px;
   padding: 10px 30px;

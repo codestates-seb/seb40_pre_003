@@ -20,7 +20,6 @@ export const Container = styled.div`
     font-weight: 400;
     margin: 20px;
     text-align: center;
-    //텍스트 줄간격 벌리기??
   }
 `;
 
@@ -89,7 +88,6 @@ export const LogoutBlock = styled.div`
       cursor: pointer;
       :hover {
         background-color: hsl(205, 46%, 92%);
-        //옅은 하늘색으로 바뀌기
       }
     }
   }

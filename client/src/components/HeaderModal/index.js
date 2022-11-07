@@ -6,8 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import stackicon from '../../../src/assets/images/stackoverflow.png';
 import blackstackicon from '../../../src/assets/images/stackoverflow_black_icon2.png';
-//BsPrinterFill
-//HiRadio
 
 const HeaderModal = ({ setIsOpen }) => {
   const navigate = useNavigate();
@@ -122,7 +120,6 @@ const Buttons = styled.button`
   color: rgb(13, 94, 192);
   cursor: pointer;
   :hover {
-    //color: #0074cc;
     color: red;
   }
 `;

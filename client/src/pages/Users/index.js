@@ -6,7 +6,6 @@ import { Buttons, Container, FilterBlock, UserListBlock } from './style';
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  //셀렉트 버튼
   const name = ['Reputation', 'New users', 'Voters', 'Editors', 'Moderators'];
   const [btnActive, setBtnActive] = useState(4);
   const [order, setOrder] = useState('');
@@ -73,7 +72,6 @@ const Users = () => {
         {users.map((ele) => (
           <div key={ele.userId}>
             <UserCard
-              img={ele.img}
               displayName={ele.displayName}
               answerCount={ele.answerCount}
               userId={ele.userId}

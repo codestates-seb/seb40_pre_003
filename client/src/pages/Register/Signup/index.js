@@ -9,28 +9,20 @@ import { SiGithub } from 'react-icons/si';
 import { TbTriangle } from 'react-icons/tb';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container, SignupBlock } from './style';
-//axios.defaults.withCredentials = true;
 
 const Signup = () => {
-  //signup 인풋 항목: name, email, password
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
 
-  //오류메시지 //The email is not a valid email address.
   const [nameValidMsg, setNameValidMsg] = useState('');
   const [emailValidMsg, setEmailValidMsg] = useState('');
   const [passwordValidMsg, setPasswordValidMsg] = useState('');
 
-  //회원가입 버튼 -> post 요청
   const handleSubmit = (e) => {
     e.preventDefault();
-    //유효성 검사하기
-    //디스플레이네임은 영어, 숫자만 가능, 길이 15로 제한
-    //이메일은 이메일 폼
-    //비밀번호는 영어+숫자, 길이는 20
     if (displayName.length === 0) {
       setNameValidMsg('displayName cannot be empty.');
       return;
@@ -52,43 +44,35 @@ const Signup = () => {
       setPasswordValidMsg('The password is not a valid password.');
       return;
     }
-    return (
-      axios
-        //.post(`${process.env.어쩌고환경변수}/회원가입주소`, {
-        .post(`/api/sign-up`, {
-          displayName: displayName,
-          email: email,
-          password: password,
-        })
-        .then((res) => {
-          //alert('회원가입성공');
-          console.log('회원가입성공');
-          console.log(res);
-          navigate('/login'); //회원가입 후 홈으로?로그인페이지로?축하페이지로?
-          //자동 로그인되면 좋겠지만...그러면 여기서 axios요청해야 하나?
-          //어쨌든 회원가입 후 사용자가 하든, 자동으로 되든 로그인과정이 있어야 한다.
-        })
-        .catch((error) => {
-          //오류메시지
-          console.log('에러어어어어어');
-          console.log(error.response);
-          if (error.response.data === '형식에 맞지 않음') {
-            setNameValidMsg('The displayName is not a valid displayName.');
-          }
-          if (error.response.data === '크기가 8에서 20 사이여야 합니다') {
-            setNameValidMsg('The displayName is not a valid displayName.');
-          } else if (
-            error.response.data === '올바른 형식의 이메일 주소여야 합니다'
-          ) {
-            setEmailValidMsg('The email is not a valid email address.');
-          } else if (
-            error.response.data ===
-            '"^(?=.*[a-zA-Z])(?=.*\\d)[a-zA-Z\\d]*$"와 일치해야 합니다'
-          ) {
-            setPasswordValidMsg('The password is not a valid password.');
-          }
-        })
-    );
+    return axios
+      .post(`/api/sign-up`, {
+        displayName: displayName,
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        console.log(res);
+        navigate('/login');
+      })
+      .catch((error) => {
+        console.log('에러');
+        console.log(error.response);
+        if (error.response.data === '형식에 맞지 않음') {
+          setNameValidMsg('The displayName is not a valid displayName.');
+        }
+        if (error.response.data === '크기가 8에서 20 사이여야 합니다') {
+          setNameValidMsg('The displayName is not a valid displayName.');
+        } else if (
+          error.response.data === '올바른 형식의 이메일 주소여야 합니다'
+        ) {
+          setEmailValidMsg('The email is not a valid email address.');
+        } else if (
+          error.response.data ===
+          '"^(?=.*[a-zA-Z])(?=.*\\d)[a-zA-Z\\d]*$"와 일치해야 합니다'
+        ) {
+          setPasswordValidMsg('The password is not a valid password.');
+        }
+      });
   };
 
   return (
