@@ -2,6 +2,7 @@ package padakmon.server.authority.oauth;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -25,6 +26,9 @@ import java.util.Map;
 @Component
 public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     private final JwtTokenizer jwtTokenizer;
+
+    @Value("${config.domain}")
+    private String domain;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
@@ -68,8 +72,7 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
         return UriComponentsBuilder
                 .newInstance()
-                .scheme("http")
-                .host("padakmon-client-bucket.s3-website.ap-northeast-2.amazonaws.com") // TODO 환경변수
+                .host(domain)
                 .port(80)
                 .path("/login")
                 .queryParams(queryParams)
