@@ -17,10 +17,10 @@ const SearchTipText = ({ data }) => {
   return (
     <div>
       <TipTextDiv>
-        <TipSearchType>{data.type}asd</TipSearchType>
+        <TipSearchType>{data.type}</TipSearchType>
         <TipSearchSyntax>
           {data.body.length > 1
-            ? data.body.map((el) => <div key={el.id}>{el}</div>)
+            ? data.body.map((el) => <div key={el}>{el}</div>)
             : data.body}
         </TipSearchSyntax>
       </TipTextDiv>

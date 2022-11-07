@@ -53,7 +53,7 @@ const SearchResults = () => {
                 </TopQuestionsTitle>
               )}
               <div>
-                <AdvancedTipButton to="/searchtip">
+                <AdvancedTipButton to="/search/tip">
                   Advanced Search Tips
                 </AdvancedTipButton>
                 <AskQuestionButton />

@@ -13,6 +13,7 @@ import {
 } from '../Home/style';
 import NoSearch from '../NoSearch';
 import { AboutTag, AboutTagDiv } from './style';
+import { AdvancedTipButton } from '../SearchResults/style';
 const URL = process.env.REACT_APP_API_URL;
 
 const QuestionsTagged = () => {
@@ -48,7 +49,12 @@ const QuestionsTagged = () => {
               <TopQuestionsTitle>
                 {tagData.searchInfo.searchTitle}
               </TopQuestionsTitle>
-              <AskQuestionButton />
+              <div>
+                <AdvancedTipButton to="/search/tip">
+                  Advanced Search Tips
+                </AdvancedTipButton>
+                <AskQuestionButton />
+              </div>
             </HomeHead>
           </div>
           <div>
