@@ -12,7 +12,8 @@ import {
   Total,
 } from '../Home/style';
 import NoSearch from '../NoSearch';
-import { AboutTagDiv, AboutTag } from './style';
+import { AboutTag, AboutTagDiv } from './style';
+import { AdvancedTipButton } from '../SearchResults/style';
 const URL = process.env.REACT_APP_API_URL;
 
 const QuestionsTagged = () => {
@@ -23,7 +24,9 @@ const QuestionsTagged = () => {
   useEffect(() => {
     axios
       .get(
-        `${URL}/api/questions?query=tag:${searchTag}&page=1&size=20&order=score`,
+        `${URL}/api/questions?query=tag:${encodeURIComponent(
+          searchTag
+        )}&page=1&size=20&order=score`,
         {
           headers: {
             'Content-Type': 'application/json;charset=UTF-8',
@@ -46,7 +49,12 @@ const QuestionsTagged = () => {
               <TopQuestionsTitle>
                 {tagData.searchInfo.searchTitle}
               </TopQuestionsTitle>
-              <AskQuestionButton />
+              <div>
+                <AdvancedTipButton to="/search/tip">
+                  Advanced Search Tips
+                </AdvancedTipButton>
+                <AskQuestionButton />
+              </div>
             </HomeHead>
           </div>
           <div>

@@ -25,7 +25,9 @@ const SearchResults = () => {
   useEffect(() => {
     axios
       .get(
-        `${URL}/api/questions?query=${searchGen}&page=1&size=20&order=newest`,
+        `${URL}/api/questions?query=${encodeURIComponent(
+          searchGen
+        )}&page=1&size=20&order=newest`,
         {
           headers: {
             'Content-Type': 'application/json;charset=UTF-8',
@@ -51,7 +53,7 @@ const SearchResults = () => {
                 </TopQuestionsTitle>
               )}
               <div>
-                <AdvancedTipButton to="/searchtip">
+                <AdvancedTipButton to="/search/tip">
                   Advanced Search Tips
                 </AdvancedTipButton>
                 <AskQuestionButton />

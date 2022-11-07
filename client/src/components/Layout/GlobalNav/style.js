@@ -115,8 +115,8 @@ export const AferLoginIcons = styled.div`
       background-color: var(--black-075);
     }
     > img {
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
       margin: 0px;
     }
   }
