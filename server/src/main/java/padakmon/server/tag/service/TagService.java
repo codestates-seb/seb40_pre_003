@@ -1,6 +1,7 @@
 package padakmon.server.tag.service;
 
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import padakmon.server.tag.entity.Tag;
 import padakmon.server.tag.repository.TagRepository;
 
+import java.net.URLDecoder;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -33,12 +35,14 @@ public class TagService {
         }
     }
 
+    @SneakyThrows
     public Page<Tag> delegateFindTags(String query, int page, int size, Sort sort) {
         PageRequest pageRequest = PageRequest.of(page, size, sort);
         Page<Tag> tags;
         if(query == null) {
             tags = tagRepository.findAll(pageRequest);
         } else {
+            query = URLDecoder.decode(query, "UTF-8");
             tags = tagRepository.findByNameContaining(query.trim(), pageRequest);
         }
         calculateQuestionsByDate(tags);

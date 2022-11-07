@@ -1,5 +1,6 @@
 package padakmon.server.question.controller;
 
+import lombok.SneakyThrows;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import padakmon.server.question.entity.Question;
 import padakmon.server.question.mapper.QuestionSearchMapper;
 import padakmon.server.question.service.QuestionSearchService;
 import javax.validation.constraints.Positive;
+import java.net.URLDecoder;
 import java.util.List;
 
 @RestController
@@ -40,6 +42,7 @@ public class QuestionSearchController {
     }
 
 
+    @SneakyThrows
     @GetMapping( "/questions")
     public ResponseEntity getOrderQuery(@RequestParam(name = "query", required = false) String query,
                                         @RequestParam(name = "order", required = false) String order,
@@ -54,6 +57,7 @@ public class QuestionSearchController {
         if (query == null) {
             questionPage = questionSearchService.findQuestions(page - 1, size, Sort.by(orderMode).descending());
         } else {
+            query = URLDecoder.decode(query, "UTF-8");
             questionPage = questionSearchService.delegateSearch(query, page - 1, size, Sort.by(orderMode).descending());
             questionSearchService.setSearchInfo(query, searchInfo);
         }
