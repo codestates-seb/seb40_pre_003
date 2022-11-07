@@ -1,12 +1,12 @@
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './style.css';
 import axios from 'axios';
-import { useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import TagInput from '../../components/TagInput';
 import ToastEditor from '../../components/ToastEditor';
+import { askTagsAction } from '../../redux';
 import {
   AskQuestionDiv,
   AskQuestionHead,
@@ -21,10 +21,17 @@ import {
   TagDiv,
   ToastDiv,
 } from './style';
+import './style.css';
+const URL = process.env.REACT_APP_API_URL;
 
 const AskQuestion = () => {
   const navigate = useNavigate();
   const titleInputValue = useRef();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(askTagsAction([]));
+  }, []);
 
   const body = useSelector((state) => state.askReducer.body);
   const tags = useSelector((state) => state.askReducer.tags);
@@ -37,7 +44,7 @@ const AskQuestion = () => {
     let title = titleInputValue.current.value;
     axios
       .post(
-        '/api/questions',
+        `${URL}/api/questions`,
         {
           title: title,
           body: body,

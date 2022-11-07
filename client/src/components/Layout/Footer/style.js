@@ -10,7 +10,8 @@ export const FooterContainer = styled.footer`
 
 export const Container = styled.div`
   display: flex;
-  margin: 0 124px;
+  max-width: 1264px;
+  margin: 0 auto;
 `;
 
 export const LogoContainer = styled.div`
@@ -32,6 +33,9 @@ export const Categories = styled.div`
   padding-bottom: 24px;
   height: 254px;
   width: 100%;
+  @media screen and (max-width: 980px) {
+    display: none;
+  }
 `;
 
 export const Category = styled.h5`

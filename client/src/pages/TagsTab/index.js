@@ -10,16 +10,16 @@ import {
   Input,
 } from './style';
 
+const URL = process.env.REACT_APP_API_URL;
+
 const TagsTab = () => {
   const [tagData, setTagData] = useState(null);
 
   useEffect(() => {
     axios
-      .get('/api/tags', {
+      .get(`${URL}/api/tags`, {
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
-          'Access-Control-Allow-Origin': '*',
-          'ngrok-skip-browser-warning': '111',
         },
       })
       .then((res) => {

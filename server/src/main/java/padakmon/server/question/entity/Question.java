@@ -3,6 +3,7 @@ package padakmon.server.question.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.procedure.spi.ParameterRegistrationImplementor;
 import padakmon.server.answer.entity.Answer;
 import padakmon.server.audit.Auditable;
 import padakmon.server.tag.entity.QuestionTag;
@@ -48,11 +49,28 @@ public class Question extends Auditable {
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private Set<Answer> answers = new HashSet<>();
+    @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
+    private Set<QuestionView> questionViews = new HashSet<>();
 
     public void scoreUp() {
         this.voteScore++;
     }
     public void scoreDown() {
         this.voteScore--;
+    }
+    public void viewUp() {this.viewCount++;}
+
+    public void addQuestionView(QuestionView questionView) {
+        this.questionViews.add(questionView);
+    }
+
+    @Override
+    public int hashCode() {
+        return Math.toIntExact(this.questionId);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 }

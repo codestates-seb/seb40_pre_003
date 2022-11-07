@@ -81,11 +81,11 @@ export const TagBox = styled.div`
   width: 360px;
   height: 27px;
   word-break: break-all;
-  overflow: hidden;
+  overflow: scroll;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
 `;
 
 export const TagBtn = styled.button`

@@ -1,18 +1,19 @@
-import QuestionsList from '../../components/Main/QuestionsList';
-import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import AskQuestionButton from '../../components/Buttons/AskQuestionButton';
+import QuestionsList from '../../components/Main/QuestionsList';
+import SideBarWidget from '../../components/SideBarWidget';
 import {
   Container,
-  Main,
   HomeHead,
+  Main,
   TopQuestionsTitle,
   Total,
 } from '../Home/style';
-import SideBarWidget from '../../components/SideBarWidget';
 import NoSearch from '../NoSearch';
 import { AboutTagDiv, AboutTag } from './style';
+const URL = process.env.REACT_APP_API_URL;
 
 const QuestionsTagged = () => {
   const [tagData, setTagData] = useState(null);
@@ -25,13 +26,14 @@ const QuestionsTagged = () => {
   );
   useEffect(() => {
     axios
-      .get(`/api/questions?query=tag:${searchTag}&page=1&size=20&order=score`, {
-        headers: {
-          'Content-Type': 'application/json;charset=UTF-8',
-          'Access-Control-Allow-Origin': '*',
-          'ngrok-skip-browser-warning': '111',
-        },
-      })
+      .get(
+        `${URL}/api/questions?query=tag:${searchTag}&page=1&size=20&order=score`,
+        {
+          headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+          },
+        }
+      )
       .then((res) => {
         console.log(
           'QuestionsTagged컴포 -> axios로 get요청 api/param : ',

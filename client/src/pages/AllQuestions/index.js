@@ -13,6 +13,7 @@ import {
   Total,
 } from '../Home/style';
 import { PaginationContainer } from './style';
+const URL = process.env.REACT_APP_API_URL;
 
 const AllQuestions = () => {
   const [totalCount, setTotalCount] = useState(0);
@@ -25,12 +26,12 @@ const AllQuestions = () => {
   useEffect(() => {
     axios
       .get(
-        `/api/questions${page ? `?page=${page}` : ''}&size=15&order=newest`,
+        `${URL}/api/questions${
+          page ? `?page=${page}` : ''
+        }&size=15&order=newest`,
         {
           headers: {
             'Content-Type': 'application/json;charset=UTF-8',
-            'Access-Control-Allow-Origin': '*',
-            'ngrok-skip-browser-warning': '111',
           },
         }
       )

@@ -37,7 +37,7 @@ const ModalButton = styled.button`
   }
   border: 0;
   background-color: rgb(247, 247, 247);
-  position: fixed;
+  /* position: fixed; */
   z-index: 1;
   :hover {
     background-color: var(--black-075);

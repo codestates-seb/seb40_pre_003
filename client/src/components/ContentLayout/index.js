@@ -16,6 +16,7 @@ import { Container, ContentBody, VoteLayout } from './style';
 
 function ContentLayout({ testdata, questionId, answerId }) {
   // const time = testdata.createdAt; // 임시로 지정
+  // console.log('testdata in ContentLayout: ', testdata);
   let writerType;
   if (answerId) {
     writerType = 'answerer';
@@ -40,7 +41,7 @@ function ContentLayout({ testdata, questionId, answerId }) {
           {testdata.tags && <ContentTagList tags={testdata.tags} />}
           <ContentInfo
             time={testdata.createdAt}
-            user={testdata.user ? testdata.user : testdata.displayName}
+            user={testdata.user}
             writerType={writerType}
             questionId={questionId}
             answerId={answerId}

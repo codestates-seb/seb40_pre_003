@@ -1,7 +1,7 @@
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import removeMarkdown from 'markdown-to-text';
-import { getPrettyTime } from '../../ContentLayout/WriterProfile';
+import { getPrettyTime } from '../../../util/getPrettyTime';
 import './index.css';
 import {
   QuBox,
@@ -17,11 +17,11 @@ import {
   QuestionText,
   TagInfoFooter,
   TagBox,
-  TagBtn,
   InfoBox,
   InfoName,
   LastTime,
 } from './style';
+import Tag from '../../Tag';
 
 const Question = ({ list }) => {
   console.log('Question컴포 -> props로 받아온 Data.body : ', list.body);
@@ -52,11 +52,7 @@ const Question = ({ list }) => {
           <TagInfoFooter>
             <TagBox>
               {list.tags.map((el) => {
-                return (
-                  <TagBtn key={el.toString()}>
-                    <span>{el}</span>
-                  </TagBtn>
-                );
+                return <Tag key={el.toString()} name={el} />;
               })}
             </TagBox>
             <InfoBox>

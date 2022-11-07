@@ -3,11 +3,15 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  @media screen and (max-width: 640px) {
+    min-width: 240px;
+  }
   display: flex;
   flex-direction: column;
   position: sticky;
   border-right: 1px solid #d6d9dc;
   padding-top: 24px;
+  padding-bottom: 24px;
   height: 100%;
 `;
 

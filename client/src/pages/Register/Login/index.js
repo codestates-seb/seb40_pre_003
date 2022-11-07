@@ -1,6 +1,6 @@
 import { useState } from 'react';
 //import { useEffect } from 'react';
-//import { FcGoogle } from 'react-icons/fc';
+import { FcGoogle } from 'react-icons/fc';
 import { GrFacebook } from 'react-icons/gr';
 import { SiGithub } from 'react-icons/si';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,6 +9,7 @@ import { LoginBlock } from './style';
 
 import axios from 'axios';
 import { loginAction } from '../../../redux';
+const url = process.env.REACT_APP_API_URL;
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -50,7 +51,7 @@ export default function Login() {
 
     //로그인한 유저를 처음으로 서버에 등록: post요청 -> 앞으로 확인할 때는 get요청
     axios
-      .post(`/api/auth/login`, loginData, loginConfig)
+      .post(`${url}/api/auth/login`, loginData, loginConfig)
       // json-server용 json-server --watch mockData.json --port 8080
       // .post(`http://localhost:8080/users`, loginData, loginConfig)
       .then((res) => {
@@ -82,7 +83,7 @@ export default function Login() {
           setLoginFailMsg('The email or password is incorrect.');
           setEmail(''); //왜 초기화가 안되지??아...리렌더링 시켜야하는데
           setPassword('');
-          window.location.reload(); //리렌더링을 위한 임시방편
+          // location.reload(); //리렌더링을 위한 임시방편 window
         }
       });
   };
@@ -94,9 +95,26 @@ export default function Login() {
   //   }
   // }, []);
 
-  // const handleGoogleLogin = () => {
-  //   axios.get(`/api/auth/login`).then((res) => console.log(res));
-  // };
+  const onClick = () => {
+    window.location.assign(
+      'https://50de-2001-e60-875c-55fc-a458-e696-b3e9-e1b2.jp.ngrok.io/'
+    );
+
+    //구글로그인 리다이렉트 후 진행사항
+    let googleAccessToken = new URL(location.href).searchParams.get(
+      'access_token'
+    );
+    let googleRefreshToken = new URL(location.href).searchParams.get(
+      'refresh_token'
+    );
+    console.log('구글액세스토큰', googleAccessToken);
+    console.log('구글리프레시토큰', googleRefreshToken);
+    if (googleAccessToken !== null) {
+      localStorage.setItem('googleAccessToken', googleAccessToken);
+      localStorage.setItem('googleRefreshToken', googleRefreshToken);
+      navigate('/');
+    }
+  };
 
   return (
     <LoginBlock className="login_block">
@@ -110,12 +128,11 @@ export default function Login() {
       {/* 소셜 로그인 */}
       <section className="social_login">
         <div>
-          {/* <button onClick={handleGoogleLogin}>
+          <button onClick={onClick}>
             <FcGoogle className="icons" size={22} />
             Log in with Google
-          </button> */}
-          {/* <FcGoogle className="icons" size={22} />
-          Log in with Google */}
+          </button>
+
           <button id="github_login">
             <SiGithub className="icons" size={22} />
             Log in with Github
@@ -126,7 +143,6 @@ export default function Login() {
           </button>
         </div>
       </section>
-      {/* 이메일 로그인 */}
       <section className="email_login">
         <form onSubmit={handleSubmit}>
           <div>
