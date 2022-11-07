@@ -19,9 +19,9 @@ import {
 
 import inbox from '../../../assets/images/inbox_icon.png';
 // import message from '../../../assets/images/message_icon.png';
+import userimg from '../../../assets/images/padakmon.png';
 import question from '../../../assets/images/question_icon.png';
 import trophy from '../../../assets/images/trophy_icon.png';
-import userimg from '../../../assets/images/userimg_icon.png';
 import HeaderModalButton from '../../HeaderModalButton';
 import Hamburger from './Hamburger';
 

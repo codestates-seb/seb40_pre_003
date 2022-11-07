@@ -12,7 +12,7 @@ import {
   Total,
 } from '../Home/style';
 import NoSearch from '../NoSearch';
-import { AboutTagDiv, AboutTag } from './style';
+import { AboutTag, AboutTagDiv } from './style';
 const URL = process.env.REACT_APP_API_URL;
 
 const QuestionsTagged = () => {
@@ -23,7 +23,9 @@ const QuestionsTagged = () => {
   useEffect(() => {
     axios
       .get(
-        `${URL}/api/questions?query=tag:${searchTag}&page=1&size=20&order=score`,
+        `${URL}/api/questions?query=tag:${encodeURIComponent(
+          searchTag
+        )}&page=1&size=20&order=score`,
         {
           headers: {
             'Content-Type': 'application/json;charset=UTF-8',
