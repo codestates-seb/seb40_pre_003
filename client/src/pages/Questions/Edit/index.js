@@ -27,8 +27,6 @@ function Edit() {
   const question = useSelector((state) => state.questionReducer.question);
   let { id, answerid } = useParams();
   let isAnswer = answerid === undefined ? false : true;
-  console.log('useParams - id in Edit', id);
-  console.log('useParams - answerid in Edit', answerid);
   const titleInputValue = useRef();
   const editorRef = useRef();
   let title, body;
@@ -42,7 +40,6 @@ function Edit() {
 
   const [titleValue, setTitleValue] = useState(title ? title : '');
   let newTags = useSelector((state) => state.askReducer.tags);
-  console.log('newTags in Edit:', newTags);
 
   function handleEdit() {
     let newBody = editorRef.current?.getInstance().getMarkdown();
@@ -119,21 +116,14 @@ function Edit() {
             autofocus={false}
           ></Editor>
         </ToastDiv>
-        {/* <TagDiv> */}
         {!isAnswer && (
           <TagContainer>
             <div>
               <H2>Tags</H2>
             </div>
-            {/* <input
-            type="text"
-            placeholder="e.g (excel string regex)"
-            ref={tagInputValue}
-          /> */}
             <TagInput initialTags={question.tags} />
           </TagContainer>
         )}
-        {/* </TagDiv> */}
         <button onClick={handleEdit}>Submit Edits</button>
       </Main>
       <Side>

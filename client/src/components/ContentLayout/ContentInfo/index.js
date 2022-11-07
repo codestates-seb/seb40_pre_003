@@ -1,5 +1,3 @@
-// import { useState } from 'react';
-// import ShareModal from '../ShareModal';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import WriterProfile from '../WriterProfile';
@@ -7,11 +5,6 @@ import { Button, Buttons, Container, EditLink } from './style';
 const URL = process.env.REACT_APP_API_URL;
 
 function ContentInfo({ time, user, writerType, questionId, answerId }) {
-  // const [shareOpen, setShareOpen] = useState(false);
-
-  // const openModalHandler = () => {
-  //   setShareOpen(!shareOpen);
-  // };
   const navigate = useNavigate();
   console.log(questionId, answerId);
 
@@ -52,7 +45,6 @@ function ContentInfo({ time, user, writerType, questionId, answerId }) {
   return (
     <Container>
       <Buttons>
-        {/* <Button onClick={openModalHandler}>Share</Button> */}
         <Button>Share</Button>
         {isMyPost() && (
           <Button>
@@ -67,13 +59,6 @@ function ContentInfo({ time, user, writerType, questionId, answerId }) {
         )}
         {isMyPost() && <Button onClick={handleDelete}>Delete</Button>}
         <Button>Follow</Button>
-        {/* {shareOpen && (
-          <ModalBackdrop onClick={openModalHandler}>
-            <StopProp onClick={(e) => e.stopPropagation()}>
-              <ShareModal openModalHandler={openModalHandler} />
-            </StopProp>
-          </ModalBackdrop>
-        )} */}
       </Buttons>
       <WriterProfile time={time} user={user} writerType={writerType} />
     </Container>

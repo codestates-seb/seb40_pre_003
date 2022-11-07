@@ -37,10 +37,6 @@ const AskQuestion = () => {
   const tags = useSelector((state) => state.askReducer.tags);
 
   function handleSubmit() {
-    console.log(titleInputValue.current.value);
-    console.log(body);
-    console.log(tags);
-
     let title = titleInputValue.current.value;
     axios
       .post(

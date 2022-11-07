@@ -1,4 +1,3 @@
-// redux 만들면 상태로 가져올 것임
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { searchTagAction } from '../../redux';

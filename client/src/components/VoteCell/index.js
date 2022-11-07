@@ -21,7 +21,6 @@ function VoteCell({ questionId, score, answerId }) {
   }, [nowScore]);
 
   const handleVote = (num) => {
-    // console.log("handleVote's uri:", uri);
     if (isLogin()) {
       axios
         .post(
