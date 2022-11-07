@@ -1,4 +1,3 @@
-// import GlobalNav from './components/Layout/GlobalNav';
 import { Route, Routes, useLocation } from 'react-router-dom'; // Link 잠시 지움
 import styled from 'styled-components';
 import GlobalStyle from './assets/GlobalStyle';
@@ -43,7 +42,6 @@ function App() {
   const [hamburger, setHamburger] = useState(false);
   const openHamburger = () => {
     setHamburger(!hamburger);
-    console.log('HAMHAM!');
   };
 
   const noSnb = ['/ask', '/login', '/logout', '/signup'];
@@ -87,7 +85,7 @@ function App() {
           <Route path={`/questions/edit/:id/:answerid`} element={<Edit />} />
           {/* querystring으로 검색 결과 페이지 이동 (/search?q=springboot) */}
           <Route path="/search" element={<SearchResults />} />
-          <Route path="/searchtip" element={<SearchTip />} />
+          <Route path="/search/tip" element={<SearchTip />} />
           <Route path="/searchtag" element={<QuestionsTagged />} />
           <Route path="/users" element={<Users />} />
           <Route path="/tags" element={<TagsTab />} />
@@ -128,10 +126,5 @@ const SNBModal = styled.div`
   z-index: 1;
   border-bottom: 1px solid var(--black-100);
 `;
-
-// const Main = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-// `;
 
 export default App;

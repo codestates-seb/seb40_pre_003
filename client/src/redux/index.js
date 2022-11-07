@@ -3,14 +3,9 @@ import { combineReducers, createStore } from 'redux';
 const LOGIN_USER = 'LOGIN_USER';
 const LOGOUT = 'LOGOUT';
 const QUESTION = 'QUESTION';
-
-// 일반 검색 type
 const SEARCH_GEN = 'SEARCH_GEN';
-// 태그 검색 type
 const SEARCH_TAG = 'SEARCH_TAG';
 
-//액션객체생성자 -> 디스패치 함수에 전달인자로 담길 예정
-//로그인되면, 로그인된 id를 함께 담을 예정..
 export const loginAction = (res) => {
   return {
     type: LOGIN_USER,
@@ -18,14 +13,12 @@ export const loginAction = (res) => {
   };
 };
 
-//로그아웃은 보관하고 있던 id를 날리는 것
 export const logoutAction = () => {
   return {
     type: LOGOUT,
   };
 };
 
-// 현재 조회한 question 데이터
 export const questionAction = (res) => {
   return {
     type: QUESTION,
@@ -33,7 +26,6 @@ export const questionAction = (res) => {
   };
 };
 
-// search한 데이터
 export const searchGenAction = (res) => {
   return {
     type: SEARCH_GEN,
@@ -47,7 +39,6 @@ export const searchTagAction = (res) => {
   };
 };
 
-// // 질문 작성 데이터 (Title)
 export const askTitleAction = (res) => {
   return {
     type: 'TITLE',
@@ -55,7 +46,6 @@ export const askTitleAction = (res) => {
   };
 };
 
-// 질문 작성 데이터 (Body)
 export const askBodyAction = (res) => {
   return {
     type: 'BODY',
@@ -63,7 +53,6 @@ export const askBodyAction = (res) => {
   };
 };
 
-// 질문 작성 데이터 (Tags)
 export const askTagsAction = (res) => {
   return {
     type: 'TAGS',
@@ -71,7 +60,6 @@ export const askTagsAction = (res) => {
   };
 };
 
-//리듀서에 넣을 초기값 -> 내가 관리할 state 객체의 모습
 const initialstate = {
   isLogin: false,
   question: null,
@@ -84,13 +72,12 @@ const initialstate = {
   },
 };
 
-//리듀서함수 -> 디스패치가 호출하면 state를 바꿈
 const loginReducer = (state = initialstate, action) => {
   switch (action.type) {
     case LOGIN_USER:
       return {
         isLogin: true,
-        id: action.payload, //로그인되면, 로그인된 id를 함께 담을 예정..
+        id: action.payload,
       };
     case LOGOUT:
       return {
@@ -104,7 +91,6 @@ const loginReducer = (state = initialstate, action) => {
 const questionReducer = (state = initialstate, action) => {
   switch (action.type) {
     case QUESTION:
-      // console.log('action.payload:', action.payload);
       return {
         question: action.payload,
       };
@@ -149,7 +135,6 @@ const askReducer = (state = initialstate, action) => {
         body: action.payload,
       };
     case 'TAGS':
-      // console.log('TAGS:', action.payload);
       return {
         ...state,
         tags: action.payload,
@@ -159,7 +144,6 @@ const askReducer = (state = initialstate, action) => {
   }
 };
 
-//리듀서가 1개인데, combineReducers가 필요한가?
 const combinedReducer = combineReducers({
   loginReducer,
   questionReducer,
@@ -167,7 +151,6 @@ const combinedReducer = combineReducers({
   askReducer,
 });
 
-// const store = createStore(loginReducer);
 const store = createStore(combinedReducer);
 
 export default store;

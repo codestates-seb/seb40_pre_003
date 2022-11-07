@@ -37,7 +37,6 @@ const ModalButton = styled.button`
   }
   border: 0;
   background-color: rgb(247, 247, 247);
-  /* position: fixed; */
   z-index: 1;
   :hover {
     background-color: var(--black-075);
@@ -48,7 +47,7 @@ const ModalContent = styled.div`
   width: 400px;
   border-radius: 15px;
   background-color: #fff;
-  position: absolute; //포지션 잡느라 죽는줄..ㅠㅠ
+  position: absolute;
   top: 224px;
   right: -200px;
   transform: translate(-50%, -50%);

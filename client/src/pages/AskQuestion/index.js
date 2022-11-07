@@ -1,7 +1,3 @@
-// -------------- AskQuestion -------------
-// 화면에있는 Ask Question 버튼을 눌렀을때 나오는 페이지 -> 질문 작성 페이지
-
-// import styled from 'styled-components';
 import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
@@ -41,10 +37,6 @@ const AskQuestion = () => {
   const tags = useSelector((state) => state.askReducer.tags);
 
   function handleSubmit() {
-    console.log(titleInputValue.current.value);
-    console.log(body);
-    console.log(tags);
-
     let title = titleInputValue.current.value;
     axios
       .post(

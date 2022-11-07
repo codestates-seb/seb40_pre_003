@@ -14,8 +14,10 @@ export const Title = styled.h1`
   display: flex;
   font-size: 27px;
   font-weight: normal;
+  margin-right: 8px;
   margin-bottom: 8px;
   height: auto;
+  word-break: break-all;
 `;
 
 export const FiguresContainer = styled.section`

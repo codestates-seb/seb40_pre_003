@@ -34,7 +34,7 @@ export const Categories = styled.div`
   height: 254px;
   width: 100%;
   @media screen and (max-width: 980px) {
-    flex-direction: column;
+    display: none;
   }
 `;
 
