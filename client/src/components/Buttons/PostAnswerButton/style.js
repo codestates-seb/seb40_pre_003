@@ -5,8 +5,6 @@ export const AnswerButton = styled.button`
   font-family: inherit;
   font-weight: 500;
   color: white;
-  /* width: auto;
-  height: 37px; */
   padding: 10.4px;
   margin: 0 2px;
   border: 1px solid transparent;

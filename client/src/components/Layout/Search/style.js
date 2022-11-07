@@ -7,7 +7,6 @@ export const Container = styled.div`
   padding: 0px 8px;
   flex: 1 1 auto;
   width: auto;
-  /* background-color: white; */
 `;
 
 export const SearchContainer = styled.div`

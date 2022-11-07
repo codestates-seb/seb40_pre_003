@@ -31,7 +31,6 @@ export const Container = styled.div`
   }
   ul.pagination li {
     display: inline-block;
-    /* width: 30px; */
     height: 25px;
     border: 1px solid var(--black-100);
     display: flex;

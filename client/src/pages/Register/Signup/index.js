@@ -52,13 +52,11 @@ const Signup = () => {
         password: password,
       })
       .then((res) => {
-        console.log('회원가입성공');
-        console.log(res);
-        navigate('/login');
+        if (res) {
+          navigate('/login');
+        }
       })
       .catch((error) => {
-        console.log('에러어어어어어');
-        console.log(error.response);
         if (error.response.data === '형식에 맞지 않음') {
           setNameValidMsg('The displayName is not a valid displayName.');
         }
@@ -99,7 +97,6 @@ const Signup = () => {
         </div>
       </div>
       <SignupBlock className="">
-        {/* 소셜 가입 */}
         <section className="social_signup">
           <div>
             <button>
@@ -116,7 +113,6 @@ const Signup = () => {
             </button>
           </div>
         </section>
-        {/* 이메일 가입 */}
         <section className="email_signup">
           <form onSubmit={handleSubmit}>
             <div>
@@ -169,7 +165,6 @@ const Signup = () => {
           <br></br>
           <div>
             Are you an employer?
-            {/* 외부링크로 이동 */}
             <a href="https://talent.stackoverflow.com/users/login">
               Sign up on Talent
             </a>

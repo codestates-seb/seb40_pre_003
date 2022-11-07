@@ -44,7 +44,6 @@ const Users = () => {
       )
       .then((res) => {
         setUsers(res.data.users);
-        console.log('바뀐데이터', res.data.users);
       })
       .catch((error) => console.log(error));
   };

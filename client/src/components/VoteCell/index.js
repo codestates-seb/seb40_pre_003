@@ -35,14 +35,12 @@ function VoteCell({ questionId, score, answerId }) {
           }
         )
         .then((res) => {
-          console.log(res);
           if (res.data.success === 'true') {
             setNowScore(nowScore + num);
           }
         })
         .catch((error) => console.log(error));
     } else {
-      // alert('You need to log in.');
       if (window.confirm('You need to log in.')) {
         navigate('/login');
       }

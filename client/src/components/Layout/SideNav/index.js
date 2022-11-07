@@ -1,7 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import {
   Container,
-  // End,
   HomeLink,
   List,
   MyIoEarthSharp,
@@ -38,7 +37,6 @@ function SideNav() {
       </List>
       <List>
         <Name>TEAMS</Name>
-        {/* <End /> */}
       </List>
     </Container>
   );

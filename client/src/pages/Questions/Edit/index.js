@@ -67,7 +67,6 @@ function Edit() {
         },
       })
       .then((res) => {
-        console.log(res);
         if (res.status >= 200 && res.status < 300) {
           navigate(`/questions/${id}`);
         }
@@ -101,11 +100,8 @@ function Edit() {
             height="400px"
             initialValue={body}
             initialEditType="markdown"
-            // hideModeSwitch={true}
             useCommandShortcut={true}
-            //   plugins={[colorSyntax, [codeSyntaxHighlight, { highlighter: Prism }]]}
             toolbarItems={[
-              // 툴바 옵션 설정
               ['heading', 'bold', 'italic'],
               ['hr', 'quote'],
               ['ul', 'ol', 'task'],

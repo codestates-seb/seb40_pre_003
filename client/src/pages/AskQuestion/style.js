@@ -154,7 +154,6 @@ export const TagDiv = styled.div`
   margin-bottom: 10px;
   border-radius: 3px;
   border: 1px solid #d6d9dc;
-  /* height: 208px; */
   padding: 35px 30px 15px 30px;
   div > div {
     font-size: 17px;

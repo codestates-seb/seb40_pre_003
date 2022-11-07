@@ -54,8 +54,6 @@ export const PublicList = styled.div`
     props.selected ? 'var(--black-900)' : 'var(--black-600)'};
   border-right: 3px solid
     ${(props) => (props.selected ? 'var(--theme-primary-color)' : 'none')};
-
-  /* padding: 4px 4px 4px 30px; */
 `;
 
 export const QuestionsLink = styled(Link)`
@@ -64,10 +62,8 @@ export const QuestionsLink = styled(Link)`
   align-items: center;
   font-size: 13px;
   text-decoration: none;
-  /* color: var(--black-600); */
   color: inherit;
 
-  /* border-right: 3px; */
   width: 130px;
   height: 26px;
 
@@ -81,9 +77,7 @@ export const PublicLink = styled(Link)`
   align-items: center;
   font-size: 13px;
   text-decoration: none;
-  /* color: var(--black-600); */
   color: inherit;
-  /* padding: 8px 6px 8px 8px; */
   padding: 4px 4px 4px 30px;
 
   border-right: 3px;
@@ -104,19 +98,15 @@ export const List = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 11px;
-  /* margin: 16px 0 4px 8px; */
-  /* height: 100%; */
 `;
 
 export const Name = styled.div`
   margin: 16px 0 4px 8px;
   color: var(--fc-light);
-  /* height: 100%; */
 `;
 
 export const End = styled.div`
   display: flex;
   flex-direction: column;
-  /* flex: 1 1 auto; */
   height: 600px;
 `;

@@ -1,5 +1,3 @@
-// import { faUser } from '@fortawesome/free-regular-svg-icons';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import removeMarkdown from 'markdown-to-text';
 import userimg from '../../../assets/images/padakmon.png';
 import { getPrettyTime } from '../../../util/getPrettyTime';
@@ -56,7 +54,6 @@ const Question = ({ list }) => {
               })}
             </TagBox>
             <InfoBox>
-              {/* <FontAwesomeIcon icon={faUser} className="fontImg-user" /> */}
               <UserImg src={userimg} alt=""></UserImg>
               <InfoName>{list.user.displayName}</InfoName>
               <LastTime>

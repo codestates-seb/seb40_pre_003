@@ -1,9 +1,8 @@
 import { useState } from 'react';
-//import { useEffect } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { GrFacebook } from 'react-icons/gr';
 import { SiGithub } from 'react-icons/si';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { LoginBlock } from './style';
 
@@ -18,13 +17,9 @@ export default function Login() {
   const [loginFailMsg, setLoginFailMsg] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isLogin = useSelector((state) => state.isLogin);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(dispatch(loginAction('테스트')));
-    console.log('이즈로그인??', isLogin);
 
     if (email.length === 0) {
       setEmailValidMsg('Email cannot be empty.');
@@ -46,9 +41,6 @@ export default function Login() {
     axios
       .post(`${url}/api/auth/login`, loginData, loginConfig)
       .then((res) => {
-        console.log('로그인 성공');
-        console.log('로그인 시 들어오는 정보', res);
-
         let accessToken = res.headers.accesstoken;
         let userId = res.headers.id;
         let displayName = res.headers.displayname;
@@ -57,15 +49,10 @@ export default function Login() {
         localStorage.setItem('id', userId);
         localStorage.setItem('displayname', displayName);
 
-        console.log(localStorage);
-
         dispatch(loginAction(userId));
-        console.log('로그인액션전달', dispatch(loginAction(userId)));
         navigate('/');
       })
-      .then((data) => console.log(data))
       .catch((error) => {
-        console.log('에러인건가', error);
         if (error.message) {
           setLoginFailMsg('The email or password is incorrect.');
           location.reload();
@@ -84,8 +71,6 @@ export default function Login() {
     let googleRefreshToken = new URL(location.href).searchParams.get(
       'refresh_token'
     );
-    console.log('구글액세스토큰', googleAccessToken);
-    console.log('구글리프레시토큰', googleRefreshToken);
     if (googleAccessToken !== null) {
       localStorage.setItem('googleAccessToken', googleAccessToken);
       localStorage.setItem('googleRefreshToken', googleRefreshToken);
@@ -102,7 +87,6 @@ export default function Login() {
         />
       </div>
 
-      {/* 소셜 로그인 */}
       <section className="social_login">
         <div>
           <button onClick={onClick}>
