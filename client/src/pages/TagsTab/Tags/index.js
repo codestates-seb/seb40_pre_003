@@ -4,6 +4,7 @@ import {
   TagNameDiv,
   TagInfoDiv,
   TagInfo,
+  NoTagInfo,
   TagCountDiv,
   QuestionTotal,
   TodayTotal,
@@ -17,7 +18,11 @@ const Tags = ({ list }) => {
         <Tag name={list.tagName}></Tag>
       </TagNameDiv>
       <TagInfoDiv>
-        <TagInfo>{list.tagDescription}</TagInfo>
+        {list.tagDescription ? (
+          <TagInfo>{list.tagDescription}</TagInfo>
+        ) : (
+          <NoTagInfo></NoTagInfo>
+        )}
       </TagInfoDiv>
       <TagCountDiv>
         <QuestionTotal>
