@@ -1,33 +1,44 @@
-import TagList from './TagList';
-import { GoSearch } from 'react-icons/go';
-import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { GoSearch } from 'react-icons/go';
+import PaginationBar from '../../components/PaginationBar';
 import {
+  Input,
+  SearchContainer,
   TagContainer,
   TagMain,
   TagsTabHead,
-  SearchContainer,
-  Input,
 } from './style';
+import TagList from './TagList';
 
 const URL = process.env.REACT_APP_API_URL;
 
 const TagsTab = () => {
   const [tagData, setTagData] = useState(null);
+  const [page, setPage] = useState(1);
+  const [totalElements, setTotalElements] = useState(0);
+  const [totalPages, setTotalPage] = useState(null);
 
   useEffect(() => {
     axios
-      .get(`${URL}/api/tags`, {
+      .get(`${URL}/api/tags?size=20&page=${page}`, {
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',
         },
       })
       .then((res) => {
         setTagData(res.data);
+        setTotalElements(res.data.pageInfo.totalElements);
+        setTotalPage(res.data.pageInfo.totalPages);
       })
       .catch((error) => console.log('error : ', error));
-  }, []);
+  }, [page]);
 
+  const handlePageChange = (e) => {
+    setPage(e);
+  };
+
+  console.log('TagsTab컴포 -> TagDummy 데이터 :  ', tagData);
   return (
     <TagContainer>
       <TagMain>
@@ -49,6 +60,12 @@ const TagsTab = () => {
         <div>
           <TagList tagData={tagData}></TagList>
         </div>
+        <PaginationBar
+          page={page}
+          totalElements={totalElements}
+          handlePageChange={handlePageChange}
+          totalPages={totalPages}
+        />
       </TagMain>
     </TagContainer>
   );

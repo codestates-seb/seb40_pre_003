@@ -1,7 +1,7 @@
 package padakmon.server.config;
 
-import lombok.AllArgsConstructor;
-
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -29,16 +29,17 @@ import padakmon.server.authority.utils.UserAuthorityUtils;
 
 import java.util.List;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 @Configuration
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class SecurityConfiguration {
     private final JwtTokenizer jwtTokenizer;
     private final UserAuthorityUtils userAuthorityUtils;
     private final DetailService detailService;
     private final OAuth2SuccessHandler oAuth2SuccessHandler;
     private final CustomOAuth2UserService customOAuth2UserService;
+
+    @Value("${config.domain}")
+    private String domain;
 
 
     @Bean
@@ -47,11 +48,12 @@ public class SecurityConfiguration {
                 .headers().frameOptions().sameOrigin()
                 .and()
                 .csrf().disable()
-                .cors(withDefaults())
+                .cors().configurationSource(corsConfigurationSource())
+                .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .formLogin().disable()
-                .httpBasic().disable() // http header로 인증하는 방식은 사용하지 않음
+                .httpBasic().disable()
                 .exceptionHandling()
                 .authenticationEntryPoint(new UserAuthenticationEntryPoint())
                 .accessDeniedHandler(new UserAccessDeniedHandler())
@@ -81,10 +83,12 @@ public class SecurityConfiguration {
     @Bean
     CorsConfigurationSource corsConfigurationSource() { // CORS 정책
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("*"));
-//        configuration.setAllowedOrigins(List.of("http://padakmon-client-bucket.s3-website.ap-northeast-2.amazonaws.com")); // TODO S3
+        configuration.setAllowedOriginPatterns(List.of("*"));
+//        configuration.setAllowedOrigins(List.of(domain)); // TODO 배포시 S3로 변경
         configuration.setAllowedMethods(List.of("GET", "POST", "PATCH", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("Content-Type", "Authorization", "Content-Length", "X-Requested_With"));
+        configuration.setAllowedHeaders(List.of("*", "Authorization"));
+        configuration.setAllowCredentials(true);
+        configuration.setExposedHeaders(List.of("AccessToken", "RefreshToken", "Id", "DisplayName"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
