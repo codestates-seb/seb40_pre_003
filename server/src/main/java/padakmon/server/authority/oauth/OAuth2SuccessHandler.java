@@ -75,7 +75,7 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
                 .scheme("http")
                 .host(host)
                 .port(80)
-                .path("/login")
+                .path("/googlepage")
                 .queryParams(queryParams)
                 .build()
                 .toUri();
