@@ -14,38 +14,54 @@ public class QuestionDto {
     static public class Patch {
         @NotBlank
         private String title;
+
         @NotBlank
         private String body;
+
         private List<String> tags;
     }
+
     @Getter
     @Setter
     static public class GetResponse {
         private long questionId;
+
         private String title;
+
         private String body;
+
         private LocalDateTime createdAt;
+
         private LocalDateTime modifiedAt;
+
         private int score;
+
         private int viewCount;
+
         private int answerCount;
+
         private UserInQuestion user;
+
         private List<AnswerDto.Response> answers;
+
         private List<String> tags;
     }
+
     @Getter
     @Setter
     static public class UserInQuestion {
         private String displayName;
-        //사진 같은 거 추가 예정
     }
+
     @Getter
     @Setter
     static public class Post {
         @NotBlank
         private String title;
+
         @NotBlank
         private String body;
+
         private List<String> tags;
     }
 
@@ -53,6 +69,7 @@ public class QuestionDto {
     @Getter
     static public class SuccessResponse {
         private long postId;
+
         private String message = "Posting the question was successful";
     }
 }

@@ -15,6 +15,7 @@ public class GlobalExceptionAdvice {
     public ResponseEntity handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         return new ResponseEntity(ExceptionResponse.of(e), HttpStatus.BAD_REQUEST);
     }
+
     //Validation Exception
     @ExceptionHandler
     public ResponseEntity handleConstraintViolationException(ConstraintViolationException e) {

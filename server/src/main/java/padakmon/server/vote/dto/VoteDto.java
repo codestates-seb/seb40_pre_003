@@ -12,11 +12,13 @@ public class VoteDto {
         @PlusOneOrMinusOne
         private int vote;
     }
+
     @Getter
     @Setter
     @AllArgsConstructor
     static public class Response {
         private String success;
+
         private String message;
     }
 }

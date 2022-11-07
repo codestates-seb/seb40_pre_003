@@ -50,8 +50,6 @@ public class SecurityConfiguration {
                 .and()
                 .csrf().disable()
                 .cors(Customizer.withDefaults())
-//                .configurationSource(corsConfigurationSource())
-//                .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .formLogin().disable()
@@ -71,8 +69,6 @@ public class SecurityConfiguration {
                 .oauth2Login()
                 .successHandler(oAuth2SuccessHandler)
                 .userInfoEndpoint().userService(customOAuth2UserService);
-
-
 
         return http.build();
     }
@@ -120,5 +116,4 @@ public class SecurityConfiguration {
         authenticationProvider.setHideUserNotFoundExceptions(false);
         return authenticationProvider;
     }
-
 }

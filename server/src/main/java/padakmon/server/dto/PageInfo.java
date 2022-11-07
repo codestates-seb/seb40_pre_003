@@ -8,8 +8,11 @@ import org.springframework.data.domain.Page;
 @AllArgsConstructor
 public class PageInfo {
     private int page;
+
     private int size;
+
     private int totalElements;
+
     private int totalPages;
 
     public static PageInfo of(Page<?> pageObject, int page, int size) {

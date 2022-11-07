@@ -21,13 +21,18 @@ public class AnswerDto {
         @NotBlank
         private String contents;
     }
+
     @Getter
     @Setter
     static public class Response {
         private long answerId;
+
         private String contents;
+
         private int score;
+
         private LocalDateTime createdAt;
+
         private QuestionDto.UserInQuestion user;
     }
 }
