@@ -1,9 +1,10 @@
 import { CardContainer, IMG, TextBlock } from './style';
+import padakmon from '../../assets/images/padakmon.png';
 
-const UserCard = ({ img, displayName, answerCount, tags, userId }) => {
+const UserCard = ({ displayName, answerCount, tags, userId }) => {
   return (
     <CardContainer>
-      <IMG src={img} alt="로고" />
+      <IMG src={padakmon} alt="로고" />
       <TextBlock>
         <div id="displayname">{displayName}</div>
         <div id="answercount">{answerCount}</div>

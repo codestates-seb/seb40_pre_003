@@ -10,7 +10,6 @@ export const LoginBlock = styled.div`
   background-color: #f1f2f3;
 
   > div:first-of-type {
-    /* flex-basis: 10%; */
     > img {
       width: 70px;
       height: 70px;
@@ -19,8 +18,6 @@ export const LoginBlock = styled.div`
   }
 
   > section.social_login {
-    /* flex-basis: 20%; */
-
     > div {
       display: flex;
       flex-direction: column;
@@ -69,14 +66,6 @@ export const LoginBlock = styled.div`
     > div > button .icons {
       margin-right: 10px;
     }
-
-    /* div.button#github_login {
-      background-color: #232628;
-      color: white;
-      :hover {
-        background-color: black;
-      }
-    } */
   }
 
   > section.email_login {
