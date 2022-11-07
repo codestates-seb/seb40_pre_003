@@ -6,4 +6,7 @@ export const Container = styled.div`
   margin-bottom: 27px;
   max-width: 670px;
   overflow: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;

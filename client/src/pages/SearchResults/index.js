@@ -13,7 +13,7 @@ import {
   Total,
 } from '../Home/style';
 import NoSearch from '../NoSearch';
-import { AdvancedTipButton, AboutResult } from './style';
+import { AboutResult, AdvancedTipButton } from './style';
 const URL = process.env.REACT_APP_API_URL;
 
 const SearchResults = () => {
