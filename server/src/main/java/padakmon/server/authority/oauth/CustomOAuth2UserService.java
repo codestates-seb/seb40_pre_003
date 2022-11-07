@@ -105,9 +105,10 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                     (String)kakaoProfile.get("profile_image_url"), (String) kakaoAccount.get("email"));
         }
 
-
         private String randomDisplayNameGenerator() {
-            return "EatingPizza";
+            String base = "power";
+            String random = Integer.toString((int)Math.floor(Math.random() * 1000000000.0));
+            return base+random;
         }
 
         @Override
