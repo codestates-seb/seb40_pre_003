@@ -27,8 +27,8 @@ import java.util.Map;
 public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     private final JwtTokenizer jwtTokenizer;
 
-    @Value("${config.domain}")
-    private String domain;
+    @Value("${config.host}")
+    private String host;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
@@ -72,9 +72,10 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
         return UriComponentsBuilder
                 .newInstance()
-                .host(domain)
+                .scheme("http")
+                .host(host)
                 .port(80)
-                .path("/login")
+                .path("/")
                 .queryParams(queryParams)
                 .build()
                 .toUri();
