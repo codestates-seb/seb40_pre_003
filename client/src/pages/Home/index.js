@@ -18,7 +18,6 @@ const Home = () => {
         },
       })
       .then((res) => {
-        console.log('res : ', res.data);
         setHomeData(res.data);
         setTotalCount(res.data.questions.length);
       })

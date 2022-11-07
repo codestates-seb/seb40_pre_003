@@ -1,11 +1,11 @@
-import { Route, Routes, useLocation } from 'react-router-dom'; // Link 잠시 지움
+import { Route, Routes, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import GlobalStyle from './assets/GlobalStyle';
 import Footer from './components/Layout/Footer';
 import GlobalNav from './components/Layout/GlobalNav';
 import SideNav from './components/Layout/SideNav';
 import AskQuestion from './pages/AskQuestion';
-import Home from './pages/Home'; // 잠시 주석처리
+import Home from './pages/Home';
 import Edit from './pages/Questions/Edit';
 import QuestionContent from './pages/Questions/QuestionContent';
 import Logout from './pages/Register/Logout';
@@ -23,8 +23,6 @@ import Users from './pages/Users';
 function App() {
   const { pathname } = useLocation();
 
-  // background-color
-  // login, signup: --black-050, ask: --black-025, 나머지: white
   let bgColor;
   if (
     pathname === '/login' ||
@@ -74,22 +72,16 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />
-          <Route
-            path="/questions"
-            // element={<Link to="/questions/1">questions</Link>}
-            element={<AllQuestions />}
-          />
+          <Route path="/questions" element={<AllQuestions />} />
           <Route path="/questions/ask" element={<AskQuestion />} />
           <Route path={`/questions/:id`} element={<QuestionContent />} />
           <Route path={`/questions/edit/:id`} element={<Edit />} />
           <Route path={`/questions/edit/:id/:answerid`} element={<Edit />} />
-          {/* querystring으로 검색 결과 페이지 이동 (/search?q=springboot) */}
           <Route path="/search" element={<SearchResults />} />
           <Route path="/search/tip" element={<SearchTip />} />
           <Route path="/searchtag" element={<QuestionsTagged />} />
           <Route path="/users" element={<Users />} />
           <Route path="/tags" element={<TagsTab />} />
-          {/* id가 본인이면 마이페이지 */}
           <Route path={`/users/:id`} element={<div>users/:id</div>} />
         </Routes>
       </Body>

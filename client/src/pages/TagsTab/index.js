@@ -23,12 +23,11 @@ const TagsTab = () => {
         },
       })
       .then((res) => {
-        console.log('TagsTab컴포 -> axios 요청 res : ', res);
         setTagData(res.data);
       })
       .catch((error) => console.log('error : ', error));
   }, []);
-  console.log('TagsTab컴포 -> TagDummy 데이터 :  ', tagData);
+
   return (
     <TagContainer>
       <TagMain>

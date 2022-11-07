@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const TagsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   border: 1px solid #d6d9dc;
   border-radius: 3px;
   padding: 15px 13px 13px 13px;

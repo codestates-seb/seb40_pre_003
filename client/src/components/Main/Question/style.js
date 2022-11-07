@@ -81,7 +81,7 @@ export const TagBox = styled.div`
   width: 360px;
   height: 27px;
   word-break: break-all;
-  overflow: scroll;
+  overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 1;

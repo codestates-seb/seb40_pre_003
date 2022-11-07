@@ -14,7 +14,6 @@ const TipSearchType = styled.div``;
 const TipSearchSyntax = styled.div``;
 
 const SearchTipText = ({ data }) => {
-  console.log('SearchTip컴포 -> props받은 data : ', data);
   return (
     <div>
       <TipTextDiv>

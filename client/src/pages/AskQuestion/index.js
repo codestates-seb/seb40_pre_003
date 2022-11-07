@@ -56,7 +56,6 @@ const AskQuestion = () => {
         if (res.status >= 200 && res.status < 300) {
           navigate(`/questions/${res.data.postId}`);
         }
-        console.log(res);
       })
       .catch((error) => console.log(error));
   }

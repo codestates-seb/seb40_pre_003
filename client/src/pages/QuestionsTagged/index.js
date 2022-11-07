@@ -20,10 +20,6 @@ const QuestionsTagged = () => {
   const [totalCount, setTotalCount] = useState(0);
   const searchTag = useSelector((state) => state.searchReducer.searchTag);
 
-  console.log(
-    'QuestionsTagged컴포 -> 최상단 axios요청직전 useSelector()로 받아온 searchTag',
-    searchTag
-  );
   useEffect(() => {
     axios
       .get(
@@ -35,20 +31,7 @@ const QuestionsTagged = () => {
         }
       )
       .then((res) => {
-        console.log(
-          'QuestionsTagged컴포 -> axios로 get요청 api/param : ',
-          `/api/questions?query=tag:${searchTag}&page=1&size=20&order=score`
-        );
-        console.log(
-          'QuestionsTagged컴포->axios요청 값 : ',
-          res.data.searchInfo.tagDescription
-        );
-
         setTagData(res.data);
-        console.log(
-          'QuestionsTagged컴포 -> axios요청값을 setTagData에 넣은 tagData 값 : ',
-          tagData
-        );
         setTotalCount(res.data.questions.length);
       })
       .catch((error) => console.log(`error : `, error));
