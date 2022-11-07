@@ -65,6 +65,7 @@ export default function Login() {
         console.log('에러인건가', error);
         if (error.message) {
           setLoginFailMsg('The email or password is incorrect.');
+          location.reload();
           setEmail('');
           setPassword('');
         }
