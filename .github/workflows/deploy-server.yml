@@ -41,6 +41,7 @@ jobs:
         spring.jpa.hibernate.ddl-auto=update
         spring.jpa.database-platform=org.hibernate.dialect.MySQL5InnoDBDialect
         config.domain=${{ secrets.S3_ENDPOINT }}
+        config.host=${{ secrets.S3_HOST }}
         jwt.secret-key=${{ secrets.JWT_SECRET_KEY }}
         jwt.access-token-expiration-minutes=${{ secrets.JWT_ACCESS_TOKEN_EXPIRATION_MINUTES }}
         jwt.refresh-token-expiration-minutes=${{ secrets.JWT_REFRESH_TOKEN_EXPIRATION_MINUTES }}
