@@ -24,17 +24,17 @@ const Home = () => {
       .catch((error) => console.log('error : ', error));
   }, []);
 
-  window.location.assign(url + `/oauth2/authorization/google`);
+  useEffect(() => {
+    //window.location.assign(url + `/oauth2/authorization/google`);
 
-  let googleAccessToken = new URL(location.href).searchParams.get(
-    'access_token'
-  );
-  //   let googleRefreshToken = new URL(location.href).searchParams.get(
-  //     'refresh_token'
-  //   );
-  if (googleAccessToken) {
-    localStorage.setItem('accesstoken', googleAccessToken);
-  }
+    let googleAccessToken = new URL(location.href).searchParams.get(
+      'access_token'
+    );
+
+    if (googleAccessToken) {
+      localStorage.setItem('accesstoken', googleAccessToken);
+    }
+  }, []);
 
   return (
     <Container>
