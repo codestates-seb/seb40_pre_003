@@ -55,7 +55,7 @@ public class QuestionSearchController {
             questionPage = questionSearchService.findQuestions(page - 1, size, Sort.by(orderMode).descending());
         } else {
             questionPage = questionSearchService.delegateSearch(query, page - 1, size, Sort.by(orderMode).descending());
-            questionSearchService.getSearchInfo(query, searchInfo); // TODO ?? void가 아님
+            questionSearchService.setSearchInfo(query, searchInfo);
         }
 
         PageInfo pageInfo = PageInfo.of(questionPage, page, size);
