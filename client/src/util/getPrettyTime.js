@@ -1,7 +1,6 @@
 export function getPrettyTime(dateObj) {
   let dateStr = new Date(dateObj).toJSON();
   const [date, time] = dateStr.split('T');
-  // console.log(date, time);
   let months = [
     0,
     'Jan',
