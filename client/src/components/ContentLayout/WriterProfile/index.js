@@ -1,3 +1,4 @@
+import userimg from '../../../assets/images/padakmon.png';
 import { getPrettyTime } from '../../../util/getPrettyTime';
 import { Container, Image, Name, Profile, Time } from './style';
 
@@ -11,7 +12,7 @@ function WriterProfile({ time, user, writerType }) {
           writerType === 'questioner' ? 'asked' : 'answered'
         } ${prettyTime}`}</Time>
         <Profile>
-          <Image />
+          <Image src={userimg} />
           <Name>{user.displayName}</Name>
         </Profile>
       </Container>

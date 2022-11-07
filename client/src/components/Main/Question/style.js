@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const QuBox = styled.div`
   padding: 15px 0 10px 0;
@@ -120,4 +120,10 @@ export const LastTime = styled.div`
   height: 15px;
   font-size: 14px;
   color: #6a737c;
+`;
+
+export const UserImg = styled.img`
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
 `;

@@ -20,10 +20,9 @@ export const Profile = styled.div`
   display: flex;
 `;
 
-export const Image = styled.div`
+export const Image = styled.img`
   width: 32px;
   height: 32px;
-  background-color: gray;
 `;
 
 export const Name = styled.div`
