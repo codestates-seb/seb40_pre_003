@@ -76,7 +76,7 @@ export default function Login() {
   };
 
   const onClick = () => {
-    window.location.assign(url);
+    window.location.assign(url + `/oauth2/authorization/google`);
 
     let googleAccessToken = new URL(location.href).searchParams.get(
       'access_token'
