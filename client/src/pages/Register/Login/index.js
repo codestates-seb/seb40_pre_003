@@ -1,4 +1,5 @@
 import { useState } from 'react';
+//import { useEffect } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { GrFacebook } from 'react-icons/gr';
 import { SiGithub } from 'react-icons/si';
@@ -63,6 +64,7 @@ export default function Login() {
         //로컬 스토리지에 키와 값을 텍스트형식으로 담는다 -> JWT를 담아서 요청을 보낼 때 사용할 예정(서버와 통신/인가)
         //스토리지에 저장한 토큰은 -> 새로고침 시에 사용
         localStorage.setItem('accesstoken', accessToken);
+        localStorage.setItem('id', userId);
         localStorage.setItem('displayname', displayName);
 
         console.log(localStorage);
@@ -141,8 +143,6 @@ export default function Login() {
           </button>
         </div>
       </section>
-
-      {/* 이메일 로그인 */}
       <section className="email_login">
         <form onSubmit={handleSubmit}>
           <div>

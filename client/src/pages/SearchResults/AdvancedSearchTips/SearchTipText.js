@@ -3,19 +3,12 @@ import styled from 'styled-components';
 const TipTextDiv = styled.div`
   display: grid;
   padding: 10px 0 10px 0;
-  align-items: center; // grid로 레이아웃을 해둬서 수직중앙정렬 됨!
+  align-items: center;
   grid-template-columns: 123px 700px;
   font-size: 13px;
   font-weight: normal;
   border-bottom: 0.1px solid gray;
 `;
-// const TagListDiv = styled.div`
-//   display: grid;
-//   grid-template-rows: repeat(9, 200px);
-//   grid-template-columns: repeat(4, 242px);
-//   row-gap: 15px;
-//   column-gap: 15px;
-// `;
 
 const TipSearchType = styled.div``;
 const TipSearchSyntax = styled.div``;

@@ -1,4 +1,3 @@
-// import { DummyData } from '../../components/Main/Data/DummyData';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
@@ -39,7 +38,6 @@ const AllQuestions = () => {
       .then((res) => {
         console.log('AllQuestions컴포 -> axios요청 -> res.data : ', res);
         setHomeData(res.data);
-        // setTotalCount(res.data.questions.length);
         setTotalCount(res.data.pageInfo.totalElements);
         setTotalPage(res.data.pageInfo.totalPages);
         setTotalElements(res.data.pageInfo.totalElements);
