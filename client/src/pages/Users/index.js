@@ -12,14 +12,17 @@ const Users = () => {
   const [order, setOrder] = useState('');
 
   useEffect(() => {
-    console.log('order: ', order);
-    //버튼이 안되면
     axios
-      .get(`${URL}/api/users`, {
-        headers: {
-          'Content-Type': 'application/json;charset=UTF-8',
-        },
-      })
+      .get(
+        btnActive === 0 || btnActive === 2
+          ? `${URL}/api/users?order=${order}`
+          : `${URL}/api/users`,
+        {
+          headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+          },
+        }
+      )
       .then((res) => setUsers(res.data.users))
       .catch((error) => console.log(error));
   }, []);
@@ -27,6 +30,7 @@ const Users = () => {
   const handleClick = (e) => {
     setBtnActive(e.target.value);
     setOrder(name[e.target.value].toLowerCase());
+
     axios
       .get(
         btnActive === 0 || btnActive === 2
@@ -40,7 +44,7 @@ const Users = () => {
       )
       .then((res) => {
         setUsers(res.data.users);
-        console.log(res);
+        console.log('바뀐데이터', res.data.users);
       })
       .catch((error) => console.log(error));
   };

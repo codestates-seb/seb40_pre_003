@@ -76,9 +76,7 @@ export default function Login() {
   };
 
   const onClick = () => {
-    window.location.assign(
-      'https://50de-2001-e60-875c-55fc-a458-e696-b3e9-e1b2.jp.ngrok.io/'
-    );
+    window.location.assign(url);
 
     let googleAccessToken = new URL(location.href).searchParams.get(
       'access_token'
