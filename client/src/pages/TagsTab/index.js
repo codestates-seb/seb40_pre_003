@@ -38,7 +38,6 @@ const TagsTab = () => {
     setPage(e);
   };
 
-  console.log('TagsTab컴포 -> TagDummy 데이터 :  ', tagData);
   return (
     <TagContainer>
       <TagMain>

@@ -16,7 +16,6 @@ export default function Logout() {
   const navigate = useNavigate();
 
   const handleLogoutClick = () => {
-    console.log('로그아웃성공');
     dispatch(logoutAction());
     localStorage.removeItem('accesstoken');
     localStorage.removeItem('refreshToken');
@@ -24,7 +23,6 @@ export default function Logout() {
     localStorage.removeItem('googleRefreshToken');
     localStorage.removeItem('displayname');
 
-    console.log('localStorage', localStorage);
     navigate('/');
   };
 

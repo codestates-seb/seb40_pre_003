@@ -5,9 +5,7 @@ export const Container = styled.div``;
 export const TitleContainer = styled.header`
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
   height: auto;
-  /* flex: 1 1 auto; */
 `;
 
 export const Title = styled.h1`

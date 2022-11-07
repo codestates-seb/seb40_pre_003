@@ -24,8 +24,6 @@ export const Widget = styled.div`
 
 export const Header = styled.div`
   background-color: var(--yellow-100);
-  /* border-top-left-radius: 3px;
-  border-top-right-radius: 3px; */
   border-top: 1px solid var(--yellow-200);
 
   border-bottom-style: solid;
@@ -37,13 +35,7 @@ export const Header = styled.div`
   font-weight: bold;
 `;
 
-export const Item = styled.div`
-  /* background-color: var(--yellow-050); */
-  /* border-bottom: 1px solid var(--yellow-200); */
-  /* .last {
-    border-bottom: none;
-  } */
-`;
+export const Item = styled.div``;
 
 export const Li = styled.div`
   display: flex;
@@ -74,6 +66,5 @@ export const Logo = styled.img`
   align-items: center;
   width: ${(props) => props.pixel};
   height: ${(props) => props.pixel};
-  /* margin: -2px -3px 0 -2px; */
   margin: ${(props) => (props.pixel === '19px' ? '-2px -3px 0 -2px' : '0')};
 `;

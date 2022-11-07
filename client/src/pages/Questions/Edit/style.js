@@ -11,7 +11,6 @@ export const TagContainer = styled.div`
 
 export const H2 = styled.h2`
   font-size: 15px;
-  /* margin-top: 30px; */
   margin-bottom: 6px;
   font-weight: 600;
 `;
@@ -37,13 +36,10 @@ export const Side = styled.section`
 `;
 
 export const InputTitleDiv = styled.div`
-  /* width: 790px; */
-  /* margin-top: 30px; */
   margin-bottom: 30px;
   border-radius: 3px;
   div > div {
     font-size: 15px;
-    /* font-weight: bolder; */
     margin-bottom: 8px;
   }
   div > p {
@@ -76,10 +72,7 @@ export const InputTitleDiv = styled.div`
   }
 `;
 
-/* Toast Editor 감쌀 div */
 export const ToastDiv = styled.div`
-  /* width: 790px; */
-  /* margin-top: 30px; */
   border-radius: 3px;
 
   div > div {
@@ -92,14 +85,12 @@ export const ToastDiv = styled.div`
   }
 `;
 
-/* Tag -> 문구, 설명, 인풋창 부분 감쌀 div */
 export const TagDiv = styled.div`
   width: 790px;
   margin-top: 30px;
   margin-bottom: 10px;
   border-radius: 3px;
   border: 1px solid #d6d9dc;
-  /* height: 208px; */
   padding: 35px 30px 15px 30px;
   div > div {
     font-size: 17px;
@@ -111,13 +102,6 @@ export const TagDiv = styled.div`
     font-size: 14px;
     margin-bottom: 8px;
   }
-  /* input {
-    width: 730px;
-    height: 40px;
-    border: 1px solid #babfc4;
-    border-radius: 3px;
-    padding-left: 8px;
-  } */
   button {
     margin-top: 8px;
     position: relative;
@@ -143,8 +127,6 @@ export const Widget = styled.div`
 
 export const Header = styled.div`
   background-color: var(--yellow-100);
-  /* border-top-left-radius: 3px;
-  border-top-right-radius: 3px; */
   border-top: 1px solid var(--yellow-200);
 
   border-bottom-style: solid;
@@ -156,13 +138,7 @@ export const Header = styled.div`
   font-weight: bold;
 `;
 
-export const Item = styled.div`
-  /* background-color: var(--yellow-050); */
-  /* border-bottom: 1px solid var(--yellow-200); */
-  /* .last {
-    border-bottom: none;
-  } */
-`;
+export const Item = styled.div``;
 
 export const Li = styled.div`
   display: flex;
@@ -193,6 +169,5 @@ export const Logo = styled.img`
   align-items: center;
   width: ${(props) => props.pixel};
   height: ${(props) => props.pixel};
-  /* margin: -2px -3px 0 -2px; */
   margin: ${(props) => (props.pixel === '19px' ? '-2px -3px 0 -2px' : '0')};
 `;

@@ -1,4 +1,3 @@
-//import { Link, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/stackoverflow_logo.png';
 import shortlogo from '../../../assets/Stack_Overflow_icon.svg.png';
@@ -18,7 +17,6 @@ import {
 } from './style';
 
 import inbox from '../../../assets/images/inbox_icon.png';
-// import message from '../../../assets/images/message_icon.png';
 import userimg from '../../../assets/images/padakmon.png';
 import question from '../../../assets/images/question_icon.png';
 import trophy from '../../../assets/images/trophy_icon.png';
@@ -26,17 +24,9 @@ import HeaderModalButton from '../../HeaderModalButton';
 import Hamburger from './Hamburger';
 
 function GlobalNav({ hamburger, openHamburger }) {
-  // const navigate = useNavigate();
-
-  //const isLogin = useSelector((state) => state.isLogin);
   const isLogin =
     localStorage.getItem('accesstoken') !== null ||
     localStorage.getItem('googleAccessToken') !== null;
-  console.log('헤더 이즈로그인:', isLogin);
-  // const handleClickLogout = () => {
-  //   navigate('/logout');
-  // };
-  console.log('로컬스토리지액세스토큰', localStorage.getItem('accesstoken'));
 
   return (
     <Header>

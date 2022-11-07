@@ -73,9 +73,7 @@ export const TextBlock = styled.div`
 `;
 
 export const UserListBlock = styled.div`
-  //background-color: yellow;
-  //width: 1360px;
-  width: 100%; //이걸로 하면 wrap가능
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
 `;

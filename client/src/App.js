@@ -36,7 +36,6 @@ function App() {
     bgColor = `white`;
   }
 
-  // hamburger
   const [hamburger, setHamburger] = useState(false);
   const openHamburger = () => {
     setHamburger(!hamburger);

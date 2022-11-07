@@ -47,7 +47,6 @@ export const Header = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
-  /* height: 58px; */
   border-top: 3px solid #f48224;
   background-color: #f8f9f9;
   width: 100%;
@@ -115,8 +114,8 @@ export const AferLoginIcons = styled.div`
       background-color: var(--black-075);
     }
     > img {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
       margin: 0px;
     }
   }
