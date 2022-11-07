@@ -13,6 +13,7 @@ import SearchResults from './pages/SearchResults';
 
 import { useEffect, useState } from 'react';
 import AllQuestions from './pages/AllQuestions';
+import GooglePage from './pages/GooglePage';
 import QuestionsTagged from './pages/QuestionsTagged';
 import Login from './pages/Register/Login';
 import Signup from './pages/Register/Signup';
@@ -82,6 +83,7 @@ function App() {
           <Route path="/users" element={<Users />} />
           <Route path="/tags" element={<TagsTab />} />
           <Route path={`/users/:id`} element={<div>users/:id</div>} />
+          <Route path="/googlepage" element={<GooglePage />} />
         </Routes>
       </Body>
       {hideFooter || <Footer />}
