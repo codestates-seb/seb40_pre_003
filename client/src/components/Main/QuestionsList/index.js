@@ -2,7 +2,6 @@ import Question from '../Question';
 import { Container } from './style';
 
 const QuestionsList = ({ homeData }) => {
-  console.log('QuestionList컴포->homeData :', homeData);
   return (
     <Container>
       {homeData &&

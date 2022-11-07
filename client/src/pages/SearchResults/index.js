@@ -21,10 +21,6 @@ const SearchResults = () => {
   const [totalCount, setTotalCount] = useState(0);
 
   const searchGen = useSelector((state) => state.searchReducer.searchGen);
-  console.log(
-    'SearchResults컴포 -> useSelector() -> searchGen 값 :',
-    searchGen
-  );
 
   useEffect(() => {
     axios
@@ -37,14 +33,11 @@ const SearchResults = () => {
         }
       )
       .then((res) => {
-        console.log('SearchResults컴포->axios요청 값 : ', res.data);
         setSearchResultsData(res.data);
         setTotalCount(res.data.questions.length);
       })
       .catch((error) => console.log('error : ', error));
   }, [searchGen]);
-
-  console.log('SearchResults컴포 -> searchResultsData : ', searchResultsData);
 
   return (
     searchResultsData && (

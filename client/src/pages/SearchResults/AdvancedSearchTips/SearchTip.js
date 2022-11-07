@@ -21,7 +21,6 @@ const TypeSnytaxTitleDiv = styled.div`
 `;
 
 const SearchTip = () => {
-  console.log('SearchTip컴포 -> TipDummy : ', TipDummy);
   return (
     <Container>
       <Main>

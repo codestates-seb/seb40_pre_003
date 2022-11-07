@@ -27,7 +27,6 @@ const TagsTab = () => {
         },
       })
       .then((res) => {
-        console.log('TagsTab컴포 -> axios 요청 res : ', res);
         setTagData(res.data);
         setTotalElements(res.data.pageInfo.totalElements);
         setTotalPage(res.data.pageInfo.totalPages);

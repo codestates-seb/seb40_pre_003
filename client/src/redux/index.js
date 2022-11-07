@@ -102,18 +102,10 @@ const questionReducer = (state = initialstate, action) => {
 const searchReducer = (state = initialstate, action) => {
   switch (action.type) {
     case SEARCH_GEN:
-      console.log(
-        'redux -> case Search_gen -> action.payload: ',
-        action.payload
-      );
       return {
         searchGen: action.payload,
       };
     case SEARCH_TAG:
-      console.log(
-        'redux -> case Search_tag -> action.payload: ',
-        action.payload
-      );
       return {
         searchTag: action.payload,
       };

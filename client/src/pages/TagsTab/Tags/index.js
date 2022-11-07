@@ -11,7 +11,6 @@ import {
 } from './style';
 
 const Tags = ({ list }) => {
-  console.log('Tags컴포 -> TagList컴포로 부터 props맵핑받은 Data : ', list);
   return (
     <TagsContainer>
       <TagNameDiv>

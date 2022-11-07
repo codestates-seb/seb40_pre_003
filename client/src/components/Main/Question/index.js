@@ -24,8 +24,6 @@ import {
 import Tag from '../../Tag';
 
 const Question = ({ list }) => {
-  console.log('Question컴포 -> props로 받아온 Data.body : ', list.body);
-
   return (
     <QuBox>
       <QuList>
@@ -35,10 +33,10 @@ const Question = ({ list }) => {
               <span>{list.score} votes</span>
             </VotesCount>
             <AnswerCount>
-              <span>{list.answers} answers</span>
+              <span>{list.answerCount} answers</span>
             </AnswerCount>
             <ViewsCount>
-              <span>{list.views} views</span>
+              <span>{list.viewCount} views</span>
             </ViewsCount>
           </CountBox>
         </LeftSection>

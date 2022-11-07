@@ -36,7 +36,6 @@ const AllQuestions = () => {
         }
       )
       .then((res) => {
-        console.log('AllQuestions컴포 -> axios요청 -> res.data : ', res);
         setHomeData(res.data);
         setTotalCount(res.data.pageInfo.totalElements);
         setTotalPage(res.data.pageInfo.totalPages);
