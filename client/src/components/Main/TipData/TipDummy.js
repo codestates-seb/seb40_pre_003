@@ -73,6 +73,6 @@ export const TipDummy = [
   {
     id: 14,
     type: 'Collective',
-    body: ['collective: Name'],
+    body: ['collective:Name'],
   },
 ];

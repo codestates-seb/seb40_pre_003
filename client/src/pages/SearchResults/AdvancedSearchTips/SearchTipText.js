@@ -14,14 +14,13 @@ const TipSearchType = styled.div``;
 const TipSearchSyntax = styled.div``;
 
 const SearchTipText = ({ data }) => {
-  console.log(data);
   return (
     <div>
       <TipTextDiv>
         <TipSearchType>{data.type}</TipSearchType>
         <TipSearchSyntax>
           {data.body.length > 1
-            ? data.body.map((el) => <div key={el.id}>{el}</div>)
+            ? data.body.map((el) => <div key={el}>{el}</div>)
             : data.body}
         </TipSearchSyntax>
       </TipTextDiv>
