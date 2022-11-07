@@ -11,14 +11,14 @@ export const FilterBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 30px 30px 30px 20px;
+  margin: 30px 0px;
   > div#input {
     display: flex;
     border: 1px rgb(159, 166, 173) solid;
     border-radius: 5px;
     height: 40px;
     width: 188px;
-    margin-left: 20px;
+
     align-items: center;
     padding: 5px;
     > input {
@@ -78,5 +78,4 @@ export const UserListBlock = styled.div`
   width: 100%; //이걸로 하면 wrap가능
   display: flex;
   flex-wrap: wrap;
-  padding: 30px;
 `;
