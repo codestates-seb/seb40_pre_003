@@ -3,6 +3,8 @@ Stack Overflow Clone
 
 배포 링크 : <http://padakmon-client-bucket.s3-website.ap-northeast-2.amazonaws.com/>
 
+데모 영상 : <https://www.youtube.com/watch?v=T6uEMcfgvec/>
+
 프로젝트 기간 : 2022.10.20 ~ 2022.11.07
 
 <br><br>
@@ -23,6 +25,11 @@ Stack Overflow Clone
 
 ## Built With
 <p align="center"><img src="built-with.png"></p>
+<br><br>
+
+## API Documentation
+__[API 명세서 Spreadsheets](https://docs.google.com/spreadsheets/d/1-iXshYqORqqHqV7H4DwgY6rGc-bIFUwD56sRcG_qjQo/edit?usp=sharing)__
+
 <br><br>
 
 ## Git Convention
