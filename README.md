@@ -1,18 +1,18 @@
 #  👼 파닥몬 진화
 Stack Overflow Clone
 
-배포 링크 : <http://projectonecoin.s3-website.ap-northeast-2.amazonaws.com/>
+배포 링크 : <http://padakmon-client-bucket.s3-website.ap-northeast-2.amazonaws.com/>
 
-데모 영상 : <https://youtu.be/j2MjyMpPnfo/>
+데모 영상 : <https://www.youtube.com/watch?v=T6uEMcfgvec/>
 
-프로젝트 기간 : 2022.11.8 ~ 2022.12.07
+프로젝트 기간 : 2022.10.20 ~ 2022.11.07
 
 <br><br>
 
 ## Team Members
-|Front-end|Front-end|Front-end|Back-end|Back-end|Back-end|
-|:--:|:--:|:--:|:--:|:--:|:--:|
-|(팀장)서재홍|김민상|민다영|김기홍|김지환|남기범|
+|Front-end|Front-end|Front-end|Back-end|Back-end|
+|:--:|:--:|:--:|:--:|:--:|
+|최주은(팀장)|김효중|박민경|김기홍|남기범|
 |<img src="https://avatars.githubusercontent.com/u/45119238?v=4" width=150>|<img src="https://avatars.githubusercontent.com/u/89366562?v=4" width=150>|<img src="https://avatars.githubusercontent.com/u/107922059?v=4" width=150>|<img src="https://avatars.githubusercontent.com/u/99868638?v=4" width=150>|<img src="https://avatars.githubusercontent.com/u/101033262?v=4t" width=150>|
 |[@callmejeje](https://github.com/callmejeje)|[@rlgywnd](https://github.com/rlgywnd)|[@ALSRUD29](https://github.com/ALSRUD29)|[@broaden-horizon](https://github.com/broaden-horizon)|[@GIVEN53](https://github.com/GIVEN53)|
 
